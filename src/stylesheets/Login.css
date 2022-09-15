@@ -1,10 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
-
-*{
-    margin: 0%;
-    padding: 0%;
-    font-family: 'Josefin Sans';
-}
 .contImagen{
     width: 100%;
     height: 100vh;
@@ -16,7 +9,7 @@
 .contDegradado{
     width: 100%;
     height: 100vh;
-    background:linear-gradient(to left, #342535 40%, #42414165);
+    background:linear-gradient(to left, #410046 40%, #4100465b);
 }
 .contLogin{
     position: absolute;
@@ -68,14 +61,14 @@
     width: auto;
     padding-left: 5px;
     padding-right: 5px;
-    background-color: #342535;
+    background-color: #410046;
 }
 
 
 .boton1{
     width: 100%;
     height: 52px;
-    background-color: #682A7E;
+    background-color: #46124a;
     color: #f3f3f3dc;
     border-radius: 30px;
     border: none;

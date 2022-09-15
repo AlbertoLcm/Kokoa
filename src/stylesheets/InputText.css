@@ -5,14 +5,14 @@
     display: flex;
     align-items: center;
     overflow: hidden;
-    background-color: #3F3043;
+    background-color: #220024;
     border-radius: 10px;
     transition: all 300ms;
     margin-bottom: 15px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 .inputBox:hover{
-    background-color: #48374d;
+    background-color: #300033;
 }
 .inputBox input{
     background: none;
