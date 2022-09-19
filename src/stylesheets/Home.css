@@ -1,0 +1,9 @@
+.contHome{
+    background-image: linear-gradient(-135deg, #410046, #EC1C4E);
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #f3f3f3;
+}

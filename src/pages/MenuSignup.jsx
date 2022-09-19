@@ -17,19 +17,19 @@ function MenuLogin() {
                         </Link>
                     </div>
                     <div className="btnMenuNegocio">
-                        <Link to= "/" className="seleccion">
+                        <Link to= "/login" className="seleccion">
                             Negocio
                         </Link>
                     </div>
                 </div>  
                 <div className="contSelecion">
                     <div className="btnMenuArtista">
-                        <Link to= "/" className="seleccion">
+                        <Link to= "/login" className="seleccion">
                             Artista
                         </Link>
                     </div>
                     <div className="btnMenuPatrocinador">
-                        <Link to= "/" className="seleccion">
+                        <Link to= "/login" className="seleccion">
                             Patrocinador
                         </Link>
                     </div>
