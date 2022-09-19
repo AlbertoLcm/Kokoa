@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../components/Header";
 import '../stylesheets/MenuSignup.css'
 import Button from "../components/Button";
+import { getByDisplayValue } from "@testing-library/react";
 
 function MenuLogin() {
     return(
@@ -10,11 +11,13 @@ function MenuLogin() {
             <div className="contPrincipal">
                 <h2>¿Qué tipo de usuario eres?</h2>   
                 <div className="contSelecion">
-                        <Button tipo={'seleccion'}>Normal</Button>
-                        <Button tipo={'seleccion'}>Negocio</Button>
-                        <Button tipo={'seleccion'}>Artista</Button>
-                        <Button tipo={'seleccion'}>Patrocinador</Button>
+                    <Button tipo={'seleccionUsuarios'} >Normal</Button>
+                    <Button tipo={'seleccionUsuarios'}>Negocio</Button>
                 </div>  
+                <div className="contSelecion">
+                    <Button tipo={'seleccionUsuarios'}>Artista</Button>
+                    <Button tipo={'seleccionUsuarios'}>Patrocinador</Button>
+                </div>
             </div>
         </div>
     );
