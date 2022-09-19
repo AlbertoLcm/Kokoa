@@ -7,8 +7,10 @@ function App() {
   return (
 
     <Fragment> 
-      <AppRouter />
-      <Footer />
+      {/* <AuthProvider> */}
+        <AppRouter />
+        <Footer />
+      {/* </AuthProvider> */}
     </Fragment>
     
   );
