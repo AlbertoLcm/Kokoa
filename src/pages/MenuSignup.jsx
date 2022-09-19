@@ -1,8 +1,6 @@
 import React from "react";
 import Header from "../components/Header";
 import '../stylesheets/MenuSignup.css'
-import Button from "../components/Button";
-import { getByDisplayValue } from "@testing-library/react";
 import {Link} from "react-router-dom";
 function MenuLogin() {
     return(
@@ -17,7 +15,7 @@ function MenuLogin() {
                         </Link>
                     </div>
                     <div className="btnMenuNegocio">
-                        <Link to= "/login" className="seleccion">
+                        <Link to= "/newnegocio" className="seleccion">
                             Negocio
                         </Link>
                     </div>

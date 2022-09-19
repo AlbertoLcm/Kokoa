@@ -25,7 +25,11 @@
     width: 300px;
     padding-left: 37%;
     padding-top: 25px;
-    padding-bottom: 50px;
+    padding-bottom: 80px;
+}
+.contHorario{
+    display: flex;
+    
 }
 .contPass{
     width: 700px;
