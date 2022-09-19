@@ -8,7 +8,6 @@ function Login() {
     return (
         <div className="contImagen">
             <div className="contDegradado">
-                <Header boton={'Crear Cuenta'} />
                 <div className="contLogin">
                     <form action="" className="login">
                         <h2>Bienvenido</h2>

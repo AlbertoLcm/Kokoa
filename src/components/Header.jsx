@@ -2,7 +2,7 @@ import React from "react";
 import Button from "./Button";
 import '../stylesheets/Header.css'
 
-function Header({ tipo, boton }) {
+function Header({ tipo, children }) {
     return(
         <header className={ tipo }>
             <section className="contLogo">
@@ -11,9 +11,7 @@ function Header({ tipo, boton }) {
                 </div>
             </section>
             <section className="contBotones">
-                {
-                    boton ? <Button tipo={'boton3'}>{ boton }</Button> : <></>
-                }
+               {children}
             </section>
         </header>
     );
