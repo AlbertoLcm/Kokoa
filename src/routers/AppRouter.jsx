@@ -6,6 +6,8 @@ import Login from '../pages/Login';
 import MenuSignup from '../pages/MenuSignup';
 import SignUsuario from '../pages/SignUsuario';
 import SignNegocio from '../pages/SignNegocio';
+import SignPatrocinador from '../pages/SignPatrocinador';
+
 
 function AppRouter() {
     return(
@@ -15,6 +17,7 @@ function AppRouter() {
                 <Route path='/signup' element={<MenuSignup />} />
                 <Route path='/newusuario' element={<SignUsuario />} />
                 <Route path='/newnegocio' element={<SignNegocio />} />
+                <Route path='/newpatrocinador' element={<SignPatrocinador />} />
                 <Route path='/' element={<Home />} />
             </Routes>
         </div>

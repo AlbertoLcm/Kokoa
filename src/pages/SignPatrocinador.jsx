@@ -2,9 +2,9 @@ import React from "react";
 import Button from "../components/Button";
 import Header from "../components/Header";
 import Input from "../components/Input";
-import "../stylesheets/signNegocio.css";
+import "../stylesheets/signPatrocinador.css";
 
-function SignNegocio() {
+function SignPatrocinador() {
     return(
         <div className="contBackground">
             <Header boton={'Crear Cuenta'} />
@@ -28,52 +28,10 @@ function SignNegocio() {
                             <Input type='text' className="dataUser">ESTADO</Input>
                         </div>
                     </div>
-                    <h2>Horario</h2>
-                    <div className="contHorario"> 
-                        <div>
-                            <h2>Lunes</h2>
-                            <div className="contHorDia"> 
-                                <h2 className="textHor">De: </h2> <Input type='time' /> <h2 className="textHor"> a: </h2> <Input type='time' />
-                            </div>
-                        </div>
-                        <div>
-                            <h2>Martes</h2>
-                            <div className="contHorDia"> 
-                                <h2 className="textHor">De: </h2> <Input type='time' /> <h2 className="textHor"> a: </h2> <Input type='time' />
-                            </div>
-                        </div>
-                        <div>
-                            <h2>Miercoles</h2>
-                            <div className="contHorDia"> 
-                                <h2 className="textHor">De: </h2> <Input type='time' /> <h2 className="textHor"> a: </h2> <Input type='time' />
-                            </div>
-                        </div>
-                        <div>
-                            <h2>Jueves</h2>
-                            <div className="contHorDia"> 
-                                <h2 className="textHor">De: </h2> <Input type='time' /> <h2 className="textHor"> a: </h2> <Input type='time' />
-                            </div>
-                        </div>
-                        <div>
-                            <h2>Viernes</h2>
-                            <div className="contHorDia"> 
-                                <h2 className="textHor">De: </h2> <Input type='time' /> <h2 className="textHor"> a: </h2> <Input type='time' />
-                            </div>
-                        </div>
-                        <div>
-                            <h2>Sabado</h2>
-                            <div className="contHorDia"> 
-                                <h2 className="textHor">De: </h2> <Input type='time' /> <h2 className="textHor"> a: </h2> <Input type='time' />
-                            </div>
-                        </div>
-                        <div>
-                            <h2>Domigo</h2>
-                            <div className="contHorDia"> 
-                                <h2 className="textHor">De: </h2> <Input type='time' /> <h2 className="textHor"> a: </h2> <Input type='time' />
-                            </div>
-                        </div>
-                    </div>
+                    <h2>Forma de patrocinio</h2>
+                    <div className="contT">
 
+                    </div>
                     <h2>Contraseña</h2>
                     <div className="contPass">
                         
@@ -93,4 +51,4 @@ function SignNegocio() {
     );
 }
 
-export default SignNegocio;
+export default SignPatrocinador;
