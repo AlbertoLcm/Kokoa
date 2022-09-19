@@ -6,6 +6,7 @@ import MenuSignup from '../pages/MenuSignup';
 import SignUsuario from '../pages/SignUsuario';
 import SignNegocio from '../pages/SignNegocio';
 import PrivateRoute from "./PrivateRoute";
+import SignPatrocinador from "../pages/SignPatrocinador";
 
 function AppRouter() {
     return(
