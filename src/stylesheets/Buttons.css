@@ -76,7 +76,6 @@
 }
 .seleccionUsuarios{
     display: flex;
-    flex: 1 1;
     height: 50%;
     width: 500px;
     align-items: center;

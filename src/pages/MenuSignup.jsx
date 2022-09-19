@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import '../stylesheets/MenuSignup.css'
 import Button from "../components/Button";
 import { getByDisplayValue } from "@testing-library/react";
-
+import {Link} from "react-router-dom";
 function MenuLogin() {
     return(
         <div className="contBackground">
@@ -11,7 +11,10 @@ function MenuLogin() {
             <div className="contPrincipal">
                 <h2>¿Qué tipo de usuario eres?</h2>   
                 <div className="contSelecion">
-                    <Button tipo={'seleccionUsuarios'} >Normal</Button>
+                    <Link to= "/" className="boton3">
+                        Normal
+                    </Link>
+
                     <Button tipo={'seleccionUsuarios'}>Negocio</Button>
                 </div>  
                 <div className="contSelecion">
