@@ -17,7 +17,7 @@ function MenuLogin() {
                         </Link>
                     </div>
                     <div className="btnMenuNegocio">
-                        <Link to= "/" className="seleccion">
+                        <Link to= "/newnegocio" className="seleccion">
                             Negocio
                         </Link>
                     </div>

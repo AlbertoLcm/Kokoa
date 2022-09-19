@@ -2,6 +2,7 @@ import React from "react";
 import Button from "../components/Button";
 import Header from "../components/Header";
 import Input from "../components/Input";
+import "../stylesheets/SignUsuario.css";
 
 function SignUsuario() {
     return(
@@ -9,17 +10,26 @@ function SignUsuario() {
             <Header boton={'Crear Cuenta'} />
             <div className="contForm">
                 <form action="" className="form">
-                    <h2>Bienvenido</h2>
-                    <Input type='text'>Email</Input>
-                    <Input type='password'>Contraseña</Input>
-                    <h3>¿Olvidaste tu contraseña?</h3>
-                    <Button tipo={'boton1'}>Ingresar</Button>
-                    <section className="separador">
-                        <div className="letra">
-                            Ó
+                    <div><h1>REGISTRO COMO USUARIO</h1></div>
+                    <div className="contInp">
+                        <Input type='text' className="dataUser">Nombre</Input>
+                        <Input type='text' className="dataUser">Apellido</Input>
+                        <Input type='text' className="dataUser">Email</Input>
+                        <Input type='text' className="dataUser">Numero de telefono</Input>
+                    </div>
+                    <h2>Contraseña</h2>
+                    <div className="contPass">
+                        
+                        <div className="dataPass">
+                            <Input type='password'>Contraseña</Input>
                         </div>
-                    </section>
-                    <Button tipo={'boton2'}>Otra Opción</Button>
+                        <div className="dataPass">
+                            <Input type='password'>Confirme su Contraseña</Input>
+                        </div>
+                    </div>
+                    <div className="contBot">
+                        <Button tipo={'boton1'}>Registrarse</Button>
+                    </div>
                 </form>
             </div>
         </div>
