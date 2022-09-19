@@ -1,0 +1,76 @@
+.boton1{
+    width: 100%;
+    height: 52px;
+    background: #D47F00;
+    color: #f3f3f3;
+    border-radius: 30px;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 300ms;
+    margin-bottom: 20px;
+    user-select: none;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.boton1:hover{
+    background-color: #ff9900;
+}
+
+.boton2{
+    width: 100%;
+    height: 52px;
+    background-color: #f3f3f3c7;
+    backdrop-filter: blur(10px);
+    border: none;
+    color: #000000;
+    border-radius: 30px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 300ms;
+    user-select: none;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.boton2:hover{
+    background-color: #f3f3f3fb;
+}
+
+.boton3{
+    width: 100%;
+    height: 52px;
+    background-color: #d47f0088;
+    backdrop-filter: blur(10px);
+    border: none;
+    color: #f3f3f3;
+    border-radius: 30px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 300ms;
+    user-select: none;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.boton3:hover{
+    background-color: #d47f00cd;
+}
+
+.seleccion{
+    display: flex;
+    flex: 1 1;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.180);
+    backdrop-filter: blur(10px);
+    border: none;
+    color: #f3f3f3;
+    border-radius: 10px;
+    font-size: 22px;
+    cursor: pointer;
+    transition: 300ms;
+    user-select: none;
+    margin: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.seleccion:hover{
+    background-color: rgba(255, 255, 255, 0.250);
+
+}
