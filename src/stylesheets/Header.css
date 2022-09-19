@@ -30,6 +30,7 @@ header{
 }
 .contBotones{
     min-width: 150px;
+    height: 52px;
     position: absolute;
     right: 60px;
 }
