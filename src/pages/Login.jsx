@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import Header from "../components/Header";
 import Input from "../components/Input";
@@ -8,8 +9,11 @@ function Login() {
     return (
         <div className="contImagen">
             <div className="contDegradado">
+            <Header> 
+                <Link to='/signup' className='boton3'>Crear Cuenta</Link>
+            </Header>
                 <div className="contLogin">
-                    <form action="" className="login">
+                    <form className="login">
                         <h2>Bienvenido</h2>
                         <Input type='text'>Email</Input>
                         <Input type='password'>Contraseña</Input>

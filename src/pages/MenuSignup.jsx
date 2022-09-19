@@ -11,15 +11,28 @@ function MenuLogin() {
             <div className="contPrincipal">
                 <h2>¿Qué tipo de usuario eres?</h2>   
                 <div className="contSelecion">
-                    <Link to= "/" className="boton3">
-                        Normal
-                    </Link>
-
-                    <Button tipo={'seleccionUsuarios'}>Negocio</Button>
+                    <div className="btnMenuNormal">
+                        <Link to= "/newusuario" className="seleccion">
+                            Normal
+                        </Link>
+                    </div>
+                    <div className="btnMenuNegocio">
+                        <Link to= "/" className="seleccion">
+                            Negocio
+                        </Link>
+                    </div>
                 </div>  
                 <div className="contSelecion">
-                    <Button tipo={'seleccionUsuarios'}>Artista</Button>
-                    <Button tipo={'seleccionUsuarios'}>Patrocinador</Button>
+                    <div className="btnMenuArtista">
+                        <Link to= "/" className="seleccion">
+                            Artista
+                        </Link>
+                    </div>
+                    <div className="btnMenuPatrocinador">
+                        <Link to= "/" className="seleccion">
+                            Patrocinador
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>
