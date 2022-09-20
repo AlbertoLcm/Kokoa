@@ -1,6 +1,12 @@
 h1{
     color: white;
 }
+h3 {
+    color: whitesmoke;
+}
+.contTipPat p {
+    color: whitesmoke;
+}
 .dataTotal{
     display: flex;
 }
@@ -33,26 +39,29 @@ h1{
     padding-top: 25px;
     padding-bottom: 80px;
 }
-.contHorario{
-    flex-wrap: wrap;
-    display: flex;
-    justify-content: center;
-    height: auto;
-}
-.textHor{
-    padding-top: 20px;
-}
-.contHorario h2{
-    margin-bottom: 0px;
-}
-.contHorario div{
-    padding-right: 5px;
-}
-.contHorDia{
-    display: flex;
-}
 .contPass{
     width: 700px;
     padding-left: 32%;
     display: flex;
+}
+.contT{
+    display: flex;
+}
+.contT textarea {
+    max-height: 100px;
+    vertical-align: middle;
+    
+}
+.contTDes {
+    text-align: left;
+    padding-top: 40px;
+}
+.contTipPat{
+    width: 200px;
+    text-align: left;
+    padding-left: 20%;
+}
+.contTipPat div {
+    max-height: 20px;
+    max-width: 50px;
 }

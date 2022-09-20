@@ -27,7 +27,7 @@ function MenuLogin() {
                         </Link>
                     </div>
                     <div className="btnMenuPatrocinador">
-                        <Link to= "/login" className="seleccion">
+                        <Link to= "/newpatrocinador" className="seleccion">
                             Patrocinador
                         </Link>
                     </div>

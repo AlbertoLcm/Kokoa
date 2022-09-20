@@ -25,12 +25,21 @@ function SignPatrocinador() {
                             <Input type='text' className="dataUser">ESTADO</Input>
                             <Input type='text' className="dataUser">COLONIA</Input>
                             <Input type='text' className="dataUser">CALLE</Input>
-                            <Input type='text' className="dataUser">ESTADO</Input>
+                            <Input type='text' className="dataUser">NUMERO</Input>
                         </div>
                     </div>
                     <h2>Forma de patrocinio</h2>
                     <div className="contT">
-
+                        <div className="contTipPat">
+                            <h3>Tipo de Patrocinio</h3>
+                            <p>Bebidas</p> <Input type='checkbox' /> 
+                            <p>Alcohol</p><Input type='checkbox' /> 
+                            <p>Entretenimiento</p><Input type='checkbox' />
+                        </div>
+                        <div className="contTDes">
+                            <h3>Descripcion</h3><p></p>
+                            <textarea cols="50" rows="5" placeholder="Añada una descripsion de la forma y tipo de patrocinio que proporciona"/>
+                        </div>
                     </div>
                     <h2>Contraseña</h2>
                     <div className="contPass">

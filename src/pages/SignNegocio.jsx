@@ -25,7 +25,7 @@ function SignNegocio() {
                             <Input type='text' className="dataUser">ESTADO</Input>
                             <Input type='text' className="dataUser">COLONIA</Input>
                             <Input type='text' className="dataUser">CALLE</Input>
-                            <Input type='text' className="dataUser">ESTADO</Input>
+                            <Input type='text' className="dataUser">NUMERO</Input>
                         </div>
                     </div>
                     <h2>Horario</h2>

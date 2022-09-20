@@ -11,7 +11,7 @@ function SignUsuario() {
             <div className="contForm">
                 <form action="" className="form">
                     <div><h1>REGISTRO COMO USUARIO</h1></div>
-                    <div className="contInp">
+                    <div className="contInpUs">
                         <Input type='text' className="dataUser">Nombre</Input>
                         <Input type='text' className="dataUser">Apellido</Input>
                         <Input type='text' className="dataUser">Email</Input>
