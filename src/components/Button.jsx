@@ -1,8 +1,14 @@
 import React from "react";
 import '../stylesheets/Buttons.css'
 
-const Button = ({ tipo, children }) => (
-    <button className={ tipo }> { children } </button>
+
+
+const Button = ({ tipo, children, action }) => (
+    <button 
+        className={ tipo }
+        onClick = { () => action}
+    > { children } </button>
 );
+
 
 export default Button;

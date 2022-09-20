@@ -1,20 +1,27 @@
 import React from "react";
 import Button from "../components/Button";
+import '../stylesheets/Buttons.css';
 import Header from "../components/Header";
 import Input from "../components/Input";
 import "../stylesheets/SignUsuario.css";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 function SignUsuario() {
+    const nav = useNavigate();
+    const GB = () => {
+        nav(-1);
+    }
+
     return(
         <div className="contBackground">
             <Header boton={'Crear Cuenta'} />
             
             <div className="contForm">
+            
                 <form action="" className="form">
                     
                     <div className="contCabeza">
-                        <div className="botVolver"><Link to= "/signup" className="seleccion">Volver</Link></div>
+                        <div className="botVolver"><button className="boton1" onClick={GB}>Volver</button></div>
                         <h1>REGISTRO COMO USUARIO</h1>
                     </div>
                     <div className="contInpUs">
