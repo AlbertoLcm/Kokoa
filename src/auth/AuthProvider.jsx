@@ -1,13 +1,21 @@
 import { React, createContext, useState} from "react";
+import { useNavigate } from "react-router-dom";
 import roles from "../helpers/roles";
 
 export const AuthContext = createContext()
 
 export default function AuthProvider({ children }){
 
+    const navigate = useNavigate();
+    
     const [user, setUser] = useState(false);
 
-    const login = () => setUser({id:1, role:roles.artista});
+    const login = (userCredentials, fromLocation) => {
+        setUser({id:1, role:roles.artista})
+        if(fromLocation){
+            navigate(fromLocation, {replace:true})
+        }
+    };
     const logout = () => setUser(false);
 
     const isLogged = () => !!user;
