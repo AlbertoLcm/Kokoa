@@ -5,9 +5,7 @@ import '../stylesheets/Buttons.css'
 
 const Button = ({ tipo, children, action }) => (
     <button 
-        className={ tipo }
-        onClick = { () => action}
-    > { children } </button>
+        className={ tipo }> { children } </button>
 );
 
 
