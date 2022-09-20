@@ -2,7 +2,7 @@ import React from "react";
 import Button from "../components/Button";
 import Header from "../components/Header";
 import Input from "../components/Input";
-import "../stylesheets/signPatrocinador.css";
+import "../stylesheets/signArtista.css";
 
 function SignArtista() {
     return(
@@ -10,7 +10,7 @@ function SignArtista() {
             <Header boton={'Crear Cuenta'} />
             <div className="contForm">
                 <form action="" className="form">
-                    <div><h1>REGISTRO COMO NEGOCIO</h1></div>
+                    <div><h1>REGISTRO COMO ARTISTA</h1></div>
                     <div className="dataTotal">
                         
                         <div className="contInp">
@@ -28,17 +28,16 @@ function SignArtista() {
                             <Input type='text' className="dataUser">NUMERO</Input>
                         </div>
                     </div>
-                    <h2>Forma de patrocinio</h2>
+                    <h2>PERFORMANCE</h2>
                     <div className="contT">
                         <div className="contTipPat">
-                            <h3>Tipo de Patrocinio</h3>
-                            <p>Bebidas</p> <Input type='checkbox' /> 
-                            <p>Alcohol</p><Input type='checkbox' /> 
+                            <h3>Tipo Performance</h3>
+                            <p>Musica</p> <Input type='checkbox' />  
                             <p>Entretenimiento</p><Input type='checkbox' />
                         </div>
                         <div className="contTDes">
                             <h3>Descripcion</h3><p></p>
-                            <textarea cols="50" rows="5" placeholder="Añada una descripsion de la forma y tipo de patrocinio que proporciona"/>
+                            <textarea cols="50" rows="5" placeholder="Añada una descripsion de su acto/estilo musical "/>
                         </div>
                     </div>
                     <h2>Contraseña</h2>
