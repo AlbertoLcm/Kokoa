@@ -2,17 +2,18 @@ import React from "react";
 import Button from "../components/Button";
 import Header from "../components/Header";
 import Input from "../components/Input";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import "../stylesheets/signPatrocinador.css";
 
 function SignPatrocinador() {
+    const nav = useNavigate();
     return(
         <div className="contBackground">
             <Header boton={'Crear Cuenta'} />
             <div className="contForm">
                 <form action="" className="form">
                     <div className="contCabeza">
-                        <div className="botVolver"><Link to= "/signup" className="seleccion">Volver</Link></div>
+                        <div className="botVolver"><button className="boton1" onClick={() => nav(-1)}>Volver</button></div>
                         <h1>REGISTRO COMO PATROCINADOR</h1>
                     </div>
                     <div className="dataTotal">

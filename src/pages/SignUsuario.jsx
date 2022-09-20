@@ -8,20 +8,17 @@ import {Link, useNavigate} from "react-router-dom";
 
 function SignUsuario() {
     const nav = useNavigate();
-    const GB = () => {
-        nav(-1);
-    }
-
     return(
+        
         <div className="contBackground">
             <Header boton={'Crear Cuenta'} />
-            
-            <div className="contForm">
-            
+            <div className="contTot">
+                <div className="contForm">
+                
                 <form action="" className="form">
                     
                     <div className="contCabeza">
-                        <div className="botVolver"><button className="boton1" onClick={GB}>Volver</button></div>
+                        <div className="botVolver"><button className="boton1" onClick={() => nav(-1)}>Volver</button></div>
                         <h1>REGISTRO COMO USUARIO</h1>
                     </div>
                     <div className="contInpUs">
@@ -44,6 +41,7 @@ function SignUsuario() {
                         <Button tipo={'boton1'}>Registrarse</Button>
                     </div>
                 </form>
+                </div>
             </div>
         </div>
     );
