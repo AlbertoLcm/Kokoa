@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../components/Header";
 import '../stylesheets/MenuSignup.css'
 import {Link} from "react-router-dom";
+import routes from "../helpers/routes";
 function MenuLogin() {
     return(
         <div className="contBackground">
@@ -15,7 +16,7 @@ function MenuLogin() {
                         </Link>
                     </div>
                     <div className="btnMenuNegocio">
-                        <Link to= "/newnegocio" className="seleccion">
+                        <Link to= {routes.newnegocio} className="seleccion">
                             Negocio
                         </Link>
                     </div>

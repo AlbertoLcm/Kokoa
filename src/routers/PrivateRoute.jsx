@@ -1,13 +1,17 @@
 import React from "react";
-import { Route, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import useAuth from "../auth/useAuth";
+import routes from "../helpers/routes";
 
-const PrivateRoute = ({ children }) => {
+const PrivateRoute = ({ children, Role }) => {
   
-    const user = false;
+    // const user = false;
+    
+    const { hasRole, isLogged } = useAuth();
 
-    // const { user } = useAuth();
+    if (Role && !hasRole(Role)) return <Navigate to={routes.home} />;
 
-    if (!user) return <Navigate to="/login" />;
+    if (!isLogged()) return <Navigate to={routes.login} />;
     return children;
 };
 

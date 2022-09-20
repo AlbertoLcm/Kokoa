@@ -5,7 +5,7 @@ import Header from "../components/Header";
 import Input from "../components/Input";
 import '../stylesheets/Login.css';
 
-function Login() {
+function Login({user}) {
     return (
         <div className="contImagen">
             <div className="contDegradado">
