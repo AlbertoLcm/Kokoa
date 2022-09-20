@@ -3,14 +3,20 @@ import Button from "../components/Button";
 import Header from "../components/Header";
 import Input from "../components/Input";
 import "../stylesheets/SignUsuario.css";
+import {Link} from "react-router-dom";
 
 function SignUsuario() {
     return(
         <div className="contBackground">
             <Header boton={'Crear Cuenta'} />
+            
             <div className="contForm">
                 <form action="" className="form">
-                    <div><h1>REGISTRO COMO USUARIO</h1></div>
+                    
+                    <div className="contCabeza">
+                        <div className="botVolver"><Link to= "/signup" className="seleccion">Volver</Link></div>
+                        <h1>REGISTRO COMO USUARIO</h1>
+                    </div>
                     <div className="contInpUs">
                         <Input type='text' className="dataUser">Nombre</Input>
                         <Input type='text' className="dataUser">Apellido</Input>

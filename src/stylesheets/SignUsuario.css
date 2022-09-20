@@ -1,3 +1,11 @@
+.botVolver {
+    display: inline-flex;
+    margin-right: 27%;
+}
+.contCabeza {
+    display: flex;
+}
+
 .contForm{
     padding-top: 100px;
     padding-left: 60px;

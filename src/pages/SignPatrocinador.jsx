@@ -2,6 +2,7 @@ import React from "react";
 import Button from "../components/Button";
 import Header from "../components/Header";
 import Input from "../components/Input";
+import {Link} from "react-router-dom";
 import "../stylesheets/signPatrocinador.css";
 
 function SignPatrocinador() {
@@ -10,7 +11,10 @@ function SignPatrocinador() {
             <Header boton={'Crear Cuenta'} />
             <div className="contForm">
                 <form action="" className="form">
-                    <div><h1>REGISTRO COMO NEGOCIO</h1></div>
+                    <div className="contCabeza">
+                        <div className="botVolver"><Link to= "/signup" className="seleccion">Volver</Link></div>
+                        <h1>REGISTRO COMO PATROCINADOR</h1>
+                    </div>
                     <div className="dataTotal">
                         
                         <div className="contInp">
