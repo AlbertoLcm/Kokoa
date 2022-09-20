@@ -1,0 +1,67 @@
+h1{
+    color: white;
+}
+h3 {
+    color: whitesmoke;
+}
+.contTipPat p {
+    color: whitesmoke;
+}
+.dataTotal{
+    display: flex;
+}
+.contForm{
+    padding-top: 100px;
+    padding-left: 60px;
+    padding-right: 60px;
+    display: flex;
+    align-items: center;
+}
+.form{
+    width: 100%;
+    text-align: center;
+}
+.dataUser{
+    width: 200px;
+}
+.dataPass{
+    width: 200px;
+    padding-right: 30px;
+}
+.contInp{
+    width: 300px;
+    padding-left: 17%;
+    padding-top: 25px;
+}
+.contBot{
+    width: 300px;
+    padding-left: 37%;
+    padding-top: 25px;
+    padding-bottom: 80px;
+}
+.contPass{
+    width: 700px;
+    padding-left: 32%;
+    display: flex;
+}
+.contT{
+    display: flex;
+}
+.contT textarea {
+    max-height: 100px;
+    vertical-align: middle;
+    
+}
+.contTDes {
+    text-align: left;
+    padding-top: 40px;
+}
+.contTipPat{
+    width: 200px;
+    text-align: left;
+    padding-left: 20%;
+}
+.contTipPat div {
+    max-height: 20px;
+    max-width: 50px;
+}

@@ -7,6 +7,7 @@ import SignUsuario from '../pages/SignUsuario';
 import SignNegocio from '../pages/SignNegocio';
 import PrivateRoute from "./PrivateRoute";
 import SignPatrocinador from "../pages/SignPatrocinador";
+import SignArtista from "../pages/SignArtista";
 
 function AppRouter() {
     return(
@@ -26,6 +27,7 @@ function AppRouter() {
                 <Route path='/newusuario' element={<SignUsuario />} />
                 <Route path='/newnegocio' element={<SignNegocio />} />
                 <Route path='/newpatrocinador' element={<SignPatrocinador />} />
+                <Route path='/newartista' element={<SignArtista />} />
 
             </Routes>
         </div>

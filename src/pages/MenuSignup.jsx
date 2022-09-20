@@ -22,7 +22,7 @@ function MenuLogin() {
                 </div>  
                 <div className="contSelecion">
                     <div className="btnMenuArtista">
-                        <Link to= "/login" className="seleccion">
+                        <Link to= "/newartista" className="seleccion">
                             Artista
                         </Link>
                     </div>
