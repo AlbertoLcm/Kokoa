@@ -4,7 +4,7 @@ import '../stylesheets/InputText.css'
 function InputText({ type, children }){
     return(
         <div className="inputBox">
-            <input type={type} className='error' required />
+            <input type={type} required />
             <span>{children}</span>
         </div>
     );
