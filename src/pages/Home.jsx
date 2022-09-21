@@ -1,11 +1,11 @@
 import React from "react";
 import useAuth from "../auth/useAuth";
-import Header from "../components/Header";
 import {Link} from "react-router-dom";
 import {slide as Menu} from 'react-burger-menu';
 import '../stylesheets/Home.css'
 import '../stylesheets/BurguerMenu.css'
 import routes from "../helpers/routes";
+import Mapa from "../components/Mapa";
 
 
 function Home() {
@@ -29,7 +29,8 @@ function Home() {
                 </div>
                 <button className='boton1' onClick={logout}> Cerrar sesión </button>
             </Menu>
-            <Header boton={'header1'}></Header>
+            <Mapa />
+
         </div>
     );
 }
