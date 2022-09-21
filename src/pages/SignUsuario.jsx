@@ -7,6 +7,13 @@ import "../stylesheets/SignUsuario.css";
 import {Link, useNavigate} from "react-router-dom";
 
 function SignUsuario() {
+
+    const postInsertar = () => {
+        fetch('http://localhost:8081/api')
+        .then(res => res.json)
+        .then(res => console.log(res))
+    }
+    
     const nav = useNavigate();
     return(
         
@@ -15,7 +22,7 @@ function SignUsuario() {
             <div className="contTot">
                 <div className="contForm">
                 
-                <form action="" className="form">
+                <form className="form" method="GET">
                     
                     <div className="contCabeza">
                         <div className="botVolver"><button className="boton1" onClick={() => nav(-1)}>Volver</button></div>
@@ -38,9 +45,9 @@ function SignUsuario() {
                         </div>
                     </div>
                     <div className="contBot">
-                        <Button tipo={'boton1'}>Registrarse</Button>
                     </div>
                 </form>
+                        <button className="boton1" onClick={() => postInsertar()}>Registrarse</button>
                 </div>
             </div>
         </div>
