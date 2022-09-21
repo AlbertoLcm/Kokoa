@@ -11,7 +11,7 @@ function MenuLogin() {
                 <h2>¿Qué tipo de usuario eres?</h2>   
                 <div className="contSelecion">
                     <div className="btnMenuNormal">
-                        <Link to= "/newusuario" className="seleccion">
+                        <Link to= {routes.newusuario} className="seleccion">
                             Normal
                         </Link>
                     </div>
@@ -23,12 +23,12 @@ function MenuLogin() {
                 </div>  
                 <div className="contSelecion">
                     <div className="btnMenuArtista">
-                        <Link to= "/newartista" className="seleccion">
+                        <Link to= {routes.newartista} className="seleccion">
                             Artista
                         </Link>
                     </div>
                     <div className="btnMenuPatrocinador">
-                        <Link to= "/newpatrocinador" className="seleccion">
+                        <Link to= {routes.newpatrocinador} className="seleccion">
                             Patrocinador
                         </Link>
                     </div>

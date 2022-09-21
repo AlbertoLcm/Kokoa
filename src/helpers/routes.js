@@ -6,7 +6,8 @@ const routes = {
     newnegocio: '/newnegocio',
     newpatrocinador: '/newpatrocinador',
     newartista: '/newartista',
-    rolartista: '/rolartista'
+    rolartista: '/rolartista',
+    registrarevento : '/registrarevento'
 }
 
 export default routes;

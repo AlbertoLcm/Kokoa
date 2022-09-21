@@ -1,10 +1,9 @@
 import React from "react";
-import Button from "../components/Button";
 import '../stylesheets/Buttons.css';
 import Header from "../components/Header";
 import Input from "../components/Input";
 import "../stylesheets/SignUsuario.css";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 function SignUsuario() {
 
@@ -19,32 +18,32 @@ function SignUsuario() {
         
         <div className="contBackground">
             <Header boton={'Crear Cuenta'} />
-            <div className="contTot">
-                <div className="contForm">
+            <div className="UscontTot">
+                <div className="UscontForm">
                 
-                <form className="form" method="GET">
+                <form className="Usform" method="GET">
                     
-                    <div className="contCabeza">
-                        <div className="botVolver"><button className="boton1" onClick={() => nav(-1)}>Volver</button></div>
+                    <div className="UscontCabeza">
+                        <div className="UsbotVolver"><button className="boton1" onClick={() => nav(-1)}>Volver</button></div>
                         <h1>REGISTRO COMO USUARIO</h1>
                     </div>
-                    <div className="contInpUs">
-                        <Input type='text' className="dataUser">Nombre</Input>
-                        <Input type='text' className="dataUser">Apellido</Input>
-                        <Input type='text' className="dataUser">Email</Input>
-                        <Input type='text' className="dataUser">Numero de telefono</Input>
+                    <div className="UscontInpUs">
+                        <Input type='text' className="UsdataUser">Nombre</Input>
+                        <Input type='text' className="UsdataUser">Apellido</Input>
+                        <Input type='text' className="UsdataUser">Email</Input>
+                        <Input type='text' className="UsdataUser">Numero de telefono</Input>
                     </div>
                     <h2>Contraseña</h2>
-                    <div className="contPass">
+                    <div className="UscontPass">
                         
-                        <div className="dataPass">
+                        <div className="UsdataPass">
                             <Input type='password'>Contraseña</Input>
                         </div>
-                        <div className="dataPass">
+                        <div className="UsdataPass">
                             <Input type='password'>Confirme su Contraseña</Input>
                         </div>
                     </div>
-                    <div className="contBot">
+                    <div className="UscontBot">
                     </div>
                 </form>
                         <button className="boton1" onClick={() => postInsertar()}>Registrarse</button>

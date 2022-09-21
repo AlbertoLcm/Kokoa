@@ -3,7 +3,9 @@
     min-height: 100vh;
     position: relative;
     display: flex;
-
     color: #f3f3f3;
 }
-
+.hoContLink{
+    max-height: 30px;
+    margin-bottom: 10px;
+}

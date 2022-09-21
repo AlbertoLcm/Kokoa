@@ -2,7 +2,7 @@ import React from "react";
 import Button from "../components/Button";
 import Header from "../components/Header";
 import Input from "../components/Input";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import "../stylesheets/signNegocio.css";
 
 function SignNegocio() {

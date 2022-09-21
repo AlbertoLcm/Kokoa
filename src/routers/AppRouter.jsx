@@ -13,6 +13,7 @@ import Error from "../pages/404";
 import routes from "../helpers/routes";
 import roles from "../helpers/roles";
 import RolArtista from "../pages/RolArtista";
+import RegistroEvento from "../pages/RegistroEvento";
 
 function AppRouter() {
     return(
@@ -57,6 +58,11 @@ function AppRouter() {
                     <PrivateRoute Role={roles.artista}>
                         <RolArtista />
                     </PrivateRoute>
+                } />
+                <Route exact path={routes.registrarevento} element={
+                    <PublicRoute>
+                        <RegistroEvento />
+                    </PublicRoute>
                 } />
 
                 <Route path="*" element={<Error />} />
