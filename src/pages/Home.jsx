@@ -1,17 +1,22 @@
 import React from "react";
 import useAuth from "../auth/useAuth";
+import Header from "../components/Header";
+import {slide as Menu} from 'react-burger-menu';
 import '../stylesheets/Home.css'
+import '../stylesheets/BurguerMenu.css'
 
-function Home(){
+
+function Home() {
 
     const { logout } = useAuth();
-    
-    return(
+
+    return (
+
         <div className="contHome">
-            <h1>Home</h1>
-            <div className="contSeleccion">
+            <Menu>
                 <button className='boton1' onClick={logout}> Cerrar sesión </button>
-            </div>
+            </Menu>
+            <Header boton={'header1'}></Header>
         </div>
     );
 }

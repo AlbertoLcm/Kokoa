@@ -1,8 +1,8 @@
-.botVolver {
+.PatbotVolver {
     display: inline-flex;
     margin-right: 27%;
 }
-.contCabeza {
+.PatcontCabeza {
     display: flex;
 }
 
@@ -12,64 +12,64 @@ h1{
 h3 {
     color: whitesmoke;
 }
-.contTipPat p {
+.PatcontTipPat p {
     color: whitesmoke;
 }
-.dataTotal{
+.PatdataTotal{
     display: flex;
 }
-.contForm{
+.PatcontForm{
     padding-top: 100px;
     padding-left: 60px;
     padding-right: 60px;
     display: flex;
     align-items: center;
 }
-.form{
+.Patform{
     width: 100%;
     text-align: center;
 }
-.dataUser{
+.PatdataUser{
     width: 200px;
 }
-.dataPass{
+.PatdataPass{
     width: 200px;
     padding-right: 30px;
 }
-.contInp{
+.PatcontInp{
     width: 300px;
     padding-left: 17%;
     padding-top: 25px;
 }
-.contBot{
+.PatcontBot{
     width: 300px;
     padding-left: 37%;
     padding-top: 25px;
     padding-bottom: 80px;
 }
-.contPass{
+.PatcontPass{
     width: 700px;
     padding-left: 32%;
     display: flex;
 }
-.contT{
+.PatcontT{
     display: flex;
 }
-.contT textarea {
+.PatcontT textarea {
     max-height: 100px;
     vertical-align: middle;
     
 }
-.contTDes {
+.PatcontTDes {
     text-align: left;
     padding-top: 40px;
 }
-.contTipPat{
+.PatcontTipPat{
     width: 200px;
     text-align: left;
     padding-left: 20%;
 }
-.contTipPat div {
+.PatcontTipPat div {
     max-height: 20px;
     max-width: 50px;
 }

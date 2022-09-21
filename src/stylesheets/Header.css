@@ -10,6 +10,18 @@ header{
     backdrop-filter: blur(10px);
     z-index: 100;;
 }
+.header1{
+    height: auto;
+    width: 100%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    height: 80px;
+    transform: 0.5s;
+
+    z-index: 100;;
+}
 
 .fondo{
     background-color: #f3f3f32b;

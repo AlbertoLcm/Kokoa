@@ -1,11 +1,15 @@
-.botVolver {
+.UsbotVolver {
     display: inline-flex;
+    margin-right: 28%;
 }
-.contCabeza {
+.UscontCabeza {
     display: flex;
+    
 }
 
-.contForm{
+
+
+.UscontForm{
     padding-top: 100px;
     padding-left: 60px;
     padding-right: 60px;
@@ -13,30 +17,30 @@
     align-items: center;
     
 }
-.form{
+.Usform{
     width: 100%;
     text-align: center;
 }
-.dataUser{
+.UsdataUser{
     width: 200px;
 }
-.dataPass{
+.UsdataPass{
     width: 200px;
     padding-right: 30px;
 }
-.contInpUs{
+.UscontInpUs{
     width: 300px;
     padding-left: 37%;
     padding-top: 25px;
 }
-.contBot{
+.UscontBot{
     width: 300px;
     padding-left: 37%;
     padding-top: 25px;
     padding-bottom: 50px;
 }
-.contPass{
+.UscontPass{
     width: 700px;
-    padding-left: 32%;
     display: flex;
+    justify-content: center;
 }
