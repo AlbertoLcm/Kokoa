@@ -10,19 +10,19 @@ export default function AuthProvider({ children }){
     
     const [user, setUser] = useState(false);
 
-    // const login = (userCredentials, fromLocation) => {
-    //     setUser({id:1, role:roles.artista})
+    const login = (userCredentials, fromLocation) => {
+        setUser(userCredentials)
+        if(fromLocation){
+            navigate(fromLocation, {replace:true})
+        }
+    };
+
+    // const login = (Email, fromLocation) => {
+    //     setUser({id:1, email:Email})
     //     if(fromLocation){
     //         navigate(fromLocation, {replace:true})
     //     }
     // };
-
-    const login = (Email, fromLocation) => {
-        setUser({id:1, email:Email})
-        // if(fromLocation){
-        //     navigate(fromLocation, {replace:true})
-        // }
-    };
     
     const logout = () => setUser(false);
 

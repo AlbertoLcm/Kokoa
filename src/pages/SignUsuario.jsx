@@ -1,13 +1,18 @@
 import React from "react";
-import Button from "../components/Button";
 import '../stylesheets/Buttons.css';
 import Header from "../components/Header";
-import Input from "../components/Input";
 import "../stylesheets/SignUsuario.css";
-import {Link, useNavigate} from "react-router-dom";
+import { useNavigate, useLocation} from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
+import useAuth from "../auth/useAuth";
+
+const baseURL = 'http://localhost:8081/api';
 
 function SignUsuario() {
+
+    const { login } = useAuth();
+    const location = useLocation()
     
     const [usuario, setUsuario] = useState(
         {
@@ -31,20 +36,16 @@ function SignUsuario() {
         })
     }
 
-    let {telefono} = usuario;
-
     const handleSubmit = () => {
-        telefono = parseInt(telefono, 10);
 
-        const requesInit = {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(usuario)
-        }
+        axios.post(`${baseURL}/signup`, usuario)
+            .then((response) => {
+                console.log(response.data.message);
+            }).catch(function (error) {
+                // handle error
+                console.log(error.response.data.message);
+            })
 
-        fetch('http://localhost:8081/api', requesInit)
-        .then(res => res.json())
-        .then(res => console.log(res))
 
         setUsuario({
             nombre: "",
@@ -66,7 +67,7 @@ function SignUsuario() {
             <div className="contTot">
                 <div className="contForm">
                 
-                <form className="form">
+                <form className="form" onSubmit={handleSubmit}>
                     
                     <div className="contCabeza">
                         <div className="botVolver"><button className="boton1" onClick={() => nav(-1)}>Volver</button></div>
@@ -113,8 +114,8 @@ function SignUsuario() {
                     </div>
                     <div className="contBot">
                     </div>
-                        <button className="boton1" onClick={() => handleSubmit}>Registrarse</button>
-                </form>
+                        <button className="boton1" type="submit">Registrarse</button>
+                    </form>
                 </div>
             </div>
         </div>
