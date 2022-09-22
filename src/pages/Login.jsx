@@ -15,10 +15,11 @@ function Login({user}) {
     
     return (
         <div className="contImagen">
-            <div className="contDegradado">
             <Header> 
                 <Link to='/signup' className='boton3'>Crear Cuenta</Link>
             </Header>
+            <div className="contDegradado">
+            
                 <div className="contLogin">
                     <form className="login">
                         <h2>Bienvenido</h2>
@@ -31,7 +32,7 @@ function Login({user}) {
                                 Ó
                             </div>
                         </section>
-                        <button className="boton2" >Otra Opción</button>
+                        <Link to='/signup' className='boton3'>Crear Cuenta</Link>
                     </form>
                 </div>
             </div>

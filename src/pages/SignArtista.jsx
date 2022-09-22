@@ -9,11 +9,11 @@ function SignArtista() {
     const nav = useNavigate();
     return(
         <div className="contBackground">
-            <Header boton={'Crear Cuenta'} />
+            <Header boton={'Crear Cuenta'} ><div className="ArtbotVolver"><button className="boton1" onClick={() => nav(-1)}>Volver</button></div> </Header>
             <div className="ArtcontForm">
                 <form action="" className="Artform">
+                <div className="ArtbotVolverChica"><button className="boton1" onClick={() => nav(-1)}>Volver</button></div>
                 <div className="ArtcontCabeza">
-                    <div className="ArtbotVolver"><button className="boton1" onClick={() => nav(-1)}>Volver</button></div>
                         <h1>REGISTRO COMO ARTISTA</h1>
                     </div>
                     <div className="ArtdataTotal">
@@ -42,7 +42,7 @@ function SignArtista() {
                         </div>
                         <div className="ArtcontTDes">
                             <h3>Descripcion</h3><p></p>
-                            <textarea cols="50" rows="5" placeholder="Añada una descripsion de su acto/estilo musical "/>
+                            <textarea cols="30" rows="5" placeholder="Añada una descripsion de su acto/estilo musical "/>
                         </div>
                     </div>
                     <h2>Contraseña</h2>

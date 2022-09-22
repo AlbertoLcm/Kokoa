@@ -5,11 +5,10 @@ h3 {
     color: whitesmoke;
 }
 .ArtbotVolver {
-    display: inline-flex;
-    margin-right: 29%;
+    display: block;
 }
 .ArtcontCabeza {
-    display: flex;
+    text-align: center;
 }
 
 .ArtcontTipPat p {
@@ -18,12 +17,12 @@ h3 {
 
 .ArtdataTotal{
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .ArtcontForm{
-    padding-top: 100px;
-    padding-left: 60px;
-    padding-right: 60px;
+    padding-top: 90px;
     display: flex;
     align-items: center;
 }
@@ -38,37 +37,45 @@ h3 {
 }
 
 .ArtdataPass{
-    width: 200px;
-    padding-right: 30px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}.ArtdataPass div{
+    width: 90%;
 }
 
 .ArtcontInp{
     width: 300px;
-    padding-left: 17%;
     padding-top: 25px;
 }
 
 .ArtcontBot{
-    width: 300px;
-    padding-left: 37%;
+    width: 100%;
     padding-top: 25px;
     padding-bottom: 80px;
+}.ArtcontBot button{
+    max-width: 200px;
 }
 
 .ArtcontPass{
-    width: 700px;
-    padding-left: 32%;
+    width: 100%;
     display: flex;
+    flex-wrap: wrap;
 }
 
 .ArtcontT{
     display: flex;
+    padding-left: 1%;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
 .ArtcontT textarea {
     max-height: 100px;
     vertical-align: middle;
-    
 }
 
 .ArtcontTDes {
@@ -77,12 +84,33 @@ h3 {
 }
 
 .ArtcontTipPat{
-    width: 200px;
+
     text-align: left;
-    padding-left: 20%;
 }
 
 .ArtcontTipPat div {
     max-height: 20px;
     max-width: 50px;
+}
+.ArtbotVolverChica{
+    display: none;
+}
+@media only screen and (min-width: 768px){
+    .ArtdataTotal > div {
+        margin-right: 15px;
+    }
+    .ArtdataPass> div {
+        width: 300px;
+    }
+}
+@media only screen and (max-width: 300px){
+    .ArtbotVolver{
+        display: none;
+    }
+    .ArtbotVolverChica{
+        display: block;
+    }
+    .ArtcontT{
+        flex-wrap: wrap;
+    }
 }

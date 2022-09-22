@@ -3,10 +3,12 @@ import Header from "../components/Header";
 import '../stylesheets/MenuSignup.css'
 import {Link} from "react-router-dom";
 import routes from "../helpers/routes";
+import {useNavigate} from "react-router-dom";
 function MenuLogin() {
+    const nav = useNavigate();
     return(
         <div className="contBackground">
-            <Header boton={'Ingresar'} />
+            <Header boton={'Ingresar'} ><div className="contBotPc"><button className="boton1" onClick={() => nav(-1)}>Volver</button></div> </Header>
             <div className="contPrincipal">
                 <h2>¿Qué tipo de usuario eres?</h2>   
                 <div className="contSelecion">
@@ -33,6 +35,7 @@ function MenuLogin() {
                         </Link>
                     </div>
                 </div>
+                <div className="contBotMov"><button className="boton1" onClick={() => nav(-1)}>Volver</button></div>
             </div>
         </div>
     );

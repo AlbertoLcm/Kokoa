@@ -9,11 +9,11 @@ function SignPatrocinador() {
     const nav = useNavigate();
     return(
         <div className="contBackground">
-            <Header boton={'Crear Cuenta'} />
+            <Header boton={'Crear Cuenta'}> <div className="PatbotVolver"><button className="boton1" onClick={() => nav(-1)}>Volver</button></div></Header>
             <div className="PatcontForm">
                 <form action="" className="Patform">
+                <div className="PatbotVolverChic"><button className="boton1" onClick={() => nav(-1)}>Volver</button></div>
                     <div className="PatcontCabeza">
-                        <div className="PatbotVolver"><button className="boton1" onClick={() => nav(-1)}>Volver</button></div>
                         <h1>REGISTRO COMO PATROCINADOR</h1>
                     </div>
                     <div className="PatdataTotal">
@@ -43,7 +43,7 @@ function SignPatrocinador() {
                         </div>
                         <div className="PatcontTDes">
                             <h3>Descripcion</h3><p></p>
-                            <textarea cols="50" rows="5" placeholder="Añada una descripsion de la forma y tipo de patrocinio que proporciona"/>
+                            <textarea cols="30" rows="5" placeholder="Añada una descripsion de la forma y tipo de patrocinio que proporciona"/>
                         </div>
                     </div>
                     <h2>Contraseña</h2>

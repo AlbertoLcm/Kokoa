@@ -9,11 +9,12 @@ function SignNegocio() {
     const nav = useNavigate();
     return(
         <div className="contBackground">
-            <Header boton={'Crear Cuenta'} />
+            <Header boton={'Crear Cuenta'} > <div className="NegbotVolver"><button className="boton1" onClick={() => nav(-1)}>Volver</button></div></Header>
+            <div className="NegbotVolverMov"><button className="boton1" onClick={() => nav(-1)}>Volver</button></div>
             <div className="NegcontForm">
                 <form action="" className="Negform">
                     <div className="NegcontCabeza">
-                        <div className="NegbotVolver"><button className="boton1" onClick={() => nav(-1)}>Volver</button></div>
+                        
                         <h1>REGISTRO COMO NEGOCIO</h1>
                     </div>
                     <div className="NegdataTotal">
@@ -93,7 +94,9 @@ function SignNegocio() {
                         <Button tipo={'boton1'}>Registrarse</Button>
                     </div>
                 </form>
+                
             </div>
+            
         </div>
     );
 }
