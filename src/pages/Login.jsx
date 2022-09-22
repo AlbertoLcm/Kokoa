@@ -28,9 +28,11 @@ function Login({user}) {
         axios.post('http://localhost:8081/api/login', userCredentials, {'Access-Control-Allow-Credentials':true})
             .then((res) => {
                 console.log(res);
+                login(userCredentials, location)
             })
             .catch((err) => {
                 console.log(err.response.data.message)
+                alert(err.response.data.message)
             })
     }
     const handleLogout = () => {

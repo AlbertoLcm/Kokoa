@@ -2,7 +2,7 @@ import React from "react";
 import Button from "../components/Button";
 import Header from "../components/Header";
 import Input from "../components/Input";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import "../stylesheets/signArtista.css";
 
 function SignArtista() {
@@ -10,52 +10,52 @@ function SignArtista() {
     return(
         <div className="contBackground">
             <Header boton={'Crear Cuenta'} />
-            <div className="contForm">
-                <form action="" className="form">
-                <div className="contCabeza">
-                    <div className="botVolver"><button className="boton1" onClick={() => nav(-1)}>Volver</button></div>
+            <div className="ArtcontForm">
+                <form action="" className="Artform">
+                <div className="ArtcontCabeza">
+                    <div className="ArtbotVolver"><button className="boton1" onClick={() => nav(-1)}>Volver</button></div>
                         <h1>REGISTRO COMO ARTISTA</h1>
                     </div>
-                    <div className="dataTotal">
+                    <div className="ArtdataTotal">
                         
-                        <div className="contInp">
+                        <div className="ArtcontInp">
                             <h2>DATOS DE CONTACTO</h2>
-                            <Input type='text' className="dataUser">NOMBRE</Input>
-                            <Input type='text' className="dataUser">EMAIL</Input>
-                            <Input type='text' className="dataUser">NUMERO DE CONTACTO</Input>
+                            <Input type='text' className="ArtdataUser">NOMBRE</Input>
+                            <Input type='text' className="ArtdataUser">EMAIL</Input>
+                            <Input type='text' className="ArtdataUser">NUMERO DE CONTACTO</Input>
                         </div>
                         
-                        <div className="contInp">
+                        <div className="ArtcontInp">
                             <h2>DIRECCION</h2>
-                            <Input type='text' className="dataUser">ESTADO</Input>
-                            <Input type='text' className="dataUser">COLONIA</Input>
-                            <Input type='text' className="dataUser">CALLE</Input>
-                            <Input type='text' className="dataUser">NUMERO</Input>
+                            <Input type='text' className="ArtdataUser">ESTADO</Input>
+                            <Input type='text' className="ArtdataUser">COLONIA</Input>
+                            <Input type='text' className="ArtdataUser">CALLE</Input>
+                            <Input type='text' className="ArtdataUser">NUMERO</Input>
                         </div>
                     </div>
                     <h2>PERFORMANCE</h2>
-                    <div className="contT">
-                        <div className="contTipPat">
+                    <div className="ArtcontT">
+                        <div className="ArtcontTipPat">
                             <h3>Tipo Performance</h3>
                             <p>Musica</p> <Input type='checkbox' />  
                             <p>Entretenimiento</p><Input type='checkbox' />
                         </div>
-                        <div className="contTDes">
+                        <div className="ArtcontTDes">
                             <h3>Descripcion</h3><p></p>
                             <textarea cols="50" rows="5" placeholder="Añada una descripsion de su acto/estilo musical "/>
                         </div>
                     </div>
                     <h2>Contraseña</h2>
-                    <div className="contPass">
+                    <div className="ArtcontPass">
                         
-                        <div className="dataPass">
+                        <div className="ArtdataPass">
                             <Input type='password'>Contraseña</Input>
                         </div>
-                        <div className="dataPass">
+                        <div className="ArtdataPass">
                             <Input type='password'>Confirme su Contraseña</Input>
                         </div>
                     </div>
-                    <div className="contBot">
+                    <div className="ArtcontBot">
                         <Button tipo={'boton1'}>Registrarse</Button>
                     </div>
                 </form>

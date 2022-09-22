@@ -1,57 +1,65 @@
 h1{
     color: white;
 }
-.dataTotal{
+.NegbotVolver {
+    display: inline-flex;
+    margin-right: 27%;
+}
+.NegcontCabeza {
     display: flex;
 }
-.contForm{
+
+.NegdataTotal{
+    display: flex;
+}
+.NegcontForm{
     padding-top: 100px;
     padding-left: 60px;
     padding-right: 60px;
     display: flex;
     align-items: center;
 }
-.form{
+.Negform{
     width: 100%;
     text-align: center;
 }
-.dataUser{
+.NegdataUser{
     width: 200px;
 }
-.dataPass{
+.NegdataPass{
     width: 200px;
     padding-right: 30px;
 }
-.contInp{
+.NegcontInp{
     width: 300px;
     padding-left: 17%;
     padding-top: 25px;
 }
-.contBot{
+.NegcontBot{
     width: 300px;
     padding-left: 37%;
     padding-top: 25px;
     padding-bottom: 80px;
 }
-.contHorario{
+.NegcontHorario{
     flex-wrap: wrap;
     display: flex;
     justify-content: center;
     height: auto;
 }
-.textHor{
+.NegtextHor{
     padding-top: 20px;
 }
-.contHorario h2{
+.NegcontHorario h2{
     margin-bottom: 0px;
 }
-.contHorario div{
+.NegcontHorario div{
     padding-right: 5px;
 }
-.contHorDia{
+.NegcontHorDia{
     display: flex;
 }
-.contPass{
+.NegcontPass{
     width: 700px;
     padding-left: 32%;
     display: flex;

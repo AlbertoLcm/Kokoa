@@ -1,0 +1,38 @@
+.regEvContForm {
+    padding-top: 100px;
+    padding-left: 60px;
+    padding-right: 60px;
+    justify-content: center;
+
+}
+
+.regEvContCabeza {
+    display: flex;
+}.regEvBotVolver {
+    margin-right: 28%;
+    display: inline-flex;
+}
+
+.regEvContInp {
+    width: 700px;
+    justify-content: center;
+    text-align: center;
+    padding-left: 20%;
+    margin-bottom: 50px;
+}
+.regEvContInp h2{
+    margin-bottom: 2px;
+}.regEvContInp h3{
+    margin-top: 0px;
+}
+.regEvContPub{
+    display: flex;
+    justify-content: center;
+}.regEvContPub div{
+    max-width: 50px;
+    max-height: 40px;
+    display: inline-flex;
+}.regEvContPub h2{
+    display: flex;
+    margin-right: 20px;
+}
