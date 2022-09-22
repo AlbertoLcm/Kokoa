@@ -47,10 +47,11 @@ function Login({user}) {
     
     return (
         <div className="contImagen">
-            <div className="contDegradado">
             <Header> 
                 <Link to='/signup' className='boton3'>Crear Cuenta</Link>
             </Header>
+            <div className="contDegradado">
+            
                 <div className="contLogin">
                     <div className="login">
                         <h2>Bienvenido</h2>
@@ -71,9 +72,12 @@ function Login({user}) {
                         </section>
                         <button className="boton2" onClick={() => handleLogout()}>Otra Opción</button>
                     </div>
+
+                        <Link to='/signup' className='boton3'>Crear Cuenta</Link>
+                    </div>
                 </div>
             </div>
-        </div>
+       
     );
 }
 

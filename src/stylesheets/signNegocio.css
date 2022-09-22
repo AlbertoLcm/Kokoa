@@ -2,22 +2,29 @@ h1{
     color: white;
 }
 .NegbotVolver {
-    display: inline-flex;
-    margin-right: 27%;
+    display: none;
+}
+.NegbotVolverMov {
+    padding-top: 90px;
+    width: 25%;
 }
 .NegcontCabeza {
+    justify-content: center;
     display: flex;
 }
 
 .NegdataTotal{
+    flex-wrap: wrap;
     display: flex;
+    justify-content: center;
+    height: auto;
+    align-items: center;
 }
 .NegcontForm{
-    padding-top: 100px;
-    padding-left: 60px;
-    padding-right: 60px;
+    padding-left: 5%;
+    padding-right: 5%;
     display: flex;
-    align-items: center;
+
 }
 .Negform{
     width: 100%;
@@ -26,18 +33,15 @@ h1{
 .NegdataUser{
     width: 200px;
 }
-.NegdataPass{
-    width: 200px;
-    padding-right: 30px;
-}
+
 .NegcontInp{
-    width: 300px;
-    padding-left: 17%;
+    width: 100%;
+
     padding-top: 25px;
 }
 .NegcontBot{
-    width: 300px;
-    padding-left: 37%;
+    width: 100%;
+    justify-content: center;
     padding-top: 25px;
     padding-bottom: 80px;
 }
@@ -60,7 +64,52 @@ h1{
     display: flex;
 }
 .NegcontPass{
-    width: 700px;
-    padding-left: 32%;
+    flex-wrap: wrap;
     display: flex;
+    justify-content: center;
+    height: auto;
+}
+.NegdataPass{
+    width: 95%;
+}
+
+@media only screen and (max-width: 300px) {
+    .NegcontHorDia{
+        flex-wrap: wrap;
+        display: flex;
+    }
+}
+@media only screen and (min-width: 1024px){
+    .NegcontInp{
+        width: 350px;
+        margin-right: 70px;
+        justify-content: center;
+        align-items: center;
+    }
+    .NegcontBot{
+        justify-content: right;
+        
+    }.NegcontBot button {
+        width: 300px;
+    }
+    .NegbotVolverMov{
+        display: none;
+        min-width: 150px;
+    }
+    .Negform{
+        padding-top: 90px;
+    }
+    .NegcontCabeza{
+        justify-content: center;
+    }
+    .NegbotVolver{
+        display: block;
+    }
+    .NegdataPass{
+        width: 200px;  
+        margin-right: 15px;  
+    }
+    .Negform{
+        justify-content: center;
+    }
 }

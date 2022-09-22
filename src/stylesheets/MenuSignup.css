@@ -1,23 +1,22 @@
+.contBotPc{
+    display: none;
+}
 .header{
     background-color: black;
 }
 .contBackground{
     background-image: linear-gradient(-135deg, #410046, #EC1C4E);
     min-height: 100vh;
-    position: relative;
+    
 }
-
 .contPrincipal{
     max-width: 100%;
     height: 100vh;
-    padding-left: 60px;
-    padding-right: 60px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    padding-top: 90px;
     flex-direction: column; 
 }
-
 h2{
     color: #f3f3f3;
     font-size: 30px;
@@ -25,34 +24,57 @@ h2{
     font-weight: 400;
     user-select: none;
 }
-
 .contSelecion{
-    height: 150px;
-    width: 900px;
-    display: flex;
+    height: 300px;
     margin-bottom: 30px;
     position: relative;
+}.contSelecion div{
+    height: 50%;
+    width: 97%;
 }
 
-.btnMenuNormal{
-    width: 300px;
-    height: 100%;
-    position: absolute;
-    left: 0%;
+.contPrincipal > div{
+    width: 100%;
 }
-.btnMenuNegocio{
-    width: 300px;
-    height: 100%;
-    position: absolute;
-    right: 0%;
-}.btnMenuArtista{
-    width: 300px;
-    height: 100%;
-    position: absolute;
-    right: 140px;
-}.btnMenuPatrocinador{
-    width: 300px;
-    height: 100%;
-    position: absolute;
-    left: 140px;
+
+@media only screen and (min-height: 1000px) {
+    .contSelecion{
+        height: 500px;
+        margin-bottom: 100px;
+    }.contSelecion > div{
+        margin-bottom: 50px;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .contBotMov{
+        display: none;
+    }.contBotPc{
+        display: block;
+    }
+    .contSelecion{
+        width: 80%;
+    }
+    .btnMenuNormal{
+        max-width: 300px;
+        height: 100%;
+        position: absolute;
+        left: 5%;
+    }
+    .btnMenuNegocio{
+        max-width: 300px;
+        height: 100%;
+        position: absolute;
+        right: 5%;
+    }.btnMenuArtista{
+        max-width: 300px;
+        height: 100%;
+        position: absolute;
+        right: 140px;
+    }.btnMenuPatrocinador{
+        max-width: 300px;
+        height: 100%;
+        position: absolute;
+        left: 140px;
+    }
 }
