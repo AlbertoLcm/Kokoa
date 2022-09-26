@@ -14,6 +14,7 @@ import routes from "../helpers/routes";
 import roles from "../helpers/roles";
 import RolArtista from "../pages/RolArtista";
 import RegistroEvento from "../pages/RegistroEvento";
+import Basic from "../pages/Basic";
 
 function AppRouter() {
     return(
@@ -60,9 +61,9 @@ function AppRouter() {
                     </PrivateRoute>
                 } />
                 <Route exact path={routes.registrarevento} element={
-                    <PublicRoute>
+                    <PrivateRoute>
                         <RegistroEvento />
-                    </PublicRoute>
+                    </PrivateRoute>
                 } />
 
                 <Route path="*" element={<Error />} />

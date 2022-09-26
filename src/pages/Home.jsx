@@ -9,14 +9,17 @@ import Mapa from "../components/Mapa";
 
 
 function Home() {
+    
+    const { logout, user, getUsuario } = useAuth();
 
-    const { logout } = useAuth();
+    console.log(user);
 
     return (
 
         <div className="contHome">
             <Menu>
                 <h1>Kokoa</h1>
+                <h2>Hola</h2>
                 <div className="hoContLink">
                     <Link to={routes.home} className="seleccion">
                         Eventos recomendados
@@ -27,7 +30,7 @@ function Home() {
                         Crear Evento
                     </Link>
                 </div>
-                <button className='boton1' onClick={logout}> Cerrar sesión </button>
+                <button className='boton1' onClick={() => logout()}> Cerrar sesión </button>
             </Menu>
             <Mapa />
 
