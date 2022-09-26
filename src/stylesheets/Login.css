@@ -1,22 +1,19 @@
 .contImagen{
-    
     width: 100%;
 }
 .contDegradado{
     width: 100%;
-    height: calc(100vh + 200px);
-    background:linear-gradient(to left, #410046 80%, #4100465b);
+    height: 100vh;
+    background-color:#410046;
 }
-.contBotones a{
-    display: none;
-}
+
 .contLogin{
     position: absolute;
     right: 0;
     width: 100%;
     min-height: 100vh;
     display: flex;
-    margin-top: 90px;
+    margin-top: 35px;
     text-align: center;
 }
 .login{
@@ -66,38 +63,57 @@ h3{
     padding-right: 5px;
     background-color: #410046;
 }
-
+.contBotones a{
+    display: none;
+}
 @media only screen and (min-width: 768px){
-    .contBotones a{
-        display: flex;
-    }
-    .login{
-        padding-right: 2%;
-        padding-left: 30%;
-    }.login > *{
-        margin-bottom: 60px;
-    }.login > h3 {
+    .login > h3 {
         font-size: 40px;
     }
     .separador{
         border-top-color: cyan;
     }
+    .login > *{
+        margin-bottom: 50px;
+    }
 }
-
+.login > a{
+    display: flex;
+    margin-top: 20px;
+}
+@media only screen and (max-width: 300px) {
+    .contBotones{
+        display: none;
+    }
+    
+}
 @media only screen and (min-width: 1024px){
     .contImagen{
-        max-width: 100%;
+        min-width: 100%;
         background-image: url('../images/loginWallpaper.jpg');
         background-repeat: no-repeat;
         background-size: contain;
         position: relative;
-        background-position: center;
+        background-position: left;
+        
+    }   
+     
+    .contDegradado{
+        background: linear-gradient(to left, #410046 30%, #4100465b);
+        
     }
     .contLogin {
         height: auto;
+        background: linear-gradient(to top, #410046 5%, #4100465b);
+    }
+    .contBotones{
+        display: block;
     }
     .login{
-        
+        padding-right: 2%;
+        padding-left: 30%;
+    }.login > *{
+        margin-bottom: 20px;
     }
 }
 

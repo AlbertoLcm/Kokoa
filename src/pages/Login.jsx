@@ -31,6 +31,7 @@ function Login() {
     const handleLogin = () => {
         axios.post('https://kokoatec.herokuapp.com/api/auth/login', userCredentials)
                 .then((res) => {
+                    
                     login(res.data.token, location)
                 })
                 .catch((err) => {
