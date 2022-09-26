@@ -14,7 +14,7 @@ export default function AuthProvider({ children }){
     useEffect(() => {
         const islogin = () => {
             const token = localStorage.getItem('token');
-            axios.post('http://localhost:8081/api/auth',{'usuario':'prueba'}, {
+            axios.post('https://kokoatec.herokuapp.com/api/auth',{'usuario':'prueba'}, {
                 headers: {
                     'authorization': token
                 }
@@ -36,7 +36,7 @@ export default function AuthProvider({ children }){
     
     const logout = () => {
         const token = localStorage.getItem('token')
-        axios.put('http://localhost:8081/api/auth/logout',{'usuario':'prueba'}, {
+        axios.put('https://kokoatec.herokuapp.com/api/auth/logout',{'usuario':'prueba'}, {
             headers: {
                 'authorization': token
             }

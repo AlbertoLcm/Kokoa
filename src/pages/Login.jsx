@@ -29,7 +29,7 @@ function Login() {
     }
     
     const handleLogin = () => {
-        axios.post('http://localhost:8081/api/auth/login', userCredentials)
+        axios.post('https://kokoatec.herokuapp.com/api/auth/login', userCredentials)
                 .then((res) => {
                     login(res.data.user, location)
                 })
