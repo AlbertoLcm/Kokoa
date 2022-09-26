@@ -7,7 +7,7 @@ import { useState } from "react";
 import axios from "axios";
 import useAuth from "../auth/useAuth";
 
-const baseURL = "http://localhost:8081/api/usuarios";
+const baseURL = "https://kokoatec.herokuapp.com/api/usuarios";
 
 function SignUsuario() {
   const { login } = useAuth();
