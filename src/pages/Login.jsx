@@ -77,9 +77,9 @@ function Login() {
                             </div>
                         </section>
                         <button className="boton2" >Otra Opción</button>
+                        <Link to='/signup' className='boton3'>Crear Cuenta</Link>
                     </div>
 
-                        <Link to='/signup' className='boton3'>Crear Cuenta</Link>
                 </div>
             </div>
         </div>

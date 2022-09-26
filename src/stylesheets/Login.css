@@ -97,7 +97,9 @@ h3{
         background-position: left;
         
     }   
-     
+    .contBotones a {
+        display: flex;
+    }
     .contDegradado{
         background: linear-gradient(to left, #410046 30%, #4100465b);
         
