@@ -19,14 +19,14 @@ function Home() {
         <div className="contHome">
             <Menu>
                 <h1>Kokoa</h1>
-                <h2>Hola</h2>
+                <h2>Hola {user.nombre}</h2>
                 <div className="hoContLink">
                     <Link to={routes.home} className="seleccion">
                         Eventos recomendados
                     </Link>
                 </div>
                 <div className="hoContLink">
-                    <Link to={routes.registrarevento} className="seleccion" target={"_parent"}>
+                    <Link to={routes.registrarevento} className="seleccion">
                         Crear Evento
                     </Link>
                 </div>

@@ -14,17 +14,21 @@ export default function AuthProvider({ children }){
     useEffect(() => {
         const islogin = () => {
             const token = localStorage.getItem('token');
-            if(token){
-                login(token)
-                return;
-            }
+            axios.post('http://localhost:8081/api/auth',{'usuario':'prueba'}, {
+                headers: {
+                    'authorization': token
+                }
+            } )
+            .then((res) => {
+                login(res.data.user)
+            })
         }
         islogin();
     }, []);
 
     const login = (userCredentials, fromLocation) => {
         setUser(userCredentials)
-        localStorage.setItem('token', userCredentials);
+        localStorage.setItem('token', userCredentials.token);
         if(fromLocation){
             navigate(fromLocation, {replace:true})
         }
@@ -47,23 +51,6 @@ export default function AuthProvider({ children }){
         })
     };
 
-    const getUsuario = (token) => {
-        let usuarioBD = {};
-        axios.post('http://localhost:8081/api/auth/user',{'usuario':'prueba'}, {
-            headers: {
-                'authorization': token
-            }
-        } )
-        .then((res) => {
-            usuarioBD = res.data.data
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-
-        return usuarioBD
-    };
-
     const isLogged = () => !!user;
     const hasRole = (role) => user?.role === role;
 
@@ -72,8 +59,7 @@ export default function AuthProvider({ children }){
         isLogged,
         hasRole,
         login,
-        logout,
-        getUsuario
+        logout
     }
     
     return(
