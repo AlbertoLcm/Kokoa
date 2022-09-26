@@ -56,7 +56,7 @@ function Login() {
                                 onChange={handleChange}
                                 value={userCredentials.email}
                                 required />
-                            <span>Email</span>
+                            <span>Email o Teléfono</span>
                         </div>
                         <div className="inputBox">
                             <input 
