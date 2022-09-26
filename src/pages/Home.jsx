@@ -32,7 +32,9 @@ function Home() {
                 </div>
                 <button className='boton1' onClick={() => logout()}> Cerrar sesión </button>
             </Menu>
-            <Mapa />
+            <div className="hoContMapa">
+                <Mapa />
+            </div>
 
         </div>
     );
