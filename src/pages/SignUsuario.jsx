@@ -55,14 +55,13 @@ function SignUsuario() {
     return(
         
         <div className="contBackground">
-            <Header boton={'Crear Cuenta'} />
+            <Header boton={'Crear Cuenta'}> <div className="UsbotVolver"><button className="boton1" onClick={() => nav(-1)}>Volver</button></div></Header>
             <div className="UscontTot">
                 <div className="UscontForm">
                 
                 <div className="form">
                     
                     <div className="UscontCabeza">
-                        <div className="UsbotVolver"><button className="boton1" onClick={() => nav(-1)}>Volver</button></div>
                         <h1>REGISTRO COMO USUARIO</h1>
                     </div>
                     <div className="contInpUs">
@@ -115,8 +114,6 @@ function SignUsuario() {
                         <div className="UsdataPass">
                             <Input type='password'>Confirme su Contraseña</Input>
                         </div> */}
-                    </div>
-                    <div className="UscontBot">
                     </div>
                         <button className="boton1" onClick={() => handleSubmit()}>Registrarse</button>
                     </div>

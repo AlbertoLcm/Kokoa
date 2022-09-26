@@ -53,7 +53,7 @@ function Login({user}) {
             <div className="contDegradado">
             
                 <div className="contLogin">
-                    <div className="login">
+                    <div className="login">                        
                         <h2>Bienvenido</h2>
                         <div className="inputBox">
                             <input name="email" onChange={handleChange} type='text' required />
@@ -71,9 +71,8 @@ function Login({user}) {
                             </div>
                         </section>
                         <button className="boton2" onClick={() => handleLogout()}>Otra Opción</button>
-                    </div>
-
                         <Link to='/signup' className='boton3'>Crear Cuenta</Link>
+                    </div>
                     </div>
                 </div>
             </div>

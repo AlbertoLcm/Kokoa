@@ -1,10 +1,9 @@
 .UsbotVolver {
-    display: inline-flex;
+    display: block;
     margin-right: 28%;
 }
 .UscontCabeza {
     display: flex;
-    
 }
 
 
@@ -15,7 +14,7 @@
     padding-right: 60px;
     display: flex;
     align-items: center;
-    
+    justify-content: center;
 }
 .Usform{
     width: 100%;
