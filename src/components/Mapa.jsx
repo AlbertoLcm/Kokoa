@@ -42,9 +42,9 @@ function Mapa(){
       >
         <Marcador
           tipo={"marcBase"}
-          latitud={valores.center.lat}
-          longitud={valores.center.lng}
-          texto="My Marker"
+          lat={16.946262}
+          lng={120.831239}
+          texto="Monte Clitoris"
         />
       </GoogleMapReact>
     </div>

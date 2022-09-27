@@ -1,11 +1,13 @@
 import React from "react";
 import "../stylesheets/Marcadores.css";
 
-function Marcador({ children,latitud, longitud, texto, tipo}){
+function Marcador({texto, tipo}){
     return(
-        <div className={tipo} lat={latitud} lng={longitud} text={texto}>
-            <span>{children}</span>
-        </div>
+            <div>
+                {texto}
+                <div className={tipo}></div>
+            </div>
+        
     );
 }
 
