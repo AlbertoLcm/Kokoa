@@ -1,66 +1,42 @@
-import React from 'react'
-import { GoogleMap, useJsApiLoader, Marker} from '@react-google-maps/api';
-const google = window.google;
+import React from "react";
+import GoogleMapReact from 'google-map-react';
+import { useState } from "react";
+import { useEffect } from "react";
 
-const containerStyle = {
-  width: '100%',
-  height: '100%'
-};
-let center = {
-  lat: 16.946234,
-  lng: 120.831413
-}
-let ubicarGlobo = () => {
-  let currentloc = {
-    lat: 0,
-    lng: 0
-  }
-  if(navigator.geolocation){
-    navigator.geolocation.getCurrentPosition((position) => {
-      currentloc.lat = position.coords.latitude;
-      currentloc.lng = position.coords.longitude;
+const AnyReactComponent = ({ text }) => <div>{text}</div>;
+
+
+function Mapa(){
+  
+  const [valores, setValores] = useState({});
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((coordenada) => {
+      setValores({center: {
+        lat: coordenada.coords.latitude,
+        lng: coordenada.coords.longitude
+      },
+      zoom: 17
     });
-  }else{
-    alert("Tu navegador no soporta el localizarte");
-  }
-  return currentloc;
-}
-const centro = ubicarGlobo();
-alert(centro);
-function Mapa() {
+    });
+  },[]);
 
-  const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: "AIzaSyC9solbk3q4EuYuef97FhGJJnDAD83jvAs"
-  })
-
-  const [map, setMap] = React.useState(null)
-
-
-  const onLoad = React.useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds();
-    
-    setMap(map)
-  }, [])
-
-  const onUnmount = React.useCallback(function callback(map) {
-    setMap(null)
-  }, [])
-  return isLoaded ? (
-      <GoogleMap
-        mapContainerStyle={containerStyle}
-        center={center}
-        zoom={16}
-        onLoad={onLoad}
-        onUnmount={onUnmount}
+  return (
+    // Important! Always set the container height explicitly
+    <div style={{ height: '100vh', width: '100%' }}>
+      <GoogleMapReact
+        bootstrapURLKeys={{ key: "AIzaSyC9solbk3q4EuYuef97FhGJJnDAD83jvAs" }}
+        center={valores.center}
+        zoom={valores.zoom}
       >
-        { 
-        <Marker onLoad={onLoad} position={centro} title={"Por fin"}/>
-        /* Child components, such as markers, info windows, etc. */ }
-        <></>
-      </GoogleMap>
-  ) : <></>
+        <AnyReactComponent
+          lat={59.955413}
+          lng={30.337844}
+          text="My Marker"
+        />
+      </GoogleMapReact>
+    </div>
+  );
 }
 
 export default Mapa;
-
