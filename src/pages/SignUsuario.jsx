@@ -4,13 +4,10 @@ import Header from "../components/Header";
 import "../stylesheets/SignUsuario.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
-import axios from "axios";
 import useAuth from "../auth/useAuth";
 
-const baseURL = "https://kokoatec.herokuapp.com/api/usuarios";
-
 function SignUsuario() {
-  const { login } = useAuth();
+  const { signup } = useAuth();
   const location = useLocation();
 
   const [usuario, setUsuario] = useState({
@@ -28,18 +25,6 @@ function SignUsuario() {
       ...usuario,
       [e.target.name]: e.target.value,
     });
-  };
-
-  const handleSubmit = () => {
-    axios
-      .post(`${baseURL}/signup`, usuario)
-      .then((user) => {
-        login(user.data.token, location);
-      })
-      .catch((error) => {
-        // handle error
-        alert(error.response.data.message);
-      });
   };
 
   return (
@@ -107,7 +92,10 @@ function SignUsuario() {
               </div>
             </div>
             <div className="UscontBot"></div>
-            <button className="boton1" onClick={() => handleSubmit()}>
+            <button
+              className="boton1"
+              onClick={() => signup(usuario, "usuarios", location)}
+            >
               Registrarse
             </button>
           </div>

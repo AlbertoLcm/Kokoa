@@ -3,14 +3,13 @@ import Button from "../components/Button";
 import Header from "../components/Header";
 import Input from "../components/Input";
 import { useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
 import useAuth from "../auth/useAuth";
 import "../stylesheets/signArtista.css";
 
 const baseURL = "http://localhost:8081/api/artistas";
 
 function SignArtista() {
-  const { login } = useAuth();
+  const { signup } = useAuth();
   const location = useLocation();
 
   const [usuario, setUsuario] = useState({
@@ -30,20 +29,6 @@ function SignArtista() {
     });
   };
 
-  const handleSubmit = () => {
-    axios
-      .post(`${baseURL}/signup`, usuario)
-      .then((user) => {
-        console.log(user);
-        login(user.data.token, location);
-      })
-      .catch((error) => {
-        // handle error
-        console.log(error);
-        alert(error.response.data.message);
-      });
-  };
-
   const nav = useNavigate();
   return (
     <div className="contBackground">
@@ -55,7 +40,9 @@ function SignArtista() {
         </div>{" "}
       </Header>
       <div className="ArtcontForm">
-        <div action="" className="Artform"> {/* Este es el form */}
+        <div action="" className="Artform">
+          {" "}
+          {/* Este es el form */}
           <div className="ArtbotVolverChica">
             <button className="boton1" onClick={() => nav(-1)}>
               Volver
@@ -148,7 +135,12 @@ function SignArtista() {
             </div>
           </div>
           <div className="ArtcontBot">
-            <button className="boton1" onClick={() => handleSubmit()}>Registrarse</button>
+            <button
+              className="boton1"
+              onClick={() => signup(usuario, "artistas", location)}
+            >
+              Registrarse
+            </button>
           </div>
         </div>
       </div>

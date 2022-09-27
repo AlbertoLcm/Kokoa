@@ -30,8 +30,8 @@ function Mapa(){
         zoom={valores.zoom}
       >
         <AnyReactComponent
-          lat={59.955413}
-          lng={30.337844}
+          lat={19.3143719}
+          lng={-98.8798994}
           text="My Marker"
         />
       </GoogleMapReact>

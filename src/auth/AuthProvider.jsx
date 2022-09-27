@@ -1,6 +1,6 @@
-import axios from "axios";
 import { React, createContext, useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
+import instance from "../api/axios";
 import roles from "../helpers/roles";
 
 export const AuthContext = createContext()
@@ -14,7 +14,7 @@ export default function AuthProvider({ children }){
     useEffect(() => {
         const islogin = () => {
             const token = localStorage.getItem('token');
-            axios.post('https://kokoatec.herokuapp.com/api/auth',{'usuario':'prueba'}, {
+            instance.post('/auth',{'usuario':'prueba'}, {
                 headers: {
                     'authorization': token
                 }
@@ -26,17 +26,37 @@ export default function AuthProvider({ children }){
         islogin();
     }, []);
 
-    const login = (userCredentials, fromLocation) => {
-        setUser(userCredentials)
-        localStorage.setItem('token', userCredentials.token);
-        if(fromLocation){
-            navigate(fromLocation, {replace:true})
-        }
+    const login = (usuario, fromLocation) => {
+        instance.post('/auth/login', usuario)
+                .then((usuarioRes) => {
+                    setUser(usuarioRes.data.user)
+                    localStorage.setItem('token', usuarioRes.data.user.token);
+                    if(fromLocation){
+                        navigate(fromLocation, {replace:true})
+                    }
+                })
+                .catch((err) => {
+                    alert(err.response.data.message)
+                })
     };
+
+    const signup = (usuario, rol, fromLocation) => {
+        instance.post(`${rol}/signup`, usuario)
+                .then((usuarioRes) => {
+                    setUser(usuarioRes.data.user)
+                    localStorage.setItem('token', usuarioRes.data.user.token);
+                    if(fromLocation){
+                        navigate(fromLocation, {replace:true})
+                    }
+                })
+                .catch((error) => {
+                    alert(error.response.data.message);
+                });
+    }
     
     const logout = () => {
         const token = localStorage.getItem('token')
-        axios.put('https://kokoatec.herokuapp.com/api/auth/logout',{'usuario':'prueba'}, {
+        instance.put('/auth/logout',{'usuario':'prueba'}, {
             headers: {
                 'authorization': token
             }
@@ -51,6 +71,8 @@ export default function AuthProvider({ children }){
         })
     };
 
+    
+
     const isLogged = () => !!user;
     const hasRole = (role) => user?.role === role;
 
@@ -59,6 +81,7 @@ export default function AuthProvider({ children }){
         isLogged,
         hasRole,
         login,
+        signup,
         logout
     }
     
