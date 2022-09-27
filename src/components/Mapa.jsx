@@ -1,47 +1,42 @@
-import React from 'react'
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import React from "react";
+import GoogleMapReact from 'google-map-react';
+import { useState } from "react";
+import { useEffect } from "react";
 
-const containerStyle = {
-  width: '100%',
-  height: '100%'
-};
+const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
-const center = {
-  lat: -16.946234,
-  lng: -120.831413
-};//16.946234, 120.831413
 
-function Mapa() {
-  const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: "AIzaSyC9solbk3q4EuYuef97FhGJJnDAD83jvAs"
-  })
+function Mapa(){
+  
+  const [valores, setValores] = useState({});
 
-  const [map, setMap] = React.useState(null)
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((coordenada) => {
+      setValores({center: {
+        lat: coordenada.coords.latitude,
+        lng: coordenada.coords.longitude
+      },
+      zoom: 17
+    });
+    });
+  },[]);
 
-  const onLoad = React.useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds();
-    map.fitBounds(bounds);
-    setMap(map)
-  }, [])
-
-  const onUnmount = React.useCallback(function callback(map) {
-    setMap(null)
-  }, [])
-
-  return isLoaded ? (
-      <GoogleMap
-        mapContainerStyle={containerStyle}
-        center={center}
-        zoom={11}
-        onLoad={onLoad}
-        onUnmount={onUnmount}
+  return (
+    // Important! Always set the container height explicitly
+    <div style={{ height: '100vh', width: '100%' }}>
+      <GoogleMapReact
+        bootstrapURLKeys={{ key: "AIzaSyC9solbk3q4EuYuef97FhGJJnDAD83jvAs" }}
+        center={valores.center}
+        zoom={valores.zoom}
       >
-        { /* Child components, such as markers, info windows, etc. */ }
-        <></>
-      </GoogleMap>
-  ) : <></>
+        <AnyReactComponent
+          lat={59.955413}
+          lng={30.337844}
+          text="My Marker"
+        />
+      </GoogleMapReact>
+    </div>
+  );
 }
 
 export default Mapa;
-
