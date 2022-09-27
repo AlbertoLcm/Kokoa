@@ -39,6 +39,12 @@ function Mapa(){
         center={valores.center}
         zoom={valores.zoom}
       >
+        <Marcador 
+          tipo={"marcBase"}
+          lat={valores.center.lat}
+          lng={valores.center.lng}
+          texto={"Usuario"}
+        />
         <Marcador
           tipo={"marcBase"}
           lat={16.946262}

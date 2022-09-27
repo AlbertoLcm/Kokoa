@@ -1,17 +1,17 @@
-.UsbotVolver {
-    display: block;
-    margin-right: 28%;
+.form{
+    justify-content: center;
+    width: 90%;
+    text-align: center;
+}
+
+.UsbotVolverChic {
+    display: none;
 }
 .UscontCabeza {
     display: flex;
 }
-
-
-
 .UscontForm{
-    padding-top: 100px;
-    padding-left: 60px;
-    padding-right: 60px;
+    padding-top: 90px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19,6 +19,8 @@
 .Usform{
     width: 100%;
     text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 .UsdataUser{
     width: 200px;
@@ -32,8 +34,8 @@
     padding-left: 37%;
     padding-top: 25px;
 }
-.UscontBot{
-    width: 300px;
+.UscontBotChic{
+    width: 100%;
     padding-left: 37%;
     padding-top: 25px;
     padding-bottom: 50px;
@@ -42,4 +44,18 @@
     width: 700px;
     display: flex;
     justify-content: center;
+}
+
+@media only screen and (max-width: 360px) {
+    .UsbotVolverChic{
+        display: block;
+    }
+    .UsbotVolverPC{
+        display: none;
+    }
+}
+@media only screen and (min-width: 1024px) {
+    .form{
+        width: 50%;
+    }
 }

@@ -1,23 +1,20 @@
+.regEvForm{
+    
+    text-align: center;
+}
 .regEvContForm {
-    padding-top: 100px;
-    padding-left: 60px;
-    padding-right: 60px;
-    justify-content: center;
-
+    padding-top: 90px;
+    
 }
 
 .regEvContCabeza {
-    display: flex;
-}.regEvBotVolver {
-    margin-right: 28%;
-    display: inline-flex;
+    text-align: center;
 }
 
 .regEvContInp {
-    width: 700px;
-    justify-content: center;
+    width: 100%;
+    
     text-align: center;
-    padding-left: 20%;
     margin-bottom: 50px;
 }
 .regEvContInp h2{
@@ -27,7 +24,7 @@
 }
 .regEvContPub{
     display: flex;
-    justify-content: center;
+    
 }.regEvContPub div{
     max-width: 50px;
     max-height: 40px;
@@ -35,4 +32,26 @@
 }.regEvContPub h2{
     display: flex;
     margin-right: 20px;
+}
+.regEvBotVolverChic{
+    display: none;
+}
+@media only screen and (max-width: 360px) {
+    .regEvBotVolverChic{
+        display: block;
+    }
+}
+@media only screen and (min-width: 1024px) {
+    .regEvContForm{
+        justify-content: center;
+    }
+    .Organz{
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+    }
+    .regEvForm{
+        width: 60%;
+    }
 }

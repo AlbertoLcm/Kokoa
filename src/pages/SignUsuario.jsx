@@ -29,16 +29,11 @@ function SignUsuario() {
 
   return (
     <div className="contBackground">
-      <Header boton={"Crear Cuenta"} />
+      <Header boton={"Crear Cuenta"}> <div className="UsbotVolverPC"><button className="boton1" onClick={() => nav(-1)}>Volver</button></div></Header>
       <div className="UscontTot">
         <div className="UscontForm">
           <div className="form">
             <div className="UscontCabeza">
-              <div className="UsbotVolver">
-                <button className="boton1" onClick={() => nav(-1)}>
-                  Volver
-                </button>
-              </div>
               <h1>REGISTRO COMO USUARIO</h1>
             </div>
             <div className="contInpUs">
@@ -91,7 +86,6 @@ function SignUsuario() {
                 <span>Contraseña</span>
               </div>
             </div>
-            <div className="UscontBot"></div>
             <button
               className="boton1"
               onClick={() => signup(usuario, "usuarios", location)}
@@ -101,6 +95,7 @@ function SignUsuario() {
           </div>
         </div>
       </div>
+      <div className="UsbotVolverChic"><button className="boton1" onClick={() => nav(-1)}>Volver</button></div>
     </div>
   );
 }
