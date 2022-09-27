@@ -10,7 +10,7 @@ function App() {
     <Fragment> 
       <AuthProvider>
         <AppRouter />
-        <Footer />
+        {/* <Footer /> */}
       </AuthProvider>
     </Fragment>
     

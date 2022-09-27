@@ -5,22 +5,41 @@ header{
     display: flex;
     align-items: center;
     box-sizing: border-box;
-    height: 80px;
+    height: 70px;
     transform: 0.5s;
     backdrop-filter: blur(10px);
-    z-index: 100;;
+    z-index: 100;
 }
-.header1{
-    height: auto;
-    width: 100%;
-    position: fixed;
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
-    height: 80px;
-    transform: 0.5s;
+header ul{
+    list-style: none;
+}
+.nav li a{
+    color: aqua;
+    font-family: 'Berlin Sans FB';
+    padding: 5px;
+    display: block;
+    text-decoration: none;
+}
 
-    z-index: 100;;
+.nav a:hover{
+    color:#f3f3f3
+}
+
+.nav > li{
+    float: left;
+}
+
+.nav li ul{
+    display: none;
+    position: absolute;
+}
+.nav li:hover > ul{
+    display: block;
+}
+
+.color{
+    background-color: #410046c7;
+    backdrop-filter: blur(10px);
 }
 
 .fondo{
