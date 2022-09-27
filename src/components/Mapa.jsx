@@ -2,23 +2,33 @@ import React from "react";
 import GoogleMapReact from 'google-map-react';
 import { useState } from "react";
 import { useEffect } from "react";
+import Marcador from "./Marcador";
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 
 function Mapa(){
   
-  const [valores, setValores] = useState({});
+  const [valores, setValores] = useState({
+    center: {
+      lat: 16.946262,
+      lng: 120.831239
+    },
+    zoom: 17
+  });
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((coordenada) => {
-      setValores({center: {
-        lat: coordenada.coords.latitude,
-        lng: coordenada.coords.longitude
-      },
-      zoom: 17
-    });
-    });
+      if(coordenada){
+        setValores({center: {
+          lat: coordenada.coords.latitude,
+          lng: coordenada.coords.longitude
+        },
+        zoom: 17
+        });  
+        return;
+      }      
+        });
   },[]);
 
   return (
@@ -29,10 +39,11 @@ function Mapa(){
         center={valores.center}
         zoom={valores.zoom}
       >
-        <AnyReactComponent
-          lat={19.3143719}
-          lng={-98.8798994}
-          text="My Marker"
+        <Marcador
+          tipo={"marcBase"}
+          lat={16.946262}
+          lng={120.831239}
+          texto="Monte Clitoris"
         />
       </GoogleMapReact>
     </div>
