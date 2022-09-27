@@ -6,7 +6,7 @@ import '../stylesheets/Home.css'
 import '../stylesheets/BurguerMenu.css'
 import routes from "../helpers/routes";
 import Mapa from "../components/Mapa";
-
+import Header from "../components/Header";
 
 function Home() {
     
@@ -17,7 +17,23 @@ function Home() {
     return (
 
         <div className="contHome">
-            <Menu>
+            <header className='color'>
+            <section className="contLogo">
+                <div className="logo">
+                    Kokoa
+                </div>
+            </section>
+            <ul className="contBotones">
+                <li><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> {user.nombre} </a>
+                    <ul class="nav" aria-labelledby="navbarDropdown">
+                        <li><a href="#">Acción</a></li>
+                        <li><a href="#">Otra acción</a></li>
+                        <li><a role="button" onClick={() => logout()}>salir</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </header>
+            {/* <Menu>
                 <h1>Kokoa</h1>
                 <h2>Hola {user.nombre}</h2>
                 <div className="hoContLink">
@@ -31,9 +47,21 @@ function Home() {
                     </Link>
                 </div>
                 <button className='boton1' onClick={() => logout()}> Cerrar sesión </button>
-            </Menu>
+            </Menu> */}
             <div className="hoContMapa">
-                <Mapa />
+                <div id="contBackgroundHome">
+                    <div id="contFeed">
+                        <div id="feedHome">
+                            <h1>Datos</h1>
+                            <hr />
+                            <p>
+                                Información relacionada con los tipos de eventos
+                                dentro de la zona del usuario
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                    <Mapa />
             </div>
 
         </div>
