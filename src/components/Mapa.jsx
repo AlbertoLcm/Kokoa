@@ -3,22 +3,33 @@ import GoogleMapReact from 'google-map-react';
 import { useState } from "react";
 import { useEffect } from "react";
 
+
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 
 function Mapa(){
   
-  const [valores, setValores] = useState({});
+  const [valores, setValores] = useState({
+    center: {
+      lat: 16.946262,
+      lng: 120.831239
+    },
+    zoom: 17
+  });
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((coordenada) => {
-      setValores({center: {
-        lat: coordenada.coords.latitude,
-        lng: coordenada.coords.longitude
-      },
-      zoom: 17
-    });
-    });
+      if(coordenada){
+        setValores({center: {
+          lat: coordenada.coords.latitude,
+          lng: coordenada.coords.longitude
+        },
+        zoom: 17
+        });  
+        return;
+      }      
+        });
+      
   },[]);
 
   return (
@@ -30,8 +41,8 @@ function Mapa(){
         zoom={valores.zoom}
       >
         <AnyReactComponent
-          lat={59.955413}
-          lng={30.337844}
+          lat={valores.center.lat}
+          lng={valores.center.lng}
           text="My Marker"
         />
       </GoogleMapReact>
