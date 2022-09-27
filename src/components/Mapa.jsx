@@ -2,7 +2,7 @@ import React from "react";
 import GoogleMapReact from 'google-map-react';
 import { useState } from "react";
 import { useEffect } from "react";
-
+import Marcador from "./Marcador";
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
@@ -40,10 +40,11 @@ function Mapa(){
         center={valores.center}
         zoom={valores.zoom}
       >
-        <AnyReactComponent
-          lat={valores.center.lat}
-          lng={valores.center.lng}
-          text="My Marker"
+        <Marcador
+          tipo={"marcBase"}
+          latitud={valores.center.lat}
+          longitud={valores.center.lng}
+          texto="My Marker"
         />
       </GoogleMapReact>
     </div>
