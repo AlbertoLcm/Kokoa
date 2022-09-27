@@ -19,8 +19,9 @@ export default function AuthProvider({ children }){
                     'authorization': token
                 }
             } )
-            .then((res) => {
-                login(res.data.user)
+            .then((usuarioRes) => {
+                setUser(usuarioRes.data.user)
+                    localStorage.setItem('token', usuarioRes.data.user.token);
             })
         }
         islogin();
@@ -70,9 +71,7 @@ export default function AuthProvider({ children }){
             console.log(err)
         })
     };
-
     
-
     const isLogged = () => !!user;
     const hasRole = (role) => user?.role === role;
 
