@@ -16,9 +16,19 @@ function Home() {
 
     const lugares= [
         {
-          nombre: 'Lugar 1',
-          lat: 16.946262,
-          lng: 120.831239
+            nombre: 'Lugar 1',
+            lat: 16.946262,
+            lng: 120.831239
+        },
+        {
+            nombre: 'Lugar 2',
+            lat: 19.314072,
+            lng: -98.879777
+        },
+        {
+            nombre: 'Lugar 3',
+            lat: 19.314823,
+            lng: -98.882016
         }
       ]
     

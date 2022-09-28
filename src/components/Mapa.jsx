@@ -41,21 +41,23 @@ function Mapa({ ubicaciones }){
         center={valores.center}
         zoom={valores.zoom}
       >
-        {/* {ubicaciones.forEach((ubicaciones[0]) => {
-          <Marcador 
-            tipo={"marcBase"}
-            lat={lugar.lat}
-            lng={lugar.lng}
-            texto={lugar.nombre}
-          />
-        })} */}
+        {ubicaciones.map((lugar) => {
+          return(
+            <Marcador 
+              tipo={"marcBase"}
+              lat={lugar.lat}
+              lng={lugar.lng}
+              texto={lugar.nombre}
+              />
+          );
+          })}
 
-          <Marcador 
+          {/* <Marcador 
             tipo={"marcBase"}
             lat={ubicaciones[0].lat}
             lng={ubicaciones[0].lng}
             texto={ubicaciones[0].nombre}
-          />
+          /> */}
       </GoogleMapReact>
     </div>
   );
