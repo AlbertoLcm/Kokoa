@@ -58,6 +58,7 @@ function Home() {
                                 Información relacionada con los tipos de eventos
                                 dentro de la zona del usuario
                             </p>
+                            <Link to={routes.registrarevento} className='boton3'>Crear evento</Link>
                         </div>
                     </div>
                 </div>
