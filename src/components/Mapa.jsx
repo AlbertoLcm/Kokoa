@@ -6,8 +6,7 @@ import Marcador from "./Marcador";
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
-
-function Mapa(){
+function Mapa({ ubicaciones }){
   
   const [valores, setValores] = useState({
     center: {
@@ -16,6 +15,7 @@ function Mapa(){
     },
     zoom: 17
   });
+  
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((coordenada) => {
@@ -31,6 +31,8 @@ function Mapa(){
         });
   },[]);
 
+  console.log(ubicaciones)
+  
   return (
     // Important! Always set the container height explicitly
     <div style={{ height: '100vh', width: '100%' }}>
@@ -39,18 +41,21 @@ function Mapa(){
         center={valores.center}
         zoom={valores.zoom}
       >
-        <Marcador 
-          tipo={"marcBase"}
-          lat={valores.center.lat}
-          lng={valores.center.lng}
-          texto={"Usuario"}
-        />
-        <Marcador
-          tipo={"marcBase"}
-          lat={16.946262}
-          lng={120.831239}
-          texto="Monte Clitoris"
-        />
+        {/* {ubicaciones.forEach((ubicaciones[0]) => {
+          <Marcador 
+            tipo={"marcBase"}
+            lat={lugar.lat}
+            lng={lugar.lng}
+            texto={lugar.nombre}
+          />
+        })} */}
+
+          <Marcador 
+            tipo={"marcBase"}
+            lat={ubicaciones[0].lat}
+            lng={ubicaciones[0].lng}
+            texto={ubicaciones[0].nombre}
+          />
       </GoogleMapReact>
     </div>
   );

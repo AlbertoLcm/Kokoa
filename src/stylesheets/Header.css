@@ -27,6 +27,7 @@ header ul{
 
 .nav > li{
     float: left;
+    position: relative;
 }
 
 .nav li ul{

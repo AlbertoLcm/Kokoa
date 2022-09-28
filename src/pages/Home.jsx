@@ -14,6 +14,14 @@ function Home() {
 
     console.log(user);
 
+    const lugares= [
+        {
+          nombre: 'Lugar 1',
+          lat: 16.946262,
+          lng: 120.831239
+        }
+      ]
+    
     return (
 
         <div className="contHome">
@@ -62,7 +70,7 @@ function Home() {
                         </div>
                     </div>
                 </div>
-                    <Mapa />
+                    <Mapa ubicaciones={lugares}/>
             </div>
 
         </div>
