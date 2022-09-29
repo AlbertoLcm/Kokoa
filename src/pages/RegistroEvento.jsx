@@ -43,20 +43,17 @@ function RegistroEvento() {
     geocoder.geocode({
         address: originRef.current.value,
       }, (results, status) => {
-          setCoor({
-              lat: results[0].geometry.location.lat(),
-              lng: results[0].geometry.location.lng(),
-          });
+          instance.post('eventos/add', {
+            lat: results[0].geometry.location.lat(),
+            lng: results[0].geometry.location.lng(),
+            })
+          .then((resultsBD) => {
+            alert(resultsBD.data.message)
+          })
+          .catch((error) => {
+            alert(error.response.data.message);
+        });
       });
-
-    console.log(coor.lat, coor.lng);
-      instance.post('eventos/add', coor)
-      .then((results) => {
-        alert(results.data.message)
-      })
-      .catch((error) => {
-        alert(error.response.data.message);
-    });
   }
 
   return (
