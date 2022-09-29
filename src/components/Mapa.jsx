@@ -8,6 +8,7 @@ import {
   Marker,
   useJsApiLoader,
 } from "@react-google-maps/api";
+import instance from "../api/axios";
 
 const containerStyle = {
   width: "100%",
@@ -17,34 +18,24 @@ const containerStyle = {
 const centerOrigin = {lat: 19.2963615, lng: -98.88093980000001};
 
 function Mapa() {
+  const [lugares, setLugares] = useState([]);
+  const [map, setMap] = useState(/** @type google.maps.Map */ (null));
+  useEffect(() => {
+    instance.get('/eventos')
+    .then((results) => {
+      // console.log(results.data)
+      setLugares(results.data)
+    })
+  },[]);
+
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyBqhV6i7d19_4MlXk1gEtZ0flSx_7yYfo8",
     libraries: ['places']
   });
 
-  const [map, setMap] = useState(/** @type google.maps.Map */ (null));
-  
   if (!isLoaded) {
     return <div>fallo</div>;
   }
-
-  // const [lugares, setLugares] = useState([]);
-
-  // useEffect(() => {
-  //   instance.get('/eventos')
-  //   .then((results) => {
-  //     results.data.forEach((lugar) => {
-  //         setLugares(lugar)
-  //       });
-  //   })
-  // },[]);
-  // const [valores, setValores] = useState({
-  //   center: {
-  //     lat: 16.946262,
-  //     lng: 120.831239,
-  //   },
-  //   zoom: 17,
-  // });
 
   // useEffect(() => {
   //   navigator.geolocation.getCurrentPosition((coordenada) => {
@@ -61,6 +52,7 @@ function Mapa() {
   //   });
   // }, []);
 
+  console.log(lugares)
   return (
     <div>
       <GoogleMap
@@ -74,7 +66,12 @@ function Mapa() {
         }}
         onLoad={(map) => setMap(map)}
       >
-        {/* <Marker position={center1} /> */}
+        {lugares.map((evento) => {
+          return (
+            <Marker position={{lat: evento.lat, lng: evento.lng}} />
+          );
+        })} 
+        
         {/* Child components, such as markers, info windows, etc. */}
         {/* {ubicaciones.map((lugar) => {
           return (

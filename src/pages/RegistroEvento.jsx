@@ -3,24 +3,27 @@ import Header from "../components/Header";
 import Input from "../components/Input";
 import { useNavigate } from "react-router-dom";
 import "../stylesheets/RegistroEvento.css";
-import {
-  Autocomplete,
-  useJsApiLoader,
-} from "@react-google-maps/api";
+import { Autocomplete, useJsApiLoader } from "@react-google-maps/api";
 import instance from "../api/axios";
 
 function RegistroEvento() {
+  const nav = useNavigate();
 
-const [datosEvento, setDatosEvento] = useState({
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: "AIzaSyBqhV6i7d19_4MlXk1gEtZ0flSx_7yYfo8",
+    libraries: ["places"],
+  });
+
+  const [datosEvento, setDatosEvento] = useState({
     ubicacion: "",
-});
+  });
 
-const [coor, setCoor] = useState({
+  const [coor, setCoor] = useState({
     lat: "",
-    lng: ""
-});
+    lng: "",
+  });
 
-const handleChange = (e) => {
+  const handleChange = (e) => {
     setDatosEvento({
       ...datosEvento,
       [e.target.name]: e.target.value,
@@ -30,27 +33,24 @@ const handleChange = (e) => {
   /** @type React.MutableRefObject<HTMLInputElement> */
   const originRef = useRef();
 
-  async function handleSubmit() {
-      // eslint-disable-next-line no-undef
-      const geocoder = new google.maps.Geocoder();
-  
-      geocoder.geocode(
-        {
-          address: originRef.current.value,
-        },
-        (results, status) => {
-            setCoor({
-                lat: results[0].geometry.location.lat(),
-                lng: results[0].geometry.location.lng(),
-              });
-        }
-      );
+  if (!isLoaded) {
+    return <div>fallo</div>;
+  }
 
-      console.log(coor)
-      instance.post('eventos/add', {
-        lat: coor.lat,
-        lng: coor.lng
-      })
+  function handleSubmit() {
+    // eslint-disable-next-line no-undef
+    const geocoder = new google.maps.Geocoder();
+    geocoder.geocode({
+        address: originRef.current.value,
+      }, (results, status) => {
+          setCoor({
+              lat: results[0].geometry.location.lat(),
+              lng: results[0].geometry.location.lng(),
+          });
+      });
+
+    console.log(coor.lat, coor.lng);
+      instance.post('eventos/add', coor)
       .then((results) => {
         alert(results.data.message)
       })
@@ -59,7 +59,6 @@ const handleChange = (e) => {
     });
   }
 
-  const nav = useNavigate();
   return (
     <div className="contBackground">
       <Header boton={"Crear Cuenta"}>
