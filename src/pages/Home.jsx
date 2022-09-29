@@ -5,6 +5,7 @@ import "../stylesheets/Home.css";
 import "../stylesheets/BurguerMenu.css";
 import routes from "../helpers/routes";
 import Mapa from "../components/Mapa";
+import Dropi from "../components/DropDown";
 import { Autocomplete } from "@react-google-maps/api";
 import instance from "../api/axios";
 
@@ -66,6 +67,7 @@ function Home() {
         <div id="contBackgroundHome">
           <div id="contFeed">
             <div id="feedHome">
+              <Dropi/>
               <h1>Datos</h1>
               <hr />
               <p>
