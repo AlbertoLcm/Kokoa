@@ -5,9 +5,24 @@ import "../stylesheets/Home.css";
 import "../stylesheets/BurguerMenu.css";
 import routes from "../helpers/routes";
 import Mapa from "../components/Mapa";
-import Dropi from "../components/DropDown";
-import { Autocomplete } from "@react-google-maps/api";
+import Dropdown from "../components/DropDown";
 import instance from "../api/axios";
+
+const items1 = [
+  {
+    id: 1,
+    value: 'Eventos Recomendados'
+  },
+  {
+    id: 2,
+    value: 'Eventos Cercanos'
+  },
+  {
+    id: 3,
+    value: 'Crear Evento'
+  }
+]
+
 
 function Home() {
 
@@ -48,26 +63,12 @@ function Home() {
           </li>
         </ul>
       </header>
-      {/* <Menu>
-                <h1>Kokoa</h1>
-                <h2>Hola {user.nombre}</h2>
-                <div className="hoContLink">
-                    <Link to={routes.home} className="seleccion">
-                        Eventos recomendados
-                    </Link>
-                </div>
-                <div className="hoContLink">
-                    <Link to={routes.registrarevento} className="seleccion">
-                        Crear Evento
-                    </Link>
-                </div>
-                <button className='boton1' onClick={() => logout()}> Cerrar sesión </button>
-            </Menu> */}
       <div className="hoContMapa">
         <div id="contBackgroundHome">
           <div id="contFeed">
             <div id="feedHome">
-              <Dropi/>
+              <Dropdown  title="Select" items={items1}/> 
+              <frame />
               <h1>Datos</h1>
               <hr />
               <p>
