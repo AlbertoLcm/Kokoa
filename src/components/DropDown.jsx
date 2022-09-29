@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
 
-class Dropi extends React.Component {
-  constructor() {
-    super();
-    
+const Dropi = ({}) => {
     this.state = {
       showMenu: false,
     };
     
     this.showMenu = this.showMenu.bind(this);
     this.closeMenu = this.closeMenu.bind(this);
-  }
   
-  showMenu(event) {
+  function showMenu(event) {
     event.preventDefault();
     
     this.setState({ showMenu: true }, () => {
@@ -20,7 +16,7 @@ class Dropi extends React.Component {
     });
   }
   
-  closeMenu(event) {
+  function closeMenu(event) {
     
     if (!this.dropdownMenu.contains(event.target)) {
       
@@ -31,7 +27,6 @@ class Dropi extends React.Component {
     }
   }
 
-  render() {
     return (
       <div>
         <button onClick={this.showMenu}>
@@ -56,6 +51,5 @@ class Dropi extends React.Component {
       </div>
     );
   }
-}
 
 export default Dropi;
