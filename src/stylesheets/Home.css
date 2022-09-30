@@ -6,6 +6,9 @@
     display: flex;
     color: #f3f3f3;
 }
+.bm-burger-button{
+    display: none;
+}
 .hoContLink{
     max-height: 30px;
     margin-bottom: 10px;
@@ -48,21 +51,30 @@
     z-index: 80;
     border-radius: 10px;
     position: absolute;
-    display: flex;
     flex-direction: column;
-    
+    display: none;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-#feedHome h1, p{
+#feedHome > h1, p{
     color: #3f3f3f;
     font-family: 'Berlin Sans FB';
     font-weight: 350;
 }
-/*
-const center = {
-
-  lat: -16.946234,
-  lng: -120.831413
-};
-*/
+.bm-menu p{
+    color: white;
+}
+@media only screen and (max-width: 778px) {
+    .bm-burger-button{
+        display: block;
+    }
+    .feedHome{
+        display: none;
+    }
+}
+@media only screen and (min-width: 779px) {
+    #feedHome{
+        display: flex;
+    }
+    
+}

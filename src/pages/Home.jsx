@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useAuth from "../auth/useAuth";
 import { Link } from "react-router-dom";
 import "../stylesheets/Home.css";
+import { slide as Menu } from 'react-burger-menu'
 import "../stylesheets/BurguerMenu.css";
 import routes from "../helpers/routes";
 import Mapa from "../components/Mapa";
@@ -11,7 +12,7 @@ import instance from "../api/axios";
 const items1 = [
   {
     id: 1,
-    value: 'Eventos Recomendados'
+    value: 'Crear Evento'
   },
   {
     id: 2,
@@ -19,13 +20,12 @@ const items1 = [
   },
   {
     id: 3,
-    value: 'Crear Evento'
+    value: 'Eventos Recomendados'
   }
 ]
 
-
 function Home() {
-
+  const {marcar} = useAuth()  
   const { logout, user } = useAuth();
 
   return (
@@ -63,12 +63,35 @@ function Home() {
           </li>
         </ul>
       </header>
+      <Menu>
+        <h2>Hola {user.nombre}</h2>
+        <Dropdown title="Select" items={items1}/>
+        {
+          marcar == 1 ? (
+            <div className="CrearEvento">
+            <p>Cont3</p>
+          </div>  
+          ) : (marcar == 2 ? (
+            <div className="Cercanos">
+              <p>Cont2</p>
+            </div>
+          ) : (
+            <div className="Recomendados">
+            <p>Cont1</p>
+          </div>
+          ))
+        }
+
+
+
+
+      </Menu>
       <div className="hoContMapa">
         <div id="contBackgroundHome">
           <div id="contFeed">
             <div id="feedHome">
-              <Dropdown  title="Select" items={items1}/> 
-              <frame />
+              <Dropdown title="Select" items={items1} />
+              <iframe src="" frameborder="0"></iframe>
               <h1>Datos</h1>
               <hr />
               <p>
