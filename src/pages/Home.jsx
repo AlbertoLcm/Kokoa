@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import useAuth from "../auth/useAuth";
 import { Link } from "react-router-dom";
 import "../stylesheets/Home.css";
 import "../stylesheets/BurguerMenu.css";
 import routes from "../helpers/routes";
 import Mapa from "../components/Mapa";
-import Dropdown from "../components/DropDown";
-import instance from "../api/axios";
 
 function Home() {
   
@@ -39,7 +37,7 @@ function Home() {
                 <a href="#">Otra acción</a>
               </li>
               <li>
-                <a role="button" onClick={() => logout()}>
+                <a onClick={() => logout()}>
                   salir
                 </a>
               </li>

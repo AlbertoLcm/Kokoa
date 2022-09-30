@@ -58,16 +58,16 @@ function Mapa() {
         onLoad={(map) => setMap(map)}
       >
         {lugares.map((evento) => {
-          let termino = new Date(evento.fecha_termino);
-          // Obtengo el tiempo actual
+          // Obtengo la fecha y hora actual
           let today = new Date();
-          let now = today.toLocaleString();
+          let now = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(),  today.getMinutes(),  today.getSeconds())
+          
+          console.log({ actual: now.toISOString(), termina: evento.fecha_termino })
 
-          if(termino.valueOf() < today.valueOf()){
+          if(evento.fecha_termino > now.toISOString()){
             return <Marker position={{ lat: evento.lat, lng: evento.lng }} />;
           }
 
-        
         })}
       </GoogleMap>
       {/* <button onClick={() => map.panTo(center)}>Centrar</button> */}
