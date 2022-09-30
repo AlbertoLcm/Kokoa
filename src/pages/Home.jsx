@@ -12,7 +12,7 @@ import instance from "../api/axios";
 const items1 = [
   {
     id: 1,
-    value: 'Crear Evento'
+    value: 'Crear nuevo evento'
   },
   {
     id: 2,
@@ -62,9 +62,7 @@ function Home() {
             </ul>
           </li>
         </ul>
-        <a className="CerrarSesionChi" role="button" onClick={() => logout()}>
-                  salir
-                </a>
+
       </header>
       <Menu>
         <h2>Hola {user.nombre}</h2>
@@ -73,14 +71,28 @@ function Home() {
           marcar == 1 ? (
             <div className="CrearEvento">
               <p>Cont3</p>
+              <p>asda</p>
+              <p>asd</p>
+              <p>asd
+
+              </p>
+              <div>
+              
+              <Link to={routes.registrarevento} className="boton3">
+                Crear Evento
+              </Link>
+              </div>
+              <button className="boton1" onClick={() => logout()}>Cerrar Sesion</button>
             </div>
           ) : (marcar == 2 ? (
             <div className="Cercanos">
               <p>Cont2</p>
+              <button className="boton1" onClick={() => logout()}>Cerrar Sesion</button>
             </div>
           ) : (
             <div className="Recomendados">
               <p>Cont1</p>
+              <button className="boton1" onClick={() => logout()}>Cerrar Sesion</button>
             </div>
           ))
         }
