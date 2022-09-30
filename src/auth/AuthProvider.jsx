@@ -75,13 +75,23 @@ export default function AuthProvider({ children }){
     const isLogged = () => !!user;
     const hasRole = (role) => user?.role === role;
 
+    const [marcar, setMarcar] = useState(null);
+
+    const asignarMarcar = (id) => {
+
+        setMarcar(id)
+
+    }
+
     const contextValue = {
         user,
         isLogged,
         hasRole,
         login,
         signup,
-        logout
+        logout,
+        asignarMarcar,
+        marcar
     }
     
     return(

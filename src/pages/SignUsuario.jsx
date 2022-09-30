@@ -33,6 +33,7 @@ function SignUsuario() {
       <div className="UscontTot">
         <div className="UscontForm">
           <div className="form">
+          <div className="UsbotVolverChic"><button className="boton1" onClick={() => nav(-1)}>Volver</button></div>
             <div className="UscontCabeza">
               <h1>REGISTRO COMO USUARIO</h1>
             </div>
@@ -95,7 +96,7 @@ function SignUsuario() {
           </div>
         </div>
       </div>
-      <div className="UsbotVolverChic"><button className="boton1" onClick={() => nav(-1)}>Volver</button></div>
+      
     </div>
   );
 }

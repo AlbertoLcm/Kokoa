@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import onClickOutside from 'react-onclickoutside';
+import useAuth from '../auth/useAuth';
 import "../stylesheets/DropDown.css"
 
 function Dropdown({ title, items, multiSelect = false }) {
@@ -8,10 +9,14 @@ function Dropdown({ title, items, multiSelect = false }) {
   const toggle = () => setOpen(!open);
   Dropdown.handleClickOutside = () => setOpen(false);
 
+  const { asignarMarcar } = useAuth();
+  
   function handleOnClick(item) {
     if (!selection.some(current => current.id === item.id)) {
       if (!multiSelect) {
         setSelection([item]);
+        asignarMarcar(item.id)
+
       } else if (multiSelect) {
         setSelection([...selection, item]);
       }

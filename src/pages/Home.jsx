@@ -2,12 +2,28 @@ import React from "react";
 import useAuth from "../auth/useAuth";
 import { Link } from "react-router-dom";
 import "../stylesheets/Home.css";
+import { slide as Menu } from 'react-burger-menu'
 import "../stylesheets/BurguerMenu.css";
 import routes from "../helpers/routes";
 import Mapa from "../components/Mapa";
 
+const items1 = [
+  {
+    id: 1,
+    value: 'Crear nuevo evento'
+  },
+  {
+    id: 2,
+    value: 'Eventos Cercanos'
+  },
+  {
+    id: 3,
+    value: 'Eventos Recomendados'
+  }
+]
+
 function Home() {
-  
+  const { marcar } = useAuth()
   const { logout, user } = useAuth();
 
   return (
@@ -44,24 +60,62 @@ function Home() {
             </ul>
           </li>
         </ul>
-      </header>
 
+      </header>
+      <Menu>
+        <h2>Hola {user.nombre}</h2>
+        <Dropdown title="Evento" items={items1} />
+        {
+          marcar == 1 ? (
+            <div className="CrearEvento">
+              <p>Cont3</p>
+              <p>asda</p>
+              <p>asd</p>
+              <p>asd
+
+              </p>
+              <div>
+              
+              <Link to={routes.registrarevento} className="boton3">
+                Crear Evento
+              </Link>
+              </div>
+              <button className="boton1" onClick={() => logout()}>Cerrar Sesion</button>
+            </div>
+          ) : (marcar == 2 ? (
+            <div className="Cercanos">
+              <p>Cont2</p>
+              <button className="boton1" onClick={() => logout()}>Cerrar Sesion</button>
+            </div>
+          ) : (
+            <div className="Recomendados">
+              <p>Cont1</p>
+              <button className="boton1" onClick={() => logout()}>Cerrar Sesion</button>
+            </div>
+          ))
+        }
+      </Menu>
       <div className="hoContMapa">
         <div id="contBackgroundHome">
           <div id="contFeed">
             <div id="feedHome">
-              {/* <Dropdown  title="Select" items={items1}/> 
-              <frame /> */}
-              <h1>Datos</h1>
-              <hr />
-              <p>
-                Información relacionada con los tipos de eventos dentro de la
-                zona del usuario
-              </p>
-              <Link to={routes.registrarevento} className="boton3">
-                {" "}
-                Crear Evento{" "}
-              </Link>
+              <h2>Hola {user.nombre}</h2>
+              <Dropdown title="Evento" items={items1} />
+              {
+                marcar == 1 ? (
+                  <div className="CrearEvento">
+                    <p>Cont3</p>
+                  </div>
+                ) : (marcar == 2 ? (
+                  <div className="Cercanos">
+                    <p>Cont2</p>
+                  </div>
+                ) : (
+                  <div className="Recomendados">
+                    <p>Cont1</p>
+                  </div>
+                ))
+              }
             </div>
           </div>
         </div>
