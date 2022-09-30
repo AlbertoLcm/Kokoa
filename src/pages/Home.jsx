@@ -5,7 +5,7 @@ import "../stylesheets/Home.css";
 import "../stylesheets/BurguerMenu.css";
 import routes from "../helpers/routes";
 import Mapa from "../components/Mapa";
-import { Autocomplete } from "@react-google-maps/api";
+import Dropdown from "../components/DropDown";
 import instance from "../api/axios";
 
 function Home() {
@@ -47,11 +47,13 @@ function Home() {
           </li>
         </ul>
       </header>
-      
+
       <div className="hoContMapa">
         <div id="contBackgroundHome">
           <div id="contFeed">
             <div id="feedHome">
+              <Dropdown  title="Select" items={items1}/> 
+              <frame />
               <h1>Datos</h1>
               <hr />
               <p>
