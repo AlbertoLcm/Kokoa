@@ -6,6 +6,7 @@ import { slide as Menu } from 'react-burger-menu'
 import "../stylesheets/BurguerMenu.css";
 import routes from "../helpers/routes";
 import Mapa from "../components/Mapa";
+import Dropdown from "../components/DropDown";
 
 const items1 = [
   {
