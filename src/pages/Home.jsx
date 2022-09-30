@@ -52,8 +52,8 @@ function Home() {
         <div id="contBackgroundHome">
           <div id="contFeed">
             <div id="feedHome">
-              <Dropdown  title="Select" items={items1}/> 
-              <frame />
+              {/* <Dropdown  title="Select" items={items1}/> 
+              <frame /> */}
               <h1>Datos</h1>
               <hr />
               <p>
