@@ -9,7 +9,7 @@ import { Autocomplete } from "@react-google-maps/api";
 import instance from "../api/axios";
 
 function Home() {
-
+  
   const { logout, user } = useAuth();
 
   return (
@@ -47,21 +47,7 @@ function Home() {
           </li>
         </ul>
       </header>
-      {/* <Menu>
-                <h1>Kokoa</h1>
-                <h2>Hola {user.nombre}</h2>
-                <div className="hoContLink">
-                    <Link to={routes.home} className="seleccion">
-                        Eventos recomendados
-                    </Link>
-                </div>
-                <div className="hoContLink">
-                    <Link to={routes.registrarevento} className="seleccion">
-                        Crear Evento
-                    </Link>
-                </div>
-                <button className='boton1' onClick={() => logout()}> Cerrar sesión </button>
-            </Menu> */}
+      
       <div className="hoContMapa">
         <div id="contBackgroundHome">
           <div id="contFeed">
