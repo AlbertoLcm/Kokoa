@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
+import { GoogleMap, Marker, useJsApiLoader, Circle } from "@react-google-maps/api";
 import instance from "../api/axios";
 
 const containerStyle = {
@@ -42,7 +42,28 @@ function Mapa() {
     return <div>fallo</div>;
   }
 
-  console.log(lugares);
+  const options = {
+    strokeColor: "#FF0000",
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillColor: "#FF0000",
+    fillOpacity: 0.35,
+    clickable: false,
+    draggable: false,
+    editable: false,
+    visible: true,
+    radius: 1000,
+    zIndex: 1,
+  };
+
+  const onLoad = (circle) => {
+    console.log("Circle onLoad circle: ", circle);
+  };
+
+  const onUnmount = (circle) => {
+    console.log("Circle onUnmount circle: ", circle);
+  };
+
   return (
     <div>
       <GoogleMap
@@ -53,22 +74,35 @@ function Mapa() {
           streetViewControl: false,
           mapTypeControl: false,
           fullscreenControl: false,
-          center: true
+          center: true,
         }}
         onLoad={(map) => setMap(map)}
       >
         {lugares.map((evento) => {
           // Obtengo la fecha y hora actual
           let today = new Date();
-          let now = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(),  today.getMinutes(),  today.getSeconds())
-          
-          console.log({ actual: now.toISOString(), termina: evento.fecha_termino })
-
-          if(evento.fecha_termino > now.toISOString()){
+          let now = new Date(
+            today.getFullYear(),
+            today.getMonth(),
+            today.getDate(),
+            today.getHours(),
+            today.getMinutes(),
+            today.getSeconds()
+          );
+          if (evento.fecha_termino > now.toISOString()) {
             return <Marker position={{ lat: evento.lat, lng: evento.lng }} />;
           }
-
         })}
+        <Circle
+          // optional
+          onLoad={onLoad}
+          // optional
+          onUnmount={onUnmount}
+          // required
+          center={center}
+          // required
+          options={options}
+        />;
       </GoogleMap>
       {/* <button onClick={() => map.panTo(center)}>Centrar</button> */}
     </div>
