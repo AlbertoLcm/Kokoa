@@ -37,7 +37,7 @@ function Home() {
         <ul className="contBotones">
           <li>
             <a
-              class="nav-link dropdown-toggle"
+              className="nav-link dropdown-toggle"
               href="#"
               id="navbarDropdown"
               role="button"
@@ -47,7 +47,7 @@ function Home() {
               {" "}
               {user.nombre}{" "}
             </a>
-            <ul class="nav" aria-labelledby="navbarDropdown">
+            <ul className="nav" aria-labelledby="navbarDropdown">
               <li>
                 <a href="#">Acción</a>
               </li>
@@ -68,23 +68,15 @@ function Home() {
         <h2>Hola {user.nombre}</h2>
         <Dropdown title="Evento" items={items1} />
         {
-          marcar == 1 ? (
+          marcar === 1 ? (
             <div className="CrearEvento">
               <p>Cont3</p>
-              <p>asda</p>
-              <p>asd</p>
-              <p>asd
-
-              </p>
-              <div>
-              
               <Link to={routes.registrarevento} className="boton3">
                 Crear Evento
               </Link>
-              </div>
               <button className="boton1" onClick={() => logout()}>Cerrar Sesion</button>
             </div>
-          ) : (marcar == 2 ? (
+          ) : (marcar === 2 ? (
             <div className="Cercanos">
               <p>Cont2</p>
               <button className="boton1" onClick={() => logout()}>Cerrar Sesion</button>
@@ -104,11 +96,11 @@ function Home() {
               <h2>Hola {user.nombre}</h2>
               <Dropdown title="Evento" items={items1} />
               {
-                marcar == 1 ? (
+                marcar === 1 ? (
                   <div className="CrearEvento">
                     <p>Cont3</p>
                   </div>
-                ) : (marcar == 2 ? (
+                ) : (marcar === 2 ? (
                   <div className="Cercanos">
                     <p>Cont2</p>
                   </div>
