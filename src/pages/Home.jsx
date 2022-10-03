@@ -92,23 +92,29 @@ function Home() {
         <div id="contBackgroundHome">
           <div id="contFeed">
             <div id="feedHome">
-              <h2>Hola {user.nombre}</h2>
-              <Dropdown title="Evento" items={items1} />
-              {
-                marcar === 1 ? (
-                  <div className="CrearEvento">
-                    <p>Cont3</p>
-                  </div>
-                ) : (marcar === 2 ? (
-                  <div className="Cercanos">
-                    <p>Cont2</p>
-                  </div>
-                ) : (
-                  <div className="Recomendados">
-                    <p>Cont1</p>
-                  </div>
-                ))
-              }
+            <h2>Hola {user.nombre}</h2>
+        <Dropdown title="Evento" items={items1} />
+        {
+          marcar === 1 ? (
+            <div className="CrearEvento">
+              <p>Cont3</p>
+              <Link to={routes.registrarevento} className="boton3">
+                Crear Evento
+              </Link>
+              <button className="boton1" onClick={() => logout()}>Cerrar Sesion</button>
+            </div>
+          ) : (marcar === 2 ? (
+            <div className="Cercanos">
+              <p>Cont2</p>
+              <button className="boton1" onClick={() => logout()}>Cerrar Sesion</button>
+            </div>
+          ) : (
+            <div className="Recomendados">
+              <p>Cont1</p>
+              <button className="boton1" onClick={() => logout()}>Cerrar Sesion</button>
+            </div>
+          ))
+        }
             </div>
           </div>
         </div>

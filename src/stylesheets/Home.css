@@ -79,7 +79,7 @@
     #feedHome{
         display: flex;
     }
-    .feedHome > h2 {
+    #feedHome > h2 {
         color: black;
     }
 }
