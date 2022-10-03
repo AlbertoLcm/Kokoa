@@ -15,8 +15,7 @@ function Dropdown({ title, items, multiSelect = false }) {
     if (!selection.some(current => current.id === item.id)) {
       if (!multiSelect) {
         setSelection([item]);
-        asignarMarcar(item.id)
-
+        asignarMarcar(item.id);
       } else if (multiSelect) {
         setSelection([...selection, item]);
       }

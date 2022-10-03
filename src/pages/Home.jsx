@@ -7,6 +7,7 @@ import "../stylesheets/BurguerMenu.css";
 import routes from "../helpers/routes";
 import Mapa from "../components/Mapa";
 import Dropdown from "../components/DropDown";
+import Evento from "../components/EventosPagPrin";
 
 const items1 = [
   {
@@ -22,6 +23,11 @@ const items1 = [
     value: 'Eventos Recomendados'
   }
 ]
+
+const cordsimp = {
+  lat: 16.946323, 
+  lng:120.831226
+}
 
 function Home() {
   const { marcar } = useAuth()
@@ -65,7 +71,13 @@ function Home() {
       </header>
       <Menu>
         <h2>Hola {user.nombre}</h2>
-        <Dropdown title="Evento" items={items1} />
+        { 
+        window.screen.width <= 768 ?( 
+        <Dropdown title="Evento" items={items1} /> 
+        ):(
+          <h1>Mamahuevo</h1>
+        )
+        }
         {
           marcar === 1 ? (
             <div className="CrearEvento">
@@ -92,29 +104,30 @@ function Home() {
         <div id="contBackgroundHome">
           <div id="contFeed">
             <div id="feedHome">
-            <h2>Hola {user.nombre}</h2>
-        <Dropdown title="Evento" items={items1} />
-        {
-          marcar === 1 ? (
-            <div className="CrearEvento">
-              <p>Cont3</p>
-              <Link to={routes.registrarevento} className="boton3">
-                Crear Evento
-              </Link>
-              <button className="boton1" onClick={() => logout()}>Cerrar Sesion</button>
-            </div>
-          ) : (marcar === 2 ? (
-            <div className="Cercanos">
-              <p>Cont2</p>
-              <button className="boton1" onClick={() => logout()}>Cerrar Sesion</button>
-            </div>
-          ) : (
-            <div className="Recomendados">
-              <p>Cont1</p>
-              <button className="boton1" onClick={() => logout()}>Cerrar Sesion</button>
-            </div>
-          ))
-        }
+              <h2>Hola {user.nombre}</h2>
+              <Dropdown title="Evento" items={items1} />
+              {
+                marcar === 1 ? (
+                  <div className="CrearEvento">
+                    <p>Cont3</p>
+                    <Link to={routes.registrarevento} className="boton3">
+                      Crear Evento
+                    </Link>
+                    <button className="boton1" onClick={() => logout()}>Cerrar Sesion</button>
+                  </div>
+                ) : (marcar === 2 ? (
+                  <div className="Cercanos">
+                    <Evento titulo={"Evento 1"} corrs={cordsimp}/>
+                    <p>Cont2</p>
+                    <button className="boton1" onClick={() => logout()}>Cerrar Sesion</button>
+                  </div>
+                ) : (
+                  <div className="Recomendados">
+                    <p>Cont1</p>
+                    <button className="boton1" onClick={() => logout()}>Cerrar Sesion</button>
+                  </div>
+                ))
+              }
             </div>
           </div>
         </div>

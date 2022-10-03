@@ -82,4 +82,7 @@
     #feedHome > h2 {
         color: black;
     }
+    #feedHome a {
+        z-index: 0;
+    }
 }
