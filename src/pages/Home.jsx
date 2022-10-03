@@ -36,7 +36,7 @@ function Home() {
         <ul className="contBotones">
           <li>
             <a
-              class="nav-link dropdown-toggle"
+              className="nav-link dropdown-toggle"
               href="#"
               id="navbarDropdown"
               role="button"
@@ -46,7 +46,7 @@ function Home() {
               {" "}
               {user.nombre}{" "}
             </a>
-            <ul class="nav" aria-labelledby="navbarDropdown">
+            <ul className="nav" aria-labelledby="navbarDropdown">
               <li>
                 <a href="#">Acción</a>
               </li>
