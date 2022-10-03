@@ -52,7 +52,7 @@ function Mapa() {
     draggable: false,
     editable: false,
     visible: true,
-    radius: 1000,
+    radius: 3000,
     zIndex: 1,
   };
 
@@ -89,7 +89,7 @@ function Mapa() {
             today.getMinutes(),
             today.getSeconds()
           );
-          if (evento.fecha_termino > now.toISOString()) {
+          if (evento.fecha_termino < now.toISOString()) {
             return <Marker position={{ lat: evento.lat, lng: evento.lng }} />;
           }
         })}
