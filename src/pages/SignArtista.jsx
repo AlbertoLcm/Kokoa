@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import Button from "../components/Button";
 import Header from "../components/Header";
 import Input from "../components/Input";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../auth/useAuth";
 import "../stylesheets/signArtista.css";
 
-const baseURL = "http://localhost:8081/api/artistas";
 
 function SignArtista() {
   const { signup } = useAuth();
@@ -28,6 +26,7 @@ function SignArtista() {
       [e.target.name]: e.target.value,
     });
   };
+
 
   const nav = useNavigate();
   return (

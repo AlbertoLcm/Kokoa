@@ -16,11 +16,12 @@ function RegistroEvento() {
 
   const [datosEvento, setDatosEvento] = useState({
     ubicacion: "",
-  });
-
-  const [coor, setCoor] = useState({
+    fechaInicio: "",
+    horaInicio: "",
+    fechaTermino: "",
+    horaTermino: "",
     lat: "",
-    lng: "",
+    lng: ""
   });
 
   const handleChange = (e) => {
@@ -40,20 +41,25 @@ function RegistroEvento() {
   function handleSubmit() {
     // eslint-disable-next-line no-undef
     const geocoder = new google.maps.Geocoder();
-    geocoder.geocode({
+    geocoder.geocode(
+      {
         address: originRef.current.value,
-      }, (results, status) => {
-          instance.post('eventos/add', {
+      },
+      (results, status) => {
+        instance
+          .post("eventos/add", {datosEvento,
+            nombre: originRef.current.value,
             lat: results[0].geometry.location.lat(),
             lng: results[0].geometry.location.lng(),
-            })
+          })
           .then((resultsBD) => {
-            alert(resultsBD.data.message)
+            alert(resultsBD.data.message);
           })
           .catch((error) => {
             alert(error.response.data.message);
-        });
-      });
+          });
+      }
+    );
   }
 
   return (
@@ -74,29 +80,69 @@ function RegistroEvento() {
             </div>
             <div className="regEvdataTotal">
               <div className="regEvContInp">
-                <Autocomplete>
-                  <div className="inputBox">
-                    <input
-                      id="ubicacion"
-                      name="ubicacion"
-                      type="text"
-                      onChange={handleChange}
-                      value={datosEvento.ubicacion}
-                      ref={originRef}
-                      required
-                    />
-                    <span>Ubicación del evento</span>
-                  </div>
-                </Autocomplete>
+                <div className="inputBox">
+                  <input
+                    id="nombre"
+                    name="nombre"
+                    type="text"
+                    onChange={handleChange}
+                    value={datosEvento.nombre}
+                    required
+                  />
+                  <span>Nombre del evento</span>
+                </div>
+                
               </div>
             </div>
 
             <div className="regEvContInp">
               <h2>Fecha de inicio</h2>
-              <Input type="date" />
-
+              <div className="inputBox">
+                <input
+                  id="fechaInicio"
+                  name="fechaInicio"
+                  type="date"
+                  onChange={handleChange}
+                  value={datosEvento.fechaInicio}
+                  required
+                />
+                {/* <span>Ubicación del evento</span> */}
+              </div>
               <h2>Hora de inicio</h2>
-              <Input type="Time" />
+              <div className="inputBox">
+                <input
+                  id="horaInicio"
+                  name="horaInicio"
+                  type="time"
+                  onChange={handleChange}
+                  required
+                />
+                {/* <span>Ubicación del evento</span> */}
+              </div>
+
+               <h2>Fecha que termina el evento</h2>
+              <div className="inputBox">
+                <input
+                  id="fechaTermino"
+                  name="fechaTermino"
+                  type="date"
+                  onChange={handleChange}
+                  value={datosEvento.fechaTermino}
+                  required
+                />
+                {/* <span>Ubicación del evento</span> */}
+              </div>
+              <h2>Hora que termina el evento</h2>
+              <div className="inputBox">
+                <input
+                  id="horaTermino"
+                  name="horaTermino"
+                  type="time"
+                  onChange={handleChange}
+                  required
+                />
+                {/* <span>Ubicación del evento</span> */}
+              </div>
 
               <h2>Costo del acceso</h2>
               <h3>(Dejar en blanco en caso de ser gratuito)</h3>
@@ -112,6 +158,21 @@ function RegistroEvento() {
                 <h2>Publico</h2> <input type="checkbox" defaultChecked={true} />
               </div>
             </div>
+            <h2>Ubicación del evento</h2>
+            <Autocomplete>
+                  <div className="inputBox">
+                    <input
+                      id="ubicacion"
+                      name="ubicacion"
+                      type="text"
+                      onChange={handleChange}
+                      value={datosEvento.ubicacion}
+                      ref={originRef}
+                      required
+                    />
+                    {/* <span>Ubicación del evento</span> */}
+                  </div>
+                </Autocomplete>
             <div className="regEvContBot">
               <button className="boton1" onClick={() => handleSubmit()}>
                 Registrar Evento
