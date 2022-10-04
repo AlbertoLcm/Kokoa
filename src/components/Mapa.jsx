@@ -70,8 +70,6 @@ function Mapa({ mapSet }) {
   })
   
   
-  eventosSet(rango);
-  
   return (
     <div>
       <GoogleMap

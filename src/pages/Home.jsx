@@ -36,12 +36,11 @@ function Home() {
 
   const { logout, user } = useAuth();
 
-  const [map, setMap] = useState(/** @type google.maps.Map */ (null));
+  const [map, setMap] = useState(/** @type google.maps.Map */(null));
   const handleSetMap = (mapita) => {
     setMap(mapita);
   };
 
-  let eventos;
   const handleSetEventos = (event) => {
     eventos = event;
   }
@@ -84,7 +83,7 @@ function Home() {
         {window.screen.width <= 768 ? (
           <Dropdown title="Evento" items={items1} />
         ) : (
-          <h1>Mamahuevo</h1>
+          <h1>Recarga la pagina por favor</h1>
         )}
         {marcar === 1 ? (
           <div className="CrearEvento">
@@ -98,14 +97,17 @@ function Home() {
           </div>
         ) : marcar === 2 ? (
           <div className="Cercanos">
-            <Evento titulo={"Vaya vaya Tacubaya"} corrs={cordsimp} mapa={map} />
+            <Evento titulo={"Monte Clitoris"} corrs={cordsimp} mapa={map} />
             {eventos.map((evento) => {
-              <Evento
-                lugar={evento.ubicacion}
-                titulo={evento.evento}
-                corrs={{ lat: evento.lat, lng: evento.lng }}
-                mapa={map}
-              />;
+              console.log({ lat: evento.lat })
+              return (
+                <Evento
+                  lugar={evento.ubicacion}
+                  titulo={evento.evento}
+                  corrs={{ lat: evento.lat, lng: evento.lng }}
+                  mapa={map}
+                />
+              )
             })}
           </div>
         ) : (
@@ -135,9 +137,8 @@ function Home() {
                 </div>
               ) : marcar === 2 ? (
                 <div className="Cercanos">
-                  <p>Cont2</p>
                   {eventos.map((evento) => {
-                  console.log({lat: evento.lat})
+                    console.log({ lat: evento.lat })
                     return (
                       <Evento
                         lugar={evento.ubicacion}
@@ -148,7 +149,7 @@ function Home() {
                     )
                   })}
 
-<button className="boton1" onClick={() => logout()}>
+                  <button className="boton1" onClick={() => logout()}>
                     Cerrar Sesion
                   </button>
                 </div>
