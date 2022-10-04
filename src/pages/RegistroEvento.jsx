@@ -15,13 +15,11 @@ function RegistroEvento() {
   });
 
   const [datosEvento, setDatosEvento] = useState({
-    ubicacion: "",
+    nombre: "",
     fechaInicio: "",
     horaInicio: "",
     fechaTermino: "",
     horaTermino: "",
-    lat: "",
-    lng: ""
   });
 
   const handleChange = (e) => {
@@ -48,7 +46,7 @@ function RegistroEvento() {
       (results, status) => {
         instance
           .post("eventos/add", {datosEvento,
-            nombre: originRef.current.value,
+            ubicacion: originRef.current.value,
             lat: results[0].geometry.location.lat(),
             lng: results[0].geometry.location.lng(),
           })

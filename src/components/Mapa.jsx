@@ -1,54 +1,76 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { GoogleMap, Marker, useJsApiLoader, Circle } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  Marker,
+  useJsApiLoader,
+  Circle,
+} from "@react-google-maps/api";
 import instance from "../api/axios";
+import useAuth from "../auth/useAuth";
 
 const containerStyle = {
   width: "100%",
   height: "100vh",
 };
 
+
 function Mapa() {
+  const {addEventosRango} = useAuth();
   const [map, setMap] = useState(/** @type google.maps.Map */ (null));
-  // const [lugares, setLugares] = useState([]);
-  // const [center, setCenter] = useState({
-  //   lat: 19.4326077,
-  //   lng: -99.133208,
-  // });
-  // const ubicacionActual = () => {
-  //   navigator.geolocation.getCurrentPosition((coordenada) => {
-  //     if (coordenada) {
-  //       setCenter({
-  //         lat: coordenada.coords.latitude,
-  //         lng: coordenada.coords.longitude,
-  //       });
-  //     }
-  //   });
-  // };
-  // useEffect(() => {
-  //   instance.get("/eventos").then((results) => {
-  //     setLugares(results.data);
-  //   });
-  // }, []);
+  const [lugares, setLugares] = useState([]);
+  const [center, setCenter] = useState({
+    lat: 19.4326077,
+    lng: -99.133208,
+  });
+  const ubicacionActual = () => {
+    navigator.geolocation.getCurrentPosition((coordenada) => {
+      if (coordenada) {
+        setCenter({
+          lat: coordenada.coords.latitude,
+          lng: coordenada.coords.longitude,
+        });
+      }
+    });
+  };
+  const rango = [];
+  useEffect(() => {
+    instance.get("/eventos").then((results) => {
+      setLugares(results.data);
+    });
+    ubicacionActual();
+  }, []);
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyBqhV6i7d19_4MlXk1gEtZ0flSx_7yYfo8",
     libraries: ["places"],
   });
 
+  
   if (!isLoaded) {
     return <div>fallo</div>;
   }
+  // eslint-disable-next-line no-undef
+  const circle = new google.maps.Circle( { map : map, center : center, radius : 3000, strokeColor : '#FF0099', strokeOpacity : 1, strokeWeight : 2, fillColor : '#009ee0', fillOpacity : 0.2 } ) 
 
+  lugares.map((evento) => {
+    if(circle.getBounds().contains( { lat: evento.lat, lng: evento.lng } )){
+      rango.push({
+        evento: evento.nombre,
+        lat: evento.lat,
+        lng: evento.lng
+      })
+    }
+  })
+  
+  console.log(rango)
+  
   return (
     <div>
       <GoogleMap
         mapContainerStyle={containerStyle}
-        center={{
-          lat: 19.4326077,
-          lng: -99.133208,
-        }}
+        center={center}
         zoom={17}
         options={{
           streetViewControl: false,
@@ -58,7 +80,7 @@ function Mapa() {
         }}
         onLoad={(map) => setMap(map)}
       >
-        {/* {lugares.map((evento) => {
+        {lugares.map((evento) => {
           // Obtengo la fecha y hora actual
           let today = new Date();
           let now = new Date(
@@ -69,10 +91,11 @@ function Mapa() {
             today.getMinutes(),
             today.getSeconds()
           );
-          if (evento.fecha_termino < now.toISOString()) {
+          
+          // if (evento.fecha_termino < now.toISOString()) {
             return <Marker position={{ lat: evento.lat, lng: evento.lng }} />;
-          }
-        })} */}
+            // }
+        })}
       </GoogleMap>
       {/* <button onClick={() => map.panTo(center)}>Centrar</button> */}
     </div>
