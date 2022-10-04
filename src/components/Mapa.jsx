@@ -101,7 +101,7 @@ function Mapa({ mapSet }) {
             // }
         })}
       </GoogleMap>
-      <button onClick={() => addEventos(rango)}>Add</button>
+      
     </div>
   );
 }
