@@ -10,7 +10,7 @@ export default function AuthProvider({ children }){
     const navigate = useNavigate();
     
     const [user, setUser] = useState(false);
-    const [eventosRango, setEventosRango] = useState([])
+    const [eventos, setEventos] = useState(null)
 
     useEffect(() => {
         const islogin = () => {
@@ -83,8 +83,8 @@ export default function AuthProvider({ children }){
         setMarcar(id)
 
     }
-    const addEventosRango = (eventos) => {
-        setEventosRango(eventos);
+    const addEventos = (eventos) => {
+        setEventos(eventos);
     }
 
     const contextValue = {
@@ -96,8 +96,8 @@ export default function AuthProvider({ children }){
         logout,
         asignarMarcar,
         marcar,
-        eventosRango,
-        addEventosRango
+        eventos,
+        addEventos
     }
     
     return(
