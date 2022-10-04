@@ -64,8 +64,11 @@
 .bm-menu p{
     color: white;
 }
-.crearEvento {
+.CrearEvento {
     overflow-y: scroll;
+    max-height: 100%;
+}.CrearEvento ::-webkit-scrollbar{
+    width: 5px;
 }
 @media only screen and (max-width: 778px) {
     .bm-burger-button{
