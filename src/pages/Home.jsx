@@ -3,7 +3,7 @@ import useAuth from "../auth/useAuth";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../stylesheets/Home.css";
-import { slide as Menu } from 'react-burger-menu'
+import { slide as Menu } from "react-burger-menu";
 import "../stylesheets/BurguerMenu.css";
 import routes from "../helpers/routes";
 import Mapa from "../components/Mapa";
@@ -13,32 +13,32 @@ import Evento from "../components/EventosPagPrin";
 const items1 = [
   {
     id: 1,
-    value: 'Crear nuevo evento'
+    value: "Crear nuevo evento",
   },
   {
     id: 2,
-    value: 'Eventos Cercanos'
+    value: "Eventos Cercanos",
   },
   {
     id: 3,
-    value: 'Eventos Recomendados'
-  }
-]
+    value: "Eventos Recomendados",
+  },
+];
 
 const cordsimp = {
-  lat: 16.946323, 
-  lng:120.831226
-}
+  lat: 16.946323,
+  lng: 120.831226,
+};
 
 function Home() {
-  const { marcar } = useAuth()
+  const { marcar, eventos } = useAuth();
 
   const { logout, user } = useAuth();
 
   const [map, setMap] = useState(/** @type google.maps.Map */ (null));
   const handleSetMap = (mapita) => {
     setMap(mapita);
-  }
+  };
 
   return (
     <div className="contHome">
@@ -67,45 +67,49 @@ function Home() {
                 <a href="#">Otra acción</a>
               </li>
               <li>
-                <a onClick={() => logout()}>
-                  salir
-                </a>
+                <a onClick={() => logout()}>salir</a>
               </li>
             </ul>
           </li>
         </ul>
-
       </header>
       <Menu>
         <h2>Hola {user.nombre}</h2>
-        { 
-        window.screen.width <= 768 ?( 
-        <Dropdown title="Evento" items={items1} /> 
-        ):(
+        {window.screen.width <= 768 ? (
+          <Dropdown title="Evento" items={items1} />
+        ) : (
           <h1>Mamahuevo</h1>
-        )
-        }
-        {
-          marcar === 1 ? (
-            <div className="CrearEvento">
-              <p>Cont3</p>
-              <Link to={routes.registrarevento} className="boton3">
-                Crear Evento
-              </Link>
-              <button className="boton1" onClick={() => logout()}>Cerrar Sesion</button>
-            </div>
-          ) : (marcar === 2 ? (
-            <div className="Cercanos">
-              <Evento titulo={"Vaya vaya Tacubaya"} corrs={cordsimp} mapa={map}/>
-              <Evento lugar={"WRWJ+6G6 Panadayan Road Tadian Mountain Province, Filipinas"}titulo={"Santo Patricio de Toledo de todos los angeles"} corrs={cordsimp} mapa={map}/>
-            </div>
-          ) : (
-            <div className="Recomendados">
-              <p>Cont1</p>
-              <button className="boton1" onClick={() => logout()}>Cerrar Sesion</button>
-            </div>
-          ))
-        }
+        )}
+        {marcar === 1 ? (
+          <div className="CrearEvento">
+            <p>Cont3</p>
+            <Link to={routes.registrarevento} className="boton3">
+              Crear Evento
+            </Link>
+            <button className="boton1" onClick={() => logout()}>
+              Cerrar Sesion
+            </button>
+          </div>
+        ) : marcar === 2 ? (
+          <div className="Cercanos">
+            <Evento titulo={"Vaya vaya Tacubaya"} corrs={cordsimp} mapa={map} />
+            {eventos.map((evento) => {
+              <Evento
+                lugar={evento.ubicacion}
+                titulo={evento.evento}
+                corrs={{ lat: evento.lat, lng: evento.lng }}
+                mapa={map}
+              />;
+            })}
+          </div>
+        ) : (
+          <div className="Recomendados">
+            <p>Cont1</p>
+            <button className="boton1" onClick={() => logout()}>
+              Cerrar Sesion
+            </button>
+          </div>
+        )}
       </Menu>
       <div className="hoContMapa">
         <div id="contBackgroundHome">
@@ -113,32 +117,47 @@ function Home() {
             <div id="feedHome">
               <h2>Hola {user.nombre}</h2>
               <Dropdown title="Evento" items={items1} />
-              {
-                marcar === 1 ? (
-                  <div className="CrearEvento">
-                    <p>Cont3</p>
-                    <Link to={routes.registrarevento} className="boton3">
-                      Crear Evento
-                    </Link>
-                    <button className="boton1" onClick={() => logout()}>Cerrar Sesion</button>
-                  </div>
-                ) : (marcar === 2 ? (
-                  <div className="Cercanos">
-                    <p>Cont2</p>
-                    <button className="boton1" onClick={() => logout()}>Cerrar Sesion</button>
-                    <Evento lugar={"WRWJ+6G6 Panadayan Road Tadian Mountain Province, Filipinas"} titulo={"Monte Clitoris"} corrs={cordsimp} mapa={map}/>
-                  </div>
-                ) : (
-                  <div className="Recomendados">
-                    <p>Cont1</p>
-                    <button className="boton1" onClick={() => logout()}>Cerrar Sesion</button>
-                  </div>
-                ))
-              }
+              {marcar === 1 ? (
+                <div className="CrearEvento">
+                  <p>Cont3</p>
+                  <Link to={routes.registrarevento} className="boton3">
+                    Crear Evento
+                  </Link>
+                  <button className="boton1" onClick={() => logout()}>
+                    Cerrar Sesion
+                  </button>
+                </div>
+              ) : marcar === 2 ? (
+                <div className="Cercanos">
+                  <p>Cont2</p>
+                  {eventos.map((evento) => {
+                  console.log({lat: evento.lat})
+                    return (
+                      <Evento
+                        lugar={evento.ubicacion}
+                        titulo={evento.evento}
+                        corrs={{ lat: evento.lat, lng: evento.lng }}
+                        mapa={map}
+                      />
+                    )
+                  })}
+
+<button className="boton1" onClick={() => logout()}>
+                    Cerrar Sesion
+                  </button>
+                </div>
+              ) : (
+                <div className="Recomendados">
+                  <p>Cont1</p>
+                  <button className="boton1" onClick={() => logout()}>
+                    Cerrar Sesion
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>
-        <Mapa mapSet={handleSetMap }/>
+        <Mapa mapSet={handleSetMap} />
       </div>
     </div>
   );

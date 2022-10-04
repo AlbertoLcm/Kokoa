@@ -16,20 +16,20 @@ const containerStyle = {
 };
 
 
-function Mapa() {
-  const {addEventosRango} = useAuth();
+function Mapa({ mapSet }) {
+  const { addEventos } = useAuth();
   const [map, setMap] = useState(/** @type google.maps.Map */ (null));
   const [lugares, setLugares] = useState([]);
-  const [center, setCenter] = useState({
+  const [centerMy, setCenterMy] = useState({
     lat: 19.4326077,
     lng: -99.133208,
   });
   const ubicacionActual = () => {
     navigator.geolocation.getCurrentPosition((coordenada) => {
       if (coordenada) {
-        setCenter({
-          lat: coordenada.coords.latitude,
-          lng: coordenada.coords.longitude,
+        setCenterMy({
+          lat: parseFloat(coordenada.coords.latitude),
+          lng: parseFloat(coordenada.coords.longitude),
         });
       }
     });
@@ -42,6 +42,10 @@ function Mapa() {
     ubicacionActual();
   }, []);
 
+  useEffect(() => {
+    addEventos(rango);
+  }, [lugares]);
+
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyBqhV6i7d19_4MlXk1gEtZ0flSx_7yYfo8",
     libraries: ["places"],
@@ -52,12 +56,13 @@ function Mapa() {
     return <div>fallo</div>;
   }
   // eslint-disable-next-line no-undef
-  const circle = new google.maps.Circle( { map : map, center : center, radius : 3000, strokeColor : '#FF0099', strokeOpacity : 1, strokeWeight : 2, fillColor : '#009ee0', fillOpacity : 0.2 } ) 
+  const circle = new google.maps.Circle( { map : map, center : centerMy, radius : 4000, strokeColor : '#FF0099', strokeOpacity : 1, strokeWeight : 2, fillColor : '#009ee0', fillOpacity : 0.2 } ) 
 
   lugares.map((evento) => {
     if(circle.getBounds().contains( { lat: evento.lat, lng: evento.lng } )){
       rango.push({
         evento: evento.nombre,
+        ubicacion: evento.ubicacion,
         lat: evento.lat,
         lng: evento.lng
       })
@@ -70,7 +75,7 @@ function Mapa() {
     <div>
       <GoogleMap
         mapContainerStyle={containerStyle}
-        center={center}
+        center={centerMy}
         zoom={17}
         options={{
           streetViewControl: false,
@@ -97,6 +102,7 @@ function Mapa() {
             // }
         })}
       </GoogleMap>
+      <button onClick={() => addEventos(rango)}>Add</button>
     </div>
   );
 }

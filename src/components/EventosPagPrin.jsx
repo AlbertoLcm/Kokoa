@@ -4,7 +4,9 @@ import "../stylesheets/EventosPagPrin.css"
 
 function Evento ({titulo, corrs, mapa, lugar}) {
    function handleOnDoubleClick(){
+    // eslint-disable-next-line no-undef
     mapa.panTo(corrs);
+    // eslint-disable-next-line no-undef
     mapa.setZoom(19);
    }
     
