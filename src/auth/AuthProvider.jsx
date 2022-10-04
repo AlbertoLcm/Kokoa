@@ -87,6 +87,12 @@ export default function AuthProvider({ children }){
         setEventos(eventos);
     }
 
+    const [mostrar, setMostrar] = useState(null);
+     
+    const addMostrar = (res) => {
+        setMostrar(res)
+    }
+
     const contextValue = {
         user,
         isLogged,
@@ -97,7 +103,9 @@ export default function AuthProvider({ children }){
         asignarMarcar,
         marcar,
         eventos,
-        addEventos
+        addEventos,
+        mostrar,
+        addMostrar
     }
     
     return(

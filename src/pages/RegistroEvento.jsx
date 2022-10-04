@@ -5,10 +5,13 @@ import { useNavigate } from "react-router-dom";
 import "../stylesheets/RegistroEvento.css";
 import { Autocomplete, useJsApiLoader } from "@react-google-maps/api";
 import instance from "../api/axios";
+import useAuth from "../auth/useAuth";
 
 function RegistroEvento() {
   const nav = useNavigate();
 
+  const { addMostrar } = useAuth();
+  
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyBqhV6i7d19_4MlXk1gEtZ0flSx_7yYfo8",
     libraries: ["places"],
@@ -52,6 +55,7 @@ function RegistroEvento() {
           })
           .then((resultsBD) => {
             alert(resultsBD.data.message);
+            addMostrar(resultsBD)
           })
           .catch((error) => {
             alert(error.response.data.message);
