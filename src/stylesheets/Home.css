@@ -64,6 +64,9 @@
 .bm-menu p{
     color: white;
 }
+.crearEvento a {
+    z-index: 0;
+}
 @media only screen and (max-width: 778px) {
     .bm-burger-button{
         display: block;
@@ -76,5 +79,10 @@
     #feedHome{
         display: flex;
     }
-    
+    #feedHome > h2 {
+        color: black;
+    }
+    #feedHome a {
+        z-index: 0;
+    }
 }

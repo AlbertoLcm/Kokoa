@@ -1,7 +1,8 @@
 .dd-wrapper {
-  display: relative;
+  position: relative;
   min-height: 38px;
   flex-wrap: wrap;
+
 }
 
 .dd-header {

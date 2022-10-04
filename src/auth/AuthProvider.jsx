@@ -52,7 +52,6 @@ export default function AuthProvider({ children }){
                     }
                 })
                 .catch((error) => {
-                    console.log(error)
                     alert(error.response.data.message);
                 });
     }

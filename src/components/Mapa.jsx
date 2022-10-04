@@ -78,7 +78,7 @@ function Mapa() {
           fullscreenControl: false,
           center: true,
         }}
-        onLoad={(map) => setMap(map)}
+        onLoad={(map) => {mapSet(map)}}
       >
         {lugares.map((evento) => {
           // Obtengo la fecha y hora actual
@@ -97,7 +97,6 @@ function Mapa() {
             // }
         })}
       </GoogleMap>
-      {/* <button onClick={() => map.panTo(center)}>Centrar</button> */}
     </div>
   );
 }
