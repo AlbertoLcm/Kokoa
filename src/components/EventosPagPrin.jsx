@@ -2,16 +2,19 @@ import React from "react";
 import "../stylesheets/EventosPagPrin.css"
 
 
-function Evento ({titulo, corrs}) {
-    function MoverMapa(){
-        const map = document.getMap()
-        map.panTo(corrs.lat,corrs.lng)
-    }
+function Evento ({titulo, corrs, mapa, lugar}) {
+   function handleOnDoubleClick(){
+    mapa.panTo(corrs);
+    mapa.setZoom(19);
+   }
     
     return (
-        <button className="contEvento">
-            {titulo}
-        </button>
+        <div className="contEvento">
+            <button onClick={() => handleOnDoubleClick()}>
+                {titulo}
+            </button>
+            <p>{lugar}</p>
+        </div>
     )
 
 }

@@ -83,6 +83,12 @@ export default function AuthProvider({ children }){
 
     }
 
+    const [map, setMap] = useState(/** @type google.maps.Map */ (null));
+
+    const asingMap = (Map)  => {
+        setMap(Map)
+    }
+    
     const contextValue = {
         user,
         isLogged,
@@ -91,7 +97,9 @@ export default function AuthProvider({ children }){
         signup,
         logout,
         asignarMarcar,
-        marcar
+        marcar,
+        map,
+        asingMap
     }
     
     return(

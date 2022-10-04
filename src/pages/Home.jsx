@@ -1,5 +1,6 @@
 import React from "react";
 import useAuth from "../auth/useAuth";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../stylesheets/Home.css";
 import { slide as Menu } from 'react-burger-menu'
@@ -31,7 +32,13 @@ const cordsimp = {
 
 function Home() {
   const { marcar } = useAuth()
+
   const { logout, user } = useAuth();
+
+  const [map, setMap] = useState(/** @type google.maps.Map */ (null));
+  const handleSetMap = (mapita) => {
+    setMap(mapita);
+  }
 
   return (
     <div className="contHome">
@@ -89,8 +96,8 @@ function Home() {
             </div>
           ) : (marcar === 2 ? (
             <div className="Cercanos">
-              <p>Cont2</p>
-              <button className="boton1" onClick={() => logout()}>Cerrar Sesion</button>
+              <Evento titulo={"Vaya vaya Tacubaya"} corrs={cordsimp} mapa={map}/>
+              <Evento lugar={"WRWJ+6G6 Panadayan Road Tadian Mountain Province, Filipinas"}titulo={"Santo Patricio de Toledo de todos los angeles"} corrs={cordsimp} mapa={map}/>
             </div>
           ) : (
             <div className="Recomendados">
@@ -117,9 +124,9 @@ function Home() {
                   </div>
                 ) : (marcar === 2 ? (
                   <div className="Cercanos">
-                    <Evento titulo={"Evento 1"} corrs={cordsimp}/>
                     <p>Cont2</p>
                     <button className="boton1" onClick={() => logout()}>Cerrar Sesion</button>
+                    <Evento lugar={"WRWJ+6G6 Panadayan Road Tadian Mountain Province, Filipinas"} titulo={"Monte Clitoris"} corrs={cordsimp} mapa={map}/>
                   </div>
                 ) : (
                   <div className="Recomendados">
@@ -131,7 +138,7 @@ function Home() {
             </div>
           </div>
         </div>
-        <Mapa />
+        <Mapa mapSet={handleSetMap }/>
       </div>
     </div>
   );

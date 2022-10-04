@@ -9,28 +9,27 @@ const containerStyle = {
   height: "100vh",
 };
 
-function Mapa() {
-  const [map, setMap] = useState(/** @type google.maps.Map */ (null));
-  // const [lugares, setLugares] = useState([]);
-  // const [center, setCenter] = useState({
-  //   lat: 19.4326077,
-  //   lng: -99.133208,
-  // });
-  // const ubicacionActual = () => {
-  //   navigator.geolocation.getCurrentPosition((coordenada) => {
-  //     if (coordenada) {
-  //       setCenter({
-  //         lat: coordenada.coords.latitude,
-  //         lng: coordenada.coords.longitude,
-  //       });
-  //     }
-  //   });
-  // };
-  // useEffect(() => {
-  //   instance.get("/eventos").then((results) => {
-  //     setLugares(results.data);
-  //   });
-  // }, []);
+function Mapa({mapSet}) {
+  const [lugares, setLugares] = useState([]);
+  const [center, setCenter] = useState({
+    lat: 19.4326077,
+    lng: -99.133208,
+  });
+  const ubicacionActual = () => {
+    navigator.geolocation.getCurrentPosition((coordenada) => {
+      if (coordenada) {
+        setCenter({
+          lat: coordenada.coords.latitude,
+          lng: coordenada.coords.longitude,
+        });
+      }
+    });
+  };
+  useEffect(() => {
+    instance.get("/eventos").then((results) => {
+      setLugares(results.data);
+    });
+  }, []);
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyBqhV6i7d19_4MlXk1gEtZ0flSx_7yYfo8",
@@ -45,10 +44,7 @@ function Mapa() {
     <div>
       <GoogleMap
         mapContainerStyle={containerStyle}
-        center={{
-          lat: 19.4326077,
-          lng: -99.133208,
-        }}
+        center={center}
         zoom={17}
         options={{
           streetViewControl: false,
@@ -56,9 +52,9 @@ function Mapa() {
           fullscreenControl: false,
           center: true,
         }}
-        onLoad={(map) => setMap(map)}
+        onLoad={(map) => {mapSet(map)}}
       >
-        {/* {lugares.map((evento) => {
+        {lugares.map((evento) => {
           // Obtengo la fecha y hora actual
           let today = new Date();
           let now = new Date(
@@ -72,9 +68,8 @@ function Mapa() {
           if (evento.fecha_termino < now.toISOString()) {
             return <Marker position={{ lat: evento.lat, lng: evento.lng }} />;
           }
-        })} */}
+        })}
       </GoogleMap>
-      {/* <button onClick={() => map.panTo(center)}>Centrar</button> */}
     </div>
   );
 }

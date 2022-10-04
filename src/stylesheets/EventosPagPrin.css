@@ -1,6 +1,26 @@
-.contEvento {
+.contEvento button {
     border: none;
     width: 100%;
-    height: 40px;
-    
+    height: auto;
+    text-align: left;
+    background-color: transparent;
+    color: white;
+    font-size: 25px;
+    margin-bottom: 0px;
+}
+.contEvento p {
+    font-size: 10px;
+    text-align: right;
+}
+.contEvento :hover {
+    background-color: #c7c7c7cc;
+}
+@media only screen and (min-width: 800px) {
+    .contEvento button {
+        color: black;
+    }
+    .contEvento p {
+        font-size: 15px;
+        user-select: none;
+    }
 }
