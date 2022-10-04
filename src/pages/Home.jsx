@@ -9,6 +9,7 @@ import routes from "../helpers/routes";
 import Mapa from "../components/Mapa";
 import Dropdown from "../components/DropDown";
 import Evento from "../components/EventosPagPrin";
+import RegistroEvento from "./RegistroEvento";
 
 const items1 = [
   {
@@ -88,11 +89,7 @@ function Home() {
         {
           marcar === 1 ? (
             <div className="CrearEvento">
-              <p>Cont3</p>
-              <Link to={routes.registrarevento} className="boton3">
-                Crear Evento
-              </Link>
-              <button className="boton1" onClick={() => logout()}>Cerrar Sesion</button>
+              <RegistroEvento />
             </div>
           ) : (marcar === 2 ? (
             <div className="Cercanos">
@@ -116,11 +113,7 @@ function Home() {
               {
                 marcar === 1 ? (
                   <div className="CrearEvento">
-                    <p>Cont3</p>
-                    <Link to={routes.registrarevento} className="boton3">
-                      Crear Evento
-                    </Link>
-                    <button className="boton1" onClick={() => logout()}>Cerrar Sesion</button>
+                    <RegistroEvento />
                   </div>
                 ) : (marcar === 2 ? (
                   <div className="Cercanos">

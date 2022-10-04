@@ -1,26 +1,32 @@
 .regEvForm{
-    
     text-align: center;
 }
 .regEvContForm {
-    padding-top: 90px;
-    
+    max-height: 520px;
+    overflow-y: scroll;
+}.regEvContForm::-webkit-scrollbar{
+    width: 5px;
 }
-
+.regEvDataTotal{
+    color: black;
+}
 .regEvContCabeza {
     text-align: center;
 }
-
+.regEvContBackground{
+    max-height: 600px;
+}
 .regEvContInp {
     width: 100%;
-    
     text-align: center;
-    margin-bottom: 50px;
+    color: black;
 }
 .regEvContInp h2{
     margin-bottom: 2px;
 }.regEvContInp h3{
     margin-top: 0px;
+}.regEvContInp input {
+    color: black;
 }
 .regEvContPub{
     display: flex;
@@ -36,22 +42,8 @@
 .regEvBotVolverChic{
     display: none;
 }
-@media only screen and (max-width: 360px) {
-    .regEvBotVolverChic{
-        display: block;
-    }
-}
-@media only screen and (min-width: 1024px) {
-    .regEvContForm{
-        justify-content: center;
-    }
-    .Organz{
-        width: 100%;
-        height: auto;
-        display: flex;
-        justify-content: center;
-    }
-    .regEvForm{
-        width: 60%;
+@media only screen and (min-width: 800px) {
+    .regEvContInp h2{
+        color: black;
     }
 }

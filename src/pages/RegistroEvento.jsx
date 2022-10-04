@@ -63,21 +63,10 @@ function RegistroEvento() {
   }
 
   return (
-    <div className="contBackground">
-      <Header boton={"Crear Cuenta"}>
-        {" "}
-        <div className="regEvBotVolverPc">
-          <button className="boton1" onClick={() => nav(-1)}>
-            Volver
-          </button>
-        </div>{" "}
-      </Header>
+    <div className="regEvContBackground">
       <div className="regEvContForm">
         <div className="Organz">
           <div action="" className="regEvForm">
-            <div className="regEvContCabeza">
-              <h1>REGISTRAR NUEVO EVENTO</h1>
-            </div>
             <div className="regEvdataTotal">
               <div className="regEvContInp">
                 <div className="inputBox">
@@ -91,7 +80,6 @@ function RegistroEvento() {
                   />
                   <span>Nombre del evento</span>
                 </div>
-                
               </div>
             </div>
 
@@ -179,11 +167,6 @@ function RegistroEvento() {
               </button>
             </div>
           </div>
-        </div>
-        <div className="regEvBotVolverChic">
-          <button className="boton1" onClick={() => nav(-1)}>
-            Volver
-          </button>
         </div>
       </div>
     </div>
