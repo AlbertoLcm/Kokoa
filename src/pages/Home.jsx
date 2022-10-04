@@ -41,6 +41,11 @@ function Home() {
     setMap(mapita);
   }
 
+  let eventos;
+  const handleSetEventos = (event) => {
+    eventos = event;
+  }
+
   return (
     <div className="contHome">
       <header className="color">
@@ -94,6 +99,17 @@ function Home() {
           ) : (marcar === 2 ? (
             <div className="Cercanos">
               <Evento titulo={"Vaya vaya Tacubaya"} corrs={cordsimp} mapa={map}/>
+              
+              {
+                     console.log(eventos)
+                // eventos.map((evento) => {
+             
+                //   return(
+                //     <Evento lugar={evento.ubicacion} nombre={evento.evento} corrs={{lat: evento.lat, lng: evento.lng}} mapa ={map} />
+                //   )
+                // })
+              }
+              
               <Evento lugar={"WRWJ+6G6 Panadayan Road Tadian Mountain Province, Filipinas"}titulo={"Santo Patricio de Toledo de todos los angeles"} corrs={cordsimp} mapa={map}/>
             </div>
           ) : (
@@ -131,7 +147,7 @@ function Home() {
             </div>
           </div>
         </div>
-        <Mapa mapSet={handleSetMap }/>
+        <Mapa mapSet={handleSetMap }  eventosSet={handleSetEventos}/>
       </div>
     </div>
   );

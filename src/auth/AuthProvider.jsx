@@ -10,6 +10,7 @@ export default function AuthProvider({ children }){
     const navigate = useNavigate();
     
     const [user, setUser] = useState(false);
+    const [eventosRango, setEventosRango] = useState([])
 
     useEffect(() => {
         const islogin = () => {
@@ -82,13 +83,10 @@ export default function AuthProvider({ children }){
         setMarcar(id)
 
     }
-
-    const [map, setMap] = useState(/** @type google.maps.Map */ (null));
-
-    const asingMap = (Map)  => {
-        setMap(Map)
+    const addEventosRango = (eventos) => {
+        setEventosRango(eventos);
     }
-    
+
     const contextValue = {
         user,
         isLogged,
@@ -98,8 +96,8 @@ export default function AuthProvider({ children }){
         logout,
         asignarMarcar,
         marcar,
-        map,
-        asingMap
+        eventosRango,
+        addEventosRango
     }
     
     return(
