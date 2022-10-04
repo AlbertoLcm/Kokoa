@@ -17,7 +17,7 @@ const containerStyle = {
 
 
 function Mapa({ mapSet }) {
-  const { addEventos } = useAuth();
+  const { addEventos, mostrar } = useAuth();
   const [map, setMap] = useState(/** @type google.maps.Map */ (null));
   const [lugares, setLugares] = useState([]);
   const [centerMy, setCenterMy] = useState({
@@ -40,7 +40,7 @@ function Mapa({ mapSet }) {
     setLugares(results.data);
     });
     ubicacionActual();
-  }, []);
+  }, [mostrar, ]);
 
   useEffect(() => {
     addEventos(rango);
