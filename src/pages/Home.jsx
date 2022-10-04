@@ -87,13 +87,7 @@ function Home() {
         )}
         {marcar === 1 ? (
           <div className="CrearEvento">
-            <p>Cont3</p>
-            <Link to={routes.registrarevento} className="boton3">
-              Crear Evento
-            </Link>
-            <button className="boton1" onClick={() => logout()}>
-              Cerrar Sesion
-            </button>
+            <RegistroEvento />
           </div>
         ) : marcar === 2 ? (
           <div className="Cercanos">
@@ -127,13 +121,7 @@ function Home() {
               <Dropdown title="Evento" items={items1} />
               {marcar === 1 ? (
                 <div className="CrearEvento">
-                  <p>Cont3</p>
-                  <Link to={routes.registrarevento} className="boton3">
-                    Crear Evento
-                  </Link>
-                  <button className="boton1" onClick={() => logout()}>
-                    Cerrar Sesion
-                  </button>
+                  <RegistroEvento />
                 </div>
               ) : marcar === 2 ? (
                 <div className="Cercanos">
