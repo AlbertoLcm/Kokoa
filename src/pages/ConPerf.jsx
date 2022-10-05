@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import Perfil from "../components/Perfil"
 import Header from "../components/Header";
 import { slide as Menu } from "react-burger-menu";
 import "../stylesheets/ConfPerf.css"
@@ -25,7 +26,7 @@ function ConPerf() {
                     {
                         cont === 1 ?(
                             <div className="direccion"> 
-                                <h1>Aqui va el formulario</h1>
+                                <Perfil />
                             </div>
                         ) : (
                             <div className="entrVis">

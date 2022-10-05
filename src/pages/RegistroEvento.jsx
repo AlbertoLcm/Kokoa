@@ -124,6 +124,7 @@ function RegistroEvento() {
               </div>
               <h2>Hora que termina el evento</h2>
               <div className="inputBox">
+                
                 <input
                   id="horaTermino"
                   name="horaTermino"

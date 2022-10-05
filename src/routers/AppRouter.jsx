@@ -1,10 +1,8 @@
-import React from "react";
-import { Route, Routes } from 'react-router-dom';
-import Home from '../pages/Home';
-import Login from '../pages/Login';
-import MenuSignup from '../pages/MenuSignup';
-import SignUsuario from '../pages/SignUsuario';
-import SignNegocio from '../pages/SignNegocio';
+import React, { Suspense, lazy } from "react";
+import { Route, Routes } from "react-router-dom";
+import MenuSignup from "../pages/MenuSignup";
+import SignUsuario from "../pages/SignUsuario";
+import SignNegocio from "../pages/SignNegocio";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 import SignPatrocinador from "../pages/SignPatrocinador";
@@ -15,7 +13,8 @@ import routes from "../helpers/routes";
 import roles from "../helpers/roles";
 import RolArtista from "../pages/RolArtista";
 import RegistroEvento from "../pages/RegistroEvento";
-import Basic from "../pages/Basic";
+import Login from "../pages/Login";
+import Home from "../pages/Home";
 
 function AppRouter() {
     return(
@@ -72,11 +71,10 @@ function AppRouter() {
                     </PrivateRoute>
                 } />
 
-                <Route path="*" element={<Error />} />
-
-            </Routes>
-        </div>
-    );
+        <Route path="*" element={<Error />} />
+      </Routes>
+    </div>
+  );
 }
 
 export default AppRouter;
