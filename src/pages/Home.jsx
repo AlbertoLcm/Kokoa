@@ -36,14 +36,13 @@ function Home() {
 
   const { logout, user } = useAuth();
 
+  const [opcio, setOpcio] = useState(false);
+  const toggle = () => {setOpcio(!opcio)};
+
   const [map, setMap] = useState(/** @type google.maps.Map */(null));
   const handleSetMap = (mapita) => {
     setMap(mapita);
   };
-
-  const handleSetEventos = (event) => {
-    eventos = event;
-  }
 
   return (
     <div className="contHome">
@@ -51,33 +50,21 @@ function Home() {
         <section className="contLogo">
           <div className="logo">Kokoa</div>
         </section>
-        <ul className="contBotones">
-          <li>
-            <a
-              className="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              {" "}
-              {user.nombre}{" "}
-            </a>
-            <ul className="nav" aria-labelledby="navbarDropdown">
-              <li>
-                <a href="#">Acción</a>
-              </li>
-              <li>
-                <a href="#">Otra acción</a>
-              </li>
-              <li>
-                <a onClick={() => logout()}>salir</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
+        <button onClick={() => toggle(!opcio)} className="butNav">
+          {" "}
+            {user.nombre}{" "}
+        </button>
       </header>
+      {
+          opcio && (
+            <div className="acomodo">
+                <div className="dropiOpcio">
+                  <Link to={routes.perfil}>Perfil</Link>
+                  <a onClick={() => logout()}>Cerrar Sesion</a>
+                </div>
+            </div>
+          )
+        }
       <Menu>
         <h2>Hola {user.nombre}</h2>
         {window.screen.width <= 768 ? (

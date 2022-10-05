@@ -1,4 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
+
+.butNav{
+    margin-left: 90%;
+    border: none;
+    font-size: 25px;
+    background-color: transparent;
+    width: auto;
+    z-index: 101;
+    color: white;
+}.butNav :focus{
+    text-decoration: solid;
+    background: transparent;
+}
+.acomodo{
+    z-index: 101;
+    position: absolute;
+    width: 100%;
+    margin-top: 50px;
+    float: right;
+}.dropiOpcio{
+    border-bottom-left-radius: 50%;
+    text-align: right;
+    
+    float: right;
+    background-color: gray;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    max-width: 50px;
+}.dropiOpcio > *{
+    margin-bottom: 5px;
+    color: black;
+    display: block;
+}
 .contHome{
     background-image: linear-gradient(-135deg, #410046, #EC1C4E);
     min-height: 100vh;
@@ -6,6 +39,7 @@
     display: flex;
     color: #f3f3f3;
 }
+
 .bm-burger-button{
     display: none;
 }
@@ -19,7 +53,9 @@
     user-select: none;
    
 }
-
+.contNav{
+    
+}
  /* #contBackgroundHome{
     height: 100vh;
     width: 100%;

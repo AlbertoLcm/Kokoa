@@ -9,6 +9,7 @@ import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 import SignPatrocinador from "../pages/SignPatrocinador";
 import SignArtista from "../pages/SignArtista";
+import ConPerf from "../pages/ConPerf"
 import Error from "../pages/404";
 import routes from "../helpers/routes";
 import roles from "../helpers/roles";
@@ -63,6 +64,11 @@ function AppRouter() {
                 <Route exact path={routes.registrarevento} element={
                     <PrivateRoute>
                         <RegistroEvento />
+                    </PrivateRoute>
+                } />
+                <Route exact path={routes.perfil} element={
+                    <PrivateRoute>
+                        <ConPerf />
                     </PrivateRoute>
                 } />
 
