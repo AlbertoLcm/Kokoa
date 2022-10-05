@@ -1,6 +1,6 @@
 import React from "react";
 import useAuth from "../auth/useAuth";
-import { useState } from "react";
+import { useState, Suspense, lazy } from "react";
 import { Link } from "react-router-dom";
 import "../stylesheets/Home.css";
 import { slide as Menu } from "react-burger-menu";
