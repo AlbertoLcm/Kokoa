@@ -16,6 +16,7 @@ function Dropdown({ title, items, multiSelect = false }) {
       if (!multiSelect) {
         setSelection([item]);
         asignarMarcar(item.id);
+        toggle(!open)
       } else if (multiSelect) {
         setSelection([...selection, item]);
       }
