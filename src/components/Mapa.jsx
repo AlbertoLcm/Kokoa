@@ -15,7 +15,6 @@ const containerStyle = {
   height: "100vh",
 };
 
-
 function Mapa({ mapSet }) {
   const { addEventos, mostrar } = useAuth();
   const [map, setMap] = useState(/** @type google.maps.Map */ (null));
@@ -37,10 +36,10 @@ function Mapa({ mapSet }) {
   const rango = [];
   useEffect(() => {
     instance.get("/eventos").then((results) => {
-    setLugares(results.data);
+      setLugares(results.data);
     });
     ubicacionActual();
-  }, [mostrar, ]);
+  }, [mostrar]);
 
   useEffect(() => {
     addEventos(rango);
@@ -51,25 +50,32 @@ function Mapa({ mapSet }) {
     libraries: ["places"],
   });
 
-  
   if (!isLoaded) {
     return <div>fallo</div>;
   }
   // eslint-disable-next-line no-undef
-  const circle = new google.maps.Circle( { map : map, center : centerMy, radius : 4000, strokeColor : '#FF0099', strokeOpacity : 1, strokeWeight : 2, fillColor : '#009ee0', fillOpacity : 0.2 } ) 
+  const circle = new google.maps.Circle({
+    map: map,
+    center: centerMy,
+    radius: 4000,
+    strokeColor: "#FF0099",
+    strokeOpacity: 1,
+    strokeWeight: 2,
+    fillColor: "#009ee0",
+    fillOpacity: 0.2,
+  });
 
   lugares.map((evento) => {
-    if(circle.getBounds().contains( { lat: evento.lat, lng: evento.lng } )){
+    if (circle.getBounds().contains({ lat: evento.lat, lng: evento.lng })) {
       rango.push({
         evento: evento.nombre,
         ubicacion: evento.ubicacion,
         lat: evento.lat,
-        lng: evento.lng
-      })
+        lng: evento.lng,
+      });
     }
-  })
-  
-  
+  });
+
   return (
     <div>
       <GoogleMap
@@ -82,7 +88,9 @@ function Mapa({ mapSet }) {
           fullscreenControl: false,
           center: true,
         }}
-        onLoad={(map) => {mapSet(map)}}
+        onLoad={(map) => {
+          mapSet(map);
+        }}
       >
         {lugares.map((evento) => {
           // Obtengo la fecha y hora actual
@@ -95,13 +103,12 @@ function Mapa({ mapSet }) {
             today.getMinutes(),
             today.getSeconds()
           );
-          
+
           // if (evento.fecha_termino < now.toISOString()) {
-            return <Marker position={{ lat: evento.lat, lng: evento.lng }} />;
-            // }
+          return <Marker position={{ lat: evento.lat, lng: evento.lng }} />;
+          // }
         })}
       </GoogleMap>
-      
     </div>
   );
 }
