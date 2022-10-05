@@ -2,17 +2,15 @@ import { Fragment, Suspense, lazy } from "react";
 import "./App.css";
 import AuthProvider from "./auth/AuthProvider";
 import Loading from "./components/Loading";
-import Perfil from "./components/Perfil";
-// const AppRouter = lazy(() => import("./routers/AppRouter"));
-const Modal = lazy(() => import("./components/Modal"));
+const AppRouter = lazy(() => import("./routers/AppRouter"));
 
 function App() {
   return (
     <Fragment>
       <AuthProvider>
-        {/* <Suspense fallback={<Loading />}> */}
-          <Perfil />
-        {/* </Suspense> */}
+        <Suspense fallback={<Loading />}>
+          <AppRouter />
+        </Suspense>
       </AuthProvider>
     </Fragment>
   );
