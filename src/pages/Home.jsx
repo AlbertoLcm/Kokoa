@@ -93,7 +93,6 @@ function Home() {
           <div className="Cercanos">
             <Evento titulo={"Monte Clitoris"} corrs={cordsimp} mapa={map} />
             {eventos.map((evento) => {
-              console.log({ lat: evento.lat })
               return (
                 <Evento
                   lugar={evento.ubicacion}
@@ -126,7 +125,6 @@ function Home() {
               ) : marcar === 2 ? (
                 <div className="Cercanos">
                   {eventos.map((evento) => {
-                    console.log({ lat: evento.lat })
                     return (
                       <Evento
                         lugar={evento.ubicacion}

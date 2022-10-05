@@ -54,8 +54,8 @@ function RegistroEvento() {
             lng: results[0].geometry.location.lng(),
           })
           .then((resultsBD) => {
-            alert(resultsBD.data.message);
             addMostrar(resultsBD)
+            alert(resultsBD.data.message);
           })
           .catch((error) => {
             alert(error.response.data.message);

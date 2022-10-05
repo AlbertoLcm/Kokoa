@@ -14,7 +14,7 @@ function MenuLogin() {
                 <div className="contSelecion">
                     <div className="btnMenuNormal">
                         <Link to= {routes.newusuario} className="seleccion">
-                            Normal
+                            Fiestero
                         </Link>
                     </div>
                     <div className="btnMenuNegocio">
