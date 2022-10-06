@@ -58,7 +58,7 @@ function SignNegocio() {
                   type="text"
                   required
                 />
-                <span>Nombre</span>
+                <span>Nombre de su negocio</span>
               </div>
               <div className="inputBox">
                 <input
@@ -80,7 +80,7 @@ function SignNegocio() {
               </div>
             </div>
 
-            <div className="NegcontInp">
+            {/* <div className="NegcontInp">
               <h2>DIRECCION</h2>
               <Input type="text" className="NegdataUser">
                 ESTADO
@@ -146,8 +146,8 @@ function SignNegocio() {
                 <h2 className="NegtextHor">De: </h2> <Input type="time" />{" "}
                 <h2 className="NegtextHor"> a: </h2> <Input type="time" />
               </div>
-            </div>
-          </div>
+            </div> */}
+          </div> 
 
           <h2>Contraseña</h2>
           <div className="NegcontPass">
