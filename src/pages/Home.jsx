@@ -121,7 +121,7 @@ function Home() {
                     </div>
                   ) : marcar === 2 ? (
                     <div className="Cercanos">
-                      <Evento titulo={"Monte Clitoris"} corrs={cordsimp} mapa={map} />
+                      {/* <Evento titulo={"Monte Clitoris"} corrs={cordsimp} mapa={map} /> */}
                       {eventos.map((evento) => {
                         return (
                           <Evento
@@ -253,7 +253,7 @@ function Home() {
                     </div>
                   ) : marcar === 2 ? (
                     <div className="Cercanos">
-                      <Evento titulo={"Monte Clitoris"} corrs={cordsimp} mapa={map} />
+                      {/* <Evento titulo={"Monte Clitoris"} corrs={cordsimp} mapa={map} /> */}
                       {eventos.map((evento) => {
                         return (
                           <Evento
