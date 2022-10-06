@@ -39,11 +39,11 @@ function Mapa({ mapSet }) {
       setLugares(results.data);
     });
     ubicacionActual();
-  }, [mostrar]);
+  }, [mostrar, rango, lugares]);
 
   useEffect(() => {
     addEventos(rango);
-  }, [lugares]);
+  }, [lugares, rango]);
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyBqhV6i7d19_4MlXk1gEtZ0flSx_7yYfo8",

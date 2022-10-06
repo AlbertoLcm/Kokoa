@@ -6,10 +6,11 @@ import "../stylesheets/Home.css";
 import { slide as Menu } from "react-burger-menu";
 import "../stylesheets/BurguerMenu.css";
 import routes from "../helpers/routes";
-import Mapa from "../components/Mapa";
+const Mapa = lazy(() => import("../components/Mapa"));
 import Dropdown from "../components/DropDown";
 import Evento from "../components/EventosPagPrin";
 import RegistroEvento from "./RegistroEvento";
+import Loading from "../components/Loading";
 
 const EvUser = [
   {
@@ -353,7 +354,10 @@ function Home() {
             }
           </div>
         </div>
-        <Mapa mapSet={handleSetMap} />
+        // Suspense para mostrar el mapa mientras se carga
+        <Suspense fallback={<Loading />}>
+          <Mapa mapSet={handleSetMap} />
+        </Suspense>
       </div>
     </div>
   );
