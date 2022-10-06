@@ -6,12 +6,12 @@ import "../stylesheets/Home.css";
 import { slide as Menu } from "react-burger-menu";
 import "../stylesheets/BurguerMenu.css";
 import routes from "../helpers/routes";
-const Mapa = lazy(() => import("../components/Mapa"));
 import Dropdown from "../components/DropDown";
 import Evento from "../components/EventosPagPrin";
 import RegistroEvento from "./RegistroEvento";
 import Loading from "../components/Loading";
 
+const Mapa = lazy(() => import("../components/Mapa"));
 const EvUser = [
   {
     id: 1,

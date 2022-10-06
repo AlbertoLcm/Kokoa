@@ -1,14 +1,13 @@
 import React from "react";
+import instance from "../api/axios";
+import useAuth from "../auth/useAuth";
 import { useState } from "react";
 import { useEffect } from "react";
 import {
   GoogleMap,
   Marker,
-  useJsApiLoader,
-  Circle,
+  useJsApiLoader
 } from "@react-google-maps/api";
-import instance from "../api/axios";
-import useAuth from "../auth/useAuth";
 
 const containerStyle = {
   width: "100%",
@@ -39,11 +38,11 @@ function Mapa({ mapSet }) {
       setLugares(results.data);
     });
     ubicacionActual();
-  }, [mostrar, rango, lugares]);
+  }, [mostrar]);
 
   useEffect(() => {
     addEventos(rango);
-  }, [lugares, rango]);
+  }, [lugares, rango, mostrar]);
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyBqhV6i7d19_4MlXk1gEtZ0flSx_7yYfo8",
