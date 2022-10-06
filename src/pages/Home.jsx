@@ -14,31 +14,45 @@ import RegistroEvento from "./RegistroEvento";
 const EvUser = [
   {
     id: 1,
-    value: "Crear nuevo evento",
+    value: "Crear nuevo",
   },
   {
     id: 2,
-    value: "Eventos Cercanos",
+    value: "Cercanos",
   },
   {
     id: 3,
-    value: "Eventos Recomendados",
+    value: "Recomendados",
   },
 ];
 const EvNegocio = [
   {
     id: 1,
-    value: "Crear Nuevo Evento"
+    value: "Crear Nuevo"
   },
   {
     id: 2,
-    value: "Tus eventos"
+    value: "Cercanos"
+  },
+  {
+    id: 3,
+    value: "Tus Eventos"
   }
 ]
 const EvArtista = [
   {
     id: 1,
     value: "En busca de artistas"
+  },
+  {
+    id: 3,
+    value: "Cercanos"
+  }
+]
+const EvPatro = [
+  {
+    id: 1,
+    value: "En busca de Patrocinador"
   },
   {
     id: 2,
@@ -63,7 +77,9 @@ function Home() {
   const handleSetMap = (mapita) => {
     setMap(mapita);
   };
-  
+
+  console.log(user);
+  console.log(eventos);
 
   return (
     <div className="contHome">
@@ -87,63 +103,58 @@ function Home() {
         )
       }
       <Menu>
-        {
-          user[0].rol === 'usuario' ? (
-            <div>
-              <h2>Hola {user[0].nombre}</h2>
-              {window.screen.width <= 768 ? (
-                <Dropdown title="Evento" items={EvUser} />
-              ) : (
-                <h1>Recarga la pagina por favor</h1>
-              )}
-              {marcar === 1 ? (
-                <div className="CrearEvento">
-                  <RegistroEvento />
-                </div>
-              ) : marcar === 2 ? (
-                <div className="Cercanos">
-                  <Evento titulo={"Monte Clitoris"} corrs={cordsimp} mapa={map} />
-                  {eventos.map((evento) => {
-                    return (
-                      <Evento
-                        lugar={evento.ubicacion}
-                        titulo={evento.evento}
-                        corrs={{ lat: evento.lat, lng: evento.lng }}
-                        mapa={map}
-                      />
+      {
+              user[0].rol === 'usuarios' ? (
+                <div>
+                  <h2>Hola {user[0].nombre}</h2>
+                  {
+                    window.screen.width < 768 ? (
+                      <Dropdown title="Evento" items={EvUser} />
+                    ) : (
+                      <p>Por favor recargue la pagina</p>
                     )
-                  })}
+                  }
+                  {marcar === 1 ? (
+                    <div className="CrearEvento">
+                      <RegistroEvento />
+                    </div>
+                  ) : marcar === 2 ? (
+                    <div className="Cercanos">
+                      <Evento titulo={"Monte Clitoris"} corrs={cordsimp} mapa={map} />
+                      {eventos.map((evento) => {
+                        return (
+                          <Evento
+                            lugar={evento.ubicacion}
+                            titulo={evento.evento}
+                            corrs={{ lat: evento.lat, lng: evento.lng }}
+                            mapa={map}
+                          />
+                        )
+                      })}
+                    </div>
+                  ) : (
+                    <div className="Recomendados">
+                      <p>Work In Progress</p>
+                    </div>
+                  )}
                 </div>
-              ) : (
-                <div className="Recomendados">
-                  <p>Cont1</p>
-                  <button className="boton1" onClick={() => logout()}>
-                    Cerrar Sesion
-                  </button>
-                </div>
-              )}
-            </div>
-          ) : (
-            <div><p>No eres fiestero</p></div>
-          )
-        }
-      </Menu>
-      <div className="hoContMapa">
-        <div id="contBackgroundHome">
-          <div id="contFeed">
-            <div id="feedHome">
-              {
-                user[0].rol === 'usuario' ? (
-                  <div>
-                    <h2>Hola {user[0].nombre}</h2>
-                    <Dropdown title="Evento" items={EvUser} />
-                    {marcar === 1 ? (
+              ) : user[0].rol === 'negocios' ? (
+                <div>
+                  <h2>Hola {user[0].nombre}</h2>
+                  {
+                    window.screen.width < 768 ? (
+                      <Dropdown title="Evento" items={EvNegocio} />
+                    ) : (
+                      <p>Por favor recargue la pagina</p>
+                    )
+                  }
+                  {
+                    marcar === 1 ? (
                       <div className="CrearEvento">
                         <RegistroEvento />
                       </div>
                     ) : marcar === 2 ? (
                       <div className="Cercanos">
-                        <Evento titulo={"Monte Clitoris"} corrs={cordsimp} mapa={map} />
                         {eventos.map((evento) => {
                           return (
                             <Evento
@@ -156,42 +167,30 @@ function Home() {
                         })}
                       </div>
                     ) : (
-                      <div className="Recomendados">
-                        <p>Cont1</p>
-                        <button className="boton1" onClick={() => logout()}>
-                          Cerrar Sesion
-                        </button>
+                      <div>
+                        <p>Aqui van los eventos creados por el negocio</p>
                       </div>
-                    )}
-                  </div>
-                ) : user[0].rol === 'negocio' ? (
-                  <div>
-                    <h2>Bienvenido {user[0].nombre}</h2>
-                    <Dropdown title="Evento" items={EvNegocio} />
-                    {
-                      marcar === 1 ? (
-                        <div className="CrearEvento">
-                          <RegistroEvento />
-                        </div>
-                      ) : (
-                        <div>
-                          <p>Aqui van los eventos creados por el negocio</p>
-                        </div>
-                      )
-                    }
-                  </div>
-                ) : user[0].rol === 'artista' ? (
-                  <div>
-                    <h2>Bienvenido {user[0].nombre}</h2>
-                    <Dropdown title="Evento" items={EvNegocio} />
-                    {
-                      marcar === 1 ? (
-                        <div>
-                          <p>Work In Progress</p>
-                        </div>
-                      ) : (
-                        <div className="Cercanos">
-                          {eventos.map((evento) => {
+                    )
+                  }
+                </div>
+              ) : user[0].rol === 'artistas' ? (
+                <div>
+                  <h2>Hola {user[0].nombre}</h2>
+                  {
+                    window.screen.width < 768 ? (
+                      <Dropdown title="Evento" items={EvArtista} />
+                    ) : (
+                      <p>Por favor recargue la pagina</p>
+                    )
+                  }
+                  {
+                    marcar === 1 ? (
+                      <div>
+                        <p>Work In Progress</p>
+                      </div>
+                    ) : (
+                      <div className="Cercanos">
+                        {eventos.map((evento) => {
                           return (
                             <Evento
                               lugar={evento.ubicacion}
@@ -201,15 +200,157 @@ function Home() {
                             />
                           )
                         })}
-                        </div>
-                      )
-                    }
-                  </div>
-                ) : (
-                  <div></div>
-                )
-              }
-            </div>
+                      </div>
+                    )
+                  }
+                </div>
+              ) : (
+                <div>
+                  <h2>Hola {user[0].nombre}</h2>
+                  {
+                    window.screen.width < 768 ? (
+                      <Dropdown title="Evento" items={EvPatro} />
+                    ) : (
+                      <p>Por favor recargue la pagina</p>
+                    )
+                  }
+                  {
+                    marcar === 1 ? (
+                      <div>
+                        <p>Work In Progress</p>
+                      </div>
+                    ) : (
+                      <div className="Cercanos">
+                        {eventos.map((evento) => {
+                          return (
+                            <Evento
+                              lugar={evento.ubicacion}
+                              titulo={evento.evento}
+                              corrs={{ lat: evento.lat, lng: evento.lng }}
+                              mapa={map}
+                            />
+                          )
+                        })}
+                      </div>
+                    )
+                  }
+                </div>
+              )
+            }
+      </Menu>
+      <div className="hoContMapa">
+        <div id="contBackgroundHome">
+          <div id="contFeed">
+            {
+              user[0].rol === 'usuarios' ? (
+                <div id="feedHome">
+                  <h2>Hola {user[0].nombre}</h2>
+                  <Dropdown title="Evento" items={EvUser} />
+                  {marcar === 1 ? (
+                    <div className="CrearEvento">
+                      <RegistroEvento />
+                    </div>
+                  ) : marcar === 2 ? (
+                    <div className="Cercanos">
+                      <Evento titulo={"Monte Clitoris"} corrs={cordsimp} mapa={map} />
+                      {eventos.map((evento) => {
+                        return (
+                          <Evento
+                            lugar={evento.ubicacion}
+                            titulo={evento.evento}
+                            corrs={{ lat: evento.lat, lng: evento.lng }}
+                            mapa={map}
+                          />
+                        )
+                      })}
+                    </div>
+                  ) : (
+                    <div className="Recomendados">
+                      <p>Work In Progress</p>
+                    </div>
+                  )}
+                </div>
+              ) : user[0].rol === 'negocios' ? (
+                <div id="feedHome">
+                  <h2>Bienvenido {user[0].nombre}</h2>
+                  <Dropdown title="Evento" items={EvNegocio} />
+                  {
+                    marcar === 1 ? (
+                      <div className="CrearEvento">
+                        <RegistroEvento />
+                      </div>
+                    ) : marcar === 2 ? (
+                      <div className="Cercanos">
+                        {eventos.map((evento) => {
+                          return (
+                            <Evento
+                              lugar={evento.ubicacion}
+                              titulo={evento.evento}
+                              corrs={{ lat: evento.lat, lng: evento.lng }}
+                              mapa={map}
+                            />
+                          )
+                        })}
+                      </div>
+                    ) : (
+                      <div>
+                        <p>Aqui van los eventos creados por el negocio</p>
+                      </div>
+                    )
+                  }
+                </div>
+              ) : user[0].rol === 'artistas' ? (
+                <div id="feedHome">
+                  <h2>Bienvenido {user[0].nombre}</h2>
+                  <Dropdown title="Evento" items={EvArtista} />
+                  {
+                    marcar === 1 ? (
+                      <div>
+                        <p>Work In Progress</p>
+                      </div>
+                    ) : (
+                      <div className="Cercanos">
+                        {eventos.map((evento) => {
+                          return (
+                            <Evento
+                              lugar={evento.ubicacion}
+                              titulo={evento.evento}
+                              corrs={{ lat: evento.lat, lng: evento.lng }}
+                              mapa={map}
+                            />
+                          )
+                        })}
+                      </div>
+                    )
+                  }
+                </div>
+              ) : (
+                <div id="feedHome">
+                  <h2>Bienvenido {user[0].nombre}</h2>
+                  <Dropdown title="Evento" items={EvPatro} />
+                  {
+                    marcar === 1 ? (
+                      <div>
+                        <p>Work In Progress</p>
+                      </div>
+                    ) : (
+                      <div className="Cercanos">
+                        {eventos.map((evento) => {
+                          return (
+                            <Evento
+                              lugar={evento.ubicacion}
+                              titulo={evento.evento}
+                              corrs={{ lat: evento.lat, lng: evento.lng }}
+                              mapa={map}
+                            />
+                          )
+                        })}
+                      </div>
+                    )
+                  }
+                </div>
+              )
+            }
           </div>
         </div>
         <Mapa mapSet={handleSetMap} />
