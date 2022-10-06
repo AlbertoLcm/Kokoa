@@ -31,7 +31,7 @@ export default function AuthProvider({ children }) {
           }
         )
         .then((usuarioRes) => {
-          setUser(usuarioRes.data.user);
+          setUser(usuarioRes.data.user.data);
           localStorage.setItem("token", usuarioRes.data.user.token);
         });
     };
@@ -42,7 +42,7 @@ export default function AuthProvider({ children }) {
     instance
       .post("/auth/login", usuario)
       .then((usuarioRes) => {
-        setUser(usuarioRes.data.user);
+        setUser(usuarioRes.data.user.data);
         localStorage.setItem("token", usuarioRes.data.user.token);
         if (fromLocation) {
           navigate(fromLocation, { replace: true });
@@ -57,7 +57,7 @@ export default function AuthProvider({ children }) {
     instance
       .post(`${rol}/signup`, usuario)
       .then((usuarioRes) => {
-        setUser(usuarioRes.data.user);
+        setUser(usuarioRes.data.user.data);
         localStorage.setItem("token", usuarioRes.data.user.token);
         if (fromLocation) {
           navigate(fromLocation, { replace: true });
