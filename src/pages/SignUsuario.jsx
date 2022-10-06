@@ -16,6 +16,7 @@ function SignUsuario() {
     email: "",
     telefono: "",
     password: "",
+    rol: "usuarios"
   });
 
   const nav = useNavigate();
@@ -23,80 +24,85 @@ function SignUsuario() {
   const handleChange = (e) => {
     setUsuario({
       ...usuario,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
   return (
     <div className="contBackground">
-      <Header boton={"Crear Cuenta"}> <div className="UsbotVolverPC"><button className="boton1" onClick={() => nav(-1)}>Volver</button></div></Header>
+      <Header boton={"Crear Cuenta"}>
+        <div className="UsbotVolverPC">
+          <button className="boton1"
+            onClick={
+              () => nav(-1)
+            }>
+            Volver
+          </button>
+        </div>
+      </Header>
       <div className="UscontTot">
         <div className="UscontForm">
           <div className="form">
-          <div className="UsbotVolverChic"><button className="boton1" onClick={() => nav(-1)}>Volver</button></div>
+            <div className="UsbotVolverChic">
+              <button className="boton1"
+                onClick={
+                  () => nav(-1)
+                }>
+                Volver
+              </button>
+            </div>
             <div className="UscontCabeza">
               <h1>REGISTRO COMO USUARIO</h1>
             </div>
             <div className="contInpUs">
               <div className="inputBox">
-                <input
-                  name="nombre"
+                <input name="nombre"
                   onChange={handleChange}
                   type="text"
-                  required
-                />
+                  required />
                 <span>Nombre</span>
               </div>
               <div className="inputBox">
-                <input
-                  name="apellidos"
+                <input name="apellidos"
                   onChange={handleChange}
                   type="text"
-                  required
-                />
+                  required />
                 <span>Apellidos</span>
               </div>
               <div className="inputBox">
-                <input
-                  name="email"
+                <input name="email"
                   onChange={handleChange}
                   type="text"
-                  required
-                />
+                  required />
                 <span>Email</span>
               </div>
               <div className="inputBox">
-                <input
-                  name="telefono"
+                <input name="telefono"
                   onChange={handleChange}
                   type="text"
-                  required
-                />
+                  required />
                 <span>Número de teléfono</span>
               </div>
             </div>
             <h2>Contraseña</h2>
             <div className="contPass">
               <div className="inputBox">
-                <input
-                  name="password"
+                <input name="password"
                   onChange={handleChange}
                   type="password"
-                  required
-                />
+                  required />
                 <span>Contraseña</span>
               </div>
             </div>
-            <button
-              className="boton1"
-              onClick={() => signup(usuario, "usuarios", location)}
-            >
+            <button className="boton1"
+              onClick={
+                () => signup(usuario, "usuarios", location)
+              }>
               Registrarse
             </button>
           </div>
         </div>
       </div>
-      
     </div>
   );
 }

@@ -63,7 +63,7 @@ function Home() {
   const handleSetMap = (mapita) => {
     setMap(mapita);
   };
-
+  
 
   return (
     <div className="contHome">
