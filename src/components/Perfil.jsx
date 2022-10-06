@@ -4,7 +4,6 @@ import Modal from "./Modal";
 function Perfil() {
 
   const [showModal, setShowModal] = useState(false);
-  
   return (
     // Actualizacion de información del usuario
     <div className="perfilUser">

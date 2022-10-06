@@ -18,6 +18,7 @@ function SignArtista() {
     tipo_artista: "",
     descripcion: "",
     password: "",
+    rol: "artistas"
   });
 
   const handleChange = (e) => {

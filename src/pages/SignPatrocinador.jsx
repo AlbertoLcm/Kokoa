@@ -18,6 +18,7 @@ function SignPatrocinador() {
     tipo_artista: "",
     descripcion: "",
     password: "",
+    rol: "patrocinadores",
   });
 
   const handleChange = (e) => {

@@ -43,7 +43,7 @@ function Home() {
   const handleSetMap = (mapita) => {
     setMap(mapita);
   };
-
+  
   return (
     <div className="contHome">
       <header className="color">
@@ -52,7 +52,7 @@ function Home() {
         </section>
         <button onClick={() => toggle(!opcio)} className="butNav">
           {" "}
-            {user.nombre}{" "}
+            {user[0].email}{" "}
         </button>
       </header>
       {

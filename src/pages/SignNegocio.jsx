@@ -17,6 +17,7 @@ function SignNegocio() {
     direccion: "",
     horario: "",
     password: "",
+    rol: "negocios"
   });
 
   const handleChange = (e) => {
