@@ -1,6 +1,9 @@
-
+.color {
+    display: flex;
+    justify-content: right;
+}
 .butNav{
-    margin-left: 90%;
+    
     border: none;
     font-size: 25px;
     background-color: transparent;
@@ -8,7 +11,7 @@
     z-index: 101;
     color: white;
 }.butNav :focus{
-    text-decoration: solid;
+    
     background: transparent;
 }
 .acomodo{

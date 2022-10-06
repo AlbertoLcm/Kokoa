@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import useAuth from "../auth/useAuth";
 import Modal from "./Modal";
 
 function Perfil() {
-
+  const {user } = useAuth();
   const [showModal, setShowModal] = useState(false);
   
   return (
@@ -13,15 +14,18 @@ function Perfil() {
 
         <img src="" alt="" />
         </div>
-        Nombre del usuario
-        Telefono usuario
+        <label>Nombre: </label>
+        <label>{" "}{user.nombre}{" "} </label>
       </section>
-      <label>Ubicacion</label>
-      <input type="text"/>
-      <label>Email</label>
-      <input type="text" />
-      <label>Numero de telefono</label>
-      <input type="text" />
+        <label>Ubicacion: </label>
+        <label >Aqui va su Municipio </label>
+      <div></div>
+      <label>Email: </label>
+      <label >Aqui va su Email</label>
+      <div></div>
+      <label>Numero de telefono: </label>
+      <label >Aqui va su numero de telefono</label>
+      <div></div>
       <button onClick={() => setShowModal(!showModal)}>Agregar un domicilio</button>
       <Modal
       estado={showModal}

@@ -11,7 +11,7 @@ import Dropdown from "../components/DropDown";
 import Evento from "../components/EventosPagPrin";
 import RegistroEvento from "./RegistroEvento";
 
-const items1 = [
+const EvUser = [
   {
     id: 1,
     value: "Crear nuevo evento",
@@ -25,6 +25,26 @@ const items1 = [
     value: "Eventos Recomendados",
   },
 ];
+const EvNegocio = [
+  {
+    id: 1,
+    value: "Crear Nuevo Evento"
+  },
+  {
+    id: 2,
+    value: "Tus eventos"
+  }
+]
+const EvArtista = [
+  {
+    id: 1,
+    value: "En busca de artistas"
+  },
+  {
+    id: 2,
+    value: "Cercanos"
+  }
+]
 
 const cordsimp = {
   lat: 16.946323,
@@ -37,12 +57,13 @@ function Home() {
   const { logout, user } = useAuth();
 
   const [opcio, setOpcio] = useState(false);
-  const toggle = () => {setOpcio(!opcio)};
+  const toggle = () => { setOpcio(!opcio) };
 
   const [map, setMap] = useState(/** @type google.maps.Map */(null));
   const handleSetMap = (mapita) => {
     setMap(mapita);
   };
+
 
   return (
     <div className="contHome">
@@ -52,65 +73,36 @@ function Home() {
         </section>
         <button onClick={() => toggle(!opcio)} className="butNav">
           {" "}
-            {user.nombre}{" "}
+          {user[0].nombre}{" "}
         </button>
       </header>
       {
-          opcio && (
-            <div className="acomodo">
-                <div className="dropiOpcio">
-                  <Link to={routes.perfil}>Perfil</Link>
-                  <a onClick={() => logout()}>Cerrar Sesion</a>
-                </div>
+        opcio && (
+          <div className="acomodo">
+            <div className="dropiOpcio">
+              <Link to={routes.perfil}>Perfil</Link>
+              <a onClick={() => logout()}>Cerrar Sesion</a>
             </div>
-          )
-        }
+          </div>
+        )
+      }
       <Menu>
-        <h2>Hola {user.nombre}</h2>
-        {window.screen.width <= 768 ? (
-          <Dropdown title="Evento" items={items1} />
-        ) : (
-          <h1>Recarga la pagina por favor</h1>
-        )}
-        {marcar === 1 ? (
-          <div className="CrearEvento">
-            <RegistroEvento />
-          </div>
-        ) : marcar === 2 ? (
-          <div className="Cercanos">
-            <Evento titulo={"Monte Clitoris"} corrs={cordsimp} mapa={map} />
-            {eventos.map((evento) => {
-              return (
-                <Evento
-                  lugar={evento.ubicacion}
-                  titulo={evento.evento}
-                  corrs={{ lat: evento.lat, lng: evento.lng }}
-                  mapa={map}
-                />
-              )
-            })}
-          </div>
-        ) : (
-          <div className="Recomendados">
-            <p>Cont1</p>
-            <button className="boton1" onClick={() => logout()}>
-              Cerrar Sesion
-            </button>
-          </div>
-        )}
-      </Menu>
-      <div className="hoContMapa">
-        <div id="contBackgroundHome">
-          <div id="contFeed">
-            <div id="feedHome">
-              <h2>Hola {user.nombre}</h2>
-              <Dropdown title="Evento" items={items1} />
+        {
+          user[0].rol === 'usuario' ? (
+            <div>
+              <h2>Hola {user[0].nombre}</h2>
+              {window.screen.width <= 768 ? (
+                <Dropdown title="Evento" items={EvUser} />
+              ) : (
+                <h1>Recarga la pagina por favor</h1>
+              )}
               {marcar === 1 ? (
                 <div className="CrearEvento">
                   <RegistroEvento />
                 </div>
               ) : marcar === 2 ? (
                 <div className="Cercanos">
+                  <Evento titulo={"Monte Clitoris"} corrs={cordsimp} mapa={map} />
                   {eventos.map((evento) => {
                     return (
                       <Evento
@@ -121,10 +113,6 @@ function Home() {
                       />
                     )
                   })}
-
-                  <button className="boton1" onClick={() => logout()}>
-                    Cerrar Sesion
-                  </button>
                 </div>
               ) : (
                 <div className="Recomendados">
@@ -134,6 +122,93 @@ function Home() {
                   </button>
                 </div>
               )}
+            </div>
+          ) : (
+            <div><p>No eres fiestero</p></div>
+          )
+        }
+      </Menu>
+      <div className="hoContMapa">
+        <div id="contBackgroundHome">
+          <div id="contFeed">
+            <div id="feedHome">
+              {
+                user[0].rol === 'usuario' ? (
+                  <div>
+                    <h2>Hola {user[0].nombre}</h2>
+                    <Dropdown title="Evento" items={EvUser} />
+                    {marcar === 1 ? (
+                      <div className="CrearEvento">
+                        <RegistroEvento />
+                      </div>
+                    ) : marcar === 2 ? (
+                      <div className="Cercanos">
+                        <Evento titulo={"Monte Clitoris"} corrs={cordsimp} mapa={map} />
+                        {eventos.map((evento) => {
+                          return (
+                            <Evento
+                              lugar={evento.ubicacion}
+                              titulo={evento.evento}
+                              corrs={{ lat: evento.lat, lng: evento.lng }}
+                              mapa={map}
+                            />
+                          )
+                        })}
+                      </div>
+                    ) : (
+                      <div className="Recomendados">
+                        <p>Cont1</p>
+                        <button className="boton1" onClick={() => logout()}>
+                          Cerrar Sesion
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                ) : user[0].rol === 'negocio' ? (
+                  <div>
+                    <h2>Bienvenido {user[0].nombre}</h2>
+                    <Dropdown title="Evento" items={EvNegocio} />
+                    {
+                      marcar === 1 ? (
+                        <div className="CrearEvento">
+                          <RegistroEvento />
+                        </div>
+                      ) : (
+                        <div>
+                          <p>Aqui van los eventos creados por el negocio</p>
+                        </div>
+                      )
+                    }
+                  </div>
+                ) : user[0].rol === 'artista' ? (
+                  <div>
+                    <h2>Bienvenido {user[0].nombre}</h2>
+                    <Dropdown title="Evento" items={EvNegocio} />
+                    {
+                      marcar === 1 ? (
+                        <div>
+                          <p>Work In Progress</p>
+                        </div>
+                      ) : (
+                        <div className="Cercanos">
+                          {eventos.map((evento) => {
+                          return (
+                            <Evento
+                              lugar={evento.ubicacion}
+                              titulo={evento.evento}
+                              corrs={{ lat: evento.lat, lng: evento.lng }}
+                              mapa={map}
+                            />
+                          )
+                        })}
+                        </div>
+                      )
+                    }
+                  </div>
+                ) : (
+                  <div></div>
+                )
+              }
             </div>
           </div>
         </div>

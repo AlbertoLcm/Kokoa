@@ -28,7 +28,6 @@
 }
 .contVis{
     width: 100%;
-    color: black;
     background: linear-gradient(to right, #d47f00cd, #410046 15%);
     
 }.contVis h1 {
@@ -37,11 +36,30 @@
 .contPerf header{
     height: 70px;
 }
-.direccion{
+.direccion > div{
+    justify-content: center;
+    
+    align-items: center;
+}
+.datosUser{
     display: flex;
     justify-content: center;
-    color:  white;
-    align-items: center;
+}
+.perfilUser{
+    text-align: center;
+    font-size: xx-large;
+}.perfilUser > label{    
+    color: white;
+}.perfilUser > div {
+    margin-bottom: 20px;
+}
+.datosUser{
+    color: white;
+    margin-bottom: 20px;
+    margin-top: 50px;
+}
+button :focus {
+    text-decoration: none;
 }
 @media only screen and (min-width: 820px) {
     .navSideBar{
