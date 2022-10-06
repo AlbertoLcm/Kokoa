@@ -42,7 +42,7 @@ function Mapa({ mapSet }) {
 
   useEffect(() => {
     addEventos(rango);
-  }, [lugares, rango, mostrar]);
+  }, [lugares, mostrar]);
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyBqhV6i7d19_4MlXk1gEtZ0flSx_7yYfo8",
