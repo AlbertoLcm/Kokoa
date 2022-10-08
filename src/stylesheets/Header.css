@@ -5,37 +5,11 @@ header{
     display: flex;
     align-items: center;
     box-sizing: border-box;
-    height: 50px;
+    justify-content: center;
+    height: 60px;
     transform: 0.5s;
     backdrop-filter: blur(10px);
     z-index: 100;
-}
-header ul{
-    list-style: none;
-}
-.nav li a{
-    color: aqua;
-    font-family: 'Berlin Sans FB';
-    padding: 5px;
-    display: block;
-    text-decoration: none;
-}
-
-.nav a:hover{
-    color:#f3f3f3
-}
-
-.nav > li{
-    float: left;
-    position: relative;
-}
-
-.nav li ul{
-    display: none;
-    position: absolute;
-}
-.nav li:hover > ul{
-    display: block;
 }
 
 .color{
@@ -60,9 +34,10 @@ header ul{
     font-size: 30px;
     font-family: 'Berlin Sans FB';
 }
-.contBotones{
-    min-width: 150px;
-    height: 52px;
+.userHeader{
     position: absolute;
     right: 60px;
+    font-size: 20px;
+    cursor: pointer;
+    user-select: none;
 }

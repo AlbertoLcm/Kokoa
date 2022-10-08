@@ -3,6 +3,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Modal = ({ children, estado, cambiarEstado }) => {
+
+
+    
     
     return (
         <>
@@ -10,7 +13,6 @@ const Modal = ({ children, estado, cambiarEstado }) => {
             <Overlay>
                 <ContModal>
                     <Ecabezado>
-                        Agregar Dirección
                         <ButtonCerrar onClick={() => cambiarEstado(false)}>
                             X
                         </ButtonCerrar>
@@ -36,6 +38,7 @@ const Overlay = styled.div`
     padding: 40px;
     justify-content: center;
     align-items: center;
+    z-index: 1000;
 `;
 
 const ContModal = styled.div`
@@ -45,6 +48,9 @@ const ContModal = styled.div`
     position: relative;
     border-radius: 10px;
     padding: 20px;
+    z-index: 1002;
+    color: #3f3f3f;
+
 `;
 
 const Ecabezado = styled.div`

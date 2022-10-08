@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import useAuth from "../auth/useAuth";
 import Header from "../components/Header";
+import Loading from "../components/Loading";
 import "../stylesheets/Login.css";
 
 function Login() {
-  const { login } = useAuth();
+  const { login, islogin, user } = useAuth();
   const location = useLocation();
 
   const [userCredentials, setUserCredentials] = useState({
@@ -19,6 +20,16 @@ function Login() {
       [e.target.name]: e.target.value,
     });
   };
+
+  if (localStorage.getItem("token")) {
+    try {
+      islogin();
+    } catch (error) {
+      console.log('hola');       
+    }
+    return <Loading />;
+  }
+
 
   return (
     <div className="contImagen">

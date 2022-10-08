@@ -10,8 +10,8 @@ import useAuth from "../auth/useAuth";
 function RegistroEvento() {
   const nav = useNavigate();
 
-  const { addMostrar } = useAuth();
-  
+  const { addMostrar, user } = useAuth();
+
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyBqhV6i7d19_4MlXk1gEtZ0flSx_7yYfo8",
     libraries: ["places"],
@@ -48,7 +48,8 @@ function RegistroEvento() {
       },
       (results, status) => {
         instance
-          .post("eventos/add", {datosEvento,
+          .post("eventos/add", {datosEvento, 
+            id: user[0].id,
             ubicacion: originRef.current.value,
             lat: results[0].geometry.location.lat(),
             lng: results[0].geometry.location.lng(),

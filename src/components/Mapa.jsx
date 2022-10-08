@@ -5,9 +5,12 @@ import { useState } from "react";
 import { useEffect } from "react";
 import {
   GoogleMap,
+  InfoWindow,
   Marker,
   useJsApiLoader
 } from "@react-google-maps/api";
+import Modal from "./Modal";
+import stylesArray from "../helpers/stylesArray";
 
 const containerStyle = {
   width: "100%",
@@ -16,18 +19,24 @@ const containerStyle = {
 
 function Mapa({ mapSet }) {
   const { addEventos, mostrar } = useAuth();
-  const [map, setMap] = useState(/** @type google.maps.Map */ (null));
-  const [lugares, setLugares] = useState([]);
-  const [centerMy, setCenterMy] = useState({
-    lat: 19.4326077,
-    lng: -99.133208,
-  });
+  const [ activeMarker, setActiveMarker ] = useState(null);
+  const [ map, setMap ] = useState(/** @type google.maps.Map */ (null));
+  const [ lugares, setLugares ] = useState([]);
+  const [ showModal, setShowModal ] = useState(false);
+  const [ eventoInfo, setEventoInfo ] = useState({});
+  const [ centerMy, setCenterMy ] = useState();
+
   const ubicacionActual = () => {
     navigator.geolocation.getCurrentPosition((coordenada) => {
       if (coordenada) {
         setCenterMy({
           lat: parseFloat(coordenada.coords.latitude),
           lng: parseFloat(coordenada.coords.longitude),
+        });
+      } else {
+        setCenterMy({
+          lat: 19.4326077,
+          lng: -99.133208,
         });
       }
     });
@@ -64,6 +73,13 @@ function Mapa({ mapSet }) {
     fillOpacity: 0.2,
   });
 
+  const handleActiveMarker = (marker) => {
+    if (marker === activeMarker) {
+      return;
+    }
+    setActiveMarker(marker);
+  };
+
   lugares.map((evento) => {
     if (circle.getBounds().contains({ lat: evento.lat, lng: evento.lng })) {
       rango.push({
@@ -75,13 +91,21 @@ function Mapa({ mapSet }) {
     }
   });
 
+  const asignacion = (id) => {
+    setShowModal(!showModal);
+    const eve = lugares.find((evento) => evento.id === id);
+
+    setEventoInfo(eve);
+  }
+  
   return (
     <div>
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={centerMy}
-        zoom={17}
+        zoom={16}
         options={{
+          styles: stylesArray,
           streetViewControl: false,
           mapTypeControl: false,
           fullscreenControl: false,
@@ -90,6 +114,8 @@ function Mapa({ mapSet }) {
         onLoad={(map) => {
           mapSet(map);
         }}
+        clickableIcons={false}
+        onClick={() => setActiveMarker(null)}
       >
         {lugares.map((evento) => {
           // Obtengo la fecha y hora actual
@@ -104,10 +130,35 @@ function Mapa({ mapSet }) {
           );
 
           // if (evento.fecha_termino < now.toISOString()) {
-          return <Marker position={{ lat: evento.lat, lng: evento.lng }} />;
+          return (
+            <Marker 
+            key={evento.id}
+            position={{ lat: evento.lat, lng: evento.lng }}
+            onClick={() => handleActiveMarker(evento.id)}>
+              {activeMarker === evento.id && (
+                <InfoWindow onCloseClick={() => setActiveMarker(null)}>
+                  <div className="markerInfo">
+                    {evento.nombre}
+                    <button className="boton3" onClick={() => asignacion(evento.id)}>Ver más</button>
+                  </div>
+                </InfoWindow>
+              )}
+            </Marker>
+          );
           // }
         })}
       </GoogleMap>
+
+      {/* <Modal 
+        estado={showModal}
+        cambiarEstado={setShowModal} 
+      >
+        Evento <br />
+        {eventoInfo.nombre}
+        {eventoInfo.descripcion}
+        {eventoInfo.fecha_inicio}
+        {eventoInfo.fecha_termino}
+      </Modal> */}
     </div>
   );
 }

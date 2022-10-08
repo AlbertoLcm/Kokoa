@@ -15,6 +15,7 @@ import RolArtista from "../pages/RolArtista";
 import RegistroEvento from "../pages/RegistroEvento";
 import Login from "../pages/Login";
 import Home from "../pages/Home";
+import EventoInfo from "../components/Evento";
 
 function AppRouter() {
     return(
@@ -69,6 +70,9 @@ function AppRouter() {
                     <PrivateRoute>
                         <ConPerf />
                     </PrivateRoute>
+                } />
+                <Route exact path='/evento/:id' element={
+                    <EventoInfo />
                 } />
 
         <Route path="*" element={<Error />} />

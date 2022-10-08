@@ -1,19 +1,15 @@
-.contEvento button {
-    border: none;
+.contEvento h3 {
     width: 100%;
+    height: 100%;
     height: auto;
     text-align: left;
-    background-color: transparent;
-    color: white;
+    color: #3f3f3f;
     font-size: 25px;
     margin-bottom: 0px;
 }
 .contEvento p {
     font-size: 10px;
     text-align: right;
-}
-.contEvento :hover {
-    background-color: #c7c7c7cc;
 }
 @media only screen and (min-width: 800px) {
     .contEvento button {

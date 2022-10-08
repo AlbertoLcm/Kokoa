@@ -3,7 +3,6 @@
     justify-content: right;
 }
 .butNav{
-    
     border: none;
     font-size: 25px;
     background-color: transparent;
@@ -11,29 +10,40 @@
     z-index: 101;
     color: white;
 }.butNav :focus{
-    
     background: transparent;
 }
 .acomodo{
     z-index: 101;
     position: absolute;
     width: 100%;
-    margin-top: 50px;
-    float: right;
+    margin-top: 65px;
+    right: 10px;
 }.dropiOpcio{
-    border-bottom-left-radius: 50%;
-    text-align: right;
-    
+    border-radius: 10px;    
+    text-decoration: none;
     float: right;
-    background-color: gray;
+    background-color: #f3f3f3;
     padding-top: 10px;
     padding-left: 10px;
     padding-right: 10px;
-    max-width: 50px;
+    font-size: 18px;
+    width: auto;
+    box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.1);
 }.dropiOpcio > *{
     margin-bottom: 5px;
-    color: black;
+    color: #3f3f3f;
     display: block;
+}
+#toggleSalir{
+    cursor: pointer;
+    user-select: none;
+    height: 30px;
+}
+#togglePerfil{
+    height: 30px;
+    text-decoration: none;
+    user-select: none;
+    border-bottom: solid 1px #3f3f3f;
 }
 .contHome{
     background-image: linear-gradient(-135deg, #410046, #EC1C4E);
@@ -56,8 +66,15 @@
     user-select: none;
    
 }
-.contNav{
-    
+.markerInfo{
+    color: black;
+    font-size: 20px;
+    position: relative;
+    flex-direction: column;
+    z-index: 9999;
+}
+.markerInfo h3{
+    font-size: 15px;
 }
  /* #contBackgroundHome{
     height: 100vh;
@@ -69,7 +86,7 @@
 }  */
 #contFeed{
     height: fill-available;
-    margin-top: 50px;
+    margin-top: 60px;
     display: flex;
     align-items: center;
     z-index: 100;
@@ -84,7 +101,7 @@
     min-height: 79vh;
     margin-left: 40px;
     background-color: #f3f3f3;
-    /* background-color: #e2e2e2a6; */
+    /* background-color: #f3f3f3dc; */
     backdrop-filter: blur(10px);
     z-index: 80;
     border-radius: 15px;
@@ -92,6 +109,22 @@
     flex-direction: column;
     display: none;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para el evento */
+.contEvento{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: rgb(247, 247, 247);
+    padding: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: 0.3s;
+}
+.contEvento:hover{
+    background-color: rgb(242, 242, 242);
 }
 
 #feedHome > h1, p{
