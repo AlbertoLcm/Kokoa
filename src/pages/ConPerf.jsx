@@ -26,20 +26,19 @@ function ConPerf() {
                 <section className="contLogo">
                     <div className="logo">Kokoa</div>
                 </section>
-                <button onClick={() => toggle(!opcio)} className="butNav">
-                    {" "}
-                    {user[0].nombre}{" "}
-                </button>
+                <div className="userHeader" onClick={() => toggle(!opcio)}>
+                    {user[0].nombre}
+                </div>
             </header>
             {
                 opcio && (
-                    <div className="acomodo">
-                        <div className="dropiOpcio">
-                            <button onClick={() => nav(-1)}>Volver</button>
-                            <button onClick={() => logout()}>Cerrar Sesion</button>
-                        </div>
+                    <div className="acomodo" id="acomodo">
+                      <div className="dropiOpcio">
+                        <div onClick={() => nav(-1)} id='toggleSalir'>Volver</div>
+                        <div onClick={() => logout()} id='toggleSalir'>Salir</div>
+                      </div>
                     </div>
-                )
+                  )
             }
             <div className="contBase">
                 <Menu>
