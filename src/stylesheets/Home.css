@@ -22,18 +22,25 @@
     float: right;
 }.dropiOpcio{
     border-bottom-left-radius: 50%;
+    border-top-left-radius: 50%;
     text-align: right;
-    
     float: right;
-    background-color: gray;
-    padding-top: 10px;
+    background-color: #d47f00cd;
+    padding-top: 20px;
     padding-left: 10px;
     padding-right: 10px;
-    max-width: 50px;
+    padding-bottom: 5px;
+    max-width: 100px;
 }.dropiOpcio > *{
-    margin-bottom: 5px;
-    color: black;
+    text-decoration: none;
+    margin-bottom: 15px;
+    color: white;
     display: block;
+}.dropiOpcio > button {
+    border: none;
+    background: transparent;
+    width: 100%;
+    text-align: right;
 }
 .contHome{
     background-image: linear-gradient(-135deg, #410046, #EC1C4E);
@@ -55,9 +62,6 @@
     width: 100%;
     user-select: none;
    
-}
-.contNav{
-    
 }
  /* #contBackgroundHome{
     height: 100vh;

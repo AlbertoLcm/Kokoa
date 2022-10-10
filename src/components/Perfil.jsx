@@ -14,16 +14,16 @@ function Perfil() {
         <img src="" alt="" />
         </div>
         <label>Nombre: </label>
-        <label>{" "}{user.nombre}{" "} </label>
+        <label>{"  "}{user[0].nombre}{" "}{user[0].apellidos} </label>
       </section>
         <label>Ubicacion: </label>
         <label >Aqui va su Municipio </label>
       <div></div>
       <label>Email: </label>
-      <label >Aqui va su Email</label>
+      <label className="labCorr">{" "}{user[0].email} </label>
       <div></div>
       <label>Numero de telefono: </label>
-      <label >Aqui va su numero de telefono</label>
+      <label >{" "}{user[0].telefono} </label>
       <div></div>
       <button onClick={() => setShowModal(!showModal)}>Agregar un domicilio</button>
       <Modal

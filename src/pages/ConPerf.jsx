@@ -5,19 +5,20 @@ import Perfil from "../components/Perfil"
 import Header from "../components/Header";
 import { slide as Menu } from "react-burger-menu";
 import "../stylesheets/ConfPerf.css"
+import {useNavigate} from "react-router-dom";
 
 function ConPerf() {
-    const { logout, user } = useAuth();
+    const nav = useNavigate();
 
-    const [cont, setCont] = useState(0);
+    const { logout, user } = useAuth();
+    console.log(user);
+    const [cont, setCont] = useState(1);
     function cambioVis(ver) {
         setCont(ver);
-        document.getElementById("bd").style.backgorund = "linear-gradient(to right, #410046 80%, #d47f00cd)";
-        console.log(document.getElementById("bd").style.backgorund)
     }
 
     const [opcio, setOpcio] = useState(false);
-    const toggle = () => {setOpcio(!opcio)};
+    const toggle = () => { setOpcio(!opcio) };
 
     return (
         <div className="contPerf">
@@ -27,32 +28,64 @@ function ConPerf() {
                 </section>
                 <button onClick={() => toggle(!opcio)} className="butNav">
                     {" "}
-                    {user.nombre}{" "}
+                    {user[0].nombre}{" "}
                 </button>
             </header>
             {
                 opcio && (
                     <div className="acomodo">
                         <div className="dropiOpcio">
-                            <a onClick={() => logout()}>Cerrar Sesion</a>
+                            <button onClick={() => nav(-1)}>Volver</button>
+                            <button onClick={() => logout()}>Cerrar Sesion</button>
                         </div>
                     </div>
                 )
             }
             <div className="contBase">
+                <Menu>
+                    <button onClick={() => cambioVis(1)}>Información personal</button>
+                    <button onClick={() => cambioVis(2)}>Descripcíon</button>
+                    <button onClick={() => cambioVis(3)}>Historial de eventos </button> 
+                </Menu>
                 <div className="navSideBar">
-                    <button id="bd" onClick={() => cambioVis(1)}>Información personal</button>
+                    <button onClick={() => cambioVis(1)}>Información general</button>
+                    <button onClick={() => cambioVis(2)}>Descripcíon</button>
+                    <button onClick={() => cambioVis(3)}>Historial de eventos </button>
                 </div>
                 <div className="contVis">
                     {
-                        cont === 1 ? (
-                            <div className="direccion">
-                                <Perfil />
-                            </div>
-                        ) : (
-                            <div className="entrVis">
-                                <h1>Bienvenido a la configuracion de tu perfil</h1>
-                            </div>
+                        user[0].rol === 'usuarios' ? (
+                            cont !== 1 ? (
+                                <div className="entrVis">
+                                    <p>Esta funcion no esta disponible para tu tipo de usuario</p>
+                                </div>
+                            ) : (
+                                <div className="direccion">
+                                    <Perfil />
+                                </div>
+                            )
+                        ) :(
+                            cont === 1 ? (
+                                <div className="direccion">
+                                    <Perfil />
+                                </div>
+                            ) : cont === 2 ? ( 
+                                <div className="descripcion">
+                                    <h1>Aquí va una corta descripción para informar a los usuarios a cerca de tu negocio</h1>
+                                    <p>Inserte descripción :V</p>
+                                    <div className="contContBotDesc"><div className="contBotDesc"><button className="boton1">CAMBIAR DESPCRIPCIÓN</button></div></div>
+                                </div>
+                            ) : cont === 3 ? (
+                                <div className="historial">
+                                    <h1>Estos son todos los eventos que has publicado</h1>
+                                </div>
+                            ) : (
+                                <div className="entrVis">
+                                    <h1>¡UPS!, ¡¿Como llegaste hasta aqui?!</h1>
+                                    <h1>No te preocupes, solo selecciona alguno de los botones</h1>
+                                    <h1> {"<= "} {"De los de ese lado"} </h1>
+                                </div>
+                            )
                         )
                     }
                 </div>

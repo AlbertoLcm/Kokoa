@@ -97,7 +97,7 @@ function Home() {
           <div className="acomodo">
             <div className="dropiOpcio">
               <Link to={routes.perfil}>Perfil</Link>
-              <a onClick={() => logout()}>Cerrar Sesion</a>
+              <button onClick={() => logout()}>Cerrar Sesion</button>
             </div>
           </div>
         )
