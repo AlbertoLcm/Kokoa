@@ -61,7 +61,7 @@ function SignArtista() {
                   type="text"
                   required
                 />
-                <span>Nombre</span>
+                <span>Nombre Artistico</span>
               </div>
               <div className="inputBox">
                 <input
@@ -83,7 +83,7 @@ function SignArtista() {
               </div>
             </div>
 
-            <div className="ArtcontInp">
+            {/* <div className="ArtcontInp">
               <h2>DIRECCION</h2>
               <Input type="text" className="ArtdataUser">
                 ESTADO
@@ -97,7 +97,7 @@ function SignArtista() {
               <Input type="text" className="ArtdataUser">
                 NUMERO
               </Input>
-            </div>
+            </div> */}
           </div>
           <h2>PERFORMANCE</h2>
           <div className="ArtcontT">

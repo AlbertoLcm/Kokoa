@@ -83,7 +83,7 @@ function SignPatrocinador() {
               </div>
             </div>
 
-            <div className="PatcontInp">
+            {/* <div className="PatcontInp">
               <h2>DIRECCION</h2>
               <Input type="text" className="PatdataUser">
                 ESTADO
@@ -97,7 +97,7 @@ function SignPatrocinador() {
               <Input type="text" className="PatdataUser">
                 NUMERO
               </Input>
-            </div>
+            </div> */}
           </div>
           <h2>Forma de patrocinio</h2>
           <div className="PatcontT">

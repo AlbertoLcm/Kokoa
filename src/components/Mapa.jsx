@@ -1,14 +1,16 @@
 import React from "react";
+import instance from "../api/axios";
+import useAuth from "../auth/useAuth";
 import { useState } from "react";
 import { useEffect } from "react";
 import {
   GoogleMap,
+  InfoWindow,
   Marker,
-  useJsApiLoader,
-  Circle,
+  useJsApiLoader
 } from "@react-google-maps/api";
-import instance from "../api/axios";
-import useAuth from "../auth/useAuth";
+import Modal from "./Modal";
+import stylesArray from "../helpers/stylesArray";
 
 const containerStyle = {
   width: "100%",
@@ -17,18 +19,24 @@ const containerStyle = {
 
 function Mapa({ mapSet }) {
   const { addEventos, mostrar } = useAuth();
-  const [map, setMap] = useState(/** @type google.maps.Map */ (null));
+  const [activeMarker, setActiveMarker] = useState(null);
+  const [map, setMap] = useState(/** @type google.maps.Map */(null));
   const [lugares, setLugares] = useState([]);
-  const [centerMy, setCenterMy] = useState({
-    lat: 19.4326077,
-    lng: -99.133208,
-  });
+  const [showModal, setShowModal] = useState(false);
+  const [eventoInfo, setEventoInfo] = useState({});
+  const [centerMy, setCenterMy] = useState();
+
   const ubicacionActual = () => {
     navigator.geolocation.getCurrentPosition((coordenada) => {
       if (coordenada) {
         setCenterMy({
           lat: parseFloat(coordenada.coords.latitude),
           lng: parseFloat(coordenada.coords.longitude),
+        });
+      } else {
+        setCenterMy({
+          lat: 19.4326077,
+          lng: -99.133208,
         });
       }
     });
@@ -39,11 +47,11 @@ function Mapa({ mapSet }) {
       setLugares(results.data);
     });
     ubicacionActual();
-  }, [mostrar]);
+  }, [mostrar,]);
 
   useEffect(() => {
     addEventos(rango);
-  }, [lugares]);
+  }, [lugares, mostrar, centerMy,]);
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyBqhV6i7d19_4MlXk1gEtZ0flSx_7yYfo8",
@@ -65,6 +73,13 @@ function Mapa({ mapSet }) {
     fillOpacity: 0.2,
   });
 
+  const handleActiveMarker = (marker) => {
+    if (marker === activeMarker) {
+      return;
+    }
+    setActiveMarker(marker);
+  };
+
   lugares.map((evento) => {
     if (circle.getBounds().contains({ lat: evento.lat, lng: evento.lng })) {
       rango.push({
@@ -76,13 +91,20 @@ function Mapa({ mapSet }) {
     }
   });
 
+  const asignacion = (id) => {
+    setShowModal(!showModal);
+    const eve = lugares.find((evento) => evento.id === id);
+    setEventoInfo(eve);
+  }
+
   return (
     <div>
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={centerMy}
-        zoom={17}
+        zoom={16}
         options={{
+          styles: stylesArray,
           streetViewControl: false,
           mapTypeControl: false,
           fullscreenControl: false,
@@ -91,6 +113,8 @@ function Mapa({ mapSet }) {
         onLoad={(map) => {
           mapSet(map);
         }}
+        clickableIcons={false}
+        onClick={() => setActiveMarker(null)}
       >
         {lugares.map((evento) => {
           // Obtengo la fecha y hora actual
@@ -105,10 +129,34 @@ function Mapa({ mapSet }) {
           );
 
           // if (evento.fecha_termino < now.toISOString()) {
-          return <Marker position={{ lat: evento.lat, lng: evento.lng }} />;
-          // }
-        })}
+          return (
+            <Marker
+              key={evento.id}
+              position={{ lat: evento.lat, lng: evento.lng }}
+              onClick={() => handleActiveMarker(evento.id)}>
+              {activeMarker === evento.id && (
+                <InfoWindow onCloseClick={() => setActiveMarker(null)}>
+                  <div className="markerInfo">
+                    {evento.nombre}
+                    <button className="boton3" onClick={() => asignacion(evento.id)}>Ver más</button>
+                  </div>
+                </InfoWindow>
+              )}
+            </Marker>
+          );
+        }
+  )}
       </GoogleMap>
+
+      <Modal
+        estado={showModal}
+        cambiarEstado={setShowModal}
+      >
+        Evento <br />
+        {eventoInfo.nombre}<br />
+        {eventoInfo.descripcion}<br />
+        {Date.parse(eventoInfo.fecha_inicio)}<br />
+      </Modal>
     </div>
   );
 }

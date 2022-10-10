@@ -4,10 +4,11 @@ import {
   useState,
   useEffect
 } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import instance from "../api/axios";
 import Loading from "../components/Loading";
 import roles from "../helpers/roles";
+import routes from "../helpers/routes";
 
 export const AuthContext = createContext();
 
@@ -17,24 +18,29 @@ export default function AuthProvider({ children }) {
   const [user, setUser] = useState(false);
   const [eventos, setEventos] = useState(null);
 
+  const islogin = () => {
+    const token = localStorage.getItem("token");
+    instance
+      .post(
+        "/auth",
+        { usuario: "prueba" },
+        {
+          headers: {
+            authorization: token,
+          },
+        }
+      )
+      .then((usuarioRes) => {
+        setUser(usuarioRes.data.user.data);
+        localStorage.setItem("token", usuarioRes.data.user.token);
+      })
+      .catch((err) => {
+        localStorage.removeItem("token");
+        <Navigate to={routes.login} />
+      });
+  };
+
   useEffect(() => {
-    const islogin = () => {
-      const token = localStorage.getItem("token");
-      instance
-        .post(
-          "/auth",
-          { usuario: "prueba" },
-          {
-            headers: {
-              authorization: token,
-            },
-          }
-        )
-        .then((usuarioRes) => {
-          setUser(usuarioRes.data.user.data);
-          localStorage.setItem("token", usuarioRes.data.user.token);
-        });
-    };
     islogin();
   }, []);
 
@@ -57,6 +63,7 @@ export default function AuthProvider({ children }) {
     instance
       .post(`${rol}/signup`, usuario)
       .then((usuarioRes) => {
+        console.log(usuarioRes)
         setUser(usuarioRes.data.user.data);
         localStorage.setItem("token", usuarioRes.data.user.token);
         if (fromLocation) {
@@ -64,7 +71,7 @@ export default function AuthProvider({ children }) {
         }
       })
       .catch((error) => {
-        alert(error.response.data.message);
+        console.log(error);
       });
   };
 
@@ -121,6 +128,7 @@ export default function AuthProvider({ children }) {
     addEventos,
     mostrar,
     addMostrar,
+    islogin
   };
 
   return (

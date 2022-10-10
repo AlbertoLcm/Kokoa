@@ -11,10 +11,10 @@ function Evento ({titulo, corrs, mapa, lugar}) {
    }
     
     return (
-        <div className="contEvento">
-            <button onClick={() => handleOnDoubleClick()}>
+        <div className="contEvento" onClick={() => handleOnDoubleClick()}>
+            <h3>
                 {titulo}
-            </button>
+            </h3>
             <p>{lugar}</p>
         </div>
     )
