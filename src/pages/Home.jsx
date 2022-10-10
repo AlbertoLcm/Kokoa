@@ -117,7 +117,7 @@ function Home() {
                     </div>
                   ) : marcar === 2 ? (
                     <div className="Cercanos">
-                      {/* <Evento titulo={"Monte Clitoris"} corrs={cordsimp} mapa={map} /> */}
+                      <p>Eventos Cercanos</p>
                       {eventos.map((evento) => {
                         return (
                           <Evento
@@ -130,8 +130,8 @@ function Home() {
                       })}
                     </div>
                   ) : (
-                    <div className="Recomendados">
-                      <p>Work In Progress</p>
+                    <div className="Recomendados">                     
+                      <h2>Eventos Recomendados</h2>
                     </div>
                   )}
                 </div>
@@ -350,7 +350,6 @@ function Home() {
             }
           </div>
         </div>
-        // Suspense para mostrar el mapa mientras se carga
         <Suspense fallback={<Loading />}>
           <Mapa mapSet={handleSetMap} />
         </Suspense>

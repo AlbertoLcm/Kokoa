@@ -19,12 +19,12 @@ const containerStyle = {
 
 function Mapa({ mapSet }) {
   const { addEventos, mostrar } = useAuth();
-  const [ activeMarker, setActiveMarker ] = useState(null);
-  const [ map, setMap ] = useState(/** @type google.maps.Map */ (null));
-  const [ lugares, setLugares ] = useState([]);
-  const [ showModal, setShowModal ] = useState(false);
-  const [ eventoInfo, setEventoInfo ] = useState({});
-  const [ centerMy, setCenterMy ] = useState();
+  const [activeMarker, setActiveMarker] = useState(null);
+  const [map, setMap] = useState(/** @type google.maps.Map */(null));
+  const [lugares, setLugares] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [eventoInfo, setEventoInfo] = useState({});
+  const [centerMy, setCenterMy] = useState();
 
   const ubicacionActual = () => {
     navigator.geolocation.getCurrentPosition((coordenada) => {
@@ -47,11 +47,11 @@ function Mapa({ mapSet }) {
       setLugares(results.data);
     });
     ubicacionActual();
-  }, [mostrar, ]);
+  }, [mostrar,]);
 
   useEffect(() => {
     addEventos(rango);
-  }, [lugares, mostrar, centerMy, ]);
+  }, [lugares, mostrar, centerMy,]);
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyBqhV6i7d19_4MlXk1gEtZ0flSx_7yYfo8",
@@ -94,10 +94,9 @@ function Mapa({ mapSet }) {
   const asignacion = (id) => {
     setShowModal(!showModal);
     const eve = lugares.find((evento) => evento.id === id);
-
     setEventoInfo(eve);
   }
-  
+
   return (
     <div>
       <GoogleMap
@@ -131,10 +130,10 @@ function Mapa({ mapSet }) {
 
           // if (evento.fecha_termino < now.toISOString()) {
           return (
-            <Marker 
-            key={evento.id}
-            position={{ lat: evento.lat, lng: evento.lng }}
-            onClick={() => handleActiveMarker(evento.id)}>
+            <Marker
+              key={evento.id}
+              position={{ lat: evento.lat, lng: evento.lng }}
+              onClick={() => handleActiveMarker(evento.id)}>
               {activeMarker === evento.id && (
                 <InfoWindow onCloseClick={() => setActiveMarker(null)}>
                   <div className="markerInfo">
@@ -145,20 +144,19 @@ function Mapa({ mapSet }) {
               )}
             </Marker>
           );
-          // }
-        })}
+        }
+  )}
       </GoogleMap>
 
-      {/* <Modal 
+      <Modal
         estado={showModal}
-        cambiarEstado={setShowModal} 
+        cambiarEstado={setShowModal}
       >
         Evento <br />
-        {eventoInfo.nombre}
-        {eventoInfo.descripcion}
-        {eventoInfo.fecha_inicio}
-        {eventoInfo.fecha_termino}
-      </Modal> */}
+        {eventoInfo.nombre}<br />
+        {eventoInfo.descripcion}<br />
+        {Date.parse(eventoInfo.fecha_inicio)}<br />
+      </Modal>
     </div>
   );
 }
