@@ -22,11 +22,9 @@ function Login() {
   };
 
   if (localStorage.getItem("token")) {
-    try {
-      islogin();
-    } catch (error) {
-      console.log('hola');       
-    }
+
+    islogin();
+
     return <Loading />;
   }
 

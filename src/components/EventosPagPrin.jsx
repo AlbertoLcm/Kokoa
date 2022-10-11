@@ -7,7 +7,7 @@ function Evento ({titulo, corrs, mapa, lugar}) {
     // eslint-disable-next-line no-undef
     mapa.panTo(corrs);
     // eslint-disable-next-line no-undef
-    mapa.setZoom(19);
+    mapa.setZoom(17);
    }
     
     return (
