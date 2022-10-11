@@ -5,6 +5,7 @@ import Perfil from "../components/Perfil"
 import Header from "../components/Header";
 import { slide as Menu } from "react-burger-menu";
 import "../stylesheets/ConfPerf.css"
+import "../stylesheets/VisPerfs.css"
 import {useNavigate} from "react-router-dom";
 
 function ConPerf() {

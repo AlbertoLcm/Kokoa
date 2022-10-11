@@ -86,7 +86,7 @@
 button :focus {
     text-decoration: none;
 }
-@media only screen and (min-width: 820px) {
+@media only screen and (min-width: 800px) {
     .contVis{
         background: #410046;
     }

@@ -12,6 +12,7 @@ import {
 import Modal from "./Modal";
 import stylesArray from "../helpers/stylesArray";
 
+
 const containerStyle = {
   width: "100%",
   height: "100vh",
@@ -156,6 +157,7 @@ function Mapa({ mapSet }) {
         {eventoInfo.nombre}<br />
         {eventoInfo.descripcion}<br />
         {Date.parse(eventoInfo.fecha_inicio)}<br />
+        <Link >Creador</Link>
       </Modal>
     </div>
   );

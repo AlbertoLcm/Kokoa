@@ -1,0 +1,31 @@
+.contPrincVisPerf {
+    padding-top: 65px;
+    display: flex;
+    background-color: #410046;
+    height: 100vh;
+}
+.contPrincVisPerf > * {
+    color: white;
+}
+.infoSideBar {
+    display: none;
+    border-right-color: black;
+    border-right-width: 3px;
+    border-right-style: solid;
+}
+.contEvPerf {
+    width: 100%;
+    height: 100%;
+}
+.EvActVisPerf {
+    border-bottom: 4px dashed black;
+}
+@media only screen and (min-width: 820px) {
+    .infoSideBar{
+        display: block;
+        width: 20%;
+    }
+    .contEvPerf {
+        width: 80%;
+    }
+}

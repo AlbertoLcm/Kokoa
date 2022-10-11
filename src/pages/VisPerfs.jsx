@@ -1,11 +1,24 @@
 import React from "react";
+import "../stylesheets/VisPerfs.css"
 import useAuth from "../auth/useAuth";
+import { useNavigation } from "react-router-dom";
+import instance from "../api/axios";
 
-function VisPerfs() {
-    const {logout, user} = useAuth();
+function VisPerfs({idnegocio}) {
+    const [info, seTinfo] = useState({});
+    
+    const { logout, user } = useAuth();
+    const nav = useNavigation();
+    const obtener = () => {
+        instance.get(`/all/${idnegocio}`)
+        .then (
+            (result) => {
+                seTinfo(result.data)
+            }
+        )
+    }
 
-
-    return(
+    return (
         <div>
             <header className="color">
                 <section className="contLogo">
@@ -18,33 +31,41 @@ function VisPerfs() {
             </header>
             {
                 opcio && (
-                    <div className="acomodo">
+                    <div className="acomodo" id="acomodo">
                         <div className="dropiOpcio">
-                            <button onClick={() => nav(-1)}>Volver</button>
-                            <button onClick={() => logout()}>Cerrar Sesion</button>
+                            <div onClick={() => nav(-1)} id='toggleSalir'>Volver</div>
+                            <div onClick={() => logout()} id='toggleSalir'>Salir</div>
                         </div>
                     </div>
                 )
             }
             <div className="contPrincVisPerf">
-                <h1>Nombre</h1>
-                <div className="infoVisPerf">
-                    <h1>Descripción</h1>
-                    <div><h1>Inserte descripsion</h1></div>
-                    
-                    <h1>Ubicación</h1>
-                    <div><h1>Inserte ubicacion</h1></div>
+                <Menu>
+                    <h1>Nombre</h1>
+                    <div>Descripcion</div>
+                    <div>Ubicacion</div>
+                    <div>Horario</div>
 
-                    <h1>Horario</h1>
-                    <div><h1>Inserte Horario</h1></div>
+                </Menu>
+                <div className="infoSideBar">
+                    <h1>Nombre</h1>
+                    <div>Descripcion</div>
+                    <div>Ubicacion</div>
+                    <div>Horario</div>
                 </div>
+                <div className="contEvPerf">
+                    <div className="EvActVisPerf">Eventos Actuales
+                        <p>Inserte eventos</p>
+                    </div>
 
-                <h1>Historial de eventos</h1>
-                <div><h1>Inserte historial</h1></div>
-
-
+                    <div>Historial de eventos
+                        <p>Inserte evetos</p>
+                    </div>
+                </div>
             </div>
         </div>
     )
 
 }
+
+export default VisPerfs
