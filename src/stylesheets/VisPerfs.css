@@ -7,7 +7,7 @@
 .contPrincVisPerf > * {
     color: white;
 }
-.infoSideBar {
+.eventosSideBar {
     display: none;
     border-right-color: black;
     border-right-width: 3px;
@@ -17,11 +17,11 @@
     width: 100%;
     height: 100%;
 }
-.EvActVisPerf {
+.evActVisPerf {
     border-bottom: 4px dashed black;
 }
 @media only screen and (min-width: 820px) {
-    .infoSideBar{
+    .eventosSideBar{
         display: block;
         width: 20%;
     }

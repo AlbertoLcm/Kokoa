@@ -15,7 +15,7 @@ import RolArtista from "../pages/RolArtista";
 import RegistroEvento from "../pages/RegistroEvento";
 import Login from "../pages/Login";
 import Home from "../pages/Home";
-import EventoInfo from "../components/Evento";
+import VisPerfs from "../pages/VisPerfs";
 
 function AppRouter() {
     return(
@@ -71,8 +71,10 @@ function AppRouter() {
                         <ConPerf />
                     </PrivateRoute>
                 } />
-                <Route exact path='/evento/:id' element={
-                    <EventoInfo />
+                <Route exact path={'/visperfil/:id'} element={
+                    <PrivateRoute>
+                        <VisPerfs />
+                    </PrivateRoute>
                 } />
 
         <Route path="*" element={<Error />} />

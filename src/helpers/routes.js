@@ -8,7 +8,8 @@ const routes = {
     newartista: '/newartista',
     rolartista: '/rolartista',
     registrarevento : '/registrarevento',
-    perfil : '/perfil'
+    perfil : '/perfil',
+    visperfil: '/visperfil'
 }
 
 export default routes;

@@ -1,24 +1,43 @@
 import React from "react";
 import "../stylesheets/VisPerfs.css"
 import useAuth from "../auth/useAuth";
-import { useNavigation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import instance from "../api/axios";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { slide as Menu } from "react-burger-menu";
 
-function VisPerfs({idnegocio}) {
-    const [info, seTinfo] = useState({});
-    
+
+function VisPerfs() {
+    const [eventos, setEventos] = useState({});
+    const [anfit, setAnfit] = useState({});
+
+    const [opcio, setOpcio] = useState(false);
+    const toggle = () => { setOpcio(!opcio) };
+
+    const {id} = useParams()
+
     const { logout, user } = useAuth();
-    const nav = useNavigation();
-    const obtener = () => {
-        instance.get(`/all/${idnegocio}`)
+    const nav = useNavigate();
+
+    useEffect(() => {
+        instance.get(`/eventos/all/${id}`)
         .then (
             (result) => {
-                seTinfo(result.data)
+                setEventos(result.data)
             }
         )
-    }
-
-    return (
+        instance.get(`/auth/${id}`)
+        .then (
+            (result) => {
+                setAnfit(result.data)
+                console.log(result)
+            }
+        )
+    }, []);
+    
+        return (
         <div>
             <header className="color">
                 <section className="contLogo">
@@ -47,15 +66,38 @@ function VisPerfs({idnegocio}) {
                     <div>Horario</div>
 
                 </Menu>
-                <div className="infoSideBar">
-                    <h1>Nombre</h1>
-                    <div>Descripcion</div>
-                    <div>Ubicacion</div>
-                    <div>Horario</div>
+                <div className="eventosSideBar">
+                    <h1>{anfit[0].nombre}</h1>
+                    <div>Nos encontramos en: </div>
+                    <h3>{anfit[0].direccion} </h3>
+                    {
+                        anfit[0].horario !== null ? (
+                            <div>
+                                <h3>Estamos abiertos:</h3>
+                                <h3>{anfit[0].horario} </h3>
+                            </div>
+                        ) : (
+                            <div></div>
+                        )
+                    }
+                    <div>Contactanos: </div>
+                    <h3>{eventos[0].email} </h3>
+                    <h3>{eventos[0].telefono} </h3>
                 </div>
                 <div className="contEvPerf">
-                    <div className="EvActVisPerf">Eventos Actuales
-                        <p>Inserte eventos</p>
+                    <div className="evActVisPerf">Eventos Actuales
+                        {eventos.map((evento) => {
+                            return(
+                                <div>
+                                    <h1>{evento.nombre}</h1>
+                                    <h2>{evento.descripcion}</h2>
+                                    <h3>Ubicado en: {evento.ubicacion}  </h3>
+                                    <h3>Inicio: {evento.fecha_inicio} Termino: {evento.fecha_termino} </h3>
+                                    <h3>Capacidad {evento.capacidad} Cover: {evento.precio} </h3>
+                                    
+                                </div>
+                            )
+                        })}
                     </div>
 
                     <div>Historial de eventos
