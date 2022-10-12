@@ -1,53 +1,54 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import instance from "../api/axios";
 import InfEvento from "./InfEvento";
 import useAuth from "../auth/useAuth";
-import {GoogleMap, InfoWindow, Marker, useJsApiLoader} from "@react-google-maps/api";
+import { GoogleMap, InfoWindow, Marker, useJsApiLoader } from "@react-google-maps/api";
 import Modal from "./Modal";
 import stylesArray from "../helpers/stylesArray";
-import icon from "../images/ball.png";
+import libraries from "../helpers/librerieMaps";
+import marker from "../images/marker4.png";
 
 const containerStyle = {
   width: "100%",
   height: "100vh"
 };
 
-function Mapa({mapSet}) {
-  const {addEventos, mostrar} = useAuth();
+function Mapa({ mapSet }) {
+  const { addEventos, mostrar } = useAuth();
   const [activeMarker, setActiveMarker] = useState(null);
   const [map, setMap] = useState( /** @type google.maps.Map */(null));
   const [lugares, setLugares] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [eventoInfo, setEventoInfo] = useState({});
   const [centerMy, setCenterMy] = useState();
-
-  const ubicacionActual = () => {
-    navigator.geolocation.getCurrentPosition((coordenada) => {
-      if (coordenada) {
-        setCenterMy({
-          lat: parseFloat(coordenada.coords.latitude),
-          lng: parseFloat(coordenada.coords.longitude)
-        });
-      } else {
-        setCenterMy({lat: 19.4326077, lng: -99.133208});
-      }
-    });
-  };
   const rango = [];
+
   useEffect(() => {
+    const getUbicacion = () => {
+      navigator.geolocation.getCurrentPosition((coordenada) => {
+        if (coordenada) {
+          setCenterMy({
+            lat: parseFloat(coordenada.coords.latitude),
+            lng: parseFloat(coordenada.coords.longitude)
+          });
+        } else {
+          setCenterMy({ lat: 19.4326077, lng: -99.133208 });
+        }
+      });
+    }
+    getUbicacion();
     instance.get("/eventos").then((results) => {
       setLugares(results.data);
     });
-    ubicacionActual();
-  }, [mostrar,]);
+  }, [mostrar]);
 
   useEffect(() => {
     addEventos(rango);
   }, [lugares, mostrar, centerMy,]);
 
-  const {isLoaded} = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyBqhV6i7d19_4MlXk1gEtZ0flSx_7yYfo8", 
-    libraries: ["places"]
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: "AIzaSyBqhV6i7d19_4MlXk1gEtZ0flSx_7yYfo8",
+    libraries,
   });
 
   if (!isLoaded) {
@@ -73,8 +74,8 @@ function Mapa({mapSet}) {
   };
 
   lugares.map((evento) => {
-    if (circle.getBounds().contains({lat: evento.lat, lng: evento.lng})) {
-      rango.push({evento: evento.nombre, ubicacion: evento.ubicacion, lat: evento.lat, lng: evento.lng});
+    if (circle.getBounds().contains({ lat: evento.lat, lng: evento.lng })) {
+      rango.push({ evento: evento.nombre, ubicacion: evento.ubicacion, lat: evento.lat, lng: evento.lng });
     }
   });
 
@@ -108,49 +109,50 @@ function Mapa({mapSet}) {
       }
     >
       {
-      lugares.map((evento) => { // Obtengo la fecha y hora actual
-        let today = new Date();
-        let now = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds());
+        lugares.map((evento) => { // Obtengo la fecha y hora actual
+          let today = new Date();
+          let now = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds());
 
-        // if (evento.fecha_termino < now.toISOString()) {
-        return (
-          <Marker key={evento.id_evento}
-            position={
-              {
-                lat: evento.lat,
-                lng: evento.lng
-              }
-            }
-            onClick={() => handleActiveMarker(evento.id_evento)}>
-            {
-            activeMarker === evento.id_evento && (
-              <InfoWindow onCloseClick={
-                () => setActiveMarker(null)
-              }>
-                <div className="markerInfo">
-                  {
-                  evento.nombre
+          // if (evento.fecha_termino < now.toISOString()) {
+          return (
+            <Marker key={evento.id_evento}
+              position={
+                {
+                  lat: evento.lat,
+                  lng: evento.lng
                 }
-                  <button className="boton3"
-                    onClick={
-                      () => asignacion(evento.id_evento)
-                  }>Ver más</button>
-                </div>
-              </InfoWindow>
-            )
-          } </Marker>
-        );
-      })
-    } </GoogleMap>
+              }
+              icon={marker}
+              onClick={() => handleActiveMarker(evento.id_evento)}>
+              {
+                activeMarker === evento.id_evento && (
+                  <InfoWindow onCloseClick={
+                    () => setActiveMarker(null)
+                  }>
+                    <div className="markerInfo">
+                      {
+                        evento.nombre
+                      }
+                      <button className="boton3"
+                        onClick={
+                          () => asignacion(evento.id_evento)
+                        }>Ver más</button>
+                    </div>
+                  </InfoWindow>
+                )
+              } </Marker>
+          );
+        })
+      } </GoogleMap>
 
     <Modal estado={showModal}
       cambiarEstado={setShowModal}>
-      <InfEvento 
+      <InfEvento
         id={eventoInfo.id_evento}
-        evento={eventoInfo}/>
+        evento={eventoInfo} />
     </Modal>
   </div>
   );
-  }
-  
-  export default React.memo(Mapa);
+}
+
+export default React.memo(Mapa);

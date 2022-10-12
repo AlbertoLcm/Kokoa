@@ -69,13 +69,13 @@ function Login() {
             >
               Ingresar
             </button>
-            <section className="separador">
+            {/* <section className="separador">
               <div className="letra">Ó</div>
             </section>
             <button className="boton2">Otra Opción</button>
             <Link to="/signup" className="boton3">
               Crear Cuenta
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>
