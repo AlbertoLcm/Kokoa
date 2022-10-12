@@ -1,3 +1,12 @@
+.eventsNegPrin h3{
+    color: black;
+    margin-bottom: 0px;
+}
+.eventsNegPrin h1{
+    color: black;
+    margin-bottom: 0px;
+}
+
 .color {
     display: flex;
     justify-content: right;

@@ -1,6 +1,6 @@
 import React from "react";
 import useAuth from "../auth/useAuth";
-import { useState, Suspense, lazy } from "react";
+import { useState, Suspense, lazy, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../stylesheets/Home.css";
 import { slide as Menu } from "react-burger-menu";
@@ -10,6 +10,7 @@ import Dropdown from "../components/DropDown";
 import Evento from "../components/EventosPagPrin";
 import RegistroEvento from "./RegistroEvento";
 import Loading from "../components/Loading";
+import instance from "../api/axios";
 
 const Mapa = lazy(() => import("../components/Mapa"));
 const EvUser = [
@@ -79,6 +80,15 @@ function Home() {
     setMap(mapita);
   };
 
+  const [evCre, setEvCre] = useState([]);
+  useEffect(() => {
+    if(user[0].rol === "negocios"){
+      instance.get(`/eventos/all/${user[0].auth}`).then((resultado) => {
+        setEvCre(resultado.data)
+      } )
+    }
+  }, []);
+  
   return (
     <div className="contHome">
       <header className="color">
@@ -165,7 +175,30 @@ function Home() {
                       </div>
                     ) : (
                       <div>
-                        <p>Aqui van los eventos creados por el negocio</p>
+                        {
+                          evCre !== null ? (
+                            <div>
+                              {
+                                evCre.map((evento) => {
+                                  return (
+                                    <div className="contEvento">
+                                      <h1>{evento.nombre} </h1>
+                                      <p>Comienza: {evento.fecha_inicio} </p>
+                                      <p>Termina: {evento.fecha_termino} </p>
+                                      <p>Ubicado en: {evento.ubicacion} </p>
+                                    </div>
+                                  )
+                                })
+                              }
+                            </div>
+                          ) : (
+                            <div>
+                              <h3>No tienes eventos activos</h3>
+                              <h3>¿Qué esperas?</h3>
+                              <h3>Crea tu siguiente gran evento</h3>
+                            </div>
+                          )
+                        }
                       </div>
                     )
                   }
@@ -290,8 +323,31 @@ function Home() {
                         })}
                       </div>
                     ) : (
-                      <div>
-                        <p>Aqui van los eventos creados por el negocio</p>
+                      <div className="eventsNegPrin">
+                        {
+                          evCre !== null ? (
+                            <div>
+                              {
+                                evCre.map((evento) => {
+                                  return (
+                                    <div className="contEvento">
+                                      <h1>{evento.nombre} </h1>
+                                      <p>Comienza: {evento.fecha_inicio} </p>
+                                      <p>Termina: {evento.fecha_termino} </p>
+                                      <p>Ubicado en: {evento.ubicacion} </p>
+                                    </div>
+                                  )
+                                })
+                              }
+                            </div>
+                          ) : (
+                            <div>
+                              <h3>No tienes eventos activos</h3>
+                              <h3>¿Qué esperas?</h3>
+                              <h3>Crea tu siguiente gran evento</h3>
+                            </div>
+                          )
+                        }
                       </div>
                     )
                   }
