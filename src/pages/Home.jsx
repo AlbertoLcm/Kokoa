@@ -175,7 +175,30 @@ function Home() {
                       </div>
                     ) : (
                       <div>
-                        <p>Aqui van los eventos creados por el negocio</p>
+                        {
+                          evCre !== null ? (
+                            <div>
+                              {
+                                evCre.map((evento) => {
+                                  return (
+                                    <div className="contEvento">
+                                      <h1>{evento.nombre} </h1>
+                                      <p>Comienza: {evento.fecha_inicio} </p>
+                                      <p>Termina: {evento.fecha_termino} </p>
+                                      <p>Ubicado en: {evento.ubicacion} </p>
+                                    </div>
+                                  )
+                                })
+                              }
+                            </div>
+                          ) : (
+                            <div>
+                              <h3>No tienes eventos activos</h3>
+                              <h3>¿Qué esperas?</h3>
+                              <h3>Crea tu siguiente gran evento</h3>
+                            </div>
+                          )
+                        }
                       </div>
                     )
                   }
@@ -301,7 +324,6 @@ function Home() {
                       </div>
                     ) : (
                       <div className="eventsNegPrin">
-                        {/* buscame */}
                         {
                           evCre !== null ? (
                             <div>
