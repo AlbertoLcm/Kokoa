@@ -22,21 +22,24 @@ function Mapa({ mapSet }) {
   const [eventoInfo, setEventoInfo] = useState({});
   const [centerMy, setCenterMy] = useState();
   const rango = [];
+  
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((coordenada) => {
+      if (coordenada) {
+        setCenterMy({
+          lat: parseFloat(coordenada.coords.latitude),
+          lng: parseFloat(coordenada.coords.longitude)
+        });
+      } else {
+        setCenterMy({ lat: 19.4326077, lng: -99.133208 });
+      }
+    });
+    instance.get("/eventos").then((results) => {
+      setLugares(results.data);
+    });
+  }, []);
 
   useEffect(() => {
-    const getUbicacion = () => {
-      navigator.geolocation.getCurrentPosition((coordenada) => {
-        if (coordenada) {
-          setCenterMy({
-            lat: parseFloat(coordenada.coords.latitude),
-            lng: parseFloat(coordenada.coords.longitude)
-          });
-        } else {
-          setCenterMy({ lat: 19.4326077, lng: -99.133208 });
-        }
-      });
-    }
-    getUbicacion();
     instance.get("/eventos").then((results) => {
       setLugares(results.data);
     });
@@ -44,7 +47,7 @@ function Mapa({ mapSet }) {
 
   useEffect(() => {
     addEventos(rango);
-  }, [lugares, mostrar, centerMy,]);
+  }, [lugares, mostrar, centerMy]);
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyBqhV6i7d19_4MlXk1gEtZ0flSx_7yYfo8",
@@ -74,9 +77,9 @@ function Mapa({ mapSet }) {
   };
 
   lugares.map((evento) => {
-    if (circle.getBounds().contains({ lat: evento.lat, lng: evento.lng })) {
-      rango.push({ evento: evento.nombre, ubicacion: evento.ubicacion, lat: evento.lat, lng: evento.lng });
-    }
+      if (circle.getBounds().contains({ lat: evento.lat, lng: evento.lng })) {
+        rango.push({ evento: evento.nombre, ubicacion: evento.ubicacion, lat: evento.lat, lng: evento.lng });
+      }
   });
 
   const asignacion = (id) => {

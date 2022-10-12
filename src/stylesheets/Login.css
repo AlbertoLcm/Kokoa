@@ -1,56 +1,54 @@
 .contImagen{
     width: 100%;
+    height: 100vh;
+    background-image: url('../images/loginWallpaper.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: relative;
 }
 .contDegradado{
     width: 100%;
     height: 100vh;
-    background-color:#410046;
+    background:linear-gradient(to left, #410046 40%, #41004679);
 }
-
 .contLogin{
     position: absolute;
     right: 0;
-    width: 100%;
-    min-height: 100vh;
+    width: 450px;
+    height: 100vh;
+    padding-left: 60px;
+    padding-right: 60px;
     display: flex;
-    margin-top: 35px;
-    text-align: center;
+    align-items: center;
 }
 .login{
     width: 100%;
     height: auto;
-    color: #f3f3f3;
-    margin-top: 40px;
-}.login a{
-    height: 50px;
-    background-color: #D47F00;
-}.login h2{
+    color: #f3f3f3dc;
+}
+.login h2{
     text-align: center;
     font-size: 50px;
-    font-weight: 400;
+    font-weight: 100;
     margin-bottom: 30px;
     user-select: none;
 }
-h3{
-    text-align: start;
-    display: inline-block;
+.login h3{
+    margin-top: 20px;
     font-weight: 400;
     font-size: 18px;
-    margin-top: 10px;
     cursor: pointer;
     user-select: none;
     margin-bottom: 20px;
 }
-
-
 .separador{
     height: 20px;
     position: relative;
     display: flex;
     justify-content: center;
     font-size: 18px;
-    margin-top: -10px;
-    margin-bottom: 30px;
+    margin-top: -20px;
+    margin-bottom: 20px;
     border-bottom: 1px solid #f3f3f3a9;
 }
 .letra{
@@ -61,63 +59,23 @@ h3{
     width: auto;
     padding-left: 5px;
     padding-right: 5px;
-    background-color: #410046;
-}
-.contBotones a{
-    display: none;
-}
-@media only screen and (min-width: 768px){
-    .login > h3 {
-        font-size: 40px;
-    }
-    .separador{
-        border-top-color: cyan;
-    }
-    .login > *{
-        margin-bottom: 50px;
-    }
-}
-.login > a{
-    display: flex;
-    margin-top: 20px;
-}
-@media only screen and (max-width: 300px) {
-    .contBotones{
-        display: none;
-    }
-    
-}
-@media only screen and (min-width: 1024px){
-    .contImagen{
-        min-width: 100%;
-        background-image: url('../images/loginWallpaper.jpg');
-        background-repeat: no-repeat;
-        background-size: contain;
-        position: relative;
-        background-position: left;
-        
-    }   
-    .contBotones a {
-        display: flex;
-    }
-    .contDegradado{
-        background: linear-gradient(to left, #410046 30%, #4100465b);
-        
-    }
-    .contLogin {
-        height: auto;
-        background: linear-gradient(to top, #410046 5%, #4100465b);
-    }
-    .contBotones{
-        display: block;
-        height: 100%;
-        width: 150px;
-    }
-    .login{
-        padding-right: 2%;
-        padding-left: 30%;
-    }.login > *{
-        margin-bottom: 20px;
-    }
+    background-color: #342535;
 }
 
+/* Responsive del login */
+@media (max-width: 973px) {
+    .contDegradado{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #410046;
+    }
+    .contLogin{
+    position: relative;
+    padding-left: 60px;
+    padding-right: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+}

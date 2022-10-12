@@ -32,7 +32,7 @@ function Login() {
   return (
     <div className="contImagen">
       <Header>
-        <Link to="/signup" className="boton3">
+        <Link to="/signup" className="boton1">
           Crear Cuenta
         </Link>
       </Header>

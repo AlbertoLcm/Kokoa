@@ -57,5 +57,5 @@ button :hover,
 :focus {
   cursor: pointer;
   font-weight: bold;
-  background-color: #ccc;
+  /* background-color: #ccc; */
 }
