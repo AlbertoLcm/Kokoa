@@ -23,7 +23,10 @@ function InfEvento({ id, evento }) {
   if(loading) {
     return <Skeleton type={'evento'} />
   }
-  
+  const fecini = new Date(eventoInfo.fecha_inicio);
+  const fecter = new Date(eventoInfo.fecha_termino)
+
+
   return (
     <div id='contInfoEvento'>
       <div className="infoEvento">
@@ -31,10 +34,13 @@ function InfEvento({ id, evento }) {
         <label>Un evento de <Link to={`/visperfil/${eventoInfo.id}` }>{eventoInfo.hostNombre}</Link> </label>
         <p>{eventoInfo.descripcion}</p>
         <label>Comienza el día</label>
-        <p>{eventoInfo.fecha_inicio}</p>
+        <p>{fecini.toLocaleDateString()}</p>
+        <label>a las </label>
+        <p>{fecini.toLocaleTimeString()}</p>
         <label>y termina el</label>
-        <p>{eventoInfo.fecha_termino}</p>
-
+        <p>{fecter.toLocaleDateString()}</p>
+        <label>a las </label>
+        <p>{fecter.toLocaleTimeString()} </p>
         <label>Úbicado en:</label>
         <p>{eventoInfo.ubicacion}</p>
       </div>

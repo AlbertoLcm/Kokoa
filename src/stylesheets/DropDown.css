@@ -52,7 +52,9 @@ li last-of-type>button {
   border-left: 1px solid #ccc;
   border-right: 1px solid #ccc;
 }
-
+.dd-list-item  span{
+  color: black;
+}
 button :hover,
 :focus {
   cursor: pointer;

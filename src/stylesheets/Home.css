@@ -132,6 +132,7 @@
 }
 #contInfoEvento h1{
     color: #3f3f3f;
+    text-align: center;
 }
 /* Estilos para el evento */
 .contEvento{
