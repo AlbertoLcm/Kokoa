@@ -51,6 +51,19 @@
     margin-bottom: 20px;
     border-bottom: 1px solid #f3f3f3a9;
 }
+.contBotones {
+    
+    width: 100px;
+    text-align: center;
+    padding-top: 15px;
+    padding-right: 15px;
+}
+.contBotones > a{
+    text-decoration: none;
+    display: flex;
+    
+    align-items: center;
+}
 .letra{
     user-select: none;
     position: absolute;
