@@ -35,12 +35,11 @@ function InfEvento({ id, evento }) {
         <p>{eventoInfo.descripcion}</p>
         <label>Comienza el día</label>
         <p>{fecini.toLocaleDateString()}</p>
-        <label>a las </label>
-        <p>{fecini.toLocaleTimeString()}</p>
+        
+        <p> <label>a las </label> {fecini.toLocaleTimeString()}</p>
         <label>y termina el</label>
         <p>{fecter.toLocaleDateString()}</p>
-        <label>a las </label>
-        <p>{fecter.toLocaleTimeString()} </p>
+        <p><label>a las </label> {fecter.toLocaleTimeString()} </p>
         <label>Úbicado en:</label>
         <p>{eventoInfo.ubicacion}</p>
       </div>

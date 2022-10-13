@@ -46,21 +46,20 @@
 .navSideBar {
     width: 20%;
     display: none;
-    border-right: black 5px;
-    background-color: #410046;
+    border-right: white solid 1px;
+    background-color: #2a142c;
 }.navSideBar button{
     color: white;
     width: 100%;
     border-left: none;
-    
+    border-right: none;
     border-top-style: dashed;
     border-bottom-style: dashed;
-    border-right-color: white;
-    background: linear-gradient(to right, #410046 80%, #d47f00cd);
+    background: #2a142c;
 }
 .contVis{
     width: 100%;
-    background-color: #410046;
+    background-color: rgb(17, 0, 19);
 }
 .contPerf header{
     height: 70px;
@@ -87,9 +86,6 @@ button :focus {
     text-decoration: none;
 }
 @media only screen and (min-width: 800px) {
-    .contVis{
-        background: #410046;
-    }
     .navSideBar{
         display: inline-block;
     }.navSideBar button {
