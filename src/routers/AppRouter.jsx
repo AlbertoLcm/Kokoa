@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import MenuSignup from "../pages/MenuSignup";
 import SignUsuario from "../pages/SignUsuario";
 import SignNegocio from "../pages/SignNegocio";
@@ -16,6 +16,7 @@ import RegistroEvento from "../pages/RegistroEvento";
 import Login from "../pages/Login";
 import Home from "../pages/Home";
 import VisPerfs from "../pages/VisPerfs";
+import Loading from "../components/Loading";
 
 function AppRouter() {
   return (
