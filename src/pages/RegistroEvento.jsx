@@ -151,7 +151,7 @@ function RegistroEvento() {
               </div>
             </div>
             <h2>Ubicación del evento</h2>
-            <Autocomplete>
+            <Autocomplete className="intento">
                   <div className="inputBox">
                     <input
                       id="ubicacion"

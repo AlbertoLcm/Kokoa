@@ -1,3 +1,6 @@
+span {
+    color: black;
+}
 .regEvForm{
     text-align: center;
 }
@@ -43,13 +46,20 @@
 .regEvBotVolverChic{
     display: none;
 }
+
 @media only screen and (min-width: 800px) {
     .regEvContInp h2{
         color: black;
     }.regEvContInp h3{
         color: black;
     }
-    .regEvForm h2 {
+    .regEvContForm {
+        color:  black!important;
+    }
+    .regEvForm > h2 {
+        color: black;
+    }
+    .regEvContForm > div {
         color: black;
     }
     .inputBox span{
@@ -57,4 +67,5 @@
     }.inputBox input{
         color: black;
     }
+    
 }

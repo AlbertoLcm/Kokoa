@@ -25,11 +25,12 @@ function DatosAnfitrion({id}) {
   return (
     <>
       <h1>{anfitrion.nombre}</h1>
-      <label>Nos encontramos en: </label>
+      <p>Nos encontramos en: </p>
       {anfitrion.domicilio} <br />
-      <label>Contactanos: </label> <br />
-      email: <br />
-      { auth.email} <br />
+      <hr />
+      <p>Contactanos </p>
+      
+      <p>{ auth.email}</p>
       telefono: <br />
       { auth.telefono} <br />
     </>

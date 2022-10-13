@@ -62,6 +62,10 @@ const EvPatro = [
   }
 ]
 
+const cordsimp = {
+  lat: 16.946323,
+  lng: 120.831226,
+};
 
 function Home() {
   const { marcar, eventos } = useAuth();
@@ -83,7 +87,7 @@ function Home() {
         setEvCre(resultado.data)
       } )
     }
-  },[]);
+  }, []);
   
   return (
     <div className="contHome">
@@ -278,6 +282,7 @@ function Home() {
                     </div>
                   ) : marcar === 2 ? (
                     <div className="Cercanos">
+                      {/* <Evento titulo={"Monte Clitoris"} corrs={cordsimp} mapa={map} /> */}
                       {eventos.map((evento) => {
                         return (
                           <Evento
@@ -402,7 +407,7 @@ function Home() {
           </div>
         </div>
         <Suspense fallback={<Loading />}>
-          <Mapa mapSet={handleSetMap} map={map} />
+          <Mapa mapSet={handleSetMap} />
         </Suspense>
       </div>
     </div>
