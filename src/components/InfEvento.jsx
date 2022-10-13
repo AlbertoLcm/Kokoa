@@ -41,6 +41,7 @@ function InfEvento({ id, evento }) {
         <p>{fecter.toLocaleDateString()}</p>
         <label>a las </label>
         <label>Úbicado en:</label>
+        <p>{fecter.toLocaleTimeString()} </p>
         <p>{eventoInfo.ubicacion}</p>
       </div>
     </div>
