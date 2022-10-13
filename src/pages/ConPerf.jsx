@@ -4,9 +4,8 @@ import useAuth from "../auth/useAuth";
 import Perfil from "../components/Perfil"
 import Header from "../components/Header";
 import { slide as Menu } from "react-burger-menu";
-import "../stylesheets/ConfPerf.css"
-import "../stylesheets/VisPerfs.css"
-import {useNavigate} from "react-router-dom";
+
+import { useNavigate } from "react-router-dom";
 
 function ConPerf() {
     const nav = useNavigate();
@@ -23,29 +22,23 @@ function ConPerf() {
 
     return (
         <div className="contPerf">
-            <header className="color">
-                <section className="contLogo">
-                    <div className="logo">Kokoa</div>
-                </section>
-                <div className="userHeader" onClick={() => toggle(!opcio)}>
-                    {user[0].nombre}
-                </div>
-            </header>
+            <Header tipo={'color'} user={user[0].nombre} volver={true} />
+
             {
                 opcio && (
                     <div className="acomodo" id="acomodo">
-                      <div className="dropiOpcio">
-                        <div onClick={() => nav(-1)} id='toggleSalir'>Volver</div>
-                        <div onClick={() => logout()} id='toggleSalir'>Salir</div>
-                      </div>
+                        <div className="dropiOpcio">
+                            <div onClick={() => nav(-1)} id='toggleSalir'>Volver</div>
+                            <div onClick={() => logout()} id='toggleSalir'>Salir</div>
+                        </div>
                     </div>
-                  )
+                )
             }
             <div className="contBase">
                 <Menu>
                     <button onClick={() => cambioVis(1)}>Información personal</button>
                     <button onClick={() => cambioVis(2)}>Descripcíon</button>
-                    <button onClick={() => cambioVis(3)}>Historial de eventos </button> 
+                    <button onClick={() => cambioVis(3)}>Historial de eventos </button>
                 </Menu>
                 <div className="navSideBar">
                     <button onClick={() => cambioVis(1)}>Información general</button>
@@ -64,12 +57,12 @@ function ConPerf() {
                                     <Perfil />
                                 </div>
                             )
-                        ) :(
+                        ) : (
                             cont === 1 ? (
                                 <div className="direccion">
                                     <Perfil />
                                 </div>
-                            ) : cont === 2 ? ( 
+                            ) : cont === 2 ? (
                                 <div className="descripcion">
                                     <h1>Aquí va una corta descripción para informar a los usuarios a cerca de tu negocio</h1>
                                     <p>Inserte descripción :V</p>

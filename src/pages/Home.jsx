@@ -11,6 +11,7 @@ import Evento from "../components/EventosPagPrin";
 import RegistroEvento from "./RegistroEvento";
 import Loading from "../components/Loading";
 import instance from "../api/axios";
+import Header from "../components/Header";
 
 const Mapa = lazy(() => import("../components/Mapa"));
 const EvUser = [

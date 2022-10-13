@@ -48,7 +48,8 @@ function RegistroEvento() {
       },
       (results, status) => {
         instance
-          .post("eventos/add", {datosEvento, 
+          .post("eventos/add", {
+            datosEvento,
             id: user[0].id,
             ubicacion: originRef.current.value,
             lat: results[0].geometry.location.lat(),
@@ -72,6 +73,19 @@ function RegistroEvento() {
           <div action="" className="regEvForm">
             <div className="regEvdataTotal">
               <div className="regEvContInp">
+              <Autocomplete>
+              <div className="inputBox">
+                <input
+                  id="ubicacion"
+                  name="ubicacion"
+                  type="text"
+                  onChange={handleChange}
+                  ref={originRef}
+                  required
+                />
+                {/* <span>Ubicación del evento</span> */}
+              </div>
+            </Autocomplete>
                 <div className="inputBox">
                   <input
                     id="nombre"
@@ -111,7 +125,7 @@ function RegistroEvento() {
                 {/* <span>Ubicación del evento</span> */}
               </div>
 
-               <h2>Fecha que termina el evento</h2>
+              <h2>Fecha que termina el evento</h2>
               <div className="inputBox">
                 <input
                   id="fechaTermino"
@@ -125,7 +139,7 @@ function RegistroEvento() {
               </div>
               <h2>Hora que termina el evento</h2>
               <div className="inputBox">
-                
+
                 <input
                   id="horaTermino"
                   name="horaTermino"
@@ -151,20 +165,7 @@ function RegistroEvento() {
               </div>
             </div>
             <h2>Ubicación del evento</h2>
-            <Autocomplete className="intento">
-                  <div className="inputBox">
-                    <input
-                      id="ubicacion"
-                      name="ubicacion"
-                      type="text"
-                      onChange={handleChange}
-                      value={datosEvento.ubicacion}
-                      ref={originRef}
-                      required
-                    />
-                    {/* <span>Ubicación del evento</span> */}
-                  </div>
-                </Autocomplete>
+            
             <div className="regEvContBot">
               <button className="boton1" onClick={() => handleSubmit()}>
                 Registrar Evento
