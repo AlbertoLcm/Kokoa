@@ -85,6 +85,9 @@
 button :focus {
     text-decoration: none;
 }
+#AddDireccion{
+    align-items: left;
+}
 @media only screen and (min-width: 800px) {
     .navSideBar{
         display: inline-block;
