@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import { slide as Menu } from "react-burger-menu";
 import DatosAnfitrion from "../components/infElements/DatosAfitrion";
 import ListaEventosFeed from "../components/infElements/ListaEventosFeed";
+import Header from "../components/Header"
 
 
 function VisPerfs() {
@@ -20,11 +21,7 @@ function VisPerfs() {
 
   return (
     <>
-      <header className="color">
-        <section className="contLogo">
-          <div className="logo">Kokoa</div>
-        </section>
-      </header>
+      <Header tipo={"color"} volver={true} user={user[0].nombre}/>
       <div id="ContPrincVisPerf">
         <div id="ContPerfilFeedAnfitrion">
           <DatosAnfitrion id={id} />

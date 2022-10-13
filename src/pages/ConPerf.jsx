@@ -4,6 +4,7 @@ import useAuth from "../auth/useAuth";
 import Perfil from "../components/Perfil"
 import Header from "../components/Header";
 import { slide as Menu } from "react-burger-menu";
+import "../stylesheets/ConfPerf.css"
 
 import { useNavigate } from "react-router-dom";
 
