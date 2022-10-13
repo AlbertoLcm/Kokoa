@@ -2,12 +2,9 @@ import {
   React,
   createContext,
   useState,
-  useEffect
 } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import instance from "../api/axios";
-import Loading from "../components/Loading";
-import roles from "../helpers/roles";
 import routes from "../helpers/routes";
 
 export const AuthContext = createContext();
@@ -39,10 +36,6 @@ export default function AuthProvider({ children }) {
         <Navigate to={routes.login} />
       });
   };
-
-  useEffect(() => {
-    islogin();
-  }, []);
 
   const login = (usuario, fromLocation) => {
     instance

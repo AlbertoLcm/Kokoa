@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
 import useAuth from "../auth/useAuth";
 import Header from "../components/Header";
 import Loading from "../components/Loading";
+import routes from "../helpers/routes";
 import "../stylesheets/Login.css";
 
 function Login() {
@@ -24,8 +25,9 @@ function Login() {
   if (localStorage.getItem("token")) {
 
     islogin();
-
     return <Loading />;
+  }else{
+    <Navigate to={routes.login} />
   }
 
 
