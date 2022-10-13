@@ -21,7 +21,7 @@ function InfEvento({ id, evento }) {
   }, []);
 
   if(loading) {
-    return <Skeleton />
+    return <Skeleton type={'evento'} />
   }
   
   return (

@@ -17,11 +17,11 @@ function DatosAnfitrion({id}) {
   }, []);
 
   if(loading) {
-    return <Skeleton />
+    return <Skeleton type={'perfilFeed'} />
   }
   
   return (
-    <div className="eventosSideBar">
+    <>
       <h1>{anfitrion.nombre}</h1>
       <label>Nos encontramos en: </label>
       <p>Direccion evento</p>
@@ -29,7 +29,7 @@ function DatosAnfitrion({id}) {
       <label>Contactanos: </label>
       <p>email </p>
       <p>telefono </p>
-    </div>
+    </>
   )
 }
 

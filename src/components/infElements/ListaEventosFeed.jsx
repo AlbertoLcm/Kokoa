@@ -16,30 +16,33 @@ function ListaEventosFeed({ id }) {
       .finally(() => setLoading(false));
   }, []);
 
-  if(loading) {
-    return <Skeleton />
+  if (loading) {
+    return (
+      <Skeleton type={'eventoFeed'} />
+    ) 
   }
-  
-  return (
-    <div className="contEvPerf">
-      <div className="evActVisPerf">Eventos Actuales
-        {eventos.map((evento) => {
-          return (
-            <div>
-              <h1>{evento.nombre}</h1>
-              <h2>{evento.descripcion}</h2>
-              <h3>Ubicado en: {evento.ubicacion}  </h3>
-              <h3>Inicio: {evento.fecha_inicio} Termino: {evento.fecha_termino} </h3>
-              <h3>Capacidad {evento.capacidad} Cover: {evento.precio} </h3>
-            </div>
-          )
-        })}
-      </div>
 
-      <div>Historial de eventos
-        <p>Inserte evetos</p>
-      </div>
-    </div>
+  return (
+    <>
+      {eventos.map((evento) => {
+        return (
+          <div id="PerfilFeedEvento">
+            <h2>{evento.nombre}</h2>
+            <label>Ubicado:</label>
+            {evento.ubicacion}
+            <label>Incia:</label>
+            {evento.fecha_inicio}
+            <label>Termina</label>
+            {evento.fecha_termino}
+            <label>Capacidad</label>
+            {evento.capacidad}
+            <label>Cover</label>
+            {evento.precio}
+            <label>{evento.descripcion}</label>
+          </div>
+        )
+      })}
+    </>
   )
 }
 

@@ -1,31 +1,57 @@
-.contPrincVisPerf {
-    padding-top: 65px;
+#ContPrincVisPerf {
+    padding-top: 60px;
     display: flex;
-    background-color: #410046;
-    height: 100vh;
-}
-.contPrincVisPerf > * {
-    color: white;
-}
-.eventosSideBar {
-    display: none;
-    border-right-color: black;
-    border-right-width: 3px;
-    border-right-style: solid;
-}
-.contEvPerf {
+    position: relative;
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    background-color: rgb(17, 0, 19);
 }
-.evActVisPerf {
-    border-bottom: 4px dashed black;
+
+/* === Estilos del feed de eventos === */
+#ContPerfilFeedEventoGeneral{
+    height: auto;
+    width: 80%;
+    position: absolute;
+    right: 0;
 }
-@media only screen and (min-width: 820px) {
-    .eventosSideBar{
-        display: block;
-        width: 20%;
-    }
-    .contEvPerf {
-        width: 80%;
-    }
+#ContPerfilFeedAnfitrion{
+    height: fill-available;
+    max-height: fill-available;
+    max-width: 20%;
+    width: 15%;
+    background-color: #2a142c;
+    padding: 30px;
+    position: fixed;
+}
+#ContPerfilFeedEventoActual{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#PerfilFeedEvento{
+    height: auto;
+    max-width: 90%;
+    min-width: 90%;
+    padding: 10px;
+    background-color: #2a142cf1;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    color: #f3f3f3;
+}
+#ContPerfilFeedEventoGeneral h1{
+    max-width: 90%;
+    min-width: 90%;
+    padding: 30px;
+    margin-left: -20px;
+    user-select: none;
+}
+#PerfilFeedEvento h2{
+    color: #f3f3f3;
+}
+#ContPerfilFeedEventoAterior{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
