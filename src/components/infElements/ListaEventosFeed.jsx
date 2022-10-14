@@ -21,24 +21,49 @@ function ListaEventosFeed({ id }) {
       <Skeleton type={'eventoFeed'} />
     ) 
   }
+  
+
 
   return (
     <>
       {eventos.map((evento) => {
+        let fecini = new Date(evento.fecha_inicio)
+        let fecter = new Date(evento.fecha_termino)
+
         return (
           <div id="PerfilFeedEvento">
             <h2>{evento.nombre}</h2>
-            <label>Ubicado:</label>
+            <p>
+            <label>Ubicado: </label>
             {evento.ubicacion}
-            <label>Incia:</label>
-            {evento.fecha_inicio}
-            <label>Termina</label>
-            {evento.fecha_termino}
-            <label>Capacidad</label>
-            {evento.capacidad}
-            <label>Cover</label>
-            {evento.precio}
-            <label>{evento.descripcion}</label>
+            </p>
+            <p>
+              <label>Incia el dia: </label>
+              {fecini.toLocaleDateString()}
+              <label> A las: </label>
+              {fecter.toLocaleTimeString()}
+              <label> horas</label>
+            </p>
+
+            <p>
+              <label>Termina el dia: </label>
+              {fecini.toLocaleDateString()}
+              <label> A las: </label>
+              {fecini.toLocaleTimeString()}
+              <label> horas </label>
+            </p>
+
+            <p>
+              <label>Capacidad</label>
+              {evento.capacidad}
+            </p>
+
+            <p>
+              <label>Cover</label>
+              {evento.precio}
+            </p>
+            
+            <p>{evento.descripcion}</p>
           </div>
         )
       })}

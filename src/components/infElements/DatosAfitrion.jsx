@@ -29,10 +29,8 @@ function DatosAnfitrion({id}) {
       {anfitrion.domicilio} <br />
       <hr />
       <p>Contactanos </p>
-      
       <p>{ auth.email}</p>
-      telefono: <br />
-      { auth.telefono} <br />
+      <p>tel: { auth.telefono}</p>
     </>
   )
 }
