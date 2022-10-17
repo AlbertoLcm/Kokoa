@@ -5,18 +5,20 @@ function Skeleton({ type }) {
   switch (type) {
     case "evento": return (
       <ContentLoader
-        viewBox="0 0 400 160"
-        height={160}
+        viewBox="0 0 400 120"
+        height={120}
         width={400}
         backgroundColor="#d1d1d1"
         foregroundColor="#bababa"
       >
-        <rect x="0" y="13" rx="4" ry="4" width="400" height="9" />
-        <rect x="0" y="29" rx="4" ry="4" width="100" height="8" />
-        <rect x="0" y="50" rx="4" ry="4" width="400" height="10" />
-        <rect x="0" y="65" rx="4" ry="4" width="400" height="10" />
-        <rect x="0" y="79" rx="4" ry="4" width="100" height="10" />
-        <rect x="0" y="99" rx="5" ry="5" width="400" height="200" />
+
+        <rect x="110" y="8" rx="3" ry="3" width="150" height="15" />
+        <rect x="110" y="40" rx="3" ry="3" width="410" height="9" />
+        <rect x="110" y="56" rx="3" ry="3" width="410" height="9" />
+        <rect x="110" y="72" rx="3" ry="3" width="380" height="9" />
+        <rect x="110" y="110" rx="3" ry="3" width="178" height="9" />
+        <circle cx="50" cy="60" r="50" />
+
       </ContentLoader>
     )
     case "perfilFeed": return (

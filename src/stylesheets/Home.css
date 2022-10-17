@@ -89,16 +89,49 @@
     width: 100%;
     user-select: none;
 }
+/* === Marker Info de cada evento === */
 .markerInfo{
     color: black;
-    font-size: 20px;
-    position: relative;
-    flex-direction: column;
-    z-index: 9999;
-}
-.markerInfo h3{
     font-size: 15px;
+    height: 120px;
+    width: 400px;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: auto;
 }
+.markerInfo > h1{
+    font-size: 20px;
+    color: #3f3f3f;
+}
+#contMarkerInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#contMarkerInfo h1{
+    color: #3f3f3f;
+    margin-bottom: 3px;
+}
+.contImageMakerInfoFondo{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+#contImagenMarkerInfo{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin-right: 10px;
+    overflow: hidden;    
+}
+#imagenMarkerInfo{
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+}
+/* === FIN Marker Info de cada evento === */
+
 #contFeed{
     height: -moz-available;          /* WebKit-based browsers will ignore this. */
     height: fill-available;
@@ -145,6 +178,7 @@
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: 0.3s;
+    color: #f3f3f3;
 }
 .contEvento:hover{
     background-color: rgb(250, 250, 250);

@@ -1,7 +1,7 @@
 import React from "react";
 import useAuth from "../auth/useAuth";
 import { useState, Suspense, lazy, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../stylesheets/Home.css";
 import { slide as Menu } from "react-burger-menu";
 import "../stylesheets/BurguerMenu.css";
@@ -35,6 +35,7 @@ const cordsimp = {
 };
 
 function Home() {
+  const nav = useNavigate();
   const { marcar, eventos } = useAuth();
 
   const { logout, user } = useAuth();
@@ -64,7 +65,7 @@ function Home() {
     return (
     <div className="contHome">
       <header className="color">
-        <section className="contLogo">
+        <section className="contLogo" onClick={() => nav(routes.home)}>
           <div className="logo">Kokoa</div>
         </section>
         <div className="userHeader" onClick={() => toggle(!opcio)}>
