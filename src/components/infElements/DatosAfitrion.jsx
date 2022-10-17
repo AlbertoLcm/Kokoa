@@ -25,6 +25,7 @@ function DatosAnfitrion({id}) {
   return (
     <>
       <h1>{anfitrion.nombre}</h1>
+      <hr />
       <p>Nos encontramos en: </p>
       {anfitrion.domicilio} <br />
       <hr />

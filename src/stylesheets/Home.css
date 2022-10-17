@@ -116,8 +116,7 @@
     max-height: 77vh;
     min-height: 77vh;
     margin-left: 40px;
-    background-color: rgba(255, 255, 255, 0.644);
-    /* background-color: #f3f3f3dc; */
+    background-color: #21aae4a4;
     backdrop-filter: blur(10px);
     z-index: 80;
     border-radius: 15px;
@@ -140,7 +139,8 @@
     flex-direction: column;
     margin-bottom: 10px;
     border-radius: 10px;
-    background-color: #fff;
+    background-color: #24bdffd6;
+    backdrop-filter: blur(20px);
     padding: 10px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
     cursor: pointer;
@@ -176,7 +176,7 @@
     #feedHome{
         display: flex;
     }
-    #feedHome > h2 {
+    #feedHome  h2 {
         color: black;
     }
     #feedHome a {

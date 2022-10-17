@@ -1,30 +1,29 @@
 #ContPrincVisPerf {
     padding-top: 60px;
-    display: flex;
-    position: relative;
     width: 100%;
-    height: 100vh;
     background-color: rgb(17, 0, 19);    
 }
 
 /* === Estilos del feed de eventos === */
 #ContPerfilFeedEventoGeneral{
-    height: auto;
-    width: 75%;
-    position: absolute;
-    right: 0;
+    min-height: 84vh;
+    max-height: fit-content;
+}#ContPerfilFeedEventoGeneral > h1{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    user-select: none;
 }
 #ContPerfilFeedAnfitrion{
     height: fill-available;
     max-height: fill-available;
-    max-width: 30%;
-    width: 20%;
     background-color: #2a142c;
-    padding: 20px 30px 30px 30px;
-    position: fixed;
+    min-width: calc(100% - 60px);
     color: #f3f3f3;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    padding-left: 30px;
+    padding-right: 30px;
 }#ContPerfilFeedAnfitrion > p {
     color: white;
     text-align: center;
@@ -33,15 +32,17 @@
 
 #ContPerfilFeedEventoActual{
     display: flex;
-    flex-direction: column;
-    justify-content: right;
+    justify-content: center;
     align-items: center;
-
+    flex-wrap: wrap;
+    padding-left: 10px;
+}#ContPerfilFeedEventoActual > div {
+    margin-right: 10px;
 }
 #PerfilFeedEvento{
-    height: auto;
-    max-width: 90%;
-    min-width: 90%;
+    min-height: 325px;
+    max-width: 300px;
+    min-width: 200px;
     padding: 10px;
     background-color: #2a142cf1;
     margin-bottom: 10px;
@@ -51,14 +52,9 @@
 #PerfilFeedEvento p {
     color: #f3f3f3;
 }
-#ContPerfilFeedEventoGeneral h1{
-    max-width: 90%;
-    min-width: 90%;
-    padding: 30px;
-    margin-left: -20px;
-    user-select: none;
-}
 #PerfilFeedEvento h2{
+    margin-top: -10px;
+    margin-bottom: 0;
     color: #f3f3f3;
 }
 #ContPerfilFeedEventoAterior{
@@ -66,4 +62,67 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+#ContImgEvento {
+    width: calc(100% + 20px);
+    margin-left: -10px;
+    margin-top: -10px;
+    margin-bottom: 0px;
+}#ContImgEvento > img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 120px;
+    width: 100%;
+    object-fit: cover;
+    object-position: 0% 0%;
+}
+.contBotEvesVisPerf {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}.contBotEvesVisPerf > button {
+    color: white;
+    font-size: 25px;
+    background-color: transparent;
+    border: none;
+}.contBotEvesVisPerf :nth-child(3) {
+    padding-left: 20px;
+    padding-right: 20px;
+}.contBotEvesVisPerf :nth-child(1) {
+    padding-right: 20px;
+}
+.contBotEvesVisPerf :nth-child(5) {
+    padding-left: 20px;
+    
+}
+.vrLine {
+    border-left: 1px solid white;
+    
+}
+@media only screen and (min-width: 1024px) {
+    #ContPerfilFeedAnfitrion {        
+        position: fixed;
+        max-width: calc(25% - 60px);
+        min-width: calc(25% - 60px);
+        padding: 20px 30px 30px 30px;
+    }
+    #ContPrincVisPerf {
+        position: relative;
+        min-height: 100vh;
+    }
+    #ContPerfilFeedEventoGeneral {
+        right: 0;
+        width: calc(75% - 30px);
+        padding-left: 5px;
+        padding-right: 15px;
+        margin-left: 27%;
+    }
+    #ContPerfilFeedEventoActual {        
+        padding: 0px;
+        justify-content: left;
+    }
+    #PerfilFeedEvento {
+        min-width: 28.5%;
+        max-width: 28.5%;
+    }
 }
