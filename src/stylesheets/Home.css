@@ -149,7 +149,7 @@
     max-height: 77vh;
     min-height: 77vh;
     margin-left: 40px;
-    background-color: #21aae4a4;
+    background-color: #85018fa2;
     backdrop-filter: blur(10px);
     z-index: 80;
     border-radius: 15px;
@@ -172,7 +172,7 @@
     flex-direction: column;
     margin-bottom: 10px;
     border-radius: 10px;
-    background-color: #24bdffd6;
+    background-color: #893a8f;
     backdrop-filter: blur(20px);
     padding: 10px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
@@ -184,7 +184,7 @@
     background-color: rgb(250, 250, 250);
 }
 
-#feedHome > h1, p{
+#feedHome > h1 p{
     color: #3f3f3f;
     font-family: 'Berlin Sans FB';
     font-weight: 350;
@@ -209,9 +209,6 @@
 @media only screen and (min-width: 779px) {
     #feedHome{
         display: flex;
-    }
-    #feedHome  h2 {
-        color: black;
     }
     #feedHome a {
         z-index: 0;
