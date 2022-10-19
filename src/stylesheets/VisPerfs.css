@@ -13,7 +13,7 @@
         justify-content: center;
     }
     #PerfilFeedAnfitrion{
-        width: 80%;
+        width: 1050px;
         height: 100%;
     }
 
@@ -77,7 +77,7 @@
         border-top: 1px solid #f3f3f354;
         padding-top: 10px;
         padding-bottom: 10px;
-        width: 80%;
+        width: 1050px;
         display: flex;
     }
 
@@ -90,8 +90,7 @@
         justify-content: center;
     }
     #ContenedorResponsiveFeed{
-        min-width: 80%;
-        max-width: 80%;
+        width: 1050px;
         height: auto;
         display: flex;
         flex-direction: column;
@@ -123,7 +122,7 @@
 
         #ContPerfilFeedInformacion{
             display: grid;
-            grid-template-columns: 1fr 2fr;
+            grid-template-columns: 1fr 1.5fr;
             gap: 15px;
             padding-top: 20px;
             padding-bottom: 20px;
@@ -175,17 +174,28 @@
                 }
                 #InfDetallesAnfitrion .fotosAnfitrion h2{
                     font-weight: 600;
-                    margin-bottom: 5px;
+                    margin-bottom: 10px;
                 }
-                #InfDetallesAnfitrion .fotosAnfitrion .contenedorFotos{
+                #InfDetallesAnfitrion .fotosAnfitrion .contFotosAnfitrion{
                     display: flex;
                     flex-wrap: wrap;
-                    justify-content: center;
-                }            
+                    gap: 5px;
+                }
+                #InfDetallesAnfitrion .fotosAnfitrion .fotoAnfitrion{
+                    background-color: #f3f3f32c;
+                    border-radius: 10px;
+                    height: 120px;
+                    width: 120px;
+                    overflow: hidden;
+                }
+                #InfDetallesAnfitrion .fotosAnfitrion .fotoAnfitrion img{
+                    width: 100%;
+                    height: auto;
+                }
             /* Fin fotos del anfitrion */
 
 
-            /* Fin lateral izquierda */
+            /* ==== Fin lateral izquierda ==== */
 
             /* Lateral derecha */
                 #InfOpinionesAnfitrion{
