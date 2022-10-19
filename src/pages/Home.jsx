@@ -12,6 +12,7 @@ import RegistroEvento from "./RegistroEvento";
 import Loading from "../components/Loading";
 import instance from "../api/axios";
 import Header from "../components/Header";
+import VisPerfs from "./VisPerfs";
 
 const Mapa = lazy(() => import("../components/Mapa"));
 const EvUser = [
@@ -156,46 +157,7 @@ function Home() {
     </div>
   );} else {
     return (
-      <div>
-        <header className="color">
-        <section className="contLogo">
-          <div className="logo">Kokoa</div>
-        </section>
-        <div className="userHeader" onClick={() => toggle(!opcio)}>
-          {user[0].nombre}
-        </div>
-      </header>
-      {
-        opcio && (
-          <div className="acomodo">
-            <div className="dropiOpcio">
-              <Link to={routes.perfil} id="togglePerfil">Configuración del perfil</Link>
-              <div onClick={() => logout()} id='toggleSalir'>Salir</div>
-            </div>
-          </div>
-        )
-      }
-      {/* Contenedor principal */}
-      <div>
-        <div className="botNavPrinNeg">
-          {/* divs tipo botones */}
-          
-        </div>
-        <div className="contGenPrinNeg">
-          {
-            showprin === 1 ? (<div>
-              <h1>Datos del negocio</h1>
-            </div> ) : (<div>
-              <h1>Eventos del negocio</h1>
-            </div>)
-          }
-        </div>
-      </div>
-      {/* Contenedor del mapa */}
-      <div>
-        <h1>Aqui hya un mapa te lo juro</h1>
-      </div>
-      </div>
+      <VisPerfs />
     )
   }
 
