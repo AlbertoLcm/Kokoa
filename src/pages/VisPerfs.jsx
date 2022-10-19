@@ -20,55 +20,55 @@ function VisPerfs() {
   const [opcio, setOpcio] = useState(false);
   const toggle = () => {setOpcio(!opcio)};
   
-  const [visua, setVisua] = useState(2);
+  const [visua, setVisua] = useState(1);
 
   return (
     <>
-      <Header tipo={"color"} volver={true} user={user[0].nombre}/>
+      <Header tipo={"color"} user={user[0].nombre}/>
       <div id="ContPrincVisPerf">
-        <div id="ContPerfilFeedAnfitrion">
-          <DatosAnfitrion id={id} />
-        </div>          
-        <div id="ContPerfilFeedEventoGeneral">
-          <div className="contBotEvesVisPerf">
-            <button className="BotEvesVisPerf" onClick={() => setVisua(1)}>Eventos Futuros</button>
-            <div className="vrLine" />
-            <button className="BotEvesVisPerf" onClick={() => setVisua(2)}>Eventos Actuales</button>
-            <div className="vrLine" />
-            <button className="BotEvesVisPerf" onClick={() => setVisua(3)}>Historial</button>
+        <section id="ContPerfilFeedAnfitrion">
+          <div id="PerfilFeedAnfitrion">
+            <DatosAnfitrion id={id} section={"perfil"} />
           </div>
-          {
-            visua === 1 ? (
-              <>
-                <h1>Proximamente</h1>
-                <div id="ContPerfilFeedEventoActual">
-                  <ListaEventosFeed id={id} solicito="futuros"/>
-                </div>
-              </>
-            ) : visua === 2 ? (
-              <> 
-                <h1>Actualmente</h1>
-                <div id="ContPerfilFeedEventoActual">
+        </section>
+
+        <section id="ContBtnFeedAnfitrion">
+          <div id="BtnFeedAnfitrion">
+            <button className="BotEvesVisPerf" onClick={() => setVisua(1)}>Inicio</button>
+            <div className="vrLine" />
+            <button className="BotEvesVisPerf" onClick={() => setVisua(2)}>Eventos</button>
+            <div className="vrLine" />
+            <button className="BotEvesVisPerf" onClick={() => setVisua(3)}>Comunidad</button>
+          </div>
+        </section>
+
+        <section id="ContPerfilFeedEventoGeneral">
+          <div id="ContenedorResponsiveFeed">
+            {
+              visua === 1 ? (
+                <>
+                  <div id="ContPerfilFeedInformacion">
+                    <DatosAnfitrion id={id} section={"informacion"} />
+                  </div>
+                </>
+              ) : visua === 2 ? (
+                <> 
+                  <h1>Actualmente</h1>
+                  <div id="ContPerfilFeedEventos">
+                    <ListaEventosFeed id={id} solicito="actuales"/>
+                  </div>
+                </>
+              ) : (
+                <>
+                <h1>Todos nuestros eventos</h1>
+                <div id="ContPerfilFeedEventos">
                   <ListaEventosFeed id={id} solicito="actuales"/>
                 </div>
-              </>
-            ) : (
-              <>
-              <h1>Todos nuestros eventos</h1>
-              <div id="ContPerfilFeedEventoActual">
-                <ListaEventosFeed id={id} solicito="todos"/>
-              </div>
-              </>
-            )
-          }
-
-          
-
-          
-
-          
-
-        </div>
+                </>
+              )
+            }
+          </div>
+        </section>
       </div>
     </>
   )

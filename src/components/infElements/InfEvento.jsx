@@ -24,7 +24,6 @@ function InfEvento({ id, evento }) {
     return <Skeleton type={'evento'} />
   }
   let fecini = new Date(eventoInfo.fecha_inicio)
-  let fecter = new Date(eventoInfo.fecha_termino)
 
   return (
     <>
@@ -37,17 +36,18 @@ function InfEvento({ id, evento }) {
       <section id="contMarkerInfo">
         <div className='datosMarkerInfo'>
           <h1>{eventoInfo.nombre}</h1>
-          <p>{eventoInfo.ubicacion}</p>
+          <label>{eventoInfo.ubicacion}</label>
           <p>
-            <label> Inicia el </label>
-            {fecini.toLocaleDateString()}
-            <label> A las: </label>
-            {fecini.toLocaleTimeString()}
-            <label> horas</label>
+            Inicia el
+            <label> {fecini.toLocaleDateString()} </label>
+            a las: 
+            <label> {fecini.toLocaleTimeString()} </label>
+            horas
           </p>
         </div>
         <div className='anfitrionMarkerInfo'>
-          <p> <label> Un evento de </label> {eventoInfo.rol === 'negocios' ? <Link to={`/visperfil/${eventoInfo.id}`}>{evento.hostNombre}</Link> : evento.hostNombre}</p>
+        <Link to={`/visperfil/${eventoInfo.id}`}> {evento.hostNombre} </Link> 
+          <p> Un evento de {eventoInfo.rol === 'negocios' ? <Link to={`/visperfil/${eventoInfo.id}`}>{evento.hostNombre}</Link> : <label> {evento.hostNombre} </label>}</p>
         </div>
       </section>
     </>
