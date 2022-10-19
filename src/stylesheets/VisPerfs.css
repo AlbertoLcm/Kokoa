@@ -1,128 +1,322 @@
-#ContPrincVisPerf {
+
+/* === Estilos by Alberto === */
+
+#ContPrincVisPerf{
     padding-top: 60px;
-    width: 100%;
-    background-color: rgb(17, 0, 19);    
+    background-color: #2D0E30;
 }
+    /* ===== Organizador del evento ===== */
+    #ContPerfilFeedAnfitrion{
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+    }
+    #PerfilFeedAnfitrion{
+        width: 80%;
+        height: 100%;
+    }
 
-/* === Estilos del feed de eventos === */
-#ContPerfilFeedEventoGeneral{
-    min-height: 84vh;
-    max-height: fit-content;
-}#ContPerfilFeedEventoGeneral > h1{
-    text-align: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    user-select: none;
-}
-#ContPerfilFeedAnfitrion{
-    height: fill-available;
-    max-height: fill-available;
-    background-color: #2a142c;
-    min-width: calc(100% - 60px);
-    color: #f3f3f3;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    padding-left: 30px;
-    padding-right: 30px;
-}#ContPerfilFeedAnfitrion > p {
-    color: white;
-    text-align: center;
-}
-
-
-#ContPerfilFeedEventoActual{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    padding-left: 10px;
-}#ContPerfilFeedEventoActual > div {
-    margin-right: 10px;
-}
-#PerfilFeedEvento{
-    min-height: 325px;
-    max-width: 300px;
-    min-width: 200px;
-    padding: 10px;
-    background-color: #2a142cf1;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    color: #f3f3f3;
-}
-#PerfilFeedEvento p {
-    color: #f3f3f3;
-}
-#PerfilFeedEvento h2{
-    margin-top: -10px;
-    margin-bottom: 0;
-    color: #f3f3f3;
-}
-#ContPerfilFeedEventoAterior{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-#ContImgEvento {
-    width: calc(100% + 20px);
-    margin-left: -10px;
-    margin-top: -10px;
-    margin-bottom: 0px;
-}#ContImgEvento > img {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    height: 120px;
-    width: 100%;
-    object-fit: cover;
-    object-position: 0% 0%;
-}
-.contBotEvesVisPerf {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}.contBotEvesVisPerf > button {
-    color: white;
-    font-size: 25px;
-    background-color: transparent;
-    border: none;
-}.contBotEvesVisPerf :nth-child(3) {
-    padding-left: 20px;
-    padding-right: 20px;
-}.contBotEvesVisPerf :nth-child(1) {
-    padding-right: 20px;
-}
-.contBotEvesVisPerf :nth-child(5) {
-    padding-left: 20px;
+    /* /// Foto de Portada /// */
+        #PortadaPerfilAnfitrion{
+            width: 100%;
+            height: 300px;
+            background-color: #f3f3f3;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            overflow: hidden;
+            user-select: none;
+        }
+        #ImagePortadaPerfilAnfitrion{
+            width: 100%;
+            height: auto;
+        }
+    /* /// Fin foto de portada /// */
     
-}
-.vrLine {
-    border-left: 1px solid white;
+    #InfPerfilAnfitrion{
+        display: flex;
+        margin-bottom: 10px;
+    }
+
+    /* /// Foto de perfil /// */
+        #FotoPerfilAnfitrion{
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid #f3f3f3;
+            overflow: hidden;
+            margin-right: 50px;
+            margin-top: -30px;
+        }
+        #ImageFotoPerfilAnfitrion{
+            width: auto;
+            height: 100%;
+        }
+    /* /// Fin foto de perfil /// */
+
+    #DatosPerfilAnfitrion{
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: end;
+        flex-direction: column;
+        margin-right: 20px;
+        color: #f3f3f3;
+    }
+    #DatosPerfilAnfitrion h1{
+        font-weight: 700;
+        font-size: 30px;
+    }
+
+    #ContBtnFeedAnfitrion{
+        display: flex;
+        justify-content: center;
+    }
+    #BtnFeedAnfitrion{
+        border-top: 1px solid #f3f3f354;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width: 80%;
+        display: flex;
+    }
+
+    /* ===== Fin Organizador del evento ===== */
+
+    /* Eventos del organizador */
+    #ContPerfilFeedEventoGeneral{
+        background-color: #140016;
+        display: flex;
+        justify-content: center;
+    }
+    #ContenedorResponsiveFeed{
+        min-width: 80%;
+        max-width: 80%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+    }
+    #ContenedorResponsiveFeed h1{
+        user-select: none;
+        padding-top: 30px;
+        padding-bottom: 10px;
+        font-size: 30px;
+    }
+
+        /* /// Botones de la pestaña /// */
+            .BotEvesVisPerf{
+                padding: 15px;
+                border: none;
+                background: none;
+                color: #f3f3f3;
+                transition: all 0.3s ease;
+                cursor: pointer;
+                border-radius: 10px;
+                user-select: none;
+            }
+            .BotEvesVisPerf:hover{
+                background-color: #f3f3f328;
+            }
+        /* /// Fin Botones de la pestaña /// */
+
+        /* /// Pestaña 1 Información del organizador /// */
+
+        #ContPerfilFeedInformacion{
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 15px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+            /* Lateral izquierda */
+            #InfDetallesAnfitrion .datosAnfitrion{
+                background-color: #2D0E30;
+                color: #f3f3f3;
+                padding: 20px;
+                border-radius: 10px;
+                margin-bottom: 15px;
+            }
+                #InfDetallesAnfitrion .datosAnfitrion h2{
+                    font-weight: 600;
+                    margin-bottom: 5px;
+                }
+                #InfDetallesAnfitrion .datosAnfitrion p{
+                    padding: 5px;
+                    padding-left: 0;
+                }
+                #InfDetallesAnfitrion .datosAnfitrion p b{
+                    font-weight: 600;                    
+                }
+                #InfDetallesAnfitrion .datosAnfitrion p a{
+                    color: dodgerblue;
+                    text-decoration: none;
+                    font-weight: 600;                    
+                }
+                #InfDetallesAnfitrion .datosAnfitrion .horario{
+                    color: green;
+                    font-weight: 550;
+                    padding: 5px;
+                    padding-left: 0;
+                }
+                #InfDetallesAnfitrion .datosAnfitrion .descripcion{
+                    border: 1px solid #f3f3f354;
+                    border-radius: 10px;
+                    padding: 10px;
+                    margin-top: 10px;
+                }
+                
+            /* Fotos del anfitrion */
+                #InfDetallesAnfitrion .fotosAnfitrion{
+                    background-color: #2D0E30;
+                    color: #f3f3f3;
+                    padding: 20px;
+                    border-radius: 10px;
+                }
+                #InfDetallesAnfitrion .fotosAnfitrion h2{
+                    font-weight: 600;
+                    margin-bottom: 5px;
+                }
+                #InfDetallesAnfitrion .fotosAnfitrion .contenedorFotos{
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }            
+            /* Fin fotos del anfitrion */
+
+
+            /* Fin lateral izquierda */
+
+            /* Lateral derecha */
+                #InfOpinionesAnfitrion{
+                    color: #f3f3f3;
+                }
+                #InfOpinionesAnfitrion h2{
+                    padding: 20px;
+                    background-color: #2D0E30;
+                    border-radius: 10px;
+                    margin-bottom: 20px;
+                    font-weight: 600;
+                }
+                #InfOpinionesAnfitrion .opinionAnfitrion{
+                    background-color: #2D0E30;
+                    color: #f3f3f3;
+                    padding: 10px;
+                    border-radius: 10px;
+                    margin-bottom: 15px;
+                }
+                #InfOpinionesAnfitrion .contOpinador{
+                    display: flex;
+                    margin-bottom: 10px;
+                }
+                #InfOpinionesAnfitrion .contOpinador .nombreOpinador{
+                    margin-left: 10px;
+                }
+                #InfOpinionesAnfitrion .contOpinador .nombreOpinador .fecha{
+                    font-size: 14px;
+                    margin-top: 3px ;
+                    color: #f3f3f3b0;
+                }
+                #InfOpinionesAnfitrion .fotoOpinador{
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    border: 2px solid #f3f3f3;
+                    user-select: none;
+                }
+                #InfOpinionesAnfitrion .fotoOpinador img{
+                    height: 100%;
+                    width: auto;
+                }
+                
+            /* Fin lateral derecha */
+        
+        /* /// FIn Pestaña 1 Información del organizador /// */
+
+        /* /// Pestaña 2 Eventos /// */
+        #ContPerfilFeedEventos{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            padding-bottom: 20px;
+            padding-top: 20px;
+        }
+        #PerfilFeedEvento{
+            height: 400px;
+            width: auto;
+            background-color: #2D0E30;
+            border-radius: 10px;
+            color: #f3f3f3;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        } 
+        #ContImgEventoFeed{
+            width: 100%;
+            height: 150px;
+            background-color: #f3f3f3;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            overflow: hidden;
+        }
+        #ImgEventoFeed{
+            width: 100%;
+            height: auto;
+        }
+        #ContInfEvento{
+            padding: 15px;
+            height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .infEventoFecha{
+            color: tomato;
+            font-weight: 550;
+        }
+        .infEvento h2{
+            margin-top: 10px;
+            font-size: 20px;
+        }
+        .infEventoUbicacion{
+            color: #f3f3f3a1;
+        }
+        .asistentesEvento{
+            margin-top: 10px;
+        }
+        .coverEvento p{
+            color: green;
+            font-weight: 600;
+        }
+        .coverEvento .cover{
+            color: orange;
+            font-weight: 600;
+        }
+        .btnAsistir{
+            width: 100%;
+            height: 30px;
+            background-color: #f3f3f377;
+            backdrop-filter: blur(10px);
+            border: none;
+            border-radius: 5px;
+            color: #130014;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+        .btnAsistir:hover{
+            background-color: #f3f3f3c4;
+        }
+        /* /// Fin Eventos /// */
     
-}
-@media only screen and (min-width: 1024px) {
-    #ContPerfilFeedAnfitrion {        
-        position: fixed;
-        max-width: calc(25% - 60px);
-        min-width: calc(25% - 60px);
-        padding: 20px 30px 30px 30px;
+    /* Fin eventos del organizador */
+
+
+    /* /// Responsive de la página /// */
+    @media (max-width: 600px) {
+        
     }
-    #ContPrincVisPerf {
-        position: relative;
-        min-height: 100vh;
-    }
-    #ContPerfilFeedEventoGeneral {
-        right: 0;
-        width: calc(75% - 30px);
-        padding-left: 5px;
-        padding-right: 15px;
-        margin-left: 27%;
-    }
-    #ContPerfilFeedEventoActual {        
-        padding: 0px;
-        justify-content: left;
-    }
-    #PerfilFeedEvento {
-        min-width: 28.5%;
-        max-width: 28.5%;
-    }
-}
+    /* /// Fin responsive de la página /// */
+
+/* === Fin estilos by Alberto === */

@@ -18,7 +18,7 @@
     padding-top: 90px;
     flex-direction: column; 
 }
-h2{
+.contPrincipal h2{
     color: #f3f3f3;
     font-size: 30px;
     margin-bottom: 30px;

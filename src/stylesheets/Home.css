@@ -89,19 +89,23 @@
     width: 100%;
     user-select: none;
 }
-/* === Marker Info de cada evento === */
+/* === Marker Info de cada evento by Alberto === */
 .markerInfo{
     color: black;
-    font-size: 15px;
-    height: 120px;
+    font-size: 14px;
+    min-height: 120px;
+    max-height: 150px;
     width: 400px;
     display: grid;
     grid-template-columns: 1fr 4fr;
     grid-template-rows: auto;
 }
-.markerInfo > h1{
+.markerInfo h1{
     font-size: 20px;
     color: #3f3f3f;
+}
+.markerInfo label{
+    font-weight: 550;
 }
 #contMarkerInfo{
     display: flex;
@@ -123,7 +127,8 @@
     width: 100px;
     border-radius: 50%;
     margin-right: 10px;
-    overflow: hidden;    
+    overflow: hidden;
+    background-color: #f3f3f3;
 }
 #imagenMarkerInfo{
     height: 100%;

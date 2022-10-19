@@ -3,10 +3,8 @@ import instance from "../api/axios";
 import InfEvento from "./infElements/InfEvento";
 import useAuth from "../auth/useAuth";
 import { GoogleMap, InfoWindow, Marker, useJsApiLoader } from "@react-google-maps/api";
-import Modal from "./Modal";
 import marker from "../images/marker4.png";
 import { libraries, stylesArray } from "../helpers/methodsMap";
-import { Link } from "react-router-dom";
 
 const containerStyle = {
   width: "100%",
@@ -17,7 +15,6 @@ function Mapa({ mapSet, map }) {
   const { addEventos, mostrar } = useAuth();
   const [activeMarker, setActiveMarker] = useState(null);
   const [lugares, setLugares] = useState([]);
-  const [showModal, setShowModal] = useState(false);
   const [eventoInfo, setEventoInfo] = useState({});
   const [centerMy, setCenterMy] = useState({ lat: 19.4326077, lng: -99.133208 });
   const rango = [];
@@ -62,6 +59,7 @@ function Mapa({ mapSet, map }) {
     fillColor: "#009ee0",
     fillOpacity: 0
   });
+
   if (!!lugares.length && circle.getBounds()) {
     lugares.forEach((evento) => {
       if (circle.getBounds().contains({ lat: evento.lat, lng: evento.lng })) {
@@ -99,32 +97,33 @@ function Mapa({ mapSet, map }) {
         onClick={() => setActiveMarker(null)}>
 
         {lugares.map((evento) => {
-          // let today = new Date();
-          // let now = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds());
+          let today = new Date();
+          let now = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds());
 
-          // if (evento.fecha_termino < now.toISOString()) {
-          return (
-            <Marker
-              key={evento.id_evento}
-              position={{
-                lat: evento.lat,
-                lng: evento.lng
-              }}
-              icon={marker}
-              onClick={() => asignacion(evento.id_evento)}>
+          // if (evento.fecha_termino > now.toISOString()) {
+            return (
+              <Marker
+                key={evento.id_evento}
+                position={{
+                  lat: evento.lat,
+                  lng: evento.lng
+                }}
+                icon={marker}
+                onClick={() => asignacion(evento.id_evento)}>
 
-              {activeMarker === evento.id_evento && (
-                <InfoWindow onCloseClick={() => setActiveMarker(null)}>
-                  <div className="markerInfo">
-                    <InfEvento
-                      id={eventoInfo.id_evento}
-                      evento={eventoInfo} />
-                  </div>
-                </InfoWindow>
-              )};
-
-            </Marker>
-          );
+                {activeMarker === evento.id_evento && (
+                  <InfoWindow onCloseClick={() => setActiveMarker(null)}>
+                    <div className="markerInfo">
+                      <InfEvento
+                        id={eventoInfo.id_evento}
+                        evento={eventoInfo} 
+                      />
+                    </div>
+                  </InfoWindow>
+                )};
+              </Marker>
+            );
+          // }
         })};
       </GoogleMap>
     </div>

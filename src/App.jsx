@@ -5,7 +5,6 @@ import Loading from "./components/Loading";
 const AppRouter = lazy(() => import("./routers/AppRouter"));
 
 function App() {
-  
   return (
     <Fragment>
       <AuthProvider>
