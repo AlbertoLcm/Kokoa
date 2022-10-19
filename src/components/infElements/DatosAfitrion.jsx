@@ -4,6 +4,7 @@ import Skeleton from "../Skeleton";
 import image from "../../images/Wall (15).jpg"
 import foto from "../../images/Wall (59).jpg"
 import fotos from "../../images/establecimiento.jpg"
+import '../../stylesheets/VisPerfs.css'
 
 function DatosAnfitrion({ id, section }) {
 
@@ -65,14 +66,23 @@ function DatosAnfitrion({ id, section }) {
             </p>
            </div>
 
-          <div className="fotosAnfitrion">
+          <section className="fotosAnfitrion">
             <h2>Fotos</h2>
-            <div clasName="contFotosAnfitrion">
-              <div clasName="fotoAnfitrion">
-                {/* <img src={fotos} /> */}
+            <div className="contFotosAnfitrion">
+              <div className="fotoAnfitrion">
+                <img src={fotos} />
+              </div>
+              <div className="fotoAnfitrion">
+                <img src={fotos} />
+              </div>
+              <div className="fotoAnfitrion">
+                <img src={fotos} />
+              </div>
+              <div className="fotoAnfitrion">
+                <img src={fotos} />
               </div>
             </div>
-          </div>
+          </section>
         </section>
 
         <section id="InfOpinionesAnfitrion">
