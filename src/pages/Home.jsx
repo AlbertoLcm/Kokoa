@@ -34,7 +34,6 @@ function Home() {
     }
   }, []);
 
-
   if (user[0].rol === "usuarios") {
     return (
       <>
@@ -61,22 +60,22 @@ function Home() {
             </Suspense>
           </div>
           <div className="feedHome">
-            <h2>Hola {user[0].nombre}</h2>
-
-            <section id="ContBtnFeedAnfitrion">
-              <div id="BtnFeedAnfitrion">
-                <button className="btnFeedHome" onClick={() => setVisua(1)}>Inicio</button>
-                <div className="vrLine" />
-                <button className="btnFeedHome" onClick={() => setVisua(2)}>Eventos</button>
-                <div className="vrLine" />
-                <button className="btnFeedHome" onClick={() => setVisua(3)}>Comunidad</button>
-              </div>
+            <section id="HeaderFeedHome">
+              <h2>Hola {user[0].nombre}</h2>
+              <section id="ContBtnFeedAnfitrion">
+                <div id="BtnFeedAnfitrion">
+                  <button className="btnFeedHome" onClick={() => setVisua(1)}>Para ti</button>
+                  <div className="vrLine" />
+                  <button className="btnFeedHome" onClick={() => setVisua(2)}>Local</button>
+                  <div className="vrLine" />
+                  <button className="btnFeedHome" onClick={() => setVisua(3)}>Comunidad</button>
+                </div>
+              </section>
             </section>
-
             {visua === 2 ? (
               <>
-                <div>
-                  <h2>Eventos Cercanos</h2>
+                {/* <h3>Cerca de ti</h3> */}
+                <div id="ContEventosFeed">
                   {eventos.map((evento) => {
                     return (
                       <Evento
@@ -92,7 +91,7 @@ function Home() {
             ) : visua === 1 ? (
               <>
                 <div>
-                  <h2>Eventos Recomendados</h2>
+                  <h3></h3>
                 </div>
               </>
             ) : (

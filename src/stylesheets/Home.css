@@ -5,6 +5,7 @@
         width: 100%;
         height: calc(100vh - 60px);
         position: relative;
+        
     }
     
     /* /// Estilos para el mapa /// */
@@ -24,17 +25,72 @@
         background-color: #a5082d;
         height: calc(100vh - 80px);
         width: calc(400px - 20px);
-        border-top-right-radius: 15px;
-        border-bottom-right-radius: 15px;
+        /* border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px; */
         padding: 10px;
         position: absolute;
         z-index: 91;
-        overflow: hidden;
+        overflow: auto;
+        scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0);
+        scrollbar-width: thin;
+    }
+    #ContGeneralHome .feedHome #BtnFeedAnfitrion {
+        border-bottom: 1px solid #f3f3f369;
+        border-top: none;
+    }
+    #ContGeneralHome .feedHome #BtnFeedAnfitrion .btnFeedHome{
+        background: none;
+        border: none;
+        font-size: 15px;
+        padding: 10px;
+        color: #f3f3f3;
+        border-radius: 10px;
+        transition: all .3s ease;
+    }
+    #ContGeneralHome .feedHome #BtnFeedAnfitrion .btnFeedHome:hover{
+        background-color: #f3f3f367;
+        cursor: pointer;
+        user-select: none;
+    }
+    #ContGeneralHome .feedHome::-webkit-scrollbar {
+        -webkit-appearance: none;
+    }
+    #ContGeneralHome .feedHome::-webkit-scrollbar:vertical {
+        width:7px;
+    }
+    #ContGeneralHome .feedHome::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
+        display: none;
+    }
+    #ContGeneralHome .feedHome::-webkit-scrollbar:horizontal {
+        height: 10px;
+    }
+    #ContGeneralHome .feedHome::-webkit-scrollbar-thumb {
+        background-color: #f3f3f369;
+        border-radius: 20px;
+    }
+    #ContGeneralHome .feedHome::-webkit-scrollbar-track {
+        border-radius: 10px;  
     }
     #ContGeneralHome .feedHome h2{
         font-weight: 550;
         color: #f3f3f3;
     }
+    #ContGeneralHome .feedHome h3{
+        font-size: 30px;
+        padding: 20px;
+        padding-left: 0px;
+        user-select: none;
+    }
+    #ContGeneralHome #HeaderFeedHome{
+        height: auto;
+    }
+
+    /* /// Eventos cercanos /// */
+        #ContEventosFeed{
+            margin-top: 20px;
+            height: auto;
+        }
+    /* /// Fin eventos cercanos /// */
 
     /* /// Estilos para el evento /// */
         #ContEventoHomeFeed{
@@ -44,7 +100,7 @@
             flex-direction: column;
             margin-bottom: 10px;
             border-radius: 10px;
-            background-color: #2D0E30;
+            background-color: #c50d38;
             backdrop-filter: blur(20px);
             box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
             cursor: pointer;
@@ -65,7 +121,6 @@
             padding: 1px;
         }
         #ContEventoHomeFeed .infEvento h2{
-            background-color: #2D0E30;
         }
         #ContEventoHomeFeed .infEventoUbicacion{
             color: #f3f3f3a1;
