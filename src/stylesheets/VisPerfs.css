@@ -324,8 +324,13 @@
 
 
     /* /// Responsive de la página /// */
-    @media (max-width: 600px) {
-        
+    @media (max-width: 750px) {
+        #PortadaPerfilAnfitrion{
+            height: 200px;
+        }
+        #ContPerfilFeedInformacion{
+            grid-template-columns: 1fr;
+        }
     }
     /* /// Fin responsive de la página /// */
 

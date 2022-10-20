@@ -10,7 +10,7 @@ function Header({ tipo, user, children }) {
   return (
     <header className={tipo}>
       <section className="contLogo" onClick={() => nav(routes.home)}>
-        <div className="logo" >Kokoa</div>
+        <div className="logo" id="" >Kokoa</div>
       </section>
       <div className="userHeader">
         {children}
