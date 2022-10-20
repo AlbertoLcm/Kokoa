@@ -73,37 +73,36 @@ function Home() {
               </div>
             </section>
 
-            {/* {
-              visua === 1 ? (
-                <>
-                  <div>
-                    <h2>Eventos Cercanos</h2>
-                    {eventos.map((evento) => {
-                      return (
-                        <Evento
-                          lugar={evento.ubicacion}
-                          titulo={evento.evento}
-                          corrs={{ lat: evento.lat, lng: evento.lng }}
-                          mapa={map}
-                        />
-                      )
-                    })}
-                  </div>
-                </>
-              ) : visua === 2 ? (
-                <>
-                  <div>
-                    <h2>Eventos Recomendados</h2>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div>
-                    <h2>Comunidad</h2>
-                  </div>
-                </>
-              )
-            } */}
+            {visua === 2 ? (
+              <>
+                <div>
+                  <h2>Eventos Cercanos</h2>
+                  {eventos.map((evento) => {
+                    return (
+                      <Evento
+                        lugar={evento.ubicacion}
+                        titulo={evento.evento}
+                        corrs={{ lat: evento.lat, lng: evento.lng }}
+                        mapa={map}
+                      />
+                    )
+                  })}
+                </div>
+              </>
+            ) : visua === 1 ? (
+              <>
+                <div>
+                  <h2>Eventos Recomendados</h2>
+                </div>
+              </>
+            ) : (
+              <>
+                <div>
+                  <h2>Comunidad</h2>
+                </div>
+              </>
+            )
+            }
           </div>
         </section>
       </>
