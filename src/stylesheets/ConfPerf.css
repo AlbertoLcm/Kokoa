@@ -1,4 +1,40 @@
-
+#confPerfImgBack {
+    width: auto;
+    height: 250px;
+    object-fit: cover;
+    overflow: hidden;
+    position: absolute;
+    left: calc(20% + 180px);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+.confPerfNombrNum {
+    margin-left: 20px;
+    z-index: 1;
+}.confPerfNombrNum > h2 {
+    color: white;
+}
+#imgConfPerfPers {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+}
+.confPerfContImgNombr{
+    padding-top: 10px;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+}
+.confPerfImg {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-left: 20px;
+    overflow: hidden;
+    border: white solid 2px;
+    z-index: 1;
+}
 #acomodo {
     margin-right: 50px;
 }
@@ -88,7 +124,18 @@ button :focus {
 #AddDireccion{
     align-items: left;
 }
+@media only screen and (max-width: 750px) {
+    .contBase{
+        padding-top: 0px;
+    }
+    .contVis {
+        padding-top: 60px;
+    }
+}
 @media only screen and (min-width: 800px) {
+    .bm-burger-button{
+        display: none;
+    }
     .navSideBar{
         display: inline-block;
     }.navSideBar button {
