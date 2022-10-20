@@ -210,3 +210,52 @@
     width: auto;
 }
 /* === FIN Marker Info de cada evento === */
+
+.acomodo{
+    z-index: 101;
+    position: absolute;
+    width: 100%;
+    margin-top: 65px;
+    right: 10px;
+}.dropiOpcio{
+    border-radius: 10px;    
+    text-decoration: none;
+    float: right;
+    background-color: #fff;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 18px;
+    width: auto;
+    animation: toggle 1s linear;
+    box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.1);
+}.dropiOpcio > *{
+    margin-bottom: 5px;
+    color: #3f3f3f;
+    display: block;
+}.dropiOpcio > button {
+    border: none;
+    background: transparent;
+    width: 100%;
+    text-align: right;
+}
+
+@keyframes toggle {
+    0% {
+        transform: scaleY(0.3s);
+    }
+    100% {
+        transform: scaleY(1);
+    }
+}
+#toggleSalir{
+    cursor: pointer;
+    user-select: none;
+    height: 30px;
+}
+#togglePerfil{
+    height: 30px;
+    text-decoration: none;
+    user-select: none;
+    border-bottom: solid 1px #3f3f3f;
+}
