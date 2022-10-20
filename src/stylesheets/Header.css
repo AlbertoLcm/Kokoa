@@ -10,7 +10,9 @@ header{
     transform: 0.5s;
     z-index: 100;
 }
-
+.responsive{
+    background-color: #410046;
+}
 .color{
     background-color: #410046;
 }
@@ -42,17 +44,13 @@ header{
 }
 
 @media (max-width: 750px) {
-    .logo{
-        cursor: pointer;
-        user-select: none;
-        color: #3f3f3f;
-        font-size: 30px;
-        font-family: 'Berlin Sans FB';
-    }
-    .userHeader{
-        color: #3f3f3f;
-    }
     .color{
         background: none;
+    }
+    .color .logo{
+        color: #3f3f3f;
+    }
+    .color .userHeader{
+        color: #3f3f3f;
     }
 }
