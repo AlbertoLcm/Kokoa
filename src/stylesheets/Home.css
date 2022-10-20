@@ -1,112 +1,111 @@
-.detEvent {
-    width: 100%;
-    height: 100%;
-    background-color: #501a55;
-    border-radius: 15px;
-    overflow-x: hidden;
-    overflow-y: auto;
-}
-.detAnfit {
-    background-color: #501a55;
-    border-radius: 15px;
+/* ==== Estilos by Alberto ==== */
 
-}
-.detAnfit > a {
-    text-decoration: none;
-    color: white;
+    #ContGeneralHome{
+        padding-top: 60px;
+        width: 100%;
+        height: calc(100vh - 60px);
+        position: relative;
+    }
     
-}
-.eventsNegPrin h3{
-    color: black;
-    margin-bottom: 0px;
-}
-.eventsNegPrin h1{
-    color: black;
-    margin-bottom: 0px;
-}
+    /* /// Estilos para el mapa /// */
+        #ContGeneralHome .contMapaHome{
+            position: absolute;
+            width: 100%;
+            height: calc(100vh - 60px);
+        }
+        #ContGeneralHome .contMapaHome .mapaHome{
+            height: calc(100vh - 60px);
+            width: 100%;
+        }
+    /* /// Fin Estilos para el mapa /// */
 
-.color {
-    display: flex;
-    justify-content: right;
-}
-.butNav{
-    border: none;
-    font-size: 25px;
-    background-color: transparent;
-    width: auto;
-    z-index: 101;
-    color: white;
-}.butNav :focus{
-    background: transparent;
-}
-.acomodo{
-    z-index: 101;
-    position: absolute;
-    width: 100%;
-    margin-top: 65px;
-    right: 10px;
-}.dropiOpcio{
-    border-radius: 10px;    
-    text-decoration: none;
-    float: right;
-    background-color: #fff;
-    padding-top: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    font-size: 18px;
-    width: auto;
-    animation: toggle 1s linear;
-    box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.1);
-}.dropiOpcio > *{
-    margin-bottom: 5px;
-    color: #3f3f3f;
-    display: block;
-}.dropiOpcio > button {
-    border: none;
-    background: transparent;
-    width: 100%;
-    text-align: right;
-}
-
-@keyframes toggle {
-    0% {
-        transform: scaleY(0.3s);
+    #ContGeneralHome .feedHome{
+        /* background-color: #EC1C4E; */
+        background-color: #a5082d;
+        height: calc(100vh - 80px);
+        width: calc(400px - 20px);
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+        padding: 10px;
+        position: absolute;
+        z-index: 91;
+        overflow: hidden;
     }
-    100% {
-        transform: scaleY(1);
+    #ContGeneralHome .feedHome h2{
+        font-weight: 550;
+        color: #f3f3f3;
     }
-}
-#toggleSalir{
-    cursor: pointer;
-    user-select: none;
-    height: 30px;
-}
-#togglePerfil{
-    height: 30px;
-    text-decoration: none;
-    user-select: none;
-    border-bottom: solid 1px #3f3f3f;
-}
-.contHome{
-    background-image: linear-gradient(-135deg, #410046, #EC1C4E);
-    min-height: 100vh;
-    position: relative;
-    display: flex;
-    color: #f3f3f3;
-}
 
-.bm-burger-button{
-    display: none;
-}
-.hoContLink{
-    max-height: 30px;
-    margin-bottom: 10px;
-}
-.hoContMapa{
-    height: fill-available;
-    width: 100%;
-    user-select: none;
-}
+    /* /// Estilos para el evento /// */
+        #ContEventoHomeFeed{
+            overflow: hidden;
+            display: flex;
+            height: auto;
+            flex-direction: column;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            background-color: #2D0E30;
+            backdrop-filter: blur(20px);
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: 0.3s;
+            color: #f3f3f3;
+        }
+        #ContEventoHomeFeed #ContImgEventoFeed{
+            height: 100px;
+            overflow: hidden;
+            border-radius: 10px 10px 0px 0px;
+        }
+        #ContEventoHomeFeed #ContInfEvento{
+            padding: 10px;
+            height: 100px;
+        }
+        #ContEventoHomeFeed .infEventoFecha{
+            color: #f3f3f3;
+            padding: 1px;
+        }
+        #ContEventoHomeFeed .infEvento h2{
+            background-color: #2D0E30;
+        }
+        #ContEventoHomeFeed .infEventoUbicacion{
+            color: #f3f3f3a1;
+        }
+        #ContEventoHomeFeed .asistentesEvento{
+            margin-top: 10px;
+        }
+        .contEvento:hover{
+            background-color: #2D0E30;
+        } 
+    /* ==== Fin estilos para el evento */
+
+
+    /* /// Responsive de la página /// */
+    @media (max-width: 750px) {
+        #ContGeneralHome{
+            padding-top: 0px;
+            height: 100vh;
+        }
+        #ContGeneralHome .feedHome{
+            height: 50vh;
+            width: calc(100% - 20px);
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 0px;
+            bottom: 0px;
+        }
+        #ContGeneralHome .contMapaHome{
+            position: absolute;
+            width: 100%;
+            height: 50vh;
+        }
+        #ContGeneralHome .contMapaHome .mapaHome{
+            height: 50vh;
+            width: 100%;
+        }
+
+    }
+    /* /// Fin responsive de la página /// */
+
 /* === Marker Info de cada evento by Alberto === */
 #markerInfoPos {
     height: -moz-available;          /* WebKit-based browsers will ignore this. */
@@ -211,86 +210,3 @@
     width: auto;
 }
 /* === FIN Marker Info de cada evento === */
-
-#contFeed{
-    height: -moz-available;          /* WebKit-based browsers will ignore this. */
-    height: fill-available;
-    margin-top: 60px;
-    display: flex;
-    align-items: center;
-    z-index: 100;
-    position: fixed;
-}
-
-#feedHome{
-    padding: 30px;
-    min-width: 320px;
-    max-width: 320px;
-    max-height: 77vh;
-    min-height: 77vh;
-    margin-left: 40px;
-    background-color: #85018fa2;
-    backdrop-filter: blur(10px);
-    z-index: 80;
-    border-radius: 15px;
-    position: absolute;
-    flex-direction: column;
-    display: none;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-}
-/* === Styles Modal infEvento */
-#contInfoEvento{
-    width: 100%;
-}
-#contInfoEvento h1{
-    color: #3f3f3f;
-    text-align: center;
-}
-/* Estilos para el evento */
-.contEvento{
-    position: absolute;
-    
-    margin-bottom: 10px;
-    border-radius: 10px;
-    background-color: #893a8f;
-    backdrop-filter: blur(20px);
-    padding: 10px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: 0.3s;
-    color: #f3f3f3;
-}
-.contEvento:hover{
-    background-color: #8a3191;
-}
-
-#feedHome > h1 p{
-    color: #3f3f3f;
-    font-family: 'Berlin Sans FB';
-    font-weight: 350;
-}
-.bm-menu p{
-    color: white;
-}
-.CrearEvento {
-    overflow-y: scroll;
-    max-height: 85%;
-}.CrearEvento ::-webkit-scrollbar{
-    width: 5px;
-}
-@media only screen and (max-width: 778px) {
-    .bm-burger-button{
-        display: block;
-    }
-    .feedHome{
-        display: none;
-    }
-}
-@media only screen and (min-width: 779px) {
-    #feedHome{
-        display: flex;
-    }
-    #feedHome a {
-        z-index: 0;
-    }
-}

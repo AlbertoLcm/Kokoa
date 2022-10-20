@@ -34,7 +34,7 @@ function Login() {
   return (
     <div className="contImagen">
       <Header>
-        <Link to="/signup" className="boton1">
+        <Link to={routes.newusuario} className="btnLink">
           Crear Cuenta
         </Link>
       </Header>

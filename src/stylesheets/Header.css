@@ -8,13 +8,11 @@ header{
     justify-content: right;
     height: 60px;
     transform: 0.5s;
-    backdrop-filter: blur(10px);
     z-index: 100;
 }
 
 .color{
     background-color: #410046;
-    backdrop-filter: blur(10px);
 }
 
 .fondo{
@@ -41,4 +39,20 @@ header{
     font-size: 20px;
     cursor: pointer;
     user-select: none;
+}
+
+@media (max-width: 750px) {
+    .logo{
+        cursor: pointer;
+        user-select: none;
+        color: #3f3f3f;
+        font-size: 30px;
+        font-family: 'Berlin Sans FB';
+    }
+    .userHeader{
+        color: #3f3f3f;
+    }
+    .color{
+        background: none;
+    }
 }

@@ -6,11 +6,6 @@ import { GoogleMap, InfoWindow, Marker, useJsApiLoader } from "@react-google-map
 import marker from "../images/marker4.png";
 import { libraries, stylesArray } from "../helpers/methodsMap";
 
-const containerStyle = {
-  width: "100%",
-  height: "100vh"
-};
-
 function Mapa({ mapSet, map }) {
   const { addEventos, mostrar } = useAuth();
 
@@ -87,7 +82,8 @@ function Mapa({ mapSet, map }) {
 
   return (
     <div>
-      <GoogleMap mapContainerStyle={containerStyle}
+      <GoogleMap
+        mapContainerClassName="mapaHome" 
         center={centerMy}
         zoom={16}
         options={{

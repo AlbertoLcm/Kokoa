@@ -15,6 +15,19 @@
 .boton1:hover{
     background-color: #ff9900;
 }
+.btnLink{
+    text-decoration: none;
+    border: 2px solid #196eff;
+    border-radius: 30px;
+    padding: 7px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #f3f3f3;
+    transition: all 300ms ease;
+}
+.btnLink:hover{
+    background-color: #196eff;
+}
 
 .boton2{
     width: 100%;

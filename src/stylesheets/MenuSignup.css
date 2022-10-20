@@ -5,10 +5,8 @@
     background-color: black;
 }
 .contBackground{
-    background-color: #410046;
-    /* background-color: linear-gradient(-135deg, #410046, #EC1C4E);; */
+    background: linear-gradient(to left, #410046, #EC1C4E);
     min-height: 100vh;
-    
 }
 .contPrincipal{
     max-width: 100%;
