@@ -2,9 +2,10 @@ import React from "react";
 import "../stylesheets/Buttons.css";
 import Header from "../components/Header";
 import "../stylesheets/SignUsuario.css";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useState } from "react";
 import useAuth from "../auth/useAuth";
+import routes from "../helpers/routes";
 
 function SignUsuario() {
   const { signup } = useAuth();
@@ -30,15 +31,10 @@ function SignUsuario() {
 
   return (
     <div className="contBackground">
-      <Header boton={"Crear Cuenta"}>
-        <div className="UsbotVolverPC">
-          <button className="boton1"
-            onClick={
-              () => nav(-1)
-            }>
-            Volver
-          </button>
-        </div>
+      <Header>
+        <Link to={routes.login} className="btnLink">
+          Iniciar Sesión
+        </Link>
       </Header>
       <div className="UscontTot">
         <div className="UscontForm">
@@ -52,7 +48,7 @@ function SignUsuario() {
               </button>
             </div>
             <div className="UscontCabeza">
-              <h1>REGISTRO COMO USUARIO</h1>
+              <h1>Crear cuenta nueva</h1>
             </div>
             <div className="contInpUs">
               <div className="inputBox">

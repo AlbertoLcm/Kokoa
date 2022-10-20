@@ -4,7 +4,7 @@ import '../stylesheets/Header.css'
 import icon from '../images/iconRetroceso.png'
 import routes from "../helpers/routes";
 
-function Header({ tipo, user, volver }) {
+function Header({ tipo, user, children }) {
   const nav = useNavigate();
 
   return (
@@ -12,8 +12,8 @@ function Header({ tipo, user, volver }) {
       <section className="contLogo" onClick={() => nav(routes.home)}>
         <div className="logo" >Kokoa</div>
       </section>
-      {volver && <span className="btnVolver" onClick={() => nav(-1)}> <img src={icon} /> </span>}
       <div className="userHeader">
+        {children}
         {user}
       </div>
     </header>
