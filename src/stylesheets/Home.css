@@ -1,3 +1,21 @@
+.detEvent {
+    width: 100%;
+    height: 100%;
+    background-color: #501a55;
+    border-radius: 15px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.detAnfit {
+    background-color: #501a55;
+    border-radius: 15px;
+
+}
+.detAnfit > a {
+    text-decoration: none;
+    color: white;
+    
+}
 .eventsNegPrin h3{
     color: black;
     margin-bottom: 0px;
@@ -90,19 +108,30 @@
     user-select: none;
 }
 /* === Marker Info de cada evento by Alberto === */
-.markerInfo{
-    color: black;
-    font-size: 14px;
-    min-height: 120px;
-    max-height: 150px;
-    width: 400px;
-    display: grid;
-    grid-template-columns: 1fr 4fr;
-    grid-template-rows: auto;
+#markerInfoPos {
+    height: -moz-available;          /* WebKit-based browsers will ignore this. */
+    height: fill-available;
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    z-index: 100;
+    position: fixed;
+    right: 5px;
 }
-.markerInfo h1{
+.markerInfo{
+    padding: 15px;
+    border-radius: 15px;
+    color: white;
+    font-size: 14px;
+    min-height: 77vh;
+    max-height: 77vh;
+    width: 350px;
+    background: #2D0E30; 
+}
+.markerInfo > h1{
     font-size: 20px;
-    color: #3f3f3f;
+    color: white;
 }
 .markerInfo label{
     font-weight: 550;
@@ -113,27 +142,73 @@
     justify-content: space-between;
 }
 #contMarkerInfo h1{
-    color: #3f3f3f;
+    
     margin-bottom: 3px;
 }
 .contImageMakerInfoFondo{
     height: 100%;
     width: 100%;
     display: flex;
-    align-items: center;
 }
 #contImagenMarkerInfo{
-    height: 100px;
-    width: 100px;
-    border-radius: 50%;
+    margin-left: -15px;
+    margin-top: -15px;
+    border-radius: 15px;
+    height: 150px;
+    width: calc(100% + 30px);
     margin-right: 10px;
+    margin-bottom: 15px;
     overflow: hidden;
     background-color: #f3f3f3;
 }
 #imagenMarkerInfo{
+    width: 100%;
+    object-fit: contain;
+    object-position: 0px 0px;
+}
+#botAsist {
+    display: flex;
+    justify-content: right;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#botAsist > button {
+    font-size: 20px;
+    background-color: #501a55;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 15px;
+}
+#eventoInfo {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+.anfitrionMarkerInfo{
+    text-align: center;
+    align-items: center;
+}
+.contImgAnfEveGen{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.contImgAnfEve {
+    height: 100px;
+    width: 100px;    
+    margin-bottom: 10px;
+    border-radius: 50%;
+    border: 2px solid #f3f3f3;
+    overflow: hidden;
+}
+#imgAnfMark {
     height: 100%;
     width: auto;
-    object-fit: cover;
 }
 /* === FIN Marker Info de cada evento === */
 
@@ -173,8 +248,8 @@
 }
 /* Estilos para el evento */
 .contEvento{
-    display: flex;
-    flex-direction: column;
+    position: absolute;
+    
     margin-bottom: 10px;
     border-radius: 10px;
     background-color: #893a8f;

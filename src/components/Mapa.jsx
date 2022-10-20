@@ -13,9 +13,13 @@ const containerStyle = {
 
 function Mapa({ mapSet, map }) {
   const { addEventos, mostrar } = useAuth();
+
   const [activeMarker, setActiveMarker] = useState(null);
+
   const [lugares, setLugares] = useState([]);
+
   const [eventoInfo, setEventoInfo] = useState({});
+
   const [centerMy, setCenterMy] = useState({ lat: 19.4326077, lng: -99.133208 });
   const rango = [];
 
@@ -112,14 +116,14 @@ function Mapa({ mapSet, map }) {
                 onClick={() => asignacion(evento.id_evento)}>
 
                 {activeMarker === evento.id_evento && (
-                  <InfoWindow onCloseClick={() => setActiveMarker(null)}>
-                    <div className="markerInfo">
-                      <InfEvento
-                        id={eventoInfo.id_evento}
-                        evento={eventoInfo} 
-                      />
+                    <div id="markerInfoPos">
+                      <div className="markerInfo">
+                        <InfEvento
+                          id={eventoInfo.id_evento}
+                          evento={eventoInfo} 
+                        />
+                      </div>
                     </div>
-                  </InfoWindow>
                 )};
               </Marker>
             );
