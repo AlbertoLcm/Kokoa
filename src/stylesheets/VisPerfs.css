@@ -122,7 +122,7 @@
 
         #ContPerfilFeedInformacion{
             display: grid;
-            grid-template-columns: 1.5fr 1fr;
+            grid-template-columns: 1fr 1.5fr;
             gap: 15px;
             padding-top: 20px;
             padding-bottom: 20px;
@@ -179,13 +179,13 @@
                 #InfDetallesAnfitrion .fotosAnfitrion .contFotosAnfitrion{
                     display: flex;
                     flex-wrap: wrap;
-                    gap: 5px;
+                    gap: 10px;                   
                 }
                 #InfDetallesAnfitrion .fotosAnfitrion .fotoAnfitrion{
                     background-color: #f3f3f32c;
                     border-radius: 10px;
-                    height: 120px;
-                    width: 120px;
+                    height: 118px;
+                    width: 118px;
                     overflow: hidden;
                 }
                 #InfDetallesAnfitrion .fotosAnfitrion .fotoAnfitrion img{
@@ -331,6 +331,39 @@
         #ContPerfilFeedInformacion{
             grid-template-columns: 1fr;
         }
+        #PerfilFeedAnfitrion{
+            width: 100%;
+        }
+        #InfPerfilAnfitrion{
+            display: flex;
+            flex-direction: column-reverse;
+            width: 100%;
+        }
+        #DatosPerfilAnfitrion{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #ContFotoPerfilAnfitrion{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: -50px;
+        }
+        #ContenedorResponsiveFeed{
+            width: 95%;
+        }
+        /* /// Foto de perfil /// */
+        #FotoPerfilAnfitrion{
+            width: 140px;
+            height: 140px;
+            overflow: hidden;
+            margin-right: 0px;
+            margin-top: 0px;
+        }
+    /* /// Fin foto de perfil /// */
     }
     /* /// Fin responsive de la página /// */
 
