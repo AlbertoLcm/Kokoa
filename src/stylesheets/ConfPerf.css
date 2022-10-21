@@ -1,39 +1,60 @@
-#confPerfImgBack {
-    width: auto;
-    height: 250px;
-    object-fit: cover;
-    overflow: hidden;
+.confPerfVisPrin{
     position: absolute;
-    left: calc(20% + 180px);
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-}
-.confPerfNombrNum {
-    margin-left: 20px;
-    z-index: 1;
-}.confPerfNombrNum > h2 {
-    color: white;
-}
-#imgConfPerfPers {
-    height: 100%;
-    width: auto;
-    object-fit: cover;
-}
-.confPerfContImgNombr{
-    padding-top: 10px;
     width: 100%;
-    height: 200px;
-    display: flex;
-    align-items: center;
 }
 .confPerfImg {
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    margin-left: 20px;
+    position: relative;
     overflow: hidden;
     border: white solid 2px;
     z-index: 1;
+    top: 140px;
+    left: 24%;
+}
+.contPerf > header > div {
+    color: white !important; 
+}
+.contPerf > header > section > div {
+    color: white !important;
+}
+
+#confPerfImgBack {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    overflow: hidden;
+    position: absolute;
+    top: 0px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.confPerfInfoGen{
+    padding-top: 150px;
+}
+#contInfoGen {
+    display: flex;
+    min-height: 35px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: #2a142c;
+    padding-left: 15px;
+    
+}#contInfoGen h2 {
+    color: white;
+    width: 78%;
+    word-wrap: break-word;
+}#contInfoGen button {
+    width: 20%;
+    color: white;
+    background: transparent;
+    border: 1px solid #f3f3f3;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 #acomodo {
     margin-right: 50px;
@@ -65,8 +86,8 @@
     font-size: 30px;
 }
 .contPerf{
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
 }
 .labCorr{
     max-width: 100%;
@@ -75,12 +96,13 @@
 .contBase{
     display: flex;
     padding-top: 70px;
-    height: 100vh;
+    height: 100%;
+    overflow-x: hidden;
 }.contBase > div {
     height: 100%;
 }
 .navSideBar {
-    width: 20%;
+    width: calc(20% - 2px);
     display: none;
     border-right: white solid 1px;
     background-color: #2a142c;
@@ -132,7 +154,57 @@ button :focus {
         padding-top: 60px;
     }
 }
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 768px) {
+    .confPerfInfoGen{
+        padding-top: 270px;
+    }
+    .confPerfVisPrin {
+        width: 80%;
+    }
+    #confPerfImgBack {
+        width: auto;
+        height: 250px;
+        left: 20%;
+        object-fit: cover;
+        overflow: hidden;
+        position: absolute;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+    }
+    .confPerfNombrNum {
+        margin-left: 20px;
+        z-index: 1;
+    }.confPerfNombrNum > h2 {
+        color: white;
+    }
+    #imgConfPerfPers {
+        height: 100%;
+        width: auto;
+        object-fit: cover;
+    }
+    .confPerfContImgUsBack{
+        width: 80%;
+        height: 250px;
+        display: flex;
+        align-items: center;
+        position: absolute;
+    }
+    .confPerfImg {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        position: relative;
+        top: 0px;
+        left: 10%;
+        overflow: hidden;
+        border: white solid 2px;
+        z-index: 1;
+    }
+}
+.contBase .bm-burger-bars {
+    background: white;
+}
+@media only screen and (min-width: 1024px) {
     .bm-burger-button{
         display: none;
     }

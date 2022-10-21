@@ -38,33 +38,32 @@ function ConPerf() {
             }
             <div className="contBase">
                 <Menu>
-                    <button onClick={() => cambioVis(0)}>Información personal</button>
+                    <button onClick={() => cambioVis(1)}>Información personal</button>
                     <button onClick={() => cambioVis(2)}>Descripcíon</button>
                     <button onClick={() => cambioVis(3)}>Historial de eventos </button>
                 </Menu>
                 <div className="navSideBar">
-                    <button onClick={() => cambioVis(0)}>Información general</button>
+                    <button onClick={() => cambioVis(1)}>Información general</button>
                     <button onClick={() => cambioVis(2)}>Descripcíon</button>
                     <button onClick={() => cambioVis(3)}>Historial de eventos </button>
                 </div>
                 <div className="contVis">
                     { 
-                        cont === 0 ? ( 
+                        cont === 1 ? ( 
                             <div className="confPerfVisPrin">
-                                <div className="confPerfContImgNombr">
+                                <div className="confPerfContImgUsBack">
                                     <div className="confPerfImg">
                                         <img src={img} alt="Allí no era" id="imgConfPerfPers"/>
                                     </div>
                                     <img src={backimg} id="confPerfImgBack" />
                                 </div>
-                                <div>
-                                    <p><span><h2>{user[0].nombre} </h2></span> </p>
-                                    <h2>{user[0].telefono} </h2>
+                                <div className="confPerfInfoGen">
+                                    <div id="contInfoGen"><h2>{user[0].nombre}</h2> <button>Cambiar nombre</button></div>
+                                    <div id="contInfoGen"><h2>{user[0].telefono}</h2> <button>Actualizar numero</button></div>
+                                    <div id="contInfoGen"><h2>{user[0].email}</h2> <button>Actualizar numero</button></div>
+                                    <div id="contInfoGen"><h2>{user[0].domicilio !== null ? (user[0].domicilio) : ("Sin dirección")}</h2> <button>Actualizar Dirección</button></div>
+                                    <div id="contInfoGen"><h2>{user[0].fecha_nacimiento !== null ? (user[0].fecha_nacimiento) : ("Sin fecha de nacimiento")}</h2> <button>Actualizar Fecha de nacimiento</button></div>
                                 </div>
-                            </div>
-                        ): cont === 1 ? (
-                            <div className="direccion">
-                                <Perfil />
                             </div>
                         ) : cont === 2 ? (
                             <div className="descripcion">
