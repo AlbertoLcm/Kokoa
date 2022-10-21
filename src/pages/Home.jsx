@@ -56,7 +56,7 @@ function Home() {
         <section id="ContGeneralHome">
           <div className="contMapaHome">
             <Suspense fallback={<Loading />}>
-              <Mapa mapSet={handleSetMap} />
+              <Mapa mapSet={handleSetMap} map={map} />
             </Suspense>
           </div>
           <div className="feedHome">
@@ -74,7 +74,7 @@ function Home() {
             </section>
             {visua === 2 ? (
               <>
-                {/* <h3>Cerca de ti</h3> */}
+                <h3>Cerca de ti</h3>
                 <div id="ContEventosFeed">
                   {eventos.map((evento) => {
                     return (
@@ -90,15 +90,14 @@ function Home() {
               </>
             ) : visua === 1 ? (
               <>
+                <h3>Recomendados</h3>
                 <div>
-                  <h3></h3>
+                  Aún no hay eventos recomendados para ti
                 </div>
               </>
             ) : (
               <>
-                <div>
-                  <h2>Comunidad</h2>
-                </div>
+                <h3>Comunidad</h3>
               </>
             )
             }

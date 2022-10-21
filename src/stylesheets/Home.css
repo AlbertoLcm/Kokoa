@@ -23,16 +23,27 @@
     #ContGeneralHome .feedHome{
         /* background-color: #EC1C4E; */
         background-color: #a5082d;
-        height: calc(100vh - 80px);
-        width: calc(400px - 20px);
-        /* border-top-right-radius: 15px;
-        border-bottom-right-radius: 15px; */
-        padding: 10px;
+        height: calc(100vh - 90px);
+        width: calc(450px - 20px);
+        padding: 15px;
         position: absolute;
         z-index: 91;
         overflow: auto;
         scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0);
         scrollbar-width: thin;
+    }
+    #ContGeneralHome .feedHome h2{
+        font-weight: 550;
+        color: #f3f3f3;
+    }
+    #ContGeneralHome .feedHome h3{
+        font-size: 30px;
+        padding: 20px;
+        padding-left: 0px;
+        user-select: none;
+    }
+    #ContGeneralHome #HeaderFeedHome{
+        height: auto;
     }
     #ContGeneralHome .feedHome #BtnFeedAnfitrion {
         border-bottom: 1px solid #f3f3f369;
@@ -52,42 +63,32 @@
         cursor: pointer;
         user-select: none;
     }
-    #ContGeneralHome .feedHome::-webkit-scrollbar {
-        -webkit-appearance: none;
-    }
-    #ContGeneralHome .feedHome::-webkit-scrollbar:vertical {
-        width:7px;
-    }
-    #ContGeneralHome .feedHome::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
-        display: none;
-    }
-    #ContGeneralHome .feedHome::-webkit-scrollbar:horizontal {
-        height: 10px;
-    }
-    #ContGeneralHome .feedHome::-webkit-scrollbar-thumb {
-        background-color: #f3f3f369;
-        border-radius: 20px;
-    }
-    #ContGeneralHome .feedHome::-webkit-scrollbar-track {
-        border-radius: 10px;  
-    }
-    #ContGeneralHome .feedHome h2{
-        font-weight: 550;
-        color: #f3f3f3;
-    }
-    #ContGeneralHome .feedHome h3{
-        font-size: 30px;
-        padding: 20px;
-        padding-left: 0px;
-        user-select: none;
-    }
-    #ContGeneralHome #HeaderFeedHome{
-        height: auto;
-    }
+
+    /* Esto es del scoll */
+        #ContGeneralHome .feedHome::-webkit-scrollbar {
+            -webkit-appearance: none;
+        }
+        #ContGeneralHome .feedHome::-webkit-scrollbar:vertical {
+            width:7px;
+        }
+        #ContGeneralHome .feedHome::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
+            display: none;
+        }
+        #ContGeneralHome .feedHome::-webkit-scrollbar:horizontal {
+            height: 10px;
+        }
+        #ContGeneralHome .feedHome::-webkit-scrollbar-thumb {
+            background-color: #f3f3f369;
+            border-radius: 20px;
+        }
+        #ContGeneralHome .feedHome::-webkit-scrollbar-track {
+            border-radius: 10px;  
+        }
+    /* Fin del scroll */
 
     /* /// Eventos cercanos /// */
         #ContEventosFeed{
-            margin-top: 20px;
+            /* margin-top: 20px; */
             height: auto;
         }
     /* /// Fin eventos cercanos /// */
@@ -162,34 +163,131 @@
     /* /// Fin responsive de la página /// */
 
 /* === Marker Info de cada evento by Alberto === */
-#markerInfoPos {
-    height: -moz-available;          /* WebKit-based browsers will ignore this. */
-    height: fill-available;
-    margin-top: 60px;
+#MarkerInfoPos {
+    height: calc(100vh - 60px);
+    width: 400px;
+    position: fixed;
+    z-index: 100;
+    right: 60px;
     display: flex;
     align-items: center;
-    justify-content: right;
-    z-index: 100;
-    position: fixed;
-    right: 5px;
 }
-.markerInfo{
-    padding: 15px;
+#MarkerInfoPos .markerInfo{
     border-radius: 15px;
-    color: white;
-    font-size: 14px;
-    min-height: 77vh;
-    max-height: 77vh;
-    width: 350px;
-    background: #2D0E30; 
+    background: #140016;
+    backdrop-filter: blur(20px);
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.253);
+    transition: all .3s ease;
 }
-.markerInfo > h1{
+#MarkerInfoPos .markerInfo .markerInfo h1{
     font-size: 20px;
     color: white;
 }
-.markerInfo label{
+#MarkerInfoPos .markerInfo .markerInfo label{
     font-weight: 550;
 }
+#MarkerInfoPos .contImagenMarkerInfo{
+    width: 100%;
+    height: 100px;
+    position: relative;
+    background-color: #f3f3f3;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    overflow: hidden;
+}
+#MarkerInfoPos .contImagenMarkerInfo button{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #f3f3f37c;
+    height: 30px;
+    width: 30px;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#MarkerInfoPos .contImagenMarkerInfo img{
+    width: 100%;
+    height: auto;
+}
+#MarkerInfoPos .contMarkerInfo{
+    padding: 15px;
+    color: #f3f3f3;
+}
+#MarkerInfoPos .contBtnMarkerInfo{
+    display: flex;
+    justify-content: end;
+    padding-right: 15px;
+    gap: 5px;
+}
+#MarkerInfoPos .contBtnMarkerInfo button{
+    width: 100px;
+    height: 30px;
+    background-color: #f3f3f377;
+    backdrop-filter: blur(10px);
+    border: none;
+    border-radius: 5px;
+    color: #130014;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+#MarkerInfoPos .contBtnMarkerInfo button:hover{
+    background-color: #f3f3f3c4;
+}
+#MarkerInfoPos #EventoInfo{
+    padding: 15px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+#MarkerInfoPos #EventoInfo .detEvent{
+    padding: 10px;
+    background-color: #2D0E30;
+    border-radius: 10px;
+}
+#MarkerInfoPos #EventoInfo .detAnfit{
+    padding: 10px;
+    background-color: #2D0E30;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+#MarkerInfoPos #EventoInfo .detAnfit .contDetAnfit{
+    color: #f3f3f3;
+    margin-top: 10px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    height: 60px;
+}
+#MarkerInfoPos #EventoInfo .detAnfit .contDetAnfit label{
+    text-decoration: underline;
+    cursor: pointer;
+}
+#MarkerInfoPos #EventoInfo .detAnfit:hover{
+    background-color: #f3f3f359;
+    cursor: pointer;
+}
+#MarkerInfoPos .contDetAnfit .contImgAnfEve {
+    height: 60px;
+    width: 60px;    
+    border-radius: 50%;
+    margin-right: 10px;
+    border: 2px solid #f3f3f3;
+    overflow: hidden;
+}
+#MarkerInfoPos .contDetAnfit .contImgAnfEve img {
+    height: 100%;
+    width: auto;
+}
+
+
+
 #contMarkerInfo{
     display: flex;
     flex-direction: column;
@@ -199,71 +297,7 @@
     
     margin-bottom: 3px;
 }
-.contImageMakerInfoFondo{
-    height: 100%;
-    width: 100%;
-    display: flex;
-}
-#contImagenMarkerInfo{
-    margin-left: -15px;
-    margin-top: -15px;
-    border-radius: 15px;
-    height: 150px;
-    width: calc(100% + 30px);
-    margin-right: 10px;
-    margin-bottom: 15px;
-    overflow: hidden;
-    background-color: #f3f3f3;
-}
-#imagenMarkerInfo{
-    width: 100%;
-    object-fit: contain;
-    object-position: 0px 0px;
-}
-#botAsist {
-    display: flex;
-    justify-content: right;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-#botAsist > button {
-    font-size: 20px;
-    background-color: #501a55;
-    color: white;
-    border-radius: 5px;
-    border: none;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-right: 15px;
-}
-#eventoInfo {
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-}
-.anfitrionMarkerInfo{
-    text-align: center;
-    align-items: center;
-}
-.contImgAnfEveGen{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-.contImgAnfEve {
-    height: 100px;
-    width: 100px;    
-    margin-bottom: 10px;
-    border-radius: 50%;
-    border: 2px solid #f3f3f3;
-    overflow: hidden;
-}
-#imgAnfMark {
-    height: 100%;
-    width: auto;
-}
+
 /* === FIN Marker Info de cada evento === */
 
 .acomodo{
