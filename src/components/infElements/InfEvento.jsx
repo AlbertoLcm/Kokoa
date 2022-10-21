@@ -4,7 +4,7 @@ import instance from '../../api/axios';
 import Skeleton from '../Skeleton';
 import image from '../../images/loginWallpaper.jpg';
 
-function InfEvento({ id, evento }) {
+function InfEvento({ id, evento, cerrar }) {
 
   const [eventoInfo, setEventoInfo] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -27,49 +27,50 @@ function InfEvento({ id, evento }) {
 
   return (
     <>
-        <div id="contImagenMarkerInfo">
-          <img src={image} alt="imagen" id="imagenMarkerInfo" />
-        </div>
-      <section id="contMarkerInfo">
-      <p>
-            Inicia el
-            <label> {fecini.toLocaleDateString()} </label>
-            a las: 
-            <label> {fecini.toLocaleTimeString()} </label>
+      <div className="contImagenMarkerInfo">
+        <button onClick={() => cerrar()}>x</button>
+        <img src={image} alt="imagen" />
+      </div>
+
+      <div className='contDataMarkerInfo'>
+        <section className="contMarkerInfo">
+          <p className="infEventoFecha">
+            Incia el
+            {` ${fecini.toLocaleDateString()} `}
+            a las
+            {` ${fecini.toLocaleTimeString()} `}
             horas
           </p>
-        <div className='datosMarkerInfo'>
-          <h1>{eventoInfo.nombre}</h1>
-          <label>{eventoInfo.ubicacion}</label>
-        </div>
-      </section>
+          <h2>{evento.nombre}</h2>
+          <p className="infEventoUbicacion">
+            {evento.ubicacion}
+          </p>
+        </section>
 
-      <section id="botAsist">
-        <button>Asistir</button>
-        <button>Invitar</button>
-      </section>
+        <section className='contBtnMarkerInfo'>
+          <button> Asistir </button>
+          <button> Invitar </button>
+        </section>
 
-      <section id="eventoInfo">
-        <div className='detEvent'>  
-          <h1>Detalles</h1>
-          <p>{eventoInfo.detalles}</p>
-        </div>
-        <div className='detAnfit'>
-          <Link to={`/visperfil/${eventoInfo.id}`}>
-            <div className='anfitrionMarkerInfo'>
-              <div className='contImgAnfEveGen'>
-                <div className='contImgAnfEve'>
-                  <img src={image} alt="Predefinir" id="imgAnfMark" />
-                </div>
+        <section id="EventoInfo">
+          <div className='detEvent'>
+            <h1>Detalles</h1>
+            <p>{eventoInfo.detalles}</p>
+          </div>
+          <div className='detAnfit'>
+            <h1>Anfitrion</h1>
+            <Link to={`/visperfil/${eventoInfo.id}`} className={"contDetAnfit"}>
+              <div className='contImgAnfEve'>
+                <img src={image} alt="Predefinir" />
               </div>
-              <label >Un evento de</label>
-              <h2> {eventoInfo.hostNombre}</h2>
-              <br />
-              <h2>Conocer</h2>
-            </div>  
-          </Link> 
-        </div>
-      </section>
+              <div>
+                Un evento de {eventoInfo.hostNombre}. <br /> 
+                <label> Conocer </label>
+              </div>
+            </Link>
+          </div>
+        </section>
+      </div>
     </>
   );
 

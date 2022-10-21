@@ -78,14 +78,21 @@ function Mapa({ mapSet, map }) {
     handleActiveMarker(id);
     const eve = lugares.find((evento) => evento.id_evento === id);
     setEventoInfo(eve);
+    map.panTo({ lat: eve.lat, lng: eve.lng })
+    map.setZoom(18);
+  }
+
+  const desasignacion = () => {
+    setActiveMarker(null);
+    map.setZoom(15);
   }
 
   return (
-    <div>
+    <>
       <GoogleMap
-        mapContainerClassName="mapaHome" 
+        mapContainerClassName="mapaHome"
         center={centerMy}
-        zoom={16}
+        zoom={15}
         options={{
           styles: stylesArray,
           streetViewControl: false,
@@ -93,6 +100,7 @@ function Mapa({ mapSet, map }) {
           fullscreenControl: false,
           center: true
         }}
+        icon={marker}
         onLoad={(map) => mapSet(map)}
         onClick={() => setActiveMarker(null)}>
 
@@ -101,33 +109,34 @@ function Mapa({ mapSet, map }) {
           let now = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds());
 
           // if (evento.fecha_termino > now.toISOString()) {
-            return (
-              <Marker
-                key={evento.id_evento}
-                position={{
-                  lat: evento.lat,
-                  lng: evento.lng
-                }}
-                icon={marker}
-                onClick={() => asignacion(evento.id_evento)}>
+          return (
+            <Marker
+              key={evento.id_evento}
+              position={{
+                lat: evento.lat,
+                lng: evento.lng
+              }}
+              icon={marker}
+              onClick={() => asignacion(evento.id_evento)}>
 
-                {activeMarker === evento.id_evento && (
-                    <div id="markerInfoPos">
-                      <div className="markerInfo">
-                        <InfEvento
-                          id={eventoInfo.id_evento}
-                          evento={eventoInfo} 
-                        />
-                      </div>
-                    </div>
-                )};
-              </Marker>
-            );
+              {activeMarker === evento.id_evento && (
+                <div id="MarkerInfoPos">
+                  <div className="markerInfo">
+                    <InfEvento
+                      id={eventoInfo.id_evento}
+                      evento={eventoInfo}
+                      cerrar={desasignacion}
+                    />
+                  </div>
+                </div>
+              )}
+            </Marker>
+          )
           // }
-        })};
+        })}
       </GoogleMap>
-    </div>
-  );
+    </>
+  )
 }
 
 export default React.memo(Mapa);

@@ -51,40 +51,6 @@ function DatosAnfitrion({ id, section }) {
     );
     case 'informacion': return (
       <>
-        <section id="InfDetallesAnfitrion">
-          <div className="datosAnfitrion">
-            <h2>Detalles</h2>
-            <p> <b> Negocio </b> - Restaurante</p>
-            <p className="horario">Siempre abierto</p>
-            <p className="telefono">552255533</p>
-            <p className="correo">tunegocio@gmail.com</p>
-            <p className="web"><a href="">www.grannegocio.com</a></p>
-            <p className="ubicacion">San roberto ixtapaluca México, 55645, N. 8</p>
-            <p className="descripcion">
-              Somos un negocio comercial con grandes
-              ofertas accecibles para todos
-            </p>
-           </div>
-
-          <section className="fotosAnfitrion">
-            <h2>Fotos</h2>
-            <div className="contFotosAnfitrion">
-              <div className="fotoAnfitrion">
-                <img src={fotos} />
-              </div>
-              <div className="fotoAnfitrion">
-                <img src={fotos} />
-              </div>
-              <div className="fotoAnfitrion">
-                <img src={fotos} />
-              </div>
-              <div className="fotoAnfitrion">
-                <img src={fotos} />
-              </div>
-            </div>
-          </section>
-        </section>
-
         <section id="InfOpinionesAnfitrion">
           <h2>Calificacion - 4.9 (19 Opiniones)</h2>
 
@@ -276,6 +242,39 @@ function DatosAnfitrion({ id, section }) {
               </section>
             </div>
           </div>
+        </section>
+
+        <section id="InfDetallesAnfitrion">
+          <div className="datosAnfitrion">
+            <h2>Detalles</h2>
+            <p> <b> Negocio </b> - Restaurante</p>
+            <p className="horario">Siempre abierto</p>
+            <p className="telefono">552255533</p>
+            <p className="correo">tunegocio@gmail.com</p>
+            <p className="web"><a href="">www.grannegocio.com</a></p>
+            <p className="ubicacion">San roberto ixtapaluca México, 55645, N. 8</p>
+            <p className="descripcion">
+              Somos un negocio comercial con grandes
+              ofertas accecibles para todos
+            </p>
+          </div>
+          <section className="fotosAnfitrion">
+            <h2>Fotos</h2>
+            <div className="contFotosAnfitrion">
+              <div className="fotoAnfitrion">
+                <img src={fotos} />
+              </div>
+              <div className="fotoAnfitrion">
+                <img src={fotos} />
+              </div>
+              <div className="fotoAnfitrion">
+                <img src={fotos} />
+              </div>
+              <div className="fotoAnfitrion">
+                <img src={fotos} />
+              </div>
+            </div>
+          </section>
         </section>
       </>
     );
