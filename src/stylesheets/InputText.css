@@ -39,9 +39,7 @@
     transition: all 300ms;
     user-select: none;
 }
-span{
-    color: #f3f3f3;
-}
+
 .inputBox input:valid ~span,
 .inputBox input:focus ~span{
     color: #f3f3f390;
