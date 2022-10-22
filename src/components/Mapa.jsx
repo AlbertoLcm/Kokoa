@@ -33,6 +33,7 @@ function Mapa({ mapSet, map }) {
   }, []);
 
   useEffect(() => {
+    // Rango son los eventos cercanos. los enviamos al authProvider para mostrarlos en la pagina Home
     if (!!rango.length) {
       addEventos(rango);
     }
@@ -59,10 +60,27 @@ function Mapa({ mapSet, map }) {
     fillOpacity: 0
   });
 
+  const asignacion = (id) => {
+    handleActiveMarker(id);
+    const eve = lugares.find((evento) => evento.id_evento === id);
+    setEventoInfo(eve);
+    map.panTo({ lat: eve.lat, lng: eve.lng })
+    map.setZoom(18);
+  }
+
   if (!!lugares.length && circle.getBounds()) {
     lugares.forEach((evento) => {
       if (circle.getBounds().contains({ lat: evento.lat, lng: evento.lng })) {
-        rango.push({ evento: evento.nombre, ubicacion: evento.ubicacion, lat: evento.lat, lng: evento.lng });
+        // Enviamos los eventos que estan dentro del rango 
+        rango.push({
+          id_evento: evento.id_evento, 
+          evento: evento.nombre, 
+          ubicacion: evento.ubicacion, 
+          lat: evento.lat, 
+          lng: evento.lng,
+          // enviamos metodo para que se pueda hacer click en el evento y se muestre en el mapa
+          asignacion 
+        });
       }
     });
   }
@@ -73,14 +91,6 @@ function Mapa({ mapSet, map }) {
     }
     setActiveMarker(marker);
   };
-
-  const asignacion = (id) => {
-    handleActiveMarker(id);
-    const eve = lugares.find((evento) => evento.id_evento === id);
-    setEventoInfo(eve);
-    map.panTo({ lat: eve.lat, lng: eve.lng })
-    map.setZoom(18);
-  }
 
   const desasignacion = () => {
     setActiveMarker(null);
