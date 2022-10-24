@@ -76,6 +76,12 @@
     background-color: #342535;
 }
 
+.iconsLogin svg{
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
 /* Responsive del login */
 @media (max-width: 973px) {
     .contDegradado{
@@ -91,5 +97,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    }
 }
+@media (max-width: 750px) {
+    .contLogin{
+    width: 90%;
+    padding-left: 0px;
+    padding-right: 0px;
+    }
 }

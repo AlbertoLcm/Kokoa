@@ -105,15 +105,19 @@
     width: calc(20% - 2px);
     display: none;
     border-right: white solid 1px;
-    background-color: #2a142c;
+    background-color: #2D0E30;
+    
 }.navSideBar button{
     color: white;
-    width: 100%;
-    border-left: none;
-    border-right: none;
-    border-top-style: dashed;
-    border-bottom-style: dashed;
-    background: #2a142c;
+    width: 90%;
+    border: none;
+    padding: 10px;
+    background: none;
+    user-select: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}.navSideBar button:hover{
+    background-color: #f3f3f346;
 }
 .contVis{
     width: 100%;
@@ -208,10 +212,17 @@ button :focus {
     .bm-burger-button{
         display: none;
     }
+    .navSideBar :first-child{
+        margin-top: 10px;
+    }
     .navSideBar{
-        display: inline-block;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
     }.navSideBar button {
-        font-size: xx-large;
+        font-size: 20px;
+        border-radius: 10px;
     }
     .contVis{
         width: 80%;

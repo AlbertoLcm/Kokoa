@@ -8,6 +8,7 @@ import routes from "../helpers/routes";
 import Evento from "../components/EventosPagPrin";
 import Loading from "../components/Loading";
 import instance from "../api/axios";
+import Header from "../components/Header";
 
 const Mapa = lazy(() => import("../components/Mapa"));
 
@@ -15,13 +16,12 @@ function Home() {
   const nav = useNavigate();
   const { marcar, eventos, logout, user } = useAuth();
 
-  const [opcio, setOpcio] = useState(false);
   const [showprin, setShowprin] = useState(1);
   const [map, setMap] = useState(/** @type google.maps.Map */(null));
   const [evCre, setEvCre] = useState([]);
   const [visua, setVisua] = useState(1);
-
-  const toggle = () => { setOpcio(!opcio) };
+  
+  
   const handleSetMap = (mapita) => {
     setMap(mapita);
   };
@@ -37,22 +37,7 @@ function Home() {
   if (user[0].rol === "usuarios") {
     return (
       <>
-        <header className="color">
-          <section className="contLogo" onClick={() => nav(routes.home)}>
-            <div className="logo">Kokoa</div>
-          </section>
-          <div className="userHeader" onClick={() => toggle(!opcio)}>
-            {user[0].nombre}
-          </div>
-        </header>
-        {opcio && (
-          <div className="acomodo">
-            <div className="dropiOpcio">
-              <Link to={routes.perfil} id="togglePerfil">Configuración del perfil</Link>
-              <div onClick={() => logout()} id='toggleSalir'>Salir</div>
-            </div>
-          </div>
-        )}
+        <Header tipo={'color'} user={user[0].nombre} back={false} />
         <section id="ContGeneralHome">
           <div className="contMapaHome">
             <Suspense fallback={<Loading />}>

@@ -48,7 +48,7 @@ function SignUsuario() {
               </button>
             </div>
             <div className="UscontCabeza">
-              <h1>Crear cuenta nueva</h1>
+              <h2>Crear cuenta nueva.</h2>
             </div>
             <div className="contInpUs">
               <div className="inputBox">
@@ -80,7 +80,6 @@ function SignUsuario() {
                 <span>Número de teléfono</span>
               </div>
             </div>
-            <h2>Contraseña</h2>
             <div className="contPass">
               <div className="inputBox">
                 <input name="password"

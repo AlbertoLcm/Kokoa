@@ -16,31 +16,44 @@ header{
 .color{
     background-color: #410046;
 }
-
 .fondo{
     background-color: #f3f3f32b;
 }
-
 .contLogo{
-    height: auto;
     position: absolute;
     left: 60px;
 }
-
+.btnBack svg{
+    background-color: #410046;
+}
 .logo{
     cursor: pointer;
     user-select: none;
     color: #f3f3f3;
     font-size: 30px;
-    font-family: 'Josefin Sans';
+    font-family: "Josefin Sans", sans-serif;
+    margin-top: 5px;
 }
 .userHeader{
-    color: white;
+    display: flex;
     position: absolute;
     right: 60px;
+}
+.userHeader .btnBack{
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    cursor: pointer;
+    user-select: none;
+}
+.userHeader .user{
+    color: white;
     font-size: 20px;
     cursor: pointer;
     user-select: none;
+    display: flex;
+    align-items: center;
+    margin-top: -2px;
 }
 
 @media (max-width: 750px) {
@@ -52,5 +65,11 @@ header{
     }
     .color .userHeader{
         color: #3f3f3f;
+    }
+    .contLogo{
+        left: 10px;
+    }
+    .userHeader{
+        right: 10px;
     }
 }
