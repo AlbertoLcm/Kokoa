@@ -79,10 +79,12 @@ function Home() {
                   {eventos.map((evento) => {
                     return (
                       <Evento
+                        id={evento.id_evento}
                         lugar={evento.ubicacion}
                         titulo={evento.evento}
                         corrs={{ lat: evento.lat, lng: evento.lng }}
                         mapa={map}
+                        metodo={evento.asignacion}
                       />
                     )
                   })}

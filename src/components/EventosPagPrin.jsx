@@ -2,8 +2,9 @@ import React from "react";
 import "../stylesheets/EventosPagPrin.css"
 import image from "../images/concert.jpg"
 
-function Evento({ titulo, corrs, mapa, lugar }) {
+function Evento({ titulo, corrs, mapa, lugar, id, metodo }) {
   function handleOnDoubleClick() {
+    metodo(id);
     // eslint-disable-next-line no-undef
     mapa.panTo(corrs);
     // eslint-disable-next-line no-undef
