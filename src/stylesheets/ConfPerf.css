@@ -87,7 +87,8 @@
 }
 .contPerf{
     width: 100vw;
-    height: 100vh;
+    min-height: 100%;
+    max-height: max-content;
 }
 .labCorr{
     max-width: 100%;
@@ -96,13 +97,14 @@
 .contBase{
     display: flex;
     padding-top: 70px;
-    height: 100%;
+    height: 100vh;
+    max-height: auto;
     overflow-x: hidden;
 }.contBase > div {
     height: 100%;
 }
 .navSideBar {
-    width: calc(20% - 2px);
+    width: calc(20% - 1px);
     display: none;
     border-right: white solid 1px;
     background-color: #2a142c;
@@ -153,13 +155,11 @@ button :focus {
     .contVis {
         padding-top: 60px;
     }
+    
 }
 @media only screen and (min-width: 768px) {
     .confPerfInfoGen{
         padding-top: 270px;
-    }
-    .confPerfVisPrin {
-        width: 80%;
     }
     #confPerfImgBack {
         width: auto;
