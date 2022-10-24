@@ -16,7 +16,7 @@ body{
     scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0);
     scrollbar-width: thin;
 }
-/* 
+
 body::-webkit-scrollbar {
     -webkit-appearance: none;
 }
@@ -36,4 +36,4 @@ body::-webkit-scrollbar-thumb {
 }
 body::-webkit-scrollbar-track {
     border-radius: 10px;  
-} */
+}

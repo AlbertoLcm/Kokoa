@@ -1,6 +1,7 @@
 .confPerfVisPrin{
     position: absolute;
     width: 100%;
+    background-color: rgb(17, 0, 19);
 }
 .confPerfImg {
     width: 200px;
@@ -45,7 +46,7 @@
     
 }#contInfoGen h2 {
     color: white;
-    width: 78%;
+    width: 75%;
     word-wrap: break-word;
 }#contInfoGen button {
     width: 20%;
@@ -86,7 +87,7 @@
     font-size: 30px;
 }
 .contPerf{
-    width: 100vw;
+    width: 100%;
     min-height: 100%;
     max-height: max-content;
 }
@@ -97,11 +98,8 @@
 .contBase{
     display: flex;
     padding-top: 70px;
-    height: 100vh;
-    max-height: auto;
+    min-height: 100vh;
     overflow-x: hidden;
-}.contBase > div {
-    height: 100%;
 }
 .navSideBar {
     width: calc(20% - 1px);
@@ -151,9 +149,9 @@ button :focus {
 @media only screen and (max-width: 750px) {
     .contBase{
         padding-top: 0px;
-    }
+    }   
     .contVis {
-        padding-top: 60px;
+        margin-top: 60px;
     }
     
 }
@@ -205,6 +203,9 @@ button :focus {
     background: white;
 }
 @media only screen and (min-width: 1024px) {
+    .confPerfVisPrin {
+        width: 80%;
+    }
     .bm-burger-button{
         display: none;
     }
