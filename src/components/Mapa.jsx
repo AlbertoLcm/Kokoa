@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import instance from "../api/axios";
 import InfEvento from "./infElements/InfEvento";
 import useAuth from "../auth/useAuth";
-import { GoogleMap, InfoWindow, Marker, useJsApiLoader } from "@react-google-maps/api";
+import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
 import marker from "../images/marker4.png";
 import { libraries, stylesArray } from "../helpers/methodsMap";
 

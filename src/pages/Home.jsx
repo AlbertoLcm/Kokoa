@@ -4,13 +4,13 @@ import { useState, Suspense, lazy, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../stylesheets/Home.css";
 import "../stylesheets/BurguerMenu.css";
-import routes from "../helpers/routes";
 import Evento from "../components/EventosPagPrin";
 import Loading from "../components/Loading";
 import instance from "../api/axios";
 import Header from "../components/Header";
 
 const Mapa = lazy(() => import("../components/Mapa"));
+const MapNegocio = lazy(() => import("../components/maps/MapNegocio"));
 
 function Home() {
   const nav = useNavigate();
@@ -20,8 +20,8 @@ function Home() {
   const [map, setMap] = useState(/** @type google.maps.Map */(null));
   const [evCre, setEvCre] = useState([]);
   const [visua, setVisua] = useState(1);
-  
-  
+
+
   const handleSetMap = (mapita) => {
     setMap(mapita);
   };
@@ -38,6 +38,7 @@ function Home() {
     return (
       <>
         <Header tipo={'color'} user={user[0].nombre} back={false} />
+
         <section id="ContGeneralHome">
           <div className="contMapaHome">
             <Suspense fallback={<Loading />}>
@@ -94,9 +95,27 @@ function Home() {
     );
   } else {
     return (
-      <div>
-        <h2>No eres un usuario</h2>
-      </div>
+      <>
+        <Header tipo={'color'} user={user[0].nombre} back={false} />
+
+        <div id="ContGeneralNegocios">
+
+          <section className="contFeedNegocios">
+            <div className="btnFeedNegocios">
+              <button className="btnFeed" onClick={() => setVisua(1)}>Inicio</button>
+              <button className="btnFeed" onClick={() => setVisua(2)}>Tus eventos</button>
+              <button className="btnFeed" onClick={() => setVisua(3)}>Comunidad</button>
+            </div>
+          </section>
+
+          <section className="contMapaNegocios">
+            <Suspense fallback={<Loading />}>
+              <MapNegocio />
+            </Suspense>
+          </section>
+
+        </div>
+      </>
     )
   }
 

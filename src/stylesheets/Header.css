@@ -10,66 +10,89 @@ header{
     transform: 0.5s;
     z-index: 100;
 }
-.responsive{
-    background-color: #410046;
-}
-.color{
-    background-color: #410046;
-}
-.fondo{
-    background-color: #f3f3f32b;
-}
-.contLogo{
-    position: absolute;
-    left: 60px;
-}
-.btnBack svg{
-    background-color: #410046;
-}
-.logo{
-    cursor: pointer;
-    user-select: none;
-    color: #f3f3f3;
-    font-size: 30px;
-    font-family: "Josefin Sans", sans-serif;
-    margin-top: 5px;
-}
-.userHeader{
-    display: flex;
-    position: absolute;
-    right: 60px;
-}
-.userHeader .btnBack{
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
-    cursor: pointer;
-    user-select: none;
-}
-.userHeader .user{
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
-    user-select: none;
-    display: flex;
-    align-items: center;
-    margin-top: -2px;
-}
+
+/* === Tipos de header === */
+    #responsive{
+        background-color: #410046;
+    }
+    #color{
+        background-color: #410046;
+    }
+    #fondo{
+        background-color: #f3f3f32b;
+    }
+/* === FIN Tipos de header === */
+
+/* === Superior izquierda logo === */
+    header .contLogo{
+        position: absolute;
+        left: 60px;
+    }
+    header .btnBack svg{
+        background-color: #410046;
+    }
+    header .logo{
+        cursor: pointer;
+        user-select: none;
+        color: #f3f3f3;
+        font-size: 30px;
+        font-family: "Josefin Sans";
+        margin-top: 5px;
+    }
+/* === FIN Superior izquierda logo === */
+
+/* === Superior derecha Perfil del usuario === */
+    header .userHeader{
+        display: flex;
+        position: absolute;
+        right: 60px;
+    }
+    header .userHeader .btnBack{
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
+        cursor: pointer;
+        user-select: none;
+    }
+    header .userHeader .user{
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        user-select: none;
+        display: flex;
+        align-items: center;
+        margin-top: -2px;
+    }
+    /* /// Foto de perfil /// */
+    header .contImgPerfil{
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 10px;
+        border: 2px solid #f3f3f3;
+    }
+    header .contImgPerfil img{
+        height: 100%;
+        width: auto;
+    }
+    /* /// FIN Foto de perfil /// */
+/* === FIN Superior derecha Perfil del usuario === */
 
 @media (max-width: 750px) {
-    .color{
+    #color{
         background: none;
     }
-    .color .logo{
+    #color .logo{
         color: #3f3f3f;
     }
-    .color .userHeader{
+    #color .userHeader{
         color: #3f3f3f;
     }
-    .contLogo{
+    #contLogo{
         left: 10px;
     }
-    .userHeader{
+    header .userHeader{
         right: 10px;
     }
 }
