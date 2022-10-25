@@ -7,7 +7,7 @@ import useAuth from "../auth/useAuth";
 import "../stylesheets/signPatrocinador.css";
 
 function SignPatrocinador() {
-  const { signup } = useAuth();
+  const { signup, user } = useAuth();
   const location = useLocation();
 
   const [usuario, setUsuario] = useState({
@@ -31,25 +31,14 @@ function SignPatrocinador() {
   const nav = useNavigate();
   return (
     <div className="contBackground">
-      <Header boton={"Crear Cuenta"}>
-        {" "}
-        <div className="PatbotVolver">
-          <button className="boton1" onClick={() => nav(-1)}>
-            Volver
-          </button>
-        </div>
-      </Header>
+      <Header tipo={'responsive'} user={user[0].nombre} back={true} />
+
       <div className="PatcontForm">
         <div action="" className="Patform">
           {" "}
           {/* este es el form */}
-          <div className="PatbotVolverChic">
-            <button className="boton1" onClick={() => nav(-1)}>
-              Volver
-            </button>
-          </div>
           <div className="PatcontCabeza">
-            <h1>REGISTRO COMO PATROCINADOR</h1>
+            <h1>REGISTRAR NUEVO PATROCINADOR</h1>
           </div>
           <div className="PatdataTotal">
             <div className="PatcontInp">
@@ -98,6 +87,7 @@ function SignPatrocinador() {
                 NUMERO
               </Input>
             </div> */}
+
           </div>
           <h2>Forma de patrocinio</h2>
           <div className="PatcontT">
@@ -119,23 +109,7 @@ function SignPatrocinador() {
               />
             </div>
           </div>
-          <h2>Contraseña</h2>
-          <div className="PatcontPass">
-            <div className="PatdataPass">
-              <div className="inputBox">
-                <input
-                  name="password"
-                  onChange={handleChange}
-                  type="password"
-                  required
-                />
-                <span>Contraseña</span>
-              </div>
-            </div>
-            <div className="PatdataPass">
-              <Input type="password">Confirme su Contraseña</Input>
-            </div>
-          </div>
+          
           <div className="PatcontBot">
             <button
               className="boton1"

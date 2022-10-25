@@ -26,12 +26,12 @@
     border: 1px solid #f3f3f3;
 }
 .contConfVarNav {
-    padding: 5px;
+    padding: 15px;
     display: flex;
     gap: 10px;
     align-items: center;
 }
-.contConfVarNav button {
+.contConfVarNav > a {
     padding: 10px;
     color: white;
     background: #2a142c;
@@ -42,6 +42,7 @@
     align-items: center;
     justify-content: center;
     gap: 5px;
+    text-decoration: none;
 }
 .confVar {
     height: 100%;

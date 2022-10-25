@@ -30,7 +30,7 @@ function SignNegocio() {
   const nav = useNavigate();
   return (
     <div className="contBackground">
-      <Header tipo={'responsive'} user={user[0].nombre} volver={true} />
+      <Header tipo={'responsive'} user={user[0].nombre} back={true} />
 
       <div className="NegcontForm">
         <div action="" className="Negform">
