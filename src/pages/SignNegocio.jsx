@@ -7,7 +7,7 @@ import useAuth from "../auth/useAuth";
 import "../stylesheets/signNegocio.css";
 
 function SignNegocio() {
-  const { signup } = useAuth();
+  const { signup, user } = useAuth();
   const location = useLocation();
 
   const [usuario, setUsuario] = useState({
@@ -30,23 +30,12 @@ function SignNegocio() {
   const nav = useNavigate();
   return (
     <div className="contBackground">
-      <Header boton={"Crear Cuenta"}>
-        {" "}
-        <div className="NegbotVolver">
-          <button className="boton1" onClick={() => nav(-1)}>
-            Volver
-          </button>
-        </div>
-      </Header>
-      <div className="NegbotVolverMov">
-        <button className="boton1" onClick={() => nav(-1)}>
-          Volver
-        </button>
-      </div>
+      <Header tipo={'responsive'} user={user[0].nombre} volver={true} />
+
       <div className="NegcontForm">
         <div action="" className="Negform">
           <div className="NegcontCabeza">
-            <h1>REGISTRO COMO NEGOCIO</h1>
+            <h1>REGISTRAR NUEVO NEGOCIO</h1>
           </div>
           <div className="NegdataTotal">
             <div className="NegcontInp">
@@ -80,7 +69,7 @@ function SignNegocio() {
               </div>
             </div>
 
-            {/* <div className="NegcontInp">
+            <div className="NegcontInp">
               <h2>DIRECCION</h2>
               <Input type="text" className="NegdataUser">
                 ESTADO
@@ -146,34 +135,13 @@ function SignNegocio() {
                 <h2 className="NegtextHor">De: </h2> <Input type="time" />{" "}
                 <h2 className="NegtextHor"> a: </h2> <Input type="time" />
               </div>
-            </div> */}
+            </div>
           </div> 
 
-          <h2>Contraseña</h2>
-          <div className="NegcontPass">
-            <div className="NegdataPass">
-              <div className="inputBox">
-                <input
-                  name="password"
-                  onChange={handleChange}
-                  type="password"
-                  required
-                />
-                <span>Contraseña</span>
-              </div>
-            </div>
-            <div className="NegdataPass">
-              <Input type="password">Confirme su Contraseña</Input>
-            </div>
-          </div>
           <div className="NegcontBot">
-            <button
-              className="boton1"
-              onClick={() => signup(usuario, "negocios", location)}
-            >
-              Registrarse
-            </button>
+            <button className="boton1" >Registrarse</button>
           </div>
+
         </div>
       </div>
     </div>

@@ -58,15 +58,16 @@
     margin-left: 20px;
     margin-right: 20px;
     text-align: center;
-}.contConfVar > button {
+}.contConfVar > a {
     padding: 10px;
     color: white;
-    background: #2a142c;
+    background: #363136;
     border: none;
     border-radius: 15px;
     font-size: 14px;
     transition: all 0.3s ease-in-out;
-}.contConfVar > button:hover {
+    text-decoration: none;
+}.contConfVar > a:hover {
     background: #f3f3f354;
 }
 .confPerfVisPrin{

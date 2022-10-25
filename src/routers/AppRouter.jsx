@@ -43,19 +43,19 @@ function AppRouter() {
           </PublicRoute>
         } />
         <Route exact path={routes.newnegocio} element={
-          <PublicRoute>
+          <PrivateRoute>
             <SignNegocio />
-          </PublicRoute>
+          </PrivateRoute>
         } />
         <Route exact path={routes.newpatrocinador} element={
-          <PublicRoute>
+          <PrivateRoute>
             <SignPatrocinador />
-          </PublicRoute>
+          </PrivateRoute>
         } />
         <Route exact path={routes.newartista} element={
-          <PublicRoute>
+          <PrivateRoute>
             <SignArtista />
-          </PublicRoute>
+          </PrivateRoute>
         } />
         <Route exact path={routes.rolartista} element={
           <PrivateRoute Role={roles.artista}>

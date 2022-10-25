@@ -5,15 +5,16 @@ import Header from "../components/Header";
 import { slide as Menu } from "react-burger-menu";
 import "../stylesheets/ConfPerf.css"
 import img from "../images/Plagui.jpg"
+import {Link} from "react-router-dom";
+import routes from "../helpers/routes";
 import backimg from "../images/Wall (15).jpg"
-
 import { useNavigate } from "react-router-dom";
 
 function ConPerf() {
   const nav = useNavigate();
   const { logout, user } = useAuth();
-  console.log(user);
-  const [cont, setCont] = useState(6);
+  const [cont, setCont] = useState(1);
+
   function cambioVis(ver) {
     setCont(ver);
   }
@@ -69,12 +70,12 @@ function ConPerf() {
                         ) : cont === 2 ? (
                             <div className="confVar">
                                 {/* Si no tiene Negocios */}
-                                {/* <div className="contConfVar">
+                                <div className="contConfVar">
                                     <p>Las cuentas de negocios tienen aceso a un historial de eventos, solicitud de patrocinio e invitaciones a artistas</p>
-                                    <button>Registra un nuevo negocio</button>
-                                </div> */}
+                                    <Link to={routes.newnegocio} >Crear nuevo negocio </Link>
+                                </div>
                                 {/* Si tiene negocios */}
-                                <div className="contConfVarEx">
+                                {/* <div className="contConfVarEx">
                                     <div className="contConfVarNav">
                                         <button><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-plus" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="9" /><line x1="9" y1="12" x2="15" y2="12" /><line x1="12" y1="9" x2="12" y2="15" /></svg>
                                         Crear nuevo
@@ -93,17 +94,17 @@ function ConPerf() {
                                         </div>
                                     </div>
                                 </div>
-                                
+                                 */}
                             </div>
                         ) : cont === 3 ? (
                             <div className="confVar">
                                 {/* Si no tiene Negocios */}
-                                {/* <div className="contConfVar">
+                                <div className="contConfVar">
                                     <p>Las cuentas de patrocinadores tienen acceso a eventos cercanos, solicitudes de patrocinio, busqueda de eventos abiertos a patrocinio y a su contacto</p>
-                                    <button>Registra un nuevo patrocinio</button>
-                                </div> */}
+                                    <Link to={routes.newpatrocinador} >Crear nuevo patrocinador </Link>
+                                </div>
                                 {/* Si tiene negocios */}
-                                <div className="contConfVarEx">
+                                {/* <div className="contConfVarEx">
                                     <div className="contConfVarNav">
                                         <button><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-plus" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="9" /><line x1="9" y1="12" x2="15" y2="12" /><line x1="12" y1="9" x2="12" y2="15" /></svg>
                                         Crear nuevo
@@ -122,14 +123,14 @@ function ConPerf() {
                                         </div>
                                     </div>
                                 </div>
-                                
+                                 */}
                             </div>
                         ) : cont === 4 ? (
                             <div className="confVar">
                                  {/* Si no tiene Negocios */}
                                  <div className="contConfVar">
                                     <p>Las cuentas de Entretenimiento tienen acceso a configuracion de tipo de entretenimineto, solicitudes de participacion en eventos y contacto de eventos en busqueda de entretenimiento</p>
-                                    <button>Registra un nuevo negocio</button>
+                                    <Link to={routes.newnegocio} >Crear nuevo entretenimiento </Link>
                                 </div>
                                 {/* Si tiene negocios */}
                                 {/* <div className="contConfVarEx">
