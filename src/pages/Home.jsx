@@ -4,13 +4,16 @@ import { useState, Suspense, lazy, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../stylesheets/Home.css";
 import "../stylesheets/BurguerMenu.css";
-import routes from "../helpers/routes";
 import Evento from "../components/EventosPagPrin";
 import Loading from "../components/Loading";
 import instance from "../api/axios";
 import Header from "../components/Header";
+import routes from "../helpers/routes";
+import foto from "../images/Wall (59).jpg";
+import image from "../images/concert.jpg";
 
 const Mapa = lazy(() => import("../components/Mapa"));
+const MapNegocio = lazy(() => import("../components/maps/MapNegocio"));
 
 function Home() {
   const nav = useNavigate();
@@ -20,8 +23,8 @@ function Home() {
   const [map, setMap] = useState(/** @type google.maps.Map */(null));
   const [evCre, setEvCre] = useState([]);
   const [visua, setVisua] = useState(1);
-  
-  
+
+
   const handleSetMap = (mapita) => {
     setMap(mapita);
   };
@@ -38,6 +41,7 @@ function Home() {
     return (
       <>
         <Header tipo={'color'} user={user[0].nombre} back={false} />
+
         <section id="ContGeneralHome">
           <div className="contMapaHome">
             <Suspense fallback={<Loading />}>
@@ -51,7 +55,7 @@ function Home() {
                 <div id="BtnFeedAnfitrion">
                   <button className="btnFeedHome" onClick={() => setVisua(1)}>Para ti</button>
                   <div className="vrLine" />
-                  <button className="btnFeedHome" onClick={() => setVisua(2)}>Local</button>
+                  <button className="btnFeedHome" onClick={() => setVisua(2)}>Cercanos</button>
                   <div className="vrLine" />
                   <button className="btnFeedHome" onClick={() => setVisua(3)}>Comunidad</button>
                 </div>
@@ -61,30 +65,241 @@ function Home() {
               <>
                 <h3>Cerca de ti</h3>
                 <div id="ContEventosFeed">
-                  {eventos.map((evento) => {
-                    return (
-                      <Evento
-                        id={evento.id_evento}
-                        lugar={evento.ubicacion}
-                        titulo={evento.evento}
-                        corrs={{ lat: evento.lat, lng: evento.lng }}
-                        mapa={map}
-                        metodo={evento.asignacion}
-                      />
+                  {
+                    eventos ? (eventos.map((evento) => {
+                      return (
+                        <Evento
+                          id={evento.id_evento}
+                          lugar={evento.ubicacion}
+                          titulo={evento.evento}
+                          corrs={{ lat: evento.lat, lng: evento.lng }}
+                          mapa={map}
+                          metodo={evento.asignacion}
+                        />
+                      )
+                    })) : (
+                      <h3>No hay eventos cerca de ti</h3>
                     )
-                  })}
+                  }
                 </div>
               </>
             ) : visua === 1 ? (
               <>
                 <h3>Recomendados</h3>
-                <div>
+                <h3>
                   Aún no hay eventos recomendados para ti
-                </div>
+                </h3>
               </>
             ) : (
               <>
                 <h3>Comunidad</h3>
+                <section id="ContCrearEvento">
+                  <Link to={routes.registrarevento} className={"btnLink"}>Publicar un evento</Link>
+                </section>
+
+                <section id="InfOpinionesAnfitrion">
+
+                  <div className="opinionesAnfitrion">
+                    <div className="opinionAnfitrion">
+                      <section className="contOpinador">
+                        <div className="fotoOpinador">
+                          <img src={foto} />
+                        </div>
+                        <div className="nombreOpinador">
+                          <p>Alberto Cruz Marín</p>
+                          <p className="fecha">Noviembre 17</p>
+                        </div>
+
+                      </section>
+                      <section className="contOpinion">
+                        <p>
+                          Comentario de prueba acerca de un evento que esta asistiendo el usuario o compartio
+                        </p>
+                      </section>
+                    </div>
+                  </div>
+
+                  <div className="opinionesAnfitrion">
+                    <div className="opinionAnfitrion">
+                      <section className="contOpinador">
+                        <div className="fotoOpinador">
+                          <img src={foto} />
+                        </div>
+                        <div className="nombreOpinador">
+                          <p>Alberto Cruz Marín</p>
+                          <p className="fecha">Noviembre 17</p>
+                        </div>
+
+                      </section>
+                      <section className="contOpinion">
+                        <p>
+                          Comparto un evento que he creado.
+                        </p>
+                        <div id="ContEventoHomeFeed">
+                          <section id="ContImgEventoFeed">
+                            <img src={image} id="ImgEventoFeed" />
+                          </section>
+
+                          <section id="ContInfEvento">
+                            <div className="infEvento">
+                              <p className="infEventoFecha">
+                                Sab, 17 octubre a las 16:00 horas
+                              </p>
+                              <h4>Fiesta</h4>
+                              <p className="infEventoUbicacion">
+                                Ixtapaluca estado de México
+                              </p>
+                              <p className="asistentesEvento">
+                                Asistiran 12 personas
+                              </p>
+                            </div>
+                          </section>
+                        </div>
+                      </section>
+                    </div>
+                  </div>
+
+                  <div className="opinionesAnfitrion">
+                    <div className="opinionAnfitrion">
+                      <section className="contOpinador">
+                        <div className="fotoOpinador">
+                          <img src={foto} />
+                        </div>
+                        <div className="nombreOpinador">
+                          <p>Alberto Cruz Marín</p>
+                          <p className="fecha">Noviembre 17</p>
+                        </div>
+
+                      </section>
+                      <section className="contOpinion">
+                        <p>
+                          Comentario de prueba acerca de un evento que esta asistiendo el usuario o compartio
+                        </p>
+                      </section>
+                    </div>
+                  </div>
+
+                  <div className="opinionesAnfitrion">
+                    <div className="opinionAnfitrion">
+                      <section className="contOpinador">
+                        <div className="fotoOpinador">
+                          <img src={foto} />
+                        </div>
+                        <div className="nombreOpinador">
+                          <p>Alberto Cruz Marín</p>
+                          <p className="fecha">Noviembre 17</p>
+                        </div>
+
+                      </section>
+                      <section className="contOpinion">
+                        <p>
+                          Comentario de prueba acerca de un evento que esta asistiendo el usuario o compartio
+                        </p>
+                      </section>
+                    </div>
+                  </div>
+
+                  <div className="opinionesAnfitrion">
+                    <div className="opinionAnfitrion">
+                      <section className="contOpinador">
+                        <div className="fotoOpinador">
+                          <img src={foto} />
+                        </div>
+                        <div className="nombreOpinador">
+                          <p>Alberto Cruz Marín</p>
+                          <p className="fecha">Noviembre 17</p>
+                        </div>
+
+                      </section>
+                      <section className="contOpinion">
+                        <p>
+                          Comentario de prueba acerca de un evento que esta asistiendo el usuario o compartio
+                        </p>
+                      </section>
+                    </div>
+                  </div>
+
+                  <div className="opinionesAnfitrion">
+                    <div className="opinionAnfitrion">
+                      <section className="contOpinador">
+                        <div className="fotoOpinador">
+                          <img src={foto} />
+                        </div>
+                        <div className="nombreOpinador">
+                          <p>Alberto Cruz Marín</p>
+                          <p className="fecha">Noviembre 17</p>
+                        </div>
+
+                      </section>
+                      <section className="contOpinion">
+                        <p>
+                          Comentario de prueba acerca de un evento que esta asistiendo el usuario o compartio
+                        </p>
+                      </section>
+                    </div>
+                  </div>
+
+                  <div className="opinionesAnfitrion">
+                    <div className="opinionAnfitrion">
+                      <section className="contOpinador">
+                        <div className="fotoOpinador">
+                          <img src={foto} />
+                        </div>
+                        <div className="nombreOpinador">
+                          <p>Alberto Cruz Marín</p>
+                          <p className="fecha">Noviembre 17</p>
+                        </div>
+
+                      </section>
+                      <section className="contOpinion">
+                        <p>
+                          Comentario de prueba acerca de un evento que esta asistiendo el usuario o compartio
+                        </p>
+                      </section>
+                    </div>
+                  </div>
+
+                  <div className="opinionesAnfitrion">
+                    <div className="opinionAnfitrion">
+                      <section className="contOpinador">
+                        <div className="fotoOpinador">
+                          <img src={foto} />
+                        </div>
+                        <div className="nombreOpinador">
+                          <p>Alberto Cruz Marín</p>
+                          <p className="fecha">Noviembre 17</p>
+                        </div>
+
+                      </section>
+                      <section className="contOpinion">
+                        <p>
+                          Comentario de prueba acerca de un evento que esta asistiendo el usuario o compartio
+                        </p>
+                      </section>
+                    </div>
+                  </div>
+
+                  <div className="opinionesAnfitrion">
+                    <div className="opinionAnfitrion">
+                      <section className="contOpinador">
+                        <div className="fotoOpinador">
+                          <img src={foto} />
+                        </div>
+                        <div className="nombreOpinador">
+                          <p>Alberto Cruz Marín</p>
+                          <p className="fecha">Noviembre 17</p>
+                        </div>
+
+                      </section>
+                      <section className="contOpinion">
+                        <p>
+                          Comentario de prueba acerca de un evento que esta asistiendo el usuario o compartio
+                        </p>
+                      </section>
+                    </div>
+                  </div>
+                </section>
+
               </>
             )
             }
@@ -94,9 +309,52 @@ function Home() {
     );
   } else {
     return (
-      <div>
-        <h2>No eres un usuario</h2>
-      </div>
+      <>
+        <Header tipo={'color'} user={user[0].nombre} back={false} />
+
+        <div id="ContGeneralNegocios">
+
+          <section className="contFeedNegocios">
+            <div className="contBtnFeedNegocios">
+              <button className="btnFeedNegocios" onClick={() => setVisua(1)}>Inicio</button>
+              <button className="btnFeedNegocios" onClick={() => setVisua(2)}>Tus eventos</button>
+              <button className="btnFeedNegocios" onClick={() => setVisua(3)}>Estadisticas</button>
+            </div>
+            {
+              visua === 2 ? (
+                <>
+                  <h3>Tus eventos</h3>
+                  <div id="ContEventosFeed">
+
+                    <h3>Puedes agregar eventos</h3>
+
+
+                  </div>
+                </>
+              ) : visua === 1 ? (
+                <>
+                  <h3>Incio</h3>
+                  <h3>
+                    Aquí puedes ver tus comentarios de eventos pasados
+                  </h3>
+                </>
+              ) : (<>
+                <h3>Estadisticas</h3>
+                <h3>
+                  Aquí puedes ver tus estadisticas de eventos pasados
+                </h3>
+              </>)
+            }
+          </section>
+
+          <section className="contMapaNegocios">
+            <Suspense fallback={<Loading />}>
+              <MapNegocio mapSet={handleSetMap} map={map} />
+            </Suspense>
+          </section>
+
+        </div>
+      </>
     )
   }
 

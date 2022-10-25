@@ -160,8 +160,8 @@
 }
 .contPerf{
     width: 100%;
-    min-height: 100%;
-    max-height: max-content;
+    height: 200px;
+    background-color: tomato;
 }
 .labCorr{
     max-width: 100%;
@@ -169,8 +169,8 @@
 }
 .contBase{
     display: flex;
-    padding-top: 70px;
-    min-height: 100vh;
+    padding-top: 60px;
+    min-height: calc(100vh - 60px);
     overflow-x: hidden;
 }
 .navSideBar {

@@ -1,142 +1,390 @@
 /* ==== Estilos by Alberto ==== */
 
-    #ContGeneralHome{
-        padding-top: 60px;
-        width: 100%;
-        height: calc(100vh - 60px);
-        position: relative;
-        
-    }
-    
-    /* /// Estilos para el mapa /// */
-        #ContGeneralHome .contMapaHome{
-            position: absolute;
-            width: 100%;
-            height: calc(100vh - 60px);
-        }
-        #ContGeneralHome .contMapaHome .mapaHome{
-            height: calc(100vh - 60px);
-            width: 100%;
-        }
-    /* /// Fin Estilos para el mapa /// */
+    /* /// Home normal /// */
 
-    #ContGeneralHome .feedHome{
-        /* background-color: #EC1C4E; */
-        background-color: #a5082d;
-        height: calc(100vh - 90px);
-        width: calc(450px - 20px);
-        padding: 15px;
-        position: absolute;
-        z-index: 91;
-        overflow: auto;
-        scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0);
-        scrollbar-width: thin;
-    }
-    #ContGeneralHome .feedHome h2{
-        font-weight: 550;
-        color: #f3f3f3;
-    }
-    #ContGeneralHome .feedHome h3{
-        font-size: 30px;
-        padding: 20px;
-        padding-left: 0px;
-        user-select: none;
-    }
-    #ContGeneralHome #HeaderFeedHome{
-        height: auto;
-    }
-    #ContGeneralHome .feedHome #BtnFeedAnfitrion {
-        border-bottom: 1px solid #f3f3f369;
-        border-top: none;
-    }
-    #ContGeneralHome .feedHome #BtnFeedAnfitrion .btnFeedHome{
-        background: none;
+        #ContGeneralHome{
+            padding-top: 60px;
+            width: 100%;
+            height: calc(100vh - 60px);
+            position: relative;
+            
+        }
+        /* /// Estilos para el mapa /// */
+            #ContGeneralHome .contMapaHome{
+                position: absolute;
+                width: 100%;
+                height: calc(100vh - 60px);
+            }
+            #ContGeneralHome .contMapaHome .mapaHome{
+                height: calc(100vh - 60px);
+                width: 100%;
+            }
+        /* /// Fin Estilos para el mapa /// */
+
+        #ContGeneralHome .feedHome{
+            /* background-color: #EC1C4E; */
+            background-color: #a5082d;
+            height: calc(100vh - 90px);
+            width: calc(450px - 20px);
+            padding: 15px;
+            position: absolute;
+            z-index: 91;
+            overflow: auto;
+            scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0);
+            scrollbar-width: thin;
+        }
+        #ContGeneralHome .feedHome h2{
+            font-weight: 550;
+            color: #f3f3f3;
+        }
+        #ContGeneralHome .feedHome h3{
+            font-size: 30px;
+            padding: 20px;
+            padding-left: 0px;
+            user-select: none;
+        }
+        #ContGeneralHome #HeaderFeedHome{
+            height: auto;
+        }
+        #ContGeneralHome .feedHome #BtnFeedAnfitrion {
+            border-bottom: 1px solid #f3f3f369;
+            border-top: none;
+        }
+        #ContGeneralHome .feedHome #BtnFeedAnfitrion .btnFeedHome{
+            background: none;
+            border: none;
+            font-size: 15px;
+            padding: 10px;
+            color: #f3f3f3;
+            border-radius: 10px;
+            transition: all .3s ease;
+            user-select: none;
+            cursor: pointer;
+        }
+        #ContGeneralHome .feedHome #BtnFeedAnfitrion .btnFeedHome:hover{
+            background-color: #f3f3f367;
+        }
+
+        /* Esto es del scoll */
+            #ContGeneralHome .feedHome::-webkit-scrollbar {
+                -webkit-appearance: none;
+            }
+            #ContGeneralHome .feedHome::-webkit-scrollbar:vertical {
+                width:7px;
+            }
+            #ContGeneralHome .feedHome::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
+                display: none;
+            }
+            #ContGeneralHome .feedHome::-webkit-scrollbar:horizontal {
+                height: 10px;
+            }
+            #ContGeneralHome .feedHome::-webkit-scrollbar-thumb {
+                background-color: #f3f3f369;
+                border-radius: 20px;
+            }
+            #ContGeneralHome .feedHome::-webkit-scrollbar-track {
+                border-radius: 10px;  
+            }
+        /* Fin del scroll */
+
+        /* /// Eventos cercanos /// */
+            #ContEventosFeed{
+                /* margin-top: 20px; */
+                height: auto;
+            }
+
+            /* /// Estilos para el evento /// */
+                #ContEventoHomeFeed{
+                    overflow: hidden;
+                    display: flex;
+                    height: auto;
+                    flex-direction: column;
+                    margin-bottom: 10px;
+                    border-radius: 10px;
+                    background-color: #c50d38;
+                    backdrop-filter: blur(20px);
+                    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+                    cursor: pointer;
+                    transition: 0.3s;
+                    color: #f3f3f3;
+                }
+                #ContEventoHomeFeed #ContImgEventoFeed{
+                    height: 100px;
+                    overflow: hidden;
+                    border-radius: 10px 10px 0px 0px;
+                }
+                #ContEventoHomeFeed #ContInfEvento{
+                    padding: 10px;
+                    height: 100px;
+                }
+                #ContEventoHomeFeed .infEventoFecha{
+                    color: #f3f3f3;
+                    padding: 1px;
+                }
+                #ContEventoHomeFeed .infEvento h2{
+                }
+                #ContEventoHomeFeed .infEventoUbicacion{
+                    color: #f3f3f3a1;
+                }
+                #ContEventoHomeFeed .asistentesEvento{
+                    margin-top: 10px;
+                }
+                .contEvento:hover{
+                    background-color: #2D0E30;
+                } 
+            /* /// Fin estilos para el evento /// */
+
+        /* /// Fin eventos cercanos /// */
+
+        /* /// Comunidad /// */
+        #ContCrearEvento{
+            padding: 10px;
+            margin-bottom: 20px;
+            padding-left: 0px;
+        }
+        #ContCrearEvento .contCrearEvento{
+            background-color: #f3f3f3;
+            border-radius: 10px;
+            padding: 10px;
+            height: auto;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        /* /// FIN Comunidad /// */
+
+        /* === Marker Info de cada evento by Alberto === */
+        #MarkerInfoPos {
+            height: calc(100vh - 60px);
+            width: 400px;
+            position: fixed;
+            z-index: 100;
+            right: 60px;
+            display: flex;
+            align-items: center;
+        }
+        #MarkerInfoPos .markerInfo{
+            border-radius: 15px;
+            background: #140016;
+            backdrop-filter: blur(20px);
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.253);
+            transition: all .3s ease;
+        }
+        #MarkerInfoPos .markerInfo .markerInfo h1{
+            font-size: 20px;
+            color: white;
+        }
+        #MarkerInfoPos .markerInfo .markerInfo label{
+            font-weight: 550;
+        }
+        #MarkerInfoPos .contImagenMarkerInfo{
+            width: 100%;
+            height: 100px;
+            position: relative;
+            background-color: #f3f3f3;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            overflow: hidden;
+        }
+        #MarkerInfoPos .contImagenMarkerInfo button{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #f3f3f37c;
+            height: 30px;
+            width: 30px;
+            border: none;
+            border-radius: 20px;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #MarkerInfoPos .contImagenMarkerInfo img{
+            width: 100%;
+            height: auto;
+        }
+        #MarkerInfoPos .contMarkerInfo{
+            padding: 15px;
+            color: #f3f3f3;
+        }
+        #MarkerInfoPos .contBtnMarkerInfo{
+            display: flex;
+            justify-content: end;
+            padding-right: 15px;
+            gap: 5px;
+        }
+        #MarkerInfoPos .contBtnMarkerInfo button{
+            width: 100px;
+            height: 30px;
+            background-color: #f3f3f377;
+            backdrop-filter: blur(10px);
+            border: none;
+            border-radius: 5px;
+            color: #130014;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        #MarkerInfoPos .contBtnMarkerInfo button:hover{
+            background-color: #f3f3f3c4;
+        }
+        #MarkerInfoPos #EventoInfo{
+            padding: 15px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+        #MarkerInfoPos #EventoInfo .detEvent{
+            padding: 10px;
+            background-color: #2D0E30;
+            border-radius: 10px;
+        }
+        #MarkerInfoPos #EventoInfo .detAnfit{
+            padding: 10px;
+            background-color: #2D0E30;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        #MarkerInfoPos #EventoInfo .detAnfit .contDetAnfit{
+            color: #f3f3f3;
+            margin-top: 10px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            height: 60px;
+        }
+        #MarkerInfoPos #EventoInfo .detAnfit .contDetAnfit label{
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        #MarkerInfoPos #EventoInfo .detAnfit:hover{
+            background-color: #f3f3f359;
+            cursor: pointer;
+        }
+        #MarkerInfoPos .contDetAnfit .contImgAnfEve {
+            height: 60px;
+            width: 60px;    
+            border-radius: 50%;
+            margin-right: 10px;
+            border: 2px solid #f3f3f3;
+            overflow: hidden;
+        }
+        #MarkerInfoPos .contDetAnfit .contImgAnfEve img {
+            height: 100%;
+            width: auto;
+        }
+        #contMarkerInfo{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        #contMarkerInfo h1{
+            margin-bottom: 3px;
+        }
+
+        /* === FIN Marker Info de cada evento === */
+
+    /* /// FIN Home normal /// */
+
+    /* ==== Home negocios ==== */
+        #ContGeneralNegocios{
+            padding-top: 60px;
+            height: calc(100vh - 60px);
+            display: grid;
+            grid-template-columns: 2.5fr 1fr;
+        }
+        #ContGeneralNegocios .contFeedNegocios{
+            height: 100%;
+            width: 100%;
+            background-color: #140016;
+        }
+        #ContGeneralNegocios .contMapaNegocios{
+            height: 100%;
+            width: auto;
+        }
+        #ContGeneralNegocios .contBtnFeedNegocios{
+            padding: 10px;
+            background-color: none;
+            display: flex;
+        }
+        #ContGeneralNegocios .contBtnFeedNegocios .btnFeedNegocios{
+            color: #f3f3f3;
+            border: none;
+            border-radius: 10px;
+            padding: 10px;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s ease;
+            background-color: #140016;
+        }
+        #ContGeneralNegocios .contBtnFeedNegocios .btnFeedNegocios:hover{
+            background-color: #f3f3f341;
+        }
+
+        /* /// Mapa /// */
+            .mapaNegocios{
+                height: 100%;
+                width: 100%;
+            }
+        /* /// FIN Mapa /// */
+    /* ==== FIN Home negocios ==== */
+
+/* ==== Toggle ==== */
+    .acomodo{
+        z-index: 101;
+        position: fixed;
+        width: 100%;
+        margin-top: 65px;
+        right: 10px;
+    }.dropiOpcio{
+        border-radius: 10px;    
+        text-decoration: none;
+        float: right;
+        background-color: #fff;
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        font-size: 18px;
+        width: auto;
+        animation: toggle 1s linear;
+        box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.1);
+    }.dropiOpcio > *{
+        margin-bottom: 5px;
+        color: #3f3f3f;
+        display: block;
+    }.dropiOpcio > button {
         border: none;
-        font-size: 15px;
-        padding: 10px;
-        color: #f3f3f3;
-        border-radius: 10px;
-        transition: all .3s ease;
+        background: transparent;
+        width: 100%;
+        text-align: right;
     }
-    #ContGeneralHome .feedHome #BtnFeedAnfitrion .btnFeedHome:hover{
-        background-color: #f3f3f367;
+
+    @keyframes toggle {
+        0% {
+            transform: scaleY(0.3s);
+        }
+        100% {
+            transform: scaleY(1);
+        }
+    }
+    #toggleSalir{
         cursor: pointer;
         user-select: none;
+        height: 30px;
     }
+    #togglePerfil{
+        height: 30px;
+        text-decoration: none;
+        user-select: none;
+        border-bottom: solid 1px #3f3f3f;
+    }
+/* ==== FIN Toggle ==== */
 
-    /* Esto es del scoll */
-        #ContGeneralHome .feedHome::-webkit-scrollbar {
-            -webkit-appearance: none;
-        }
-        #ContGeneralHome .feedHome::-webkit-scrollbar:vertical {
-            width:7px;
-        }
-        #ContGeneralHome .feedHome::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
-            display: none;
-        }
-        #ContGeneralHome .feedHome::-webkit-scrollbar:horizontal {
-            height: 10px;
-        }
-        #ContGeneralHome .feedHome::-webkit-scrollbar-thumb {
-            background-color: #f3f3f369;
-            border-radius: 20px;
-        }
-        #ContGeneralHome .feedHome::-webkit-scrollbar-track {
-            border-radius: 10px;  
-        }
-    /* Fin del scroll */
-
-    /* /// Eventos cercanos /// */
-        #ContEventosFeed{
-            /* margin-top: 20px; */
-            height: auto;
-        }
-    /* /// Fin eventos cercanos /// */
-
-    /* /// Estilos para el evento /// */
-        #ContEventoHomeFeed{
-            overflow: hidden;
-            display: flex;
-            height: auto;
-            flex-direction: column;
-            margin-bottom: 10px;
-            border-radius: 10px;
-            background-color: #c50d38;
-            backdrop-filter: blur(20px);
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            transition: 0.3s;
-            color: #f3f3f3;
-        }
-        #ContEventoHomeFeed #ContImgEventoFeed{
-            height: 100px;
-            overflow: hidden;
-            border-radius: 10px 10px 0px 0px;
-        }
-        #ContEventoHomeFeed #ContInfEvento{
-            padding: 10px;
-            height: 100px;
-        }
-        #ContEventoHomeFeed .infEventoFecha{
-            color: #f3f3f3;
-            padding: 1px;
-        }
-        #ContEventoHomeFeed .infEvento h2{
-        }
-        #ContEventoHomeFeed .infEventoUbicacion{
-            color: #f3f3f3a1;
-        }
-        #ContEventoHomeFeed .asistentesEvento{
-            margin-top: 10px;
-        }
-        .contEvento:hover{
-            background-color: #2D0E30;
-        } 
-    /* ==== Fin estilos para el evento */
-
-
-    /* /// Responsive de la página /// */
-    @media (max-width: 750px) {
+/* /// Responsive de la página /// */
+@media (max-width: 750px) {
+    /* === Home normal === */
         #ContGeneralHome{
             padding-top: 0px;
             height: 100vh;
@@ -158,193 +406,21 @@
             height: 50vh;
             width: 100%;
         }
+    /* === FIN Home normal === */
 
-    }
-    /* /// Fin responsive de la página /// */
-
-/* === Marker Info de cada evento by Alberto === */
-#MarkerInfoPos {
-    height: calc(100vh - 60px);
-    width: 400px;
-    position: fixed;
-    z-index: 100;
-    right: 60px;
-    display: flex;
-    align-items: center;
+    /* === Home negocios === */
+        #ContGeneralNegocios{
+            display: flex;
+            flex-direction: column-reverse;
+            padding-top: 0px;
+            height: 100vh;
+        }
+        #ContGeneralNegocios .contFeedNegocios{
+            height: 60%;
+        }
+        #ContGeneralNegocios .contMapaNegocios{
+            height: 40%;
+        }
+    /* === Home negocios === */
 }
-#MarkerInfoPos .markerInfo{
-    border-radius: 15px;
-    background: #140016;
-    backdrop-filter: blur(20px);
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.253);
-    transition: all .3s ease;
-}
-#MarkerInfoPos .markerInfo .markerInfo h1{
-    font-size: 20px;
-    color: white;
-}
-#MarkerInfoPos .markerInfo .markerInfo label{
-    font-weight: 550;
-}
-#MarkerInfoPos .contImagenMarkerInfo{
-    width: 100%;
-    height: 100px;
-    position: relative;
-    background-color: #f3f3f3;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    overflow: hidden;
-}
-#MarkerInfoPos .contImagenMarkerInfo button{
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: #f3f3f37c;
-    height: 30px;
-    width: 30px;
-    border: none;
-    border-radius: 20px;
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-#MarkerInfoPos .contImagenMarkerInfo img{
-    width: 100%;
-    height: auto;
-}
-#MarkerInfoPos .contMarkerInfo{
-    padding: 15px;
-    color: #f3f3f3;
-}
-#MarkerInfoPos .contBtnMarkerInfo{
-    display: flex;
-    justify-content: end;
-    padding-right: 15px;
-    gap: 5px;
-}
-#MarkerInfoPos .contBtnMarkerInfo button{
-    width: 100px;
-    height: 30px;
-    background-color: #f3f3f377;
-    backdrop-filter: blur(10px);
-    border: none;
-    border-radius: 5px;
-    color: #130014;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-#MarkerInfoPos .contBtnMarkerInfo button:hover{
-    background-color: #f3f3f3c4;
-}
-#MarkerInfoPos #EventoInfo{
-    padding: 15px;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
-}
-#MarkerInfoPos #EventoInfo .detEvent{
-    padding: 10px;
-    background-color: #2D0E30;
-    border-radius: 10px;
-}
-#MarkerInfoPos #EventoInfo .detAnfit{
-    padding: 10px;
-    background-color: #2D0E30;
-    border-radius: 10px;
-    transition: all 0.3s ease;
-}
-#MarkerInfoPos #EventoInfo .detAnfit .contDetAnfit{
-    color: #f3f3f3;
-    margin-top: 10px;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    height: 60px;
-}
-#MarkerInfoPos #EventoInfo .detAnfit .contDetAnfit label{
-    text-decoration: underline;
-    cursor: pointer;
-}
-#MarkerInfoPos #EventoInfo .detAnfit:hover{
-    background-color: #f3f3f359;
-    cursor: pointer;
-}
-#MarkerInfoPos .contDetAnfit .contImgAnfEve {
-    height: 60px;
-    width: 60px;    
-    border-radius: 50%;
-    margin-right: 10px;
-    border: 2px solid #f3f3f3;
-    overflow: hidden;
-}
-#MarkerInfoPos .contDetAnfit .contImgAnfEve img {
-    height: 100%;
-    width: auto;
-}
-
-
-
-#contMarkerInfo{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-#contMarkerInfo h1{
-    
-    margin-bottom: 3px;
-}
-
-/* === FIN Marker Info de cada evento === */
-
-.acomodo{
-    z-index: 101;
-    position: absolute;
-    width: 100%;
-    margin-top: 65px;
-    right: 10px;
-}.dropiOpcio{
-    border-radius: 10px;    
-    text-decoration: none;
-    float: right;
-    background-color: #fff;
-    padding-top: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    font-size: 18px;
-    width: auto;
-    animation: toggle 1s linear;
-    box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.1);
-}.dropiOpcio > *{
-    margin-bottom: 5px;
-    color: #3f3f3f;
-    display: block;
-}.dropiOpcio > button {
-    border: none;
-    background: transparent;
-    width: 100%;
-    text-align: right;
-}
-
-@keyframes toggle {
-    0% {
-        transform: scaleY(0.3s);
-    }
-    100% {
-        transform: scaleY(1);
-    }
-}
-#toggleSalir{
-    cursor: pointer;
-    user-select: none;
-    height: 30px;
-}
-#togglePerfil{
-    height: 30px;
-    text-decoration: none;
-    user-select: none;
-    border-bottom: solid 1px #3f3f3f;
-}
+/* /// Fin responsive de la página /// */

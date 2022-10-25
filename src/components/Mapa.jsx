@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import instance from "../api/axios";
 import InfEvento from "./infElements/InfEvento";
 import useAuth from "../auth/useAuth";
-import { GoogleMap, InfoWindow, Marker, useJsApiLoader } from "@react-google-maps/api";
+import { GoogleMap, Marker, InfoWindow, useJsApiLoader } from "@react-google-maps/api";
 import marker from "../images/marker4.png";
 import { libraries, stylesArray } from "../helpers/methodsMap";
 
@@ -45,7 +45,7 @@ function Mapa({ mapSet, map }) {
   });
 
   if (!isLoaded) {
-    return <div>fallo</div>;
+    return <div>Fallo</div>;
   }
 
   // eslint-disable-next-line no-undef
@@ -73,13 +73,13 @@ function Mapa({ mapSet, map }) {
       if (circle.getBounds().contains({ lat: evento.lat, lng: evento.lng })) {
         // Enviamos los eventos que estan dentro del rango 
         rango.push({
-          id_evento: evento.id_evento, 
-          evento: evento.nombre, 
-          ubicacion: evento.ubicacion, 
-          lat: evento.lat, 
+          id_evento: evento.id_evento,
+          evento: evento.nombre,
+          ubicacion: evento.ubicacion,
+          lat: evento.lat,
           lng: evento.lng,
-          // enviamos metodo para que se pueda hacer click en el evento y se muestre en el mapa
-          asignacion 
+          // Enviamos el metodo para que se pueda hacer click en el evento y se muestre en el mapa
+          asignacion
         });
       }
     });

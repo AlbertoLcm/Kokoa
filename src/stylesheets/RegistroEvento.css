@@ -1,71 +1,19 @@
-/* span {
-    color: black;
-}
-.regEvForm{
-    text-align: center;
-}
-.regEvContForm {
-    max-height: 100%;
-    overflow-y: scroll;
-}.regEvContForm::-webkit-scrollbar{
-    width: 5px;
-}
-.regEvDataTotal{
-    color: black;
-}
-.regEvContCabeza {
-    text-align: center;
-}
-.regEvContBackground{
-    max-height: 50%;
-}
-.regEvContInp {
-    width: 100%;
-    text-align: center;
-    color: black;
-}
-.regEvContInp h2{
-    margin-bottom: 2px;
-}.regEvContInp h3{
-    margin-top: 0px;
-    
-}.regEvContInp input {
-    color: black;
-}
-.regEvContPub{
+#ContGeneralRegistrarEvento{
+    background: linear-gradient(to left, #410046, #EC1C4E);
     display: flex;
-    
-}.regEvContPub div{
-    max-width: 50px;
-    max-height: 40px;
-    display: inline-flex;
-}.regEvContPub h2{
-    display: flex;
-    margin-right: 20px;
+    justify-content: center;
+    position: relative;
 }
-.regEvBotVolverChic{
-    display: none;
-} */
-/* 
-@media only screen and (min-width: 800px) {
-    .regEvContInp h2{
-        color: black;
-    }.regEvContInp h3{
-        color: black;
-    }
-    .regEvContForm {
-        color:  black!important;
-    }
-    .regEvForm > h2 {
-        color: black;
-    }
-    .regEvContForm > div {
-        color: black;
-    }
-    .inputBox span{
-        color: black;
-    }.inputBox input{
-        color: black;
-    }
-    
-} */
+#ContGeneralRegistrarEvento .closeRegistrarEvento{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 2em;
+    color: #fff;
+    cursor: pointer;
+    user-select: none;
+}
+#ContGeneralRegistrarEvento .registrarEventoForm{
+    width: 50%;
+    padding: 20px;
+}
