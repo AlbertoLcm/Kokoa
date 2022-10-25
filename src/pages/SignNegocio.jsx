@@ -16,25 +16,24 @@ function SignNegocio() {
     nombre: "",
     email: "",
     telefono: "",
-    lun1: "",
-    lun2: "",
-    mar1: "",
-    mar2: "",
-    mie1: "",
-    mie2: "",
-    jue1: "",
-    jue2: "",
-    vie1: "",
-    vie2: "",
-    sab1: "",
-    sab2: "",
-    dom1: "",
-    dom2: ""
+    Lun1: "",
+    Lun2: "",
+    Mar1: "",
+    Mar2: "",
+    Mie1: "",
+    Mie2: "",
+    Jue1: "",
+    Jue2: "",
+    Vie1: "",
+    Vie2: "",
+    Sab1: "",
+    Sab2: "",
+    Dom1: "",
+    Dom2: ""
   });
 
   const addNeg = () => {
-    console.log(negocio)
-    instance.post('/cargos/negocio', { negocio: negocio, direccion: originRef, id: user[0].id })
+    instance.post('/cargos/negocio', { negocio, direccion: originRef.current.value, id: user[0].id })
       .then((registro) => {
         console.log(registro);
       })
