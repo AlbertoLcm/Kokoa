@@ -16,20 +16,20 @@ function SignNegocio() {
     nombre: "",
     email: "",
     telefono: "",
-    Lun1: "",
-    Lun2: "",
-    Mar1: "",
-    Mar2: "",
-    Mie1: "",
-    Mie2: "",
-    Jue1: "",
-    Jue2: "",
-    Vie1: "",
-    Vie2: "",
-    Sab1: "",
-    Sab2: "",
-    Dom1: "",
-    Dom2: ""
+    lun1: "",
+    lun2: "",
+    mar1: "",
+    mar2: "",
+    mie1: "",
+    mie2: "",
+    jue1: "",
+    jue2: "",
+    vie1: "",
+    vie2: "",
+    sab1: "",
+    sab2: "",
+    dom1: "",
+    dom2: ""
   });
 
   const addNeg = () => {
@@ -117,50 +117,50 @@ function SignNegocio() {
             <div>
               <h2>Lunes</h2>
               <div className="NegcontHorDia">
-                <h2 className="NegtextHor">De: </h2> <Input type="time" onChange={handleChange} name="Lun1" />{" "}
-                <h2 className="NegtextHor"> a: </h2> <Input type="time" onChange={handleChange} name="Lun2"/>
+                <h2 className="NegtextHor">De: </h2> <Input type="time" onChange={handleChange} name="lun1" />{" "}
+                <h2 className="NegtextHor"> a: </h2> <Input type="time" onChange={handleChange} name="lun2"/>
               </div>
             </div>
             <div>
               <h2>Martes</h2>
               <div className="NegcontHorDia">
-                <h2 className="NegtextHor">De: </h2> <Input type="time" onChange={handleChange} name="Mar1"/>{" "}
-                <h2 className="NegtextHor"> a: </h2> <Input type="time" onChange={handleChange} name="Mar2"/>
+                <h2 className="NegtextHor">De: </h2> <Input type="time" onChange={handleChange} name="mar1"/>{" "}
+                <h2 className="NegtextHor"> a: </h2> <Input type="time" onChange={handleChange} name="mar2"/>
               </div>
             </div>
             <div>
               <h2>Miercoles</h2>
               <div className="NegcontHorDia">
-                <h2 className="NegtextHor">De: </h2> <Input type="time" onChange={handleChange} name="Mie1"/>{" "}
-                <h2 className="NegtextHor"> a: </h2> <Input type="time" onChange={handleChange} name="Mie2"/>
+                <h2 className="NegtextHor">De: </h2> <Input type="time" onChange={handleChange} name="mie1"/>{" "}
+                <h2 className="NegtextHor"> a: </h2> <Input type="time" onChange={handleChange} name="mie2"/>
               </div>
             </div>
             <div>
               <h2>Jueves</h2>
               <div className="NegcontHorDia">
-                <h2 className="NegtextHor">De: </h2> <Input type="time" onChange={handleChange} name="Jue1"/>{" "}
-                <h2 className="NegtextHor"> a: </h2> <Input type="time" onChange={handleChange} name="Jue2"/>
+                <h2 className="NegtextHor">De: </h2> <Input type="time" onChange={handleChange} name="jue1"/>{" "}
+                <h2 className="NegtextHor"> a: </h2> <Input type="time" onChange={handleChange} name="jue2"/>
               </div>
             </div>
             <div>
               <h2>Viernes</h2>
               <div className="NegcontHorDia">
-                <h2 className="NegtextHor">De: </h2> <Input type="time" onChange={handleChange} name="Vie1"/>{" "}
-                <h2 className="NegtextHor"> a: </h2> <Input type="time" onChange={handleChange} name="Vie2"/>
+                <h2 className="NegtextHor">De: </h2> <Input type="time" onChange={handleChange} name="vie1"/>{" "}
+                <h2 className="NegtextHor"> a: </h2> <Input type="time" onChange={handleChange} name="vie2"/>
               </div>
             </div>
             <div>
               <h2>Sabado</h2>
               <div className="NegcontHorDia">
-                <h2 className="NegtextHor">De: </h2> <Input type="time" onChange={handleChange} name="Sab1"/>{" "}
-                <h2 className="NegtextHor"> a: </h2> <Input type="time" onChange={handleChange} name="Sab2"/>
+                <h2 className="NegtextHor">De: </h2> <Input type="time" onChange={handleChange} name="sab1"/>{" "}
+                <h2 className="NegtextHor"> a: </h2> <Input type="time" onChange={handleChange} name="sab2"/>
               </div>
             </div>
             <div>
               <h2>Domigo</h2>
               <div className="NegcontHorDia">
-                <h2 className="NegtextHor">De: </h2> <Input type="time" onChange={handleChange} name="Dom1"/>{" "}
-                <h2 className="NegtextHor"> a: </h2> <Input type="time" onChange={handleChange} name="Dom2"/>
+                <h2 className="NegtextHor">De: </h2> <Input type="time" onChange={handleChange} name="dom1"/>{" "}
+                <h2 className="NegtextHor"> a: </h2> <Input type="time" onChange={handleChange} name="dom2"/>
               </div>
             </div>
           </div> 
