@@ -30,7 +30,6 @@ function Evento({ titulo, corrs, mapa, lugar, id, metodo }) {
             Asistiran 12 personas
           </p>
         </div>
-
       </section>
     </div>
   )

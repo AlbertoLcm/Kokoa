@@ -1,14 +1,15 @@
 import React from "react";
 import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
 import { libraries, stylesArray } from "../../helpers/methodsMap";
+import Loading from "../Loading";
 
-function MapNegocio() {
+function MapNegocio({ mapSet, map }) {
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyBqhV6i7d19_4MlXk1gEtZ0flSx_7yYfo8",
     libraries,
   });
   if (!isLoaded) {
-    return <div>fallo</div>;
+    return <Loading />;
   }
 
   return (
@@ -23,9 +24,7 @@ function MapNegocio() {
           mapTypeControl: false,
           fullscreenControl: false,
           center: true
-        }}>
-
-        </GoogleMap>
+        }} />
 
     </>
   );

@@ -24,6 +24,7 @@
     padding-right: 10px;
     color: #f3f3f3;
     transition: all 300ms ease;
+    user-select: none;
 }
 .btnLink:hover{
     background-color: #196eff;

@@ -58,11 +58,11 @@
             color: #f3f3f3;
             border-radius: 10px;
             transition: all .3s ease;
+            user-select: none;
+            cursor: pointer;
         }
         #ContGeneralHome .feedHome #BtnFeedAnfitrion .btnFeedHome:hover{
             background-color: #f3f3f367;
-            cursor: pointer;
-            user-select: none;
         }
 
         /* Esto es del scoll */
@@ -92,48 +92,65 @@
                 /* margin-top: 20px; */
                 height: auto;
             }
+
+            /* /// Estilos para el evento /// */
+                #ContEventoHomeFeed{
+                    overflow: hidden;
+                    display: flex;
+                    height: auto;
+                    flex-direction: column;
+                    margin-bottom: 10px;
+                    border-radius: 10px;
+                    background-color: #c50d38;
+                    backdrop-filter: blur(20px);
+                    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+                    cursor: pointer;
+                    transition: 0.3s;
+                    color: #f3f3f3;
+                }
+                #ContEventoHomeFeed #ContImgEventoFeed{
+                    height: 100px;
+                    overflow: hidden;
+                    border-radius: 10px 10px 0px 0px;
+                }
+                #ContEventoHomeFeed #ContInfEvento{
+                    padding: 10px;
+                    height: 100px;
+                }
+                #ContEventoHomeFeed .infEventoFecha{
+                    color: #f3f3f3;
+                    padding: 1px;
+                }
+                #ContEventoHomeFeed .infEvento h2{
+                }
+                #ContEventoHomeFeed .infEventoUbicacion{
+                    color: #f3f3f3a1;
+                }
+                #ContEventoHomeFeed .asistentesEvento{
+                    margin-top: 10px;
+                }
+                .contEvento:hover{
+                    background-color: #2D0E30;
+                } 
+            /* /// Fin estilos para el evento /// */
+
         /* /// Fin eventos cercanos /// */
 
-        /* /// Estilos para el evento /// */
-            #ContEventoHomeFeed{
-                overflow: hidden;
-                display: flex;
-                height: auto;
-                flex-direction: column;
-                margin-bottom: 10px;
-                border-radius: 10px;
-                background-color: #c50d38;
-                backdrop-filter: blur(20px);
-                box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-                cursor: pointer;
-                transition: 0.3s;
-                color: #f3f3f3;
-            }
-            #ContEventoHomeFeed #ContImgEventoFeed{
-                height: 100px;
-                overflow: hidden;
-                border-radius: 10px 10px 0px 0px;
-            }
-            #ContEventoHomeFeed #ContInfEvento{
-                padding: 10px;
-                height: 100px;
-            }
-            #ContEventoHomeFeed .infEventoFecha{
-                color: #f3f3f3;
-                padding: 1px;
-            }
-            #ContEventoHomeFeed .infEvento h2{
-            }
-            #ContEventoHomeFeed .infEventoUbicacion{
-                color: #f3f3f3a1;
-            }
-            #ContEventoHomeFeed .asistentesEvento{
-                margin-top: 10px;
-            }
-            .contEvento:hover{
-                background-color: #2D0E30;
-            } 
-        /* ==== Fin estilos para el evento */
+        /* /// Comunidad /// */
+        #ContCrearEvento{
+            padding: 10px;
+            margin-bottom: 20px;
+            padding-left: 0px;
+        }
+        #ContCrearEvento .contCrearEvento{
+            background-color: #f3f3f3;
+            border-radius: 10px;
+            padding: 10px;
+            height: auto;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        /* /// FIN Comunidad /// */
 
         /* === Marker Info de cada evento by Alberto === */
         #MarkerInfoPos {
@@ -287,12 +304,12 @@
             height: 100%;
             width: auto;
         }
-        #ContGeneralNegocios .btnFeedNegocios{
+        #ContGeneralNegocios .contBtnFeedNegocios{
             padding: 10px;
             background-color: none;
             display: flex;
         }
-        #ContGeneralNegocios .btnFeedNegocios .btnFeed{
+        #ContGeneralNegocios .contBtnFeedNegocios .btnFeedNegocios{
             color: #f3f3f3;
             border: none;
             border-radius: 10px;
@@ -302,7 +319,7 @@
             transition: all 0.3s ease;
             background-color: #140016;
         }
-        #ContGeneralNegocios .btnFeedNegocios .btnFeed:hover{
+        #ContGeneralNegocios .contBtnFeedNegocios .btnFeedNegocios:hover{
             background-color: #f3f3f341;
         }
 
@@ -317,7 +334,7 @@
 /* ==== Toggle ==== */
     .acomodo{
         z-index: 101;
-        position: absolute;
+        position: fixed;
         width: 100%;
         margin-top: 65px;
         right: 10px;

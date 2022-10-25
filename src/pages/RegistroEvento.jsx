@@ -57,10 +57,12 @@ function RegistroEvento() {
           })
           .then((resultsBD) => {
             console.log(resultsBD);
-            // addMostrar(resultsBD)
-            // alert(resultsBD.data.message);
+            addMostrar(resultsBD)
+            alert(resultsBD.data.message);
+            nav(-1)
           })
           .catch((error) => {
+            // console.log(error);
             alert(error.response.data.message);
           });
       }
@@ -68,13 +70,20 @@ function RegistroEvento() {
   }
 
   return (
-    <div className="regEvContBackground">
-      <div className="regEvContForm">
-        <div className="Organz">
-          <div action="" className="regEvForm">
-            <div className="regEvdataTotal">
-              <div className="regEvContInp">
-              <Autocomplete>
+    <div id="ContGeneralRegistrarEvento">
+      <section className="closeRegistrarEvento" onClick={() => nav(-1)}>
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-x" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <circle cx="12" cy="12" r="9" />
+          <path d="M10 10l4 4m0 -4l-4 4" />
+        </svg>
+      </section>
+
+      <div action="" className="registrarEventoForm">
+        <h2>Crear evento nuevo.</h2>
+        <div className="regEvdataTotal">
+          <div className="regEvContInp">
+            <Autocomplete>
               <div className="inputBox">
                 <input
                   id="ubicacion"
@@ -87,94 +96,93 @@ function RegistroEvento() {
                 {/* <span>Ubicación del evento</span> */}
               </div>
             </Autocomplete>
-                <div className="inputBox">
-                  <input
-                    id="nombre"
-                    name="nombre"
-                    type="text"
-                    onChange={handleChange}
-                    value={datosEvento.nombre}
-                    required
-                  />
-                  <span>Nombre del evento</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="regEvContInp">
-              <h2>Fecha de inicio</h2>
-              <div className="inputBox">
-                <input
-                  id="fechaInicio"
-                  name="fechaInicio"
-                  type="date"
-                  onChange={handleChange}
-                  value={datosEvento.fechaInicio}
-                  required
-                />
-                {/* <span>Ubicación del evento</span> */}
-              </div>
-              <h2>Hora de inicio</h2>
-              <div className="inputBox">
-                <input
-                  id="horaInicio"
-                  name="horaInicio"
-                  type="time"
-                  onChange={handleChange}
-                  required
-                />
-                {/* <span>Ubicación del evento</span> */}
-              </div>
-
-              <h2>Fecha que termina el evento</h2>
-              <div className="inputBox">
-                <input
-                  id="fechaTermino"
-                  name="fechaTermino"
-                  type="date"
-                  onChange={handleChange}
-                  value={datosEvento.fechaTermino}
-                  required
-                />
-                {/* <span>Ubicación del evento</span> */}
-              </div>
-              <h2>Hora que termina el evento</h2>
-              <div className="inputBox">
-
-                <input
-                  id="horaTermino"
-                  name="horaTermino"
-                  type="time"
-                  onChange={handleChange}
-                  required
-                />
-                {/* <span>Ubicación del evento</span> */}
-              </div>
-
-              <h2>Costo del acceso</h2>
-              <h3>(Dejar en blanco en caso de ser gratuito)</h3>
-              <Input type="number" />
-
-              <h2>Capacidad del evento</h2>
-              <h3>
-                (Dejar en blanco en caso de no tener limite o ser variable)
-              </h3>
-              <Input type="number" />
-
-              <div className="regEvContPub">
-                <h2>Publico</h2> <input type="checkbox" defaultChecked={true} />
-              </div>
-            </div>
-            <h2>Ubicación del evento</h2>
-            
-            <div className="regEvContBot">
-              <button className="boton1" onClick={() => handleSubmit()}>
-                Registrar Evento
-              </button>
+            <div className="inputBox">
+              <input
+                id="nombre"
+                name="nombre"
+                type="text"
+                onChange={handleChange}
+                value={datosEvento.nombre}
+                required
+              />
+              <span>Nombre del evento</span>
             </div>
           </div>
         </div>
+
+        <div className="regEvContInp">
+          <h2>Fecha de inicio</h2>
+          <div className="inputBox">
+            <input
+              id="fechaInicio"
+              name="fechaInicio"
+              type="date"
+              onChange={handleChange}
+              value={datosEvento.fechaInicio}
+              required
+            />
+            {/* <span>Ubicación del evento</span> */}
+          </div>
+          <h2>Hora de inicio</h2>
+          <div className="inputBox">
+            <input
+              id="horaInicio"
+              name="horaInicio"
+              type="time"
+              onChange={handleChange}
+              required
+            />
+            {/* <span>Ubicación del evento</span> */}
+          </div>
+
+          <h2>Fecha que termina el evento</h2>
+          <div className="inputBox">
+            <input
+              id="fechaTermino"
+              name="fechaTermino"
+              type="date"
+              onChange={handleChange}
+              value={datosEvento.fechaTermino}
+              required
+            />
+            {/* <span>Ubicación del evento</span> */}
+          </div>
+          <h2>Hora que termina el evento</h2>
+          <div className="inputBox">
+
+            <input
+              id="horaTermino"
+              name="horaTermino"
+              type="time"
+              onChange={handleChange}
+              required
+            />
+            {/* <span>Ubicación del evento</span> */}
+          </div>
+
+          <h2>Costo del acceso</h2>
+          <h3>(Dejar en blanco en caso de ser gratuito)</h3>
+          <Input type="number" />
+
+          <h2>Capacidad del evento</h2>
+          <h3>
+            (Dejar en blanco en caso de no tener limite o ser variable)
+          </h3>
+          <Input type="number" />
+
+          <div className="regEvContPub">
+            <h2>Publico</h2> <input type="checkbox" defaultChecked={true} />
+          </div>
+        </div>
+        <h2>Ubicación del evento</h2>
+
+        <div className="regEvContBot">
+          <button className="boton1" onClick={() => handleSubmit()}>
+            Registrar Evento
+          </button>
+        </div>
       </div>
+
     </div>
   );
 }

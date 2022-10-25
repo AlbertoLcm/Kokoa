@@ -28,9 +28,6 @@ header{
         position: absolute;
         left: 60px;
     }
-    header .btnBack svg{
-        background-color: #410046;
-    }
     header .logo{
         cursor: pointer;
         user-select: none;
@@ -89,10 +86,16 @@ header{
     #color .userHeader{
         color: #3f3f3f;
     }
-    #contLogo{
+    header .contLogo{
         left: 10px;
     }
     header .userHeader{
         right: 10px;
+    }
+    header .userHeader .user .contName{
+        display: none;
+    }
+    header .contImgPerfil{
+        margin-right: 0px;
     }
 }
