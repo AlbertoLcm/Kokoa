@@ -1,31 +1,57 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Button from "../components/Button";
 import Header from "../components/Header";
 import Input from "../components/Input";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../auth/useAuth";
 import "../stylesheets/signNegocio.css";
+import instance from "../api/axios";
+import { Autocomplete } from "@react-google-maps/api";
 
 function SignNegocio() {
   const { signup, user } = useAuth();
   const location = useLocation();
 
-  const [usuario, setUsuario] = useState({
+  const [negocio, setNegocio] = useState({
     nombre: "",
     email: "",
     telefono: "",
-    direccion: "",
-    horario: "",
-    password: "",
-    rol: "negocios"
+    Lun1: "",
+    Lun2: "",
+    Mar1: "",
+    Mar2: "",
+    Mie1: "",
+    Mie2: "",
+    Jue1: "",
+    Jue2: "",
+    Vie1: "",
+    Vie2: "",
+    Sab1: "",
+    Sab2: "",
+    Dom1: "",
+    Dom2: ""
   });
 
+  const addNeg = () => {
+    console.log(negocio)
+    instance.post('/cargos/negocio', {negocio: negocio, direccion: originRef, id: user[0].id})
+    .then((registro) => {
+      console.log(registro);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
   const handleChange = (e) => {
-    setUsuario({
-      ...usuario,
+    setNegocio({
+      ...negocio,
       [e.target.name]: e.target.value,
     });
   };
+
+  /** @type React.MutableRefObject<HTMLInputElement> */
+  const originRef = useRef();
 
   const nav = useNavigate();
   return (
@@ -71,18 +97,19 @@ function SignNegocio() {
 
             <div className="NegcontInp">
               <h2>DIRECCION</h2>
-              <Input type="text" className="NegdataUser">
-                ESTADO
-              </Input>
-              <Input type="text" className="NegdataUser">
-                COLONIA
-              </Input>
-              <Input type="text" className="NegdataUser">
-                CALLE
-              </Input>
-              <Input type="text" className="NegdataUser">
-                NUMERO
-              </Input>
+              <Autocomplete>
+              <div className="inputBox">
+                <input
+                  id="ubicacion"
+                  name="direccion"
+                  type="text"
+                  onChange={handleChange}
+                  ref={originRef}
+                  required
+                />
+                {/* <span>Ubicación del evento</span> */}
+              </div>
+            </Autocomplete>
             </div>
           </div>
           <h2>Horario</h2>
@@ -90,56 +117,56 @@ function SignNegocio() {
             <div>
               <h2>Lunes</h2>
               <div className="NegcontHorDia">
-                <h2 className="NegtextHor">De: </h2> <Input type="time" />{" "}
-                <h2 className="NegtextHor"> a: </h2> <Input type="time" />
+                <h2 className="NegtextHor">De: </h2> <Input type="time" onChange={handleChange} name="Lun1" />{" "}
+                <h2 className="NegtextHor"> a: </h2> <Input type="time" onChange={handleChange} name="Lun2"/>
               </div>
             </div>
             <div>
               <h2>Martes</h2>
               <div className="NegcontHorDia">
-                <h2 className="NegtextHor">De: </h2> <Input type="time" />{" "}
-                <h2 className="NegtextHor"> a: </h2> <Input type="time" />
+                <h2 className="NegtextHor">De: </h2> <Input type="time" onChange={handleChange} name="Mar1"/>{" "}
+                <h2 className="NegtextHor"> a: </h2> <Input type="time" onChange={handleChange} name="Mar2"/>
               </div>
             </div>
             <div>
               <h2>Miercoles</h2>
               <div className="NegcontHorDia">
-                <h2 className="NegtextHor">De: </h2> <Input type="time" />{" "}
-                <h2 className="NegtextHor"> a: </h2> <Input type="time" />
+                <h2 className="NegtextHor">De: </h2> <Input type="time" onChange={handleChange} name="Mie1"/>{" "}
+                <h2 className="NegtextHor"> a: </h2> <Input type="time" onChange={handleChange} name="Mie2"/>
               </div>
             </div>
             <div>
               <h2>Jueves</h2>
               <div className="NegcontHorDia">
-                <h2 className="NegtextHor">De: </h2> <Input type="time" />{" "}
-                <h2 className="NegtextHor"> a: </h2> <Input type="time" />
+                <h2 className="NegtextHor">De: </h2> <Input type="time" onChange={handleChange} name="Jue1"/>{" "}
+                <h2 className="NegtextHor"> a: </h2> <Input type="time" onChange={handleChange} name="Jue2"/>
               </div>
             </div>
             <div>
               <h2>Viernes</h2>
               <div className="NegcontHorDia">
-                <h2 className="NegtextHor">De: </h2> <Input type="time" />{" "}
-                <h2 className="NegtextHor"> a: </h2> <Input type="time" />
+                <h2 className="NegtextHor">De: </h2> <Input type="time" onChange={handleChange} name="Vie1"/>{" "}
+                <h2 className="NegtextHor"> a: </h2> <Input type="time" onChange={handleChange} name="Vie2"/>
               </div>
             </div>
             <div>
               <h2>Sabado</h2>
               <div className="NegcontHorDia">
-                <h2 className="NegtextHor">De: </h2> <Input type="time" />{" "}
-                <h2 className="NegtextHor"> a: </h2> <Input type="time" />
+                <h2 className="NegtextHor">De: </h2> <Input type="time" onChange={handleChange} name="Sab1"/>{" "}
+                <h2 className="NegtextHor"> a: </h2> <Input type="time" onChange={handleChange} name="Sab2"/>
               </div>
             </div>
             <div>
               <h2>Domigo</h2>
               <div className="NegcontHorDia">
-                <h2 className="NegtextHor">De: </h2> <Input type="time" />{" "}
-                <h2 className="NegtextHor"> a: </h2> <Input type="time" />
+                <h2 className="NegtextHor">De: </h2> <Input type="time" onChange={handleChange} name="Dom1"/>{" "}
+                <h2 className="NegtextHor"> a: </h2> <Input type="time" onChange={handleChange} name="Dom2"/>
               </div>
             </div>
           </div> 
 
           <div className="NegcontBot">
-            <button className="boton1" >Registrarse</button>
+            <button className="boton1" onClick={() => addNeg()}>Registrarse</button>
           </div>
 
         </div>

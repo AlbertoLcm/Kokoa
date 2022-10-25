@@ -9,11 +9,14 @@ import {Link} from "react-router-dom";
 import routes from "../helpers/routes";
 import backimg from "../images/Wall (15).jpg"
 import { useNavigate } from "react-router-dom";
+import instance from "../api/axios";
 
 function ConPerf() {
   const nav = useNavigate();
   const { logout, user } = useAuth();
   const [cont, setCont] = useState(1);
+
+  
 
   function cambioVis(ver) {
     setCont(ver);
