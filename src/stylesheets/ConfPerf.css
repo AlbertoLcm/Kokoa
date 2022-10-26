@@ -176,9 +176,9 @@
     overflow-x: hidden;
 }
 .navSideBar {
-    width: calc(20% - 1px);
+    width: 20%;
     display: none;
-    border-right: white solid 1px;
+    /* border-right: white solid 1px; */
     background-color: #2D0E30;
     
 }.navSideBar button{
@@ -190,6 +190,7 @@
     user-select: none;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+    text-align: start;
 }.navSideBar button:hover{
     background-color: #f3f3f346;
 }

@@ -33,7 +33,7 @@ function SignNegocio() {
   });
 
   const addNeg = () => {
-    instance.post('/cargos/negocio', { negocio, direccion: originRef.current.value, id: user[0].id })
+    instance.post('/cargos/negocio', { negocio, direccion: originRef.current.value, id: user.id })
       .then((registro) => {
         console.log(registro);
       })
@@ -55,7 +55,7 @@ function SignNegocio() {
   const nav = useNavigate();
   return (
     <div className="contBackground">
-      <Header tipo={'responsive'} user={user[0].nombre} back={true} />
+      <Header tipo={'responsive'} user={user.nombre} back={true} />
 
       <div className="NegcontForm">
         <div action="" className="Negform">

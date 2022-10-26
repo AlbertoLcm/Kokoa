@@ -15,8 +15,8 @@ function DatosAnfitrion({ id, section }) {
   useEffect(() => {
     instance.get(`/auth/${id}`)
       .then((anfitrion) => {
-        setAnfitrion(anfitrion.data.user[0])
-        setAuth(anfitrion.data.auth[0])
+        setAnfitrion(anfitrion.data.user)
+        setAuth(anfitrion.data.auth)
       })
       .catch((err) => console.log(err))
       .finally(() => setLoading(false));

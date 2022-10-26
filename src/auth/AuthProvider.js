@@ -32,11 +32,27 @@ export default function AuthProvider({ children }) {
         localStorage.setItem("token", usuarioRes.data.user.token);
       })
       .catch((err) => {
+        console.log(err);
         localStorage.removeItem("token");
         <Navigate to={routes.login} />
       });
   };
 
+  const loginCargo = (cargo) => {
+    localStorage.removeItem("token");
+    instance
+    .post("/auth/login/cargo", cargo)
+    .then((usuarioRes) => {
+      console.log(usuarioRes);
+      setUser(usuarioRes.data.user.data);
+      localStorage.setItem("token", usuarioRes.data.user.token);
+      navigate(routes.home);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+  
   const login = (usuario, fromLocation) => {
     instance
       .post("/auth/login", usuario)
@@ -121,7 +137,8 @@ export default function AuthProvider({ children }) {
     addEventos,
     mostrar,
     addMostrar,
-    islogin
+    islogin,
+    loginCargo
   };
 
   return (

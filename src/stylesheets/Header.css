@@ -47,7 +47,6 @@ header{
     header .userHeader .btnBack{
         display: flex;
         align-items: center;
-        margin-right: 10px;
         cursor: pointer;
         user-select: none;
     }
@@ -60,13 +59,15 @@ header{
         align-items: center;
         margin-top: -2px;
     }
+    header .contName{
+        margin-left: 10px;
+    }
     /* /// Foto de perfil /// */
     header .contImgPerfil{
         height: 40px;
         width: 40px;
         border-radius: 50%;
         overflow: hidden;
-        margin-right: 10px;
         border: 2px solid #f3f3f3;
     }
     header .contImgPerfil img{

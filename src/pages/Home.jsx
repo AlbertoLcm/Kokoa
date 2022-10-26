@@ -1,7 +1,7 @@
 import React from "react";
 import useAuth from "../auth/useAuth";
 import { useState, Suspense, lazy, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import "../stylesheets/Home.css";
 import "../stylesheets/BurguerMenu.css";
 import Evento from "../components/EventosPagPrin";
@@ -16,10 +16,10 @@ const Mapa = lazy(() => import("../components/Mapa"));
 const MapNegocio = lazy(() => import("../components/maps/MapNegocio"));
 
 function Home() {
+  
   const nav = useNavigate();
   const { marcar, eventos, logout, user } = useAuth();
 
-  const [showprin, setShowprin] = useState(1);
   const [map, setMap] = useState(/** @type google.maps.Map */(null));
   const [evCre, setEvCre] = useState([]);
   const [visua, setVisua] = useState(1);
@@ -30,17 +30,20 @@ function Home() {
   };
 
   useEffect(() => {
-    if (user[0].rol === "negocios") {
-      instance.get(`/eventos/all/${user[0].auth}`).then((resultado) => {
+    if (user.rol === "negocios") {
+      instance.get(`/eventos/all/${user.auth}`).then((resultado) => {
         setEvCre(resultado.data)
       })
     }
   }, []);
 
-  if (user[0].rol === "usuarios") {
+  console.log(user);
+  
+
+  if (user.rol === "usuarios") {
     return (
       <>
-        <Header tipo={'color'} user={user[0].nombre} back={false} />
+        <Header tipo={'color'} user={user.nombre} back={false} />
 
         <section id="ContGeneralHome">
           <div className="contMapaHome">
@@ -50,7 +53,7 @@ function Home() {
           </div>
           <div className="feedHome">
             <section id="HeaderFeedHome">
-              <h2>Hola {user[0].nombre}</h2>
+              <h2>Hola {user.nombre}</h2>
               <section id="ContBtnFeedAnfitrion">
                 <div id="BtnFeedAnfitrion">
                   <button className="btnFeedHome" onClick={() => setVisua(1)}>Para ti</button>
@@ -310,51 +313,60 @@ function Home() {
   } else {
     return (
       <>
-        <Header tipo={'color'} user={user[0].nombre} back={false} />
+        <Header tipo={'color'} user={user.nombre} back={false} name={false} />
 
         <div id="ContGeneralNegocios">
 
           <section className="contFeedNegocios">
+
+            <h1>{user.nombre_cargo}</h1>
+            
             <div className="contBtnFeedNegocios">
-              <button className="btnFeedNegocios" onClick={() => setVisua(1)}>Inicio</button>
-              <button className="btnFeedNegocios" onClick={() => setVisua(2)}>Tus eventos</button>
-              <button className="btnFeedNegocios" onClick={() => setVisua(3)}>Estadisticas</button>
+              <div className="btnsFeedNegocios">
+                <button className="btnFeedNegocios" onClick={() => setVisua(1)}>Inicio</button>
+                <button className="btnFeedNegocios" onClick={() => setVisua(2)}>Tus eventos</button>
+                <button className="btnFeedNegocios" onClick={() => setVisua(3)}>Estadisticas</button>
+              </div>
             </div>
-            {
-              visua === 2 ? (
-                <>
-                  <h3>Tus eventos</h3>
-                  <div id="ContEventosFeed">
 
-                    <h3>Puedes agregar eventos</h3>
+            <div className="contenidoFeedNegocios">
+              {
+                visua === 2 ? (
+                  <>
+                    <h3>Tus eventos</h3>
+                    <div id="ContEventosFeed">
+
+                      <h3>Puedes agregar eventos</h3>
 
 
-                  </div>
-                </>
-              ) : visua === 1 ? (
-                <>
-                  <h3>Incio</h3>
+                    </div>
+                  </>
+                ) : visua === 1 ? (
+                  <>
+                    <h3>Incio</h3>
+                    <h3>
+                      Aquí puedes ver tus comentarios de eventos pasados
+                    </h3>
+                  </>
+                ) : (<>
+                  <h3>Estadisticas</h3>
                   <h3>
-                    Aquí puedes ver tus comentarios de eventos pasados
+                    Aquí puedes ver tus estadisticas de eventos pasados
                   </h3>
-                </>
-              ) : (<>
-                <h3>Estadisticas</h3>
-                <h3>
-                  Aquí puedes ver tus estadisticas de eventos pasados
-                </h3>
-              </>)
-            }
+                </>)
+              }
+            </div>
           </section>
 
           <section className="contMapaNegocios">
             <Suspense fallback={<Loading />}>
               <MapNegocio mapSet={handleSetMap} map={map} />
             </Suspense>
+            
           </section>
 
         </div>
-      </>
+    </>
     )
   }
 

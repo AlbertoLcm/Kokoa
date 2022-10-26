@@ -50,7 +50,7 @@ function RegistroEvento() {
         instance
           .post("eventos/add", {
             datosEvento,
-            id: user[0].id,
+            id: user.id,
             ubicacion: originRef.current.value,
             lat: results[0].geometry.location.lat(),
             lng: results[0].geometry.location.lng(),

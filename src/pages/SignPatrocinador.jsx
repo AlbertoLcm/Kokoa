@@ -31,7 +31,7 @@ function SignPatrocinador() {
   const nav = useNavigate();
   return (
     <div className="contBackground">
-      <Header tipo={'responsive'} user={user[0].nombre} back={true} />
+      <Header tipo={'responsive'} user={user.nombre} back={true} />
 
       <div className="PatcontForm">
         <div action="" className="Patform">

@@ -9,7 +9,8 @@ const routes = {
     rolartista: '/rolartista',
     registrarevento : '/registrarevento',
     perfil : '/perfil',
-    visperfil: '/visperfil'
+    visperfil: '/visperfil',
+    homeNegocio: '/negocio',
 }
 
 export default routes;

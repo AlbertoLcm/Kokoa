@@ -5,7 +5,7 @@ import routes from "../helpers/routes";
 import useAuth from "../auth/useAuth";
 import perfil from '../images/Wall (59).jpg';
 
-function Header({ tipo, user, back = false, children, toggle = true }) {
+function Header({ tipo, user, back = false, children, toggle = true, name = false }) {
   const nav = useNavigate();
   const [opcio, setOpcio] = useState(false);
   const toggleOptions = () => { setOpcio(!opcio) };
@@ -33,9 +33,11 @@ function Header({ tipo, user, back = false, children, toggle = true }) {
                 <img src={perfil} alt="Perfil" />
               </section>
 
-              <section className="contName">
-                {user}
-              </section>
+              {name ?
+                <section className="contName">
+                  {user}
+                </section>
+                : null}
             </div>
             : null}
         </section>

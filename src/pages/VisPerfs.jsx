@@ -24,7 +24,7 @@ function VisPerfs() {
 
   return (
     <>
-      <Header tipo={"responsive"} user={user[0].nombre} back={true}/>
+      <Header tipo={"responsive"} user={user.nombre} back={true}/>
       <div id="ContPrincVisPerf">
         <section id="ContPerfilFeedAnfitrion">
           <div id="PerfilFeedAnfitrion">
