@@ -1,3 +1,8 @@
+.contInfoTarj > h2 {
+    color: white;
+}.contInfoTarj > p {
+    color: white;
+}
 .contConfVarEx {
     height: 100%;
     overflow: hidden;

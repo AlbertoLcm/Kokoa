@@ -1,8 +1,7 @@
-h1{
+.Artform > h2{ 
     color: white;
-}
-h3 {
-    color: whitesmoke;
+}.ArtcontInp > h2{ 
+    color: white;
 }
 .ArtbotVolver {
     display: block;
@@ -12,7 +11,7 @@ h3 {
 }
 
 .ArtcontTipPat p {
-    color: whitesmoke;
+    color: white;
 }
 
 .ArtdataTotal{
@@ -84,14 +83,16 @@ h3 {
 }
 
 .ArtcontTipPat{
-
-    text-align: left;
+    width: 200px;
+    text-align: center;
+}.ArtcontTipPat > fieldset {
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
 }
 
-.ArtcontTipPat div {
-    max-height: 20px;
-    max-width: 50px;
-}
 .ArtbotVolverChica{
     display: none;
 }
