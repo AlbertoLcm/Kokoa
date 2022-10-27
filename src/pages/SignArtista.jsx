@@ -5,10 +5,12 @@ import useAuth from "../auth/useAuth";
 import "../stylesheets/signArtista.css";
 import { Autocomplete } from "@react-google-maps/api";
 import instance from "../api/axios";
-
+import {useNavigate} from "react-router-dom";
+import routes from "../helpers/routes";
 
 function SignArtista() {
   const { user } = useAuth();
+  const navigate = useNavigate()
 
   const [artista, setArtista] = useState({
     nombre: "",
@@ -22,7 +24,7 @@ function SignArtista() {
   });
 
   const addArt = () => {
-    instance.post('/cargos/artista', { negocio, direccion: originRef.current.value, id: user.id })
+    instance.post('/cargos/artista', { artista, direccion: originRef.current.value, id: user.id })
     .then((registro) => {
       alert("Entretenimiento registrado con éxito");
       navigate(routes.perfil)
