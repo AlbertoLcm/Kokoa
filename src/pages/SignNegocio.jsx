@@ -2,15 +2,18 @@ import React, { useRef, useState } from "react";
 import Button from "../components/Button";
 import Header from "../components/Header";
 import Input from "../components/Input";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../auth/useAuth";
 import "../stylesheets/signNegocio.css";
 import instance from "../api/axios";
 import { Autocomplete } from "@react-google-maps/api";
+import routes from "../helpers/routes";
 
 function SignNegocio() {
   const { signup, user } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
+
 
   const [negocio, setNegocio] = useState({
     nombre: "",
@@ -35,7 +38,8 @@ function SignNegocio() {
   const addNeg = () => {
     instance.post('/cargos/negocio', { negocio, direccion: originRef.current.value, id: user.id })
       .then((registro) => {
-        console.log(registro);
+        alert("Negocio registrado con éxito");
+        navigate(routes.perfil)
       })
       .catch((err) => {
         console.log(err);

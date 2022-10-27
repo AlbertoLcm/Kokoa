@@ -21,6 +21,9 @@ function ConPerf() {
     instance.get(`/cargos/negocio/${user.id}`).then((res) => {
       setNegocios(res.data);
     })
+    .catch((err) => {
+      console.log(err);
+    });
   }, []);
 
   function cambioVis(ver) {
@@ -81,7 +84,7 @@ function ConPerf() {
               ) : cont === 2 ? (
                 <div className="confVar">
                   {
-                    negocios === {} ? (
+                    !negocios.length ? (
                       <div className="contConfVar">
                         <p>Las cuentas de negocios tienen aceso a un historial de eventos, solicitud de patrocinio e invitaciones a artistas</p>
                         <Link to={routes.newnegocio} >Crear nuevo negocio </Link>
@@ -119,10 +122,10 @@ function ConPerf() {
               ) : cont === 3 ? (
                 <div className="confVar">
                   {/* Si no tiene Negocios */}
-                  {/* <div className="contConfVar">
+                  <div className="contConfVar">
                                       <p>Las cuentas de patrocinadores tienen acceso a eventos cercanos, solicitudes de patrocinio, busqueda de eventos abiertos a patrocinio y a su contacto</p>
                                       <Link to={routes.newpatrocinador} >Crear nuevo patrocinador </Link>
-                                  </div> */}
+                                  </div>
                   {/* Si tiene negocios */}
                   <div className="contConfVarEx">
                     <div className="contConfVarNav">

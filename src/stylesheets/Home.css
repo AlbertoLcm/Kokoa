@@ -247,6 +247,12 @@
             border-radius: 10px;
             transition: all 0.3s ease;
         }
+        #MarkerInfoPos #EventoInfo .detAnfitNormal{
+            padding: 10px;
+            background-color: #2D0E30;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
         #MarkerInfoPos #EventoInfo .detAnfit .contDetAnfit{
             color: #f3f3f3;
             margin-top: 10px;
@@ -255,7 +261,20 @@
             align-items: center;
             height: 60px;
         }
+        #MarkerInfoPos #EventoInfo .detAnfitNormal .contDetAnfit{
+            color: #f3f3f3;
+            margin-top: 10px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            height: 60px;
+        }
+
         #MarkerInfoPos #EventoInfo .detAnfit .contDetAnfit label{
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        #MarkerInfoPos #EventoInfo .detAnfitNormal .contDetAnfit label{
             text-decoration: underline;
             cursor: pointer;
         }
@@ -275,6 +294,7 @@
             height: 100%;
             width: auto;
         }
+        
         #contMarkerInfo{
             display: flex;
             flex-direction: column;

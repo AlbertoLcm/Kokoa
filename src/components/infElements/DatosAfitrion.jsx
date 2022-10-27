@@ -9,14 +9,12 @@ import '../../stylesheets/VisPerfs.css'
 function DatosAnfitrion({ id, section }) {
 
   const [anfitrion, setAnfitrion] = useState({});
-  const [auth, setAuth] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    instance.get(`/auth/${id}`)
+    instance.get(`/negocios/${id}`)
       .then((anfitrion) => {
-        setAnfitrion(anfitrion.data.user)
-        setAuth(anfitrion.data.auth)
+        setAnfitrion(anfitrion.data)
       })
       .catch((err) => console.log(err))
       .finally(() => setLoading(false));
@@ -37,8 +35,8 @@ function DatosAnfitrion({ id, section }) {
           <section id="DatosPerfilAnfitrion">
             <h1>{anfitrion.nombre}</h1>
             <p>4.9 Opiniones</p>
-            <p>{auth.email}</p>
-            <p>{auth.telefono}</p>
+            <p>{anfitrion.email}</p>
+            <p>{anfitrion.telefono}</p>
           </section>
 
           <section id="ContFotoPerfilAnfitrion">
