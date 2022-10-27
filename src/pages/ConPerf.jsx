@@ -134,7 +134,7 @@ function ConPerf() {
               ) : cont === 3 ? (
                 <div className="confVar">
                   {
-                    patrocinios.length === 0 ? (
+                    !patrocinios.length ? (
                       <div className="contConfVar">
                         <p>Las cuentas de patrocinadores tienen acceso a eventos cercanos, solicitudes de patrocinio, busqueda de eventos abiertos a patrocinio y a su contacto</p>
                         <Link to={routes.newpatrocinador} >Crear nuevo negocio </Link>
@@ -173,7 +173,7 @@ function ConPerf() {
               ) : cont === 4 ? (
                 <div className="confVar">
                   {
-                    artistas.length === 0 ? (
+                    !artistas.length ? (
                       <div className="contConfVar">
                         <p>Las cuentas de Entretenimiento tienen acceso a configuracion de tipo de entretenimineto, solicitudes de participacion en eventos y contacto de eventos en busqueda de entretenimiento</p>
                         <Link to={routes.newartista} >Crear nuevo negocio </Link>
