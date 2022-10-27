@@ -1,34 +1,42 @@
-import React, { useState } from "react";
-import Button from "../components/Button";
+import React, { useRef, useState } from "react";
+import { Autocomplete } from "@react-google-maps/api";
 import Header from "../components/Header";
-import Input from "../components/Input";
-import { useLocation, useNavigate } from "react-router-dom";
+
+import instance from "../api/axios";
 import useAuth from "../auth/useAuth";
 import "../stylesheets/signPatrocinador.css";
 
 function SignPatrocinador() {
-  const { signup, user } = useAuth();
-  const location = useLocation();
+  const { user } = useAuth();
 
-  const [usuario, setUsuario] = useState({
+  const [patrocinador, setPatrocinador] = useState({
     nombre: "",
     email: "",
     telefono: "",
-    direccion: "",
     tipo_artista: "",
     descripcion: "",
-    password: "",
-    rol: "patrocinadores",
   });
 
   const handleChange = (e) => {
-    setUsuario({
-      ...usuario,
+    setPatrocinador({
+      ...patrocinador,
       [e.target.name]: e.target.value,
     });
   };
 
-  const nav = useNavigate();
+  /** @type React.MutableRefObject<HTMLInputElement> */
+  const originRef = useRef();
+
+  const addPat = () => {
+    instance.post('/cargos/patrocinador', { patrocinador, direccion: originRef.current.value, id: user.id })
+      .then((registro) => {
+        console.log(registro);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
   return (
     <div className="contBackground">
       <Header tipo={'responsive'} user={user.nombre} back={true} />
@@ -72,32 +80,31 @@ function SignPatrocinador() {
               </div>
             </div>
 
-            {/* <div className="PatcontInp">
+            <div className="PatcontInp">
               <h2>DIRECCION</h2>
-              <Input type="text" className="PatdataUser">
-                ESTADO
-              </Input>
-              <Input type="text" className="PatdataUser">
-                COLONIA
-              </Input>
-              <Input type="text" className="PatdataUser">
-                CALLE
-              </Input>
-              <Input type="text" className="PatdataUser">
-                NUMERO
-              </Input>
-            </div> */}
+              <Autocomplete>
+                <div className="inputBox">
+                  <input
+                    id="ubicacion"
+                    name="direccion"
+                    type="text"
+                    ref={originRef}
+                    required
+                  />
+                </div>
+              </Autocomplete>
+            </div>
 
           </div>
           <h2>Forma de patrocinio</h2>
           <div className="PatcontT">
             <div className="PatcontTipPat">
               <h3>Tipo de Patrocinio</h3>
-              <p>Bebidas</p> <Input type="checkbox" />
+              <p>Bebidas</p> <input type="checkbox" />
               <p>Alcohol</p>
-              <Input type="checkbox" />
+              <input type="checkbox" />
               <p>Entretenimiento</p>
-              <Input type="checkbox" />
+              <input type="checkbox" />
             </div>
             <div className="PatcontTDes">
               <h3>Descripcion</h3>
@@ -113,7 +120,7 @@ function SignPatrocinador() {
           <div className="PatcontBot">
             <button
               className="boton1"
-              onClick={() => signup(usuario, "patrocinadores", location)}
+              onClick={() => addPat()}
             >
               Registrarse
             </button>

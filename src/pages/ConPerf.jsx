@@ -16,10 +16,19 @@ function ConPerf() {
   const { logout, user, loginCargo } = useAuth();
   const [cont, setCont] = useState(1);
 
-  const [negocios, setNegocios] = useState({});
+  const [negocios, setNegocios] = useState([]);
+  const [patrocinios, setPatrocinios] = useState([]);
+  const [artistas, setArtistas] = useState([]);
+
   useEffect(() => {
     instance.get(`/cargos/negocio/${user.id}`).then((res) => {
       setNegocios(res.data);
+    })
+    instance.get(`/cargos/patrocinador/${user.id}`).then((res) => {
+      setPatrocinios(res.data);
+    })
+    instance.get(`/cargos/artista/${user.id}`).then((res) => {
+      setArtistas(res.data);
     })
   }, []);
 
@@ -29,8 +38,10 @@ function ConPerf() {
 
   const [opcio, setOpcio] = useState(false);
   const toggle = () => { setOpcio(!opcio) };
-  console.log(negocios)
   
+  console.log(patrocinios)
+  console.log(artistas)
+
   return (
     <>
       <Header tipo={'responsive'} user={user.nombre} back={true} />
@@ -81,7 +92,7 @@ function ConPerf() {
               ) : cont === 2 ? (
                 <div className="confVar">
                   {
-                    negocios === {} ? (
+                    negocios.length === 0 ? (
                       <div className="contConfVar">
                         <p>Las cuentas de negocios tienen aceso a un historial de eventos, solicitud de patrocinio e invitaciones a artistas</p>
                         <Link to={routes.newnegocio} >Crear nuevo negocio </Link>
@@ -94,10 +105,11 @@ function ConPerf() {
                           </Link>
                           <div id="ingoNegHov" className="contConfInfoNeg" title="Las cuentas de negocios tienen aceso a un historial de eventos, solicitud de patrocinio e invitaciones a artistas"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-question-mark" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 8a3.5 3 0 0 1 3.5 -3h1a3.5 3 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4" /><line x1="12" y1="19" x2="12" y2="19.01" /></svg></div>
                         </div>
+                        <div className="contTarj">
                         {
                           negocios.map((negocio) => {
                             return (
-                              <div className="contTarj">
+                              
                                 <div className="tarj" onClick={() => loginCargo(negocio)}>
                                   <div className="contImgTarj">
                                     <div className="contContimg"><img src={img} alt="Sin imagen" /></div>
@@ -108,71 +120,91 @@ function ConPerf() {
                                     <h2>Abierto: <span>{negocio.horario} </span></h2>
                                   </div>
                                 </div>
-                              </div>
                             )
                           })
                         }
+                        </div>
                       </div>
                     )
                   }
                 </div>
               ) : cont === 3 ? (
                 <div className="confVar">
-                  {/* Si no tiene Negocios */}
-                  {/* <div className="contConfVar">
-                                      <p>Las cuentas de patrocinadores tienen acceso a eventos cercanos, solicitudes de patrocinio, busqueda de eventos abiertos a patrocinio y a su contacto</p>
-                                      <Link to={routes.newpatrocinador} >Crear nuevo patrocinador </Link>
-                                  </div> */}
-                  {/* Si tiene negocios */}
-                  <div className="contConfVarEx">
-                    <div className="contConfVarNav">
-                      <Link to={routes.newpatrocinador}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-plus" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><circle cx="12" cy="12" r="9" /><line x1="9" y1="12" x2="15" y2="12" /><line x1="12" y1="9" x2="12" y2="15" /></svg>
-                        Crear nuevo
-                      </Link>
-                      <div id="ingoNegHov" className="contConfInfoNeg" title="Las cuentas de patrocinadores tienen acceso a eventos cercanos, solicitudes de patrocinio, busqueda de eventos abiertos a patrocinio y a su contacto"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-question-mark" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 8a3.5 3 0 0 1 3.5 -3h1a3.5 3 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4" /><line x1="12" y1="19" x2="12" y2="19.01" /></svg></div>
-                    </div>
-                    <div className="contTarj">
-                      <div className="tarj">
-                        <div className="contImgTarj">
-                          <div className="contContimg"><img src={img} alt="Sin imagen" /></div>
+                  {
+                    patrocinios.length === 0 ? (
+                      <div className="contConfVar">
+                        <p>Las cuentas de patrocinadores tienen acceso a eventos cercanos, solicitudes de patrocinio, busqueda de eventos abiertos a patrocinio y a su contacto</p>
+                        <Link to={routes.newpatrocinador} >Crear nuevo negocio </Link>
+                      </div>
+                    ) : (
+                      <div className="contConfVarEx">
+                        <div className="contConfVarNav">
+                          <Link to={routes.newpatrocinador}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-plus" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><circle cx="12" cy="12" r="9" /><line x1="9" y1="12" x2="15" y2="12" /><line x1="12" y1="9" x2="12" y2="15" /></svg>
+                            Crear nuevo
+                          </Link>
+                          <div id="ingoNegHov" className="contConfInfoNeg" title="Las cuentas de patrocinadores tienen acceso a eventos cercanos, solicitudes de patrocinio, busqueda de eventos abiertos a patrocinio y a su contacto"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-question-mark" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 8a3.5 3 0 0 1 3.5 -3h1a3.5 3 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4" /><line x1="12" y1="19" x2="12" y2="19.01" /></svg></div>
                         </div>
-                        <div className="contInfoTarj">
-                          <h1>Nombre del Patrocionio</h1>
-                          <h2>Info del Patrocinio</h2>
+                        <div className="contTarj">
+                        {
+                          patrocinios.map((patrocinio) => {
+                            return (
+                              
+                                <div className="tarj" onClick={() => loginCargo(patrocinio)}>
+                                  <div className="contImgTarj">
+                                    <div className="contContimg"><img src={img} alt="Sin imagen" /></div>
+                                  </div>
+                                  <div className="contInfoTarj">
+                                    <h1>{patrocinio.nombre} </h1>
+                                    <h2>Ubicado en: <span>{patrocinio.direccion} </span></h2>
+                                    <h2>Abierto: <span>{patrocinio.horario} </span></h2>
+                                  </div>
+                                </div>
+                            )
+                          })
+                        }
                         </div>
                       </div>
-                    </div>
-                  </div>
-
+                    )
+                  }
                 </div>
               ) : cont === 4 ? (
                 <div className="confVar">
-                  {/* Si no tiene Negocios */}
-                  <div className="contConfVar">
-                    <p>Las cuentas de Entretenimiento tienen acceso a configuracion de tipo de entretenimineto, solicitudes de participacion en eventos y contacto de eventos en busqueda de entretenimiento</p>
-                    <Link to={routes.newnegocio} >Crear nuevo entretenimiento </Link>
-                  </div>
-                  {/* Si tiene negocios */}
-                  {/* <div className="contConfVarEx">
-                                      <div className="contConfVarNav">
-                                          <Link to={routes.newnegocio}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-plus" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="9" /><line x1="9" y1="12" x2="15" y2="12" /><line x1="12" y1="9" x2="12" y2="15" /></svg>
-                                          Crear nuevo
-                                          </Link>
-                                          <div id="ingoNegHov" className="contConfInfoNeg" title="Las cuentas de Entretenimiento tienen acceso a configuracion de tipo de entretenimineto, solicitudes de participacion en eventos y contacto de eventos en busqueda de entretenimiento"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-question-mark" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 8a3.5 3 0 0 1 3.5 -3h1a3.5 3 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4" /><line x1="12" y1="19" x2="12" y2="19.01" /></svg></div>
-                                      </div>
-                                      <div className="contTarj">
-                                          <div className="tarj">
-                                              <div className="contImgTarj">
-                                                  <div className="contContimg"><img src={img} alt="Sin imagen" /></div>
-                                              </div>
-                                              <div className="contInfoTarj">
-                                                  <h1>Nombre del Entretenimiento</h1>
-                                                  <h2>Info del Entretenimiento</h2>
-                                              </div>
-                                          </div>
-                                      </div>
+                  {
+                    artistas.length === 0 ? (
+                      <div className="contConfVar">
+                        <p>Las cuentas de Entretenimiento tienen acceso a configuracion de tipo de entretenimineto, solicitudes de participacion en eventos y contacto de eventos en busqueda de entretenimiento</p>
+                        <Link to={routes.newartista} >Crear nuevo negocio </Link>
+                      </div>
+                    ) : (
+                      <div className="contConfVarEx">
+                        <div className="contConfVarNav">
+                          <Link to={routes.newartista}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-plus" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><circle cx="12" cy="12" r="9" /><line x1="9" y1="12" x2="15" y2="12" /><line x1="12" y1="9" x2="12" y2="15" /></svg>
+                            Crear nuevo
+                          </Link>
+                          <div id="ingoNegHov" className="contConfInfoNeg" title="Las cuentas de Entretenimiento tienen acceso a configuracion de tipo de entretenimineto, solicitudes de participacion en eventos y contacto de eventos en busqueda de entretenimiento"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-question-mark" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 8a3.5 3 0 0 1 3.5 -3h1a3.5 3 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4" /><line x1="12" y1="19" x2="12" y2="19.01" /></svg></div>
+                        </div>
+                        <div className="contTarj">
+                        {
+                          artistas.map((artista) => {
+                            return (
+                              
+                                <div className="tarj" onClick={() => loginCargo(artista)}>
+                                  <div className="contImgTarj">
+                                    <div className="contContimg"><img src={img} alt="Sin imagen" /></div>
                                   </div>
-                                  */}
+                                  <div className="contInfoTarj">
+                                    <h1>{artista.nombre} </h1>
+                                    <h2>Ubicado en: <span>{artista.direccion} </span></h2>
+                                    <h2>Abierto: <span>{artista.horario} </span></h2>
+                                  </div>
+                                </div>
+                            )
+                          })
+                        }
+                        </div>
+                      </div>
+                    )
+                  }
                 </div>
               ) : (
                 <div className="entrVis">

@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Header from "../components/Header";
 import Input from "../components/Input";
-import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../auth/useAuth";
 import "../stylesheets/signArtista.css";
+import { Autocomplete } from "@react-google-maps/api";
+import instance from "../api/axios";
 
 
 function SignArtista() {
-  const { signup } = useAuth();
-  const location = useLocation();
+  const { user } = useAuth();
 
-  const [usuario, setUsuario] = useState({
+  const [artista, setArtista] = useState({
     nombre: "",
     email: "",
     telefono: "",
@@ -21,33 +21,34 @@ function SignArtista() {
     rol: "artistas"
   });
 
+  const addArt = () => {
+    instance.post('/cargos/artista', { negocio, direccion: originRef.current.value, id: user.id })
+      .then((registro) => {
+        console.log(registro);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
   const handleChange = (e) => {
-    setUsuario({
-      ...usuario,
+    setArtista({
+      ...artista,
       [e.target.name]: e.target.value,
     });
   };
 
-
-  const nav = useNavigate();
+  /** @type React.MutableRefObject<HTMLInputElement> */
+  const originRef = useRef();
+  
   return (
     <div className="contBackground">
-      <Header boton={"Crear Cuenta"}>
-        <div className="ArtbotVolver">
-          <button className="boton1" onClick={() => nav(-1)}>
-            Volver
-          </button>
-        </div>{" "}
-      </Header>
+      <Header tipo={'responsive'} user={user.nombre} back={true} />
+
       <div className="ArtcontForm">
         <div action="" className="Artform">
           {" "}
           {/* Este es el form */}
-          <div className="ArtbotVolverChica">
-            <button className="boton1" onClick={() => nav(-1)}>
-              Volver
-            </button>
-          </div>
           <div className="ArtcontCabeza">
             <h1>REGISTRO COMO ARTISTA</h1>
           </div>
@@ -83,21 +84,20 @@ function SignArtista() {
               </div>
             </div>
 
-            {/* <div className="ArtcontInp">
+            <div className="ArtcontInp">
               <h2>DIRECCION</h2>
-              <Input type="text" className="ArtdataUser">
-                ESTADO
-              </Input>
-              <Input type="text" className="ArtdataUser">
-                COLONIA
-              </Input>
-              <Input type="text" className="ArtdataUser">
-                CALLE
-              </Input>
-              <Input type="text" className="ArtdataUser">
-                NUMERO
-              </Input>
-            </div> */}
+              <Autocomplete>
+                <div className="inputBox">
+                  <input
+                    id="ubicacion"
+                    name="direccion"
+                    type="text"
+                    ref={originRef}
+                    required
+                  />
+                </div>
+              </Autocomplete>
+            </div>
           </div>
           <h2>PERFORMANCE</h2>
           <div className="ArtcontT">
@@ -137,7 +137,7 @@ function SignArtista() {
           <div className="ArtcontBot">
             <button
               className="boton1"
-              onClick={() => signup(usuario, "artistas", location)}
+              onClick={() => addArt()}
             >
               Registrarse
             </button>

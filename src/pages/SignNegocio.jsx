@@ -1,16 +1,13 @@
 import React, { useRef, useState } from "react";
-import Button from "../components/Button";
 import Header from "../components/Header";
-import Input from "../components/Input";
-import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../auth/useAuth";
 import "../stylesheets/signNegocio.css";
 import instance from "../api/axios";
 import { Autocomplete } from "@react-google-maps/api";
 
 function SignNegocio() {
-  const { signup, user } = useAuth();
-  const location = useLocation();
+  const { user } = useAuth();
+
 
   const [negocio, setNegocio] = useState({
     nombre: "",
@@ -52,7 +49,6 @@ function SignNegocio() {
   /** @type React.MutableRefObject<HTMLInputElement> */
   const originRef = useRef();
 
-  const nav = useNavigate();
   return (
     <div className="contBackground">
       <Header tipo={'responsive'} user={user.nombre} back={true} />

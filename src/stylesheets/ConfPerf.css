@@ -1,5 +1,16 @@
+.contConfVarEx {
+    height: 100%;
+    overflow: hidden;
+}
+.contTarj {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 88%;
+    overflow: auto;
+}
 .contImgTarj {
-    width: 100px;
+    max-width: 100px; 
     object-fit: cover;
     overflow: hidden;
     height: 100px;
@@ -25,6 +36,7 @@
     border-radius: 50%;
     border: 1px solid #f3f3f3;
 }
+
 .contConfVarNav {
     padding: 15px;
     display: flex;
@@ -87,13 +99,6 @@
     top: 140px;
     left: 24%;
 }
-.contPerf > header > div {
-    color: white !important; 
-}
-.contPerf > header > section > div {
-    color: white !important;
-}
-
 #confPerfImgBack {
     width: 100%;
     height: auto;
@@ -172,7 +177,7 @@
 .contBase{
     display: flex;
     padding-top: 60px;
-    min-height: calc(100vh - 60px);
+    height: calc(100vh - 60px);
     overflow-x: hidden;
 }
 .navSideBar {
@@ -195,12 +200,11 @@
     background-color: #f3f3f346;
 }
 .contVis{
+    height: 100%;
     width: 100%;
     background-color: rgb(17, 0, 19);
 }
-.contPerf header{
-    height: 70px;
-}
+
 .datosUser{
     display: flex;
     justify-content: center;
