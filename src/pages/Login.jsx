@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, Navigate, useLocation } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../auth/useAuth";
 import Header from "../components/Header";
 import Loading from "../components/Loading";
@@ -9,6 +9,8 @@ import "../stylesheets/Login.css";
 function Login() {
   const { login, islogin, user } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
+
 
   const [userCredentials, setUserCredentials] = useState({
     email: "",
@@ -23,12 +25,9 @@ function Login() {
   };
 
   if (localStorage.getItem("token")) {
-
     islogin();
     return <Loading />;
-  } else {
-    <Navigate to={routes.login} />
-  }
+  } 
 
 
   return (

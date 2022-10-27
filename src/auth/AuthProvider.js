@@ -34,7 +34,7 @@ export default function AuthProvider({ children }) {
       .catch((err) => {
         console.log(err);
         localStorage.removeItem("token");
-        <Navigate to={routes.login} />
+        navigate(routes.login);
       });
   };
 

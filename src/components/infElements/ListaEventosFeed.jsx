@@ -24,6 +24,13 @@ function ListaEventosFeed({ id, solicito }) {
       </section>
     )
   }
+  if(!eventos.length) {
+    return (
+      <section id="ContPerfilFeedEventoActual"> 
+        <h1>No tienes eventos</h1>
+      </section>
+    )
+  }
   const fecact = new Date()
 
   return (

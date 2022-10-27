@@ -24,6 +24,9 @@ function ConPerf() {
     instance.get(`/cargos/negocio/${user.id}`).then((res) => {
       setNegocios(res.data);
     })
+    .catch((err) => {
+      console.log(err);
+    });
     instance.get(`/cargos/patrocinador/${user.id}`).then((res) => {
       setPatrocinios(res.data);
     })
@@ -92,7 +95,7 @@ function ConPerf() {
               ) : cont === 2 ? (
                 <div className="confVar">
                   {
-                    negocios.length === 0 ? (
+                    !negocios.length ? (
                       <div className="contConfVar">
                         <p>Las cuentas de negocios tienen aceso a un historial de eventos, solicitud de patrocinio e invitaciones a artistas</p>
                         <Link to={routes.newnegocio} >Crear nuevo negocio </Link>

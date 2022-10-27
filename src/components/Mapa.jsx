@@ -133,7 +133,6 @@ function Mapa({ mapSet, map }) {
                 <div id="MarkerInfoPos">
                   <div className="markerInfo">
                     <InfEvento
-                      id={eventoInfo.id_evento}
                       evento={eventoInfo}
                       cerrar={desasignacion}
                     />

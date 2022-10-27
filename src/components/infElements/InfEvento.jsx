@@ -4,16 +4,15 @@ import instance from '../../api/axios';
 import Skeleton from '../Skeleton';
 import image from '../../images/loginWallpaper.jpg';
 
-function InfEvento({ id, evento, cerrar }) {
+function InfEvento({ evento, cerrar }) {
 
   const [eventoInfo, setEventoInfo] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    instance(`/eventos/${id}`)
-      .then((host) => {
-        evento.hostNombre = host.data.nombre;
-        evento.hostId = host.data.id;
+    instance(`/eventos/${evento.id_evento}`)
+      .then((anfitrion) => {
+        evento.hostNombre = anfitrion.data.nombre;
         setEventoInfo(evento)
       })
       .catch((err) => console.log(err))
@@ -43,7 +42,7 @@ function InfEvento({ id, evento, cerrar }) {
           </p>
           <h2>{evento.nombre}</h2>
           <p className="infEventoUbicacion">
-            {evento.ubicacion}
+            {evento.direccion}
           </p>
         </section>
 
@@ -57,18 +56,33 @@ function InfEvento({ id, evento, cerrar }) {
             <h1>Detalles</h1>
             <p>{eventoInfo.detalles}</p>
           </div>
-          <div className='detAnfit'>
-            <h1>Anfitrion</h1>
-            <Link to={`/visperfil/${eventoInfo.id}`} className={"contDetAnfit"}>
-              <div className='contImgAnfEve'>
-                <img src={image} alt="Predefinir" />
-              </div>
-              <div>
-                Un evento de {eventoInfo.hostNombre}. <br /> 
-                <label> Conocer </label>
-              </div>
-            </Link>
-          </div>
+            {evento.rol_anfitrion === "negocios" ? (
+            <div className='detAnfit'>
+              <h1>Anfitrion</h1>
+              <Link to={`/visperfil/${eventoInfo.anfitrion}`} className={"contDetAnfit"}>
+                <div className='contImgAnfEve'>
+                  <img src={image} alt="Predefinir" />
+                </div>
+                <div>
+                  Un evento de {eventoInfo.hostNombre}. <br />
+                  <label> Conocer </label>
+                </div>
+              </Link>
+            </div>
+            ) : (
+              <div className='detAnfitNormal'>
+              <h1>Anfitrion</h1>
+              <section className='contDetAnfit'>
+                <div className='contImgAnfEve'>
+                  <img src={image} alt="Predefinir" />
+                </div>
+                <div>
+                  Un evento de {eventoInfo.hostNombre}. <br />
+                </div>
+              </section>
+            </div>
+
+            )}
         </section>
       </div>
     </>

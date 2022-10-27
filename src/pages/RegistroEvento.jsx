@@ -51,6 +51,7 @@ function RegistroEvento() {
           .post("eventos/add", {
             datosEvento,
             id: user.id,
+            rol: user.rol,
             ubicacion: originRef.current.value,
             lat: results[0].geometry.location.lat(),
             lng: results[0].geometry.location.lng(),
@@ -62,7 +63,7 @@ function RegistroEvento() {
             nav(-1)
           })
           .catch((error) => {
-            // console.log(error);
+            console.log(error);
             alert(error.response.data.message);
           });
       }

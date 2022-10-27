@@ -11,6 +11,7 @@ import Header from "../components/Header";
 import routes from "../helpers/routes";
 import foto from "../images/Wall (59).jpg";
 import image from "../images/concert.jpg";
+import ListaEventosFeed from "../components/infElements/ListaEventosFeed";
 
 const Mapa = lazy(() => import("../components/Mapa"));
 const MapNegocio = lazy(() => import("../components/maps/MapNegocio"));
@@ -335,10 +336,8 @@ function Home() {
                   <>
                     <h3>Tus eventos</h3>
                     <div id="ContEventosFeed">
-
-                      <h3>Puedes agregar eventos</h3>
-
-
+                      <Link to={routes.registrarevento} className={"btnLink"}>Crear un evento nuevo</Link>
+                      <ListaEventosFeed id={user.id} solicito="actuales"/>
                     </div>
                   </>
                 ) : visua === 1 ? (
