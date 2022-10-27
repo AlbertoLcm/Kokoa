@@ -8,6 +8,7 @@ import "../stylesheets/signPatrocinador.css";
 
 function SignPatrocinador() {
   const { user } = useAuth();
+  const navigate = useNavigate()
 
   const [patrocinador, setPatrocinador] = useState({
     nombre: "",
@@ -29,12 +30,13 @@ function SignPatrocinador() {
 
   const addPat = () => {
     instance.post('/cargos/patrocinador', { patrocinador, direccion: originRef.current.value, id: user.id })
-      .then((registro) => {
-        console.log(registro);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
+    .then((registro) => {
+      alert("Patrocinio registrado con éxito");
+      navigate(routes.perfil)
+    })
+    .catch((err) => {
+      console.log(err);
+    })
   }
 
   return (

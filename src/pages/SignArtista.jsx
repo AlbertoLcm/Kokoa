@@ -23,12 +23,13 @@ function SignArtista() {
 
   const addArt = () => {
     instance.post('/cargos/artista', { negocio, direccion: originRef.current.value, id: user.id })
-      .then((registro) => {
-        console.log(registro);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
+    .then((registro) => {
+      alert("Entretenimiento registrado con éxito");
+      navigate(routes.perfil)
+    })
+    .catch((err) => {
+      console.log(err);
+    })
   }
 
   const handleChange = (e) => {

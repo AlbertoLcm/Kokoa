@@ -5,9 +5,11 @@ import "../stylesheets/signNegocio.css";
 import instance from "../api/axios";
 import { Autocomplete } from "@react-google-maps/api";
 import routes from "../helpers/routes";
+import {useNavigate} from "react-router-dom";
 
 function SignNegocio() {
   const { user } = useAuth();
+  const navigate = useNavigate();
 
 
   const [negocio, setNegocio] = useState({
