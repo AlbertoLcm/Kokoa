@@ -199,7 +199,15 @@ function ConPerf() {
                                   </div>
                                   <div className="contInfoTarj">
                                     <h1>{artista.nombre} </h1>
-                                    <h2>Ubicado en: <span>{artista.direccion} </span></h2>
+                                    <h2>Ubicado en: <span>{artista.domicilio} </span></h2>
+                                    {
+                                      artista.tipo === 1 ? (
+                                        <h2>Tipo: <span>Musico</span></h2>
+                                      ) : (
+                                        <h2>Tipo: <span>Entretenimiento</span></h2>
+                                      )
+                                    }
+
                                   </div>
                                 </div>
                             )
