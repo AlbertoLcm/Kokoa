@@ -23,32 +23,11 @@ function ConPerf() {
   const [opcio, setOpcio] = useState(false);
   const toggle = () => { setOpcio(!opcio) };
   // Para mostrar un modal diferente (esta fue la primer forma que se me ocurrio no me juzguen)
-  const [showModal1 , setShowModal1] = useState(false);
-  const [showModal2 , setShowModal2] = useState(false);
-  const [showModal3 , setShowModal3] = useState(false);
-  const [showModal4 , setShowModal4] = useState(false);
-  const [showModal5 , setShowModal5] = useState(false);
-
-  useEffect(() => {
-    instance.get(`/cargos/negocio/${user.id}`).then((res) => {
-      setNegocios(res.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-    instance.get(`/cargos/patrocinador/${user.id}`).then((res) => {
-      setPatrocinios(res.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-    instance.get(`/cargos/artista/${user.id}`).then((res) => {
-      setArtistas(res.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }, []);
+  const [showModal1, setShowModal1] = useState(false);
+  const [showModal2, setShowModal2] = useState(false);
+  const [showModal3, setShowModal3] = useState(false);
+  const [showModal4, setShowModal4] = useState(false);
+  const [showModal5, setShowModal5] = useState(false);
 
   function cambioVis(ver) {
     setCont(ver);
@@ -73,14 +52,46 @@ function ConPerf() {
 
   const handleUpdate = () => {
     instance.put(`/usuarios/${user.id}`, usuarioUpdate)
-    .then((res) => {
-      alert("Se actualizo correctamente");
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+      .then((res) => {
+        alert("Se actualizo correctamente");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
-  
+
+  let consneg = false;
+  let conspat = false;
+  let consart = false;
+  const cargVis = (dond) => {
+    cambioVis(dond)
+    if (dond === 1 && !consneg) {
+      instance.get(`/cargos/negocio/${user.id}`).then((res) => {
+        setNegocios(res.data);
+      })
+        .catch((err) => {
+          console.log(err);
+        });
+      consneg = true
+    }
+    if (dond === 2 && !conspat) {
+      instance.get(`/cargos/patrocinador/${user.id}`).then((res) => {
+        setPatrocinios(res.data);
+      })
+        .catch((err) => {
+          console.log(err);
+        })
+    }
+    if (dond === 3 && !consart) {
+      instance.get(`/cargos/artista/${user.id}`).then((res) => {
+        setArtistas(res.data);
+      })
+        .catch((err) => {
+          console.log(err);
+        })
+    }
+  }
+
   return (
     <>
       <Header tipo={'responsive'} user={user.nombre} back={true} />
@@ -90,11 +101,11 @@ function ConPerf() {
         cambiarEstado={setShowModal1}
       >
         <div className="modal">
-        <h1>Cambiar nombre</h1>
-        <p>Anterior nombre {user.nombre} {user.apellidos}</p> 
-        <label>Nombre</label><input type="text" id="nombre" name="nombre" onChange={handleChange}/>
-        <label>Apellidos</label><input type="text" name="apellidos" onChange={handleChange}/>
-        <button className="boton3" onClick={() => handleUpdate()}>Guardar</button>
+          <h1>Cambiar nombre</h1>
+          <p>Anterior nombre {user.nombre} {user.apellidos}</p>
+          <label>Nombre</label><input type="text" id="nombre" name="nombre" onChange={handleChange} />
+          <label>Apellidos</label><input type="text" name="apellidos" onChange={handleChange} />
+          <button className="boton3" onClick={() => handleUpdate()}>Guardar</button>
         </div>
       </Modal>
       <Modal
@@ -104,8 +115,8 @@ function ConPerf() {
         <div className="modal">
           <h1>Cambiar Telefono</h1>
           <p>Anterior telefono{user.telefono} </p>
-        <label>Nuevo telefono</label><input type="text" name="telefono" onChange={handleChange}/>
-        <button className="boton3" onClick={() => handleUpdate()}>Guardar</button>
+          <label>Nuevo telefono</label><input type="text" name="telefono" onChange={handleChange} />
+          <button className="boton3" onClick={() => handleUpdate()}>Guardar</button>
         </div>
       </Modal>
       <Modal
@@ -113,10 +124,10 @@ function ConPerf() {
         cambiarEstado={setShowModal3}
       >
         <div className="modal">
-        <h1>Cambiar Correo</h1>
-        <p>Anterior correo{user.email}</p>
-        <label>Nuevo correo</label><input type="text" name="email" onChange={handleChange}/>
-        <button className="boton3" onClick={() => handleUpdate()}>Guardar</button>
+          <h1>Cambiar Correo</h1>
+          <p>Anterior correo{user.email}</p>
+          <label>Nuevo correo</label><input type="text" name="email" onChange={handleChange} />
+          <button className="boton3" onClick={() => handleUpdate()}>Guardar</button>
         </div>
       </Modal>
       <Modal
@@ -124,10 +135,10 @@ function ConPerf() {
         cambiarEstado={setShowModal4}
       >
         <div className="modal">
-        <h1>Cambiar Domicilio</h1>
-        <p>Anterior domicilio{user.domicilio}</p>
-        <label>Nuevo domicilio</label><input type="text" name="domicilio" onChange={handleChange}/>
-        <button className="boton3" onClick={() => handleUpdate()}>Guardar</button>
+          <h1>Cambiar Domicilio</h1>
+          <p>Anterior domicilio{user.domicilio}</p>
+          <label>Nuevo domicilio</label><input type="text" name="domicilio" onChange={handleChange} />
+          <button className="boton3" onClick={() => handleUpdate()}>Guardar</button>
         </div>
       </Modal>
       <Modal
@@ -135,11 +146,11 @@ function ConPerf() {
         cambiarEstado={setShowModal5}
       >
         <div className="modal">
-        <h1>Cambiar Fecha de nacimiento</h1>
+          <h1>Cambiar Fecha de nacimiento</h1>
 
-        <p>Anterior fecha{user.fecha_nac}</p>
-        <label>Nuevo fecha</label><input type="text" name="fecha_nac" onChange={handleChange}/>
-        <button className="boton3" onClick={() => handleUpdate()}>Guardar</button>
+          <p>Anterior fecha{user.fecha_nac}</p>
+          <label>Nuevo fecha</label><input type="text" name="fecha_nac" onChange={handleChange} />
+          <button className="boton3" onClick={() => handleUpdate()}>Guardar</button>
         </div>
       </Modal>
 
@@ -157,16 +168,16 @@ function ConPerf() {
         }
         <div className="contBase">
           <Menu>
-            <button onClick={() => cambioVis(1)}>Información personal</button>
-            <button onClick={() => cambioVis(2)}>Negocios</button>
-            <button onClick={() => cambioVis(3)}>Patrocinios</button>
-            <button onClick={() => cambioVis(4)}>Entretenimiento</button>
+            <button onClick={() => cargVis(1)}>Información personal</button>
+            <button onClick={() => cargVis(2)}>Negocios</button>
+            <button onClick={() => cargVis(3)}>Patrocinios</button>
+            <button onClick={() => cargVis(4)}>Entretenimiento</button>
           </Menu>
           <div className="navSideBar">
-            <button onClick={() => cambioVis(1)}>Información general</button>
-            <button onClick={() => cambioVis(2)}>Negocios</button>
-            <button onClick={() => cambioVis(3)}>Patrocinios</button>
-            <button onClick={() => cambioVis(4)}>Entretenimiento</button>
+            <button onClick={() => cargVis(1)}>Información general</button>
+            <button onClick={() => cargVis(2)}>Negocios</button>
+            <button onClick={() => cargVis(3)}>Patrocinios</button>
+            <button onClick={() => cargVis(4)}>Entretenimiento</button>
           </div>
           <div className="contVis">
             {
@@ -179,11 +190,11 @@ function ConPerf() {
                     <img src={backimg} id="confPerfImgBack" />
                   </div>
                   <div className="confPerfInfoGen">
-                    <div id="contInfoGen" onClick={() => setShowModal1(!showModal1)}><h2>{user.nombre}</h2> <button><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
-                    <div id="contInfoGen"onClick={() => setShowModal2(!showModal2)}><h2>{user.telefono}</h2> <button><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
-                    <div id="contInfoGen"onClick={() => setShowModal3(!showModal3)}><h2>{user.email}</h2> <button><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
-                    <div id="contInfoGen"onClick={() => setShowModal4(!showModal4)}><h2>{user.domicilio !== null ? (user.domicilio) : ("Sin dirección")}</h2> <button><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
-                    <div id="contInfoGen"onClick={() => setShowModal5(!showModal5)}><h2>{user.fecha_nacimiento !== null ? (user.fecha_nacimiento) : ("Sin fecha de nacimiento")}</h2> <button><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
+                    <div id="contInfoGen" ><h2>{user.nombre} {" "} {user.apellidos} </h2> <button onClick={() => setShowModal1(!showModal1)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
+                    <div id="contInfoGen"><h2>{user.telefono}</h2> <button onClick={() => setShowModal2(!showModal2)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
+                    <div id="contInfoGen"><h2>{user.email}</h2> <button onClick={() => setShowModal3(!showModal3)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
+                    <div id="contInfoGen"><h2>{user.domicilio !== null ? (user.domicilio) : ("Sin dirección")}</h2> <button onClick={() => setShowModal4(!showModal4)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
+                    <div id="contInfoGen"><h2>{user.fecha_nacimiento !== null ? (user.fecha_nacimiento) : ("Sin fecha de nacimiento")}</h2> <button onClick={() => setShowModal5(!showModal5)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
                   </div>
                 </div>
               ) : cont === 2 ? (
@@ -203,10 +214,10 @@ function ConPerf() {
                           <div id="ingoNegHov" className="contConfInfoNeg" title="Las cuentas de negocios tienen aceso a un historial de eventos, solicitud de patrocinio e invitaciones a artistas"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-question-mark" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 8a3.5 3 0 0 1 3.5 -3h1a3.5 3 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4" /><line x1="12" y1="19" x2="12" y2="19.01" /></svg></div>
                         </div>
                         <div className="contTarj">
-                        {
-                          negocios.map((negocio) => {
-                            return (
-                              
+                          {
+                            negocios.map((negocio) => {
+                              return (
+
                                 <div className="tarj" onClick={() => loginCargo(negocio)}>
                                   <div className="contImgTarj">
                                     <div className="contContimg"><img src={img} alt="Sin imagen" /></div>
@@ -216,9 +227,9 @@ function ConPerf() {
                                     <h2>Ubicado en: <span>{negocio.direccion} </span></h2>
                                   </div>
                                 </div>
-                            )
-                          })
-                        }
+                              )
+                            })
+                          }
                         </div>
                       </div>
                     )
@@ -241,10 +252,10 @@ function ConPerf() {
                           <div id="ingoNegHov" className="contConfInfoNeg" title="Las cuentas de patrocinadores tienen acceso a eventos cercanos, solicitudes de patrocinio, busqueda de eventos abiertos a patrocinio y a su contacto"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-question-mark" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 8a3.5 3 0 0 1 3.5 -3h1a3.5 3 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4" /><line x1="12" y1="19" x2="12" y2="19.01" /></svg></div>
                         </div>
                         <div className="contTarj">
-                        {
-                          patrocinios.map((patrocinio) => {
-                            return (
-                              
+                          {
+                            patrocinios.map((patrocinio) => {
+                              return (
+
                                 <div className="tarj" onClick={() => loginCargo(patrocinio)}>
                                   <div className="contImgTarj">
                                     <div className="contContimg"><img src={img} alt="Sin imagen" /></div>
@@ -255,9 +266,9 @@ function ConPerf() {
                                     <h2>Aqui proporcionas: <span>{patrocinio.tipo}</span></h2>
                                   </div>
                                 </div>
-                            )
-                          })
-                        }
+                              )
+                            })
+                          }
                         </div>
                       </div>
                     )
@@ -280,10 +291,10 @@ function ConPerf() {
                           <div id="ingoNegHov" className="contConfInfoNeg" title="Las cuentas de Entretenimiento tienen acceso a configuracion de tipo de entretenimineto, solicitudes de participacion en eventos y contacto de eventos en busqueda de entretenimiento"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-question-mark" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 8a3.5 3 0 0 1 3.5 -3h1a3.5 3 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4" /><line x1="12" y1="19" x2="12" y2="19.01" /></svg></div>
                         </div>
                         <div className="contTarj">
-                        {
-                          artistas.map((artista) => {
-                            return (
-                              
+                          {
+                            artistas.map((artista) => {
+                              return (
+
                                 <div className="tarj" onClick={() => loginCargo(artista)}>
                                   <div className="contImgTarj">
                                     <div className="contContimg"><img src={img} alt="Sin imagen" /></div>
@@ -301,9 +312,9 @@ function ConPerf() {
 
                                   </div>
                                 </div>
-                            )
-                          })
-                        }
+                              )
+                            })
+                          }
                         </div>
                       </div>
                     )
