@@ -30,27 +30,6 @@ function ConPerf() {
   const [showModal4, setShowModal4] = useState(false);
   const [showModal5, setShowModal5] = useState(false);
 
-  useEffect(() => {
-    instance.get(`/cargos/negocio/${user.id}`).then((res) => {
-      setNegocios(res.data);
-    })
-      .catch((err) => {
-        console.log(err);
-      });
-    instance.get(`/cargos/patrocinador/${user.id}`).then((res) => {
-      setPatrocinios(res.data);
-    })
-      .catch((err) => {
-        console.log(err);
-      });
-    instance.get(`/cargos/artista/${user.id}`).then((res) => {
-      setArtistas(res.data);
-    })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
   function cambioVis(ver) {
     setCont(ver);
   }
@@ -82,6 +61,38 @@ function ConPerf() {
       });
   }
 
+  let consneg = false;
+  let conspat = false;
+  let consart = false;
+  const cargVis = (dond) => {
+    if (dond === 2 && !consneg) {
+      instance.get(`/cargos/negocio/${user.id}`).then((res) => {
+        setNegocios(res.data);
+      })
+        .catch((err) => {
+          console.log(err);
+        });
+      consneg = true
+    }
+    if (dond === 3 && !conspat) {
+      instance.get(`/cargos/patrocinador/${user.id}`).then((res) => {
+        setPatrocinios(res.data);
+      })
+        .catch((err) => {
+          console.log(err);
+        })
+    }
+    if (dond === 4 && !consart) {
+      instance.get(`/cargos/artista/${user.id}`).then((res) => {
+        setArtistas(res.data);
+      })
+        .catch((err) => {
+          console.log(err);
+        })
+    }
+    cambioVis(dond)
+  }
+
   return (
     <>
       <Header tipo={'responsive'} user={user.nombre} back={true} />
@@ -90,20 +101,12 @@ function ConPerf() {
         estado={showModal1}
         cambiarEstado={setShowModal1}
       >
-        <div id="EditInformacionModal">
-          <section className="titulo">
-            <h1>Cambiar nombre</h1>
-          </section>
-          <section className="contenido">
-            <p>Nombre actual: {user.nombre} {user.apellidos}</p>
-            <p>
-              <label>Nombre</label><input type="text" id="nombre" name="nombre" onChange={handleChange} />
-            </p>
-            <p>
-              <label>Apellidos</label><input type="text" name="apellidos" onChange={handleChange} />
-            </p>
-            <button className="boton3" onClick={() => handleUpdate()}>Guardar cambios</button>
-          </section>
+        <div className="modal">
+          <h1>Cambiar nombre</h1>
+          <p>Anterior nombre {user.nombre} {user.apellidos}</p>
+          <label>Nombre</label><input type="text" id="nombre" name="nombre" onChange={handleChange} />
+          <label>Apellidos</label><input type="text" name="apellidos" onChange={handleChange} />
+          <button className="boton3" onClick={() => handleUpdate()}>Guardar</button>
         </div>
       </Modal>
       <Modal
@@ -166,16 +169,16 @@ function ConPerf() {
         }
         <div className="contBase">
           <Menu>
-            <button onClick={() => cambioVis(1)}>Información personal</button>
-            <button onClick={() => cambioVis(2)}>Negocios</button>
-            <button onClick={() => cambioVis(3)}>Patrocinios</button>
-            <button onClick={() => cambioVis(4)}>Entretenimiento</button>
+            <button onClick={() => cargVis(1)}>Información personal</button>
+            <button onClick={() => cargVis(2)}>Negocios</button>
+            <button onClick={() => cargVis(3)}>Patrocinios</button>
+            <button onClick={() => cargVis(4)}>Entretenimiento</button>
           </Menu>
           <div className="navSideBar">
-            <button onClick={() => cambioVis(1)}>Información general</button>
-            <button onClick={() => cambioVis(2)}>Negocios</button>
-            <button onClick={() => cambioVis(3)}>Patrocinios</button>
-            <button onClick={() => cambioVis(4)}>Entretenimiento</button>
+            <button onClick={() => cargVis(1)}>Información general</button>
+            <button onClick={() => cargVis(2)}>Negocios</button>
+            <button onClick={() => cargVis(3)}>Patrocinios</button>
+            <button onClick={() => cargVis(4)}>Entretenimiento</button>
           </div>
           <div className="contVis">
             {
@@ -188,11 +191,11 @@ function ConPerf() {
                     <img src={backimg} id="confPerfImgBack" />
                   </div>
                   <div className="confPerfInfoGen">
-                    <div id="contInfoGen" onClick={() => setShowModal1(!showModal1)}><h2>{user.nombre}</h2> <button><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
-                    <div id="contInfoGen" onClick={() => setShowModal2(!showModal2)}><h2>{user.telefono}</h2> <button><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
-                    <div id="contInfoGen" onClick={() => setShowModal3(!showModal3)}><h2>{user.email}</h2> <button><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
-                    <div id="contInfoGen" onClick={() => setShowModal4(!showModal4)}><h2>{user.domicilio !== null ? (user.domicilio) : ("Sin dirección")}</h2> <button><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
-                    <div id="contInfoGen" onClick={() => setShowModal5(!showModal5)}><h2>{user.fecha_nacimiento !== null ? (user.fecha_nacimiento) : ("Sin fecha de nacimiento")}</h2> <button><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
+                    <div id="contInfoGen" ><h2>{user.nombre} {" "} {user.apellidos} </h2> <button onClick={() => setShowModal1(!showModal1)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
+                    <div id="contInfoGen"><h2>{user.telefono}</h2> <button onClick={() => setShowModal2(!showModal2)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
+                    <div id="contInfoGen"><h2>{user.email}</h2> <button onClick={() => setShowModal3(!showModal3)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
+                    <div id="contInfoGen"><h2>{user.domicilio !== null ? (user.domicilio) : ("Sin dirección")}</h2> <button onClick={() => setShowModal4(!showModal4)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
+                    <div id="contInfoGen"><h2>{user.fecha_nacimiento !== null ? (user.fecha_nacimiento) : ("Sin fecha de nacimiento")}</h2> <button onClick={() => setShowModal5(!showModal5)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
                   </div>
                 </div>
               ) : cont === 2 ? (
