@@ -17,10 +17,8 @@ function SignArtista() {
     email: "",
     telefono: "",
     direccion: "",
-    tipo_artista: "",
+    tipo: "1",
     descripcion: "",
-    password: "",
-    rol: "artistas"
   });
 
   const addArt = () => {
@@ -105,10 +103,15 @@ function SignArtista() {
           <h2>PERFORMANCE</h2>
           <div className="ArtcontT">
             <div className="ArtcontTipPat">
-              <h3>Tipo Performance</h3>
-              <p>Musica</p> <Input type="checkbox" />
-              <p>Entretenimiento</p>
-              <Input type="checkbox" />
+            <fieldset>
+                    <input type="radio" id="contactChoice1"
+                    name="tipo" value={1} onClick={handleChange} defaultChecked={true} />
+                    <label htmlFor="contactChoice1">Musica</label>
+                    <br />
+                    <input type="radio" id="contactChoice2"
+                    name="tipo" value={2} onClick={handleChange}/>
+                    <label htmlFor="contactChoice2">Entretenimiento</label>
+              </fieldset>
             </div>
             <div className="ArtcontTDes">
               <h3>Descripcion</h3>
@@ -117,26 +120,12 @@ function SignArtista() {
                 cols="30"
                 rows="5"
                 placeholder="Añada una descripsion de su acto/estilo musical "
+                onChange={handleChange}
+                name="descripcion"
               />
             </div>
           </div>
-          <h2>Contraseña</h2>
-          <div className="ArtcontPass">
-            <div className="ArtdataPass">
-              <div className="inputBox">
-                <input
-                  name="password"
-                  onChange={handleChange}
-                  type="password"
-                  required
-                />
-                <span>Contraseña</span>
-              </div>
-            </div>
-            <div className="ArtdataPass">
-              <Input type="password">Confirme su Contraseña</Input>
-            </div>
-          </div>
+          
           <div className="ArtcontBot">
             <button
               className="boton1"

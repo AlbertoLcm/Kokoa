@@ -15,7 +15,7 @@ function SignPatrocinador() {
     nombre: "",
     email: "",
     telefono: "",
-    tipo_artista: "",
+    tipo: "1",
     descripcion: "",
   });
 
@@ -30,6 +30,7 @@ function SignPatrocinador() {
   const originRef = useRef();
 
   const addPat = () => {
+    console.log(patrocinador)
     instance.post('/cargos/patrocinador', { patrocinador, direccion: originRef.current.value, id: user.id })
     .then((registro) => {
       alert("Patrocinio registrado con éxito");
@@ -102,12 +103,19 @@ function SignPatrocinador() {
           <h2>Forma de patrocinio</h2>
           <div className="PatcontT">
             <div className="PatcontTipPat">
-              <h3>Tipo de Patrocinio</h3>
-              <p>Bebidas</p> <input type="checkbox" />
-              <p>Alcohol</p>
-              <input type="checkbox" />
-              <p>Entretenimiento</p>
-              <input type="checkbox" />
+              <fieldset>
+                    <input type="radio" id="contactChoice1"
+                    name="tipo" value={1} onClick={handleChange} defaultChecked="true" />
+                    <label for="contactChoice1">Bebidas</label>
+                    <br />
+                    <input type="radio" id="contactChoice2"
+                    name="tipo" value={2} onClick={handleChange}/>
+                    <label for="contactChoice2">Alcohol</label>
+                    <br />
+                    <input type="radio" id="contactChoice3"
+                    name="tipo" value={3} onClick={handleChange}/>
+                    <label for="contactChoice3">Entretenimiento</label>
+              </fieldset>
             </div>
             <div className="PatcontTDes">
               <h3>Descripcion</h3>
@@ -116,6 +124,8 @@ function SignPatrocinador() {
                 cols="30"
                 rows="5"
                 placeholder="Añada una descripsion de la forma y tipo de patrocinio que proporciona"
+                onChange={handleChange}
+                name="descripcion"
               />
             </div>
           </div>

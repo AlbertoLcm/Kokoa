@@ -39,9 +39,15 @@ function ConPerf() {
     instance.get(`/cargos/patrocinador/${user.id}`).then((res) => {
       setPatrocinios(res.data);
     })
+    .catch((err) => {
+      console.log(err);
+    });
     instance.get(`/cargos/artista/${user.id}`).then((res) => {
       setArtistas(res.data);
     })
+    .catch((err) => {
+      console.log(err);
+    });
   }, []);
 
   function cambioVis(ver) {
@@ -180,7 +186,6 @@ function ConPerf() {
                                   <div className="contInfoTarj">
                                     <h1>{negocio.nombre} </h1>
                                     <h2>Ubicado en: <span>{negocio.direccion} </span></h2>
-                                    <h2>Abierto: <span>{negocio.horario} </span></h2>
                                   </div>
                                 </div>
                             )
@@ -197,7 +202,7 @@ function ConPerf() {
                     !patrocinios.length ? (
                       <div className="contConfVar">
                         <p>Las cuentas de patrocinadores tienen acceso a eventos cercanos, solicitudes de patrocinio, busqueda de eventos abiertos a patrocinio y a su contacto</p>
-                        <Link to={routes.newpatrocinador} >Crear nuevo negocio </Link>
+                        <Link to={routes.newpatrocinador} >Crear nuevo patrocinio </Link>
                       </div>
                     ) : (
                       <div className="contConfVarEx">
@@ -219,7 +224,7 @@ function ConPerf() {
                                   <div className="contInfoTarj">
                                     <h1>{patrocinio.nombre} </h1>
                                     <h2>Ubicado en: <span>{patrocinio.direccion} </span></h2>
-                                    <h2>Abierto: <span>{patrocinio.horario} </span></h2>
+                                    <h2>Aqui proporcionas: <span>{patrocinio.tipo}</span></h2>
                                   </div>
                                 </div>
                             )
@@ -236,7 +241,7 @@ function ConPerf() {
                     !artistas.length ? (
                       <div className="contConfVar">
                         <p>Las cuentas de Entretenimiento tienen acceso a configuracion de tipo de entretenimineto, solicitudes de participacion en eventos y contacto de eventos en busqueda de entretenimiento</p>
-                        <Link to={routes.newartista} >Crear nuevo negocio </Link>
+                        <Link to={routes.newartista} >Crear nuevo entretenimiento </Link>
                       </div>
                     ) : (
                       <div className="contConfVarEx">
@@ -258,7 +263,6 @@ function ConPerf() {
                                   <div className="contInfoTarj">
                                     <h1>{artista.nombre} </h1>
                                     <h2>Ubicado en: <span>{artista.direccion} </span></h2>
-                                    <h2>Abierto: <span>{artista.horario} </span></h2>
                                   </div>
                                 </div>
                             )
