@@ -64,8 +64,7 @@ function ConPerf() {
   let conspat = false;
   let consart = false;
   const cargVis = (dond) => {
-    cambioVis(dond)
-    if (dond === 1 && !consneg) {
+    if (dond === 2 && !consneg) {
       instance.get(`/cargos/negocio/${user.id}`).then((res) => {
         setNegocios(res.data);
       })
@@ -74,7 +73,7 @@ function ConPerf() {
         });
       consneg = true
     }
-    if (dond === 2 && !conspat) {
+    if (dond === 3 && !conspat) {
       instance.get(`/cargos/patrocinador/${user.id}`).then((res) => {
         setPatrocinios(res.data);
       })
@@ -82,7 +81,7 @@ function ConPerf() {
           console.log(err);
         })
     }
-    if (dond === 3 && !consart) {
+    if (dond === 4 && !consart) {
       instance.get(`/cargos/artista/${user.id}`).then((res) => {
         setArtistas(res.data);
       })
@@ -90,6 +89,7 @@ function ConPerf() {
           console.log(err);
         })
     }
+    cambioVis(dond)
   }
 
   return (
