@@ -104,11 +104,13 @@ function SignArtista() {
           <div className="ArtcontT">
             <div className="ArtcontTipPat">
             <fieldset>
-                    <input type="radio" id="contactChoice1"
+                    <div>
+                    <input className="artTipPatRad" type="radio" id="contactChoice1"
                     name="tipo" value={1} onClick={handleChange} defaultChecked={true} />
                     <label htmlFor="contactChoice1">Musica</label>
+                    </div>
                     <br />
-                    <input type="radio" id="contactChoice2"
+                    <input className="artTipPatRad" type="radio" id="contactChoice2"
                     name="tipo" value={2} onClick={handleChange}/>
                     <label htmlFor="contactChoice2">Entretenimiento</label>
               </fieldset>
@@ -117,8 +119,9 @@ function SignArtista() {
               <h3>Descripcion</h3>
               <p></p>
               <textarea
-                cols="30"
+                cols="50"
                 rows="5"
+                maxlength="150"
                 placeholder="Añada una descripsion de su acto/estilo musical "
                 onChange={handleChange}
                 name="descripcion"

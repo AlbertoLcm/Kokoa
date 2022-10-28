@@ -123,6 +123,7 @@ function SignPatrocinador() {
               <textarea
                 cols="30"
                 rows="5"
+                maxlength="150"
                 placeholder="Añada una descripsion de la forma y tipo de patrocinio que proporciona"
                 onChange={handleChange}
                 name="descripcion"
