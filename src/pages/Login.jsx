@@ -9,8 +9,7 @@ import "../stylesheets/Login.css";
 function Login() {
   const { login, islogin, user } = useAuth();
   const location = useLocation();
-  const navigate = useNavigate();
-
+  console.log(location);
 
   const [userCredentials, setUserCredentials] = useState({
     email: "",
@@ -80,7 +79,7 @@ function Login() {
             <h3>¿Olvidaste tu contraseña?</h3>
             <button
               className="boton1"
-              onClick={() => login(userCredentials, location)}
+              onClick={() => login(userCredentials, location.state?.from)}
             >
               Ingresar
             </button>

@@ -73,9 +73,9 @@ function AppRouter() {
           </PrivateRoute>
         } />
         <Route exact path={'/visperfil/:id'} element={
-          <PrivateRoute>
+          <PublicRoute>
             <VisPerfs />
-          </PrivateRoute>
+          </PublicRoute>
         } />
 
         <Route path="*" element={<Error />} />

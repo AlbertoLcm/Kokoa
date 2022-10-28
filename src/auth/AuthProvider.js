@@ -15,6 +15,8 @@ export default function AuthProvider({ children }) {
   const [user, setUser] = useState(false);
   const [eventos, setEventos] = useState(null);
 
+  const isLogged = () => !!user;
+  
   const islogin = () => {
     const token = localStorage.getItem("token");
     instance
@@ -106,7 +108,6 @@ export default function AuthProvider({ children }) {
       });
   };
 
-  const isLogged = () => !!user;
   const hasRole = (role) => user?.role === role;
 
   const [marcar, setMarcar] = useState(null);
@@ -126,8 +127,8 @@ export default function AuthProvider({ children }) {
 
   const contextValue = {
     user,
-    isLogged,
     hasRole,
+    isLogged,
     login,
     signup,
     logout,
