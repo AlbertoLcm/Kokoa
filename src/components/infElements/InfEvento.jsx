@@ -58,7 +58,7 @@ function InfEvento({ evento, cerrar }) {
           </div>
             {evento.rol_anfitrion === "negocios" ? (
             <div className='detAnfit'>
-              <h1>Anfitrion</h1>
+              <h1>Anfitrion (Negocio)</h1>
               <Link to={`/visperfil/${eventoInfo.anfitrion}`} className={"contDetAnfit"}>
                 <div className='contImgAnfEve'>
                   <img src={image} alt="Predefinir" />

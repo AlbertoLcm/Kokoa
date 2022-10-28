@@ -54,6 +54,32 @@ function ConPerf() {
     setCont(ver);
   }
 
+  // handleChance para los inputs
+  const [usuarioUpdate, setUsuarioUpdate] = useState({
+    nombre: "",
+    apellidos: "",
+    email: "",
+    telefono: "",
+    domicilio: "",
+    fecha_nac: ""
+  });
+
+  const handleChange = (e) => {
+    setUsuarioUpdate({
+      ...usuarioUpdate,
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  const handleUpdate = () => {
+    instance.put(`/usuarios/${user.id}`, usuarioUpdate)
+    .then((res) => {
+      alert("Se actualizo correctamente");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
   
   return (
     <>
@@ -64,17 +90,11 @@ function ConPerf() {
         cambiarEstado={setShowModal1}
       >
         <div className="modal">
-          <input type="text" />
-        </div>
-      </Modal>
-      <Modal
-        estado={showModal1}
-        cambiarEstado={setShowModal1}
-      >
-        <div className="modal">
         <h1>Cambiar nombre</h1>
-
-          <input type="text" />
+        <p>Anterior nombre {user.nombre} {user.apellidos}</p> 
+        <label>Nombre</label><input type="text" id="nombre" name="nombre" onChange={handleChange}/>
+        <label>Apellidos</label><input type="text" name="apellidos" onChange={handleChange}/>
+        <button className="boton3" onClick={() => handleUpdate()}>Guardar</button>
         </div>
       </Modal>
       <Modal
@@ -83,7 +103,9 @@ function ConPerf() {
       >
         <div className="modal">
           <h1>Cambiar Telefono</h1>
-          <input type="text" />
+          <p>Anterior telefono{user.telefono} </p>
+        <label>Nuevo telefono</label><input type="text" name="telefono" onChange={handleChange}/>
+        <button className="boton3" onClick={() => handleUpdate()}>Guardar</button>
         </div>
       </Modal>
       <Modal
@@ -92,7 +114,9 @@ function ConPerf() {
       >
         <div className="modal">
         <h1>Cambiar Correo</h1>
-          <input type="text" />
+        <p>Anterior correo{user.email}</p>
+        <label>Nuevo correo</label><input type="text" name="email" onChange={handleChange}/>
+        <button className="boton3" onClick={() => handleUpdate()}>Guardar</button>
         </div>
       </Modal>
       <Modal
@@ -100,8 +124,10 @@ function ConPerf() {
         cambiarEstado={setShowModal4}
       >
         <div className="modal">
-        <h1>Cambiar Direccion</h1>
-          <input type="text" />
+        <h1>Cambiar Domicilio</h1>
+        <p>Anterior domicilio{user.domicilio}</p>
+        <label>Nuevo domicilio</label><input type="text" name="domicilio" onChange={handleChange}/>
+        <button className="boton3" onClick={() => handleUpdate()}>Guardar</button>
         </div>
       </Modal>
       <Modal
@@ -111,7 +137,9 @@ function ConPerf() {
         <div className="modal">
         <h1>Cambiar Fecha de nacimiento</h1>
 
-          <input type="text" />
+        <p>Anterior fecha{user.fecha_nac}</p>
+        <label>Nuevo fecha</label><input type="text" name="fecha_nac" onChange={handleChange}/>
+        <button className="boton3" onClick={() => handleUpdate()}>Guardar</button>
         </div>
       </Modal>
 
