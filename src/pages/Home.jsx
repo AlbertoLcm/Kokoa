@@ -36,10 +36,7 @@ function Home() {
         setEvCre(resultado.data)
       })
     }
-  }, []);
-
-  console.log(user);
-  
+  }, []); 
 
   if (user.rol === "usuarios") {
     return (
