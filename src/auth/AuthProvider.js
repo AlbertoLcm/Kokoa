@@ -102,6 +102,7 @@ export default function AuthProvider({ children }) {
         console.log(res);
         localStorage.removeItem("token");
         setUser(null);
+        navigate(routes.login);
       })
       .catch((err) => {
         console.log(err);
