@@ -439,7 +439,7 @@
         }
         #ContGeneralHome .feedHome{
             height: 50vh;
-            width: calc(100% - 20px);
+            width: calc(100% - 30px);
             border-top-left-radius: 15px;
             border-top-right-radius: 15px;
             border-bottom-right-radius: 0px;
@@ -453,6 +453,17 @@
         #ContGeneralHome .contMapaHome .mapaHome{
             height: 50vh;
             width: 100%;
+        }
+
+        #MarkerInfoPos {
+            height: 100vh;
+            width: 100%;
+            right: 0px;
+            display: flex;
+            align-items: flex-end;
+        }
+        #MarkerInfoPos .markerInfo{
+            border-radius: 15px 15px 0px 0px;
         }
     /* === FIN Home normal === */
 

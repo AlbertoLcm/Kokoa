@@ -43,6 +43,12 @@ const Overlay = styled.div`
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    @media (max-width: 750px) {
+      padding: 0px;
+      width: 100%;
+      height: 100vh;
+    }
+    
     `;
     
     const ContModal = styled.div`
@@ -56,6 +62,10 @@ const Overlay = styled.div`
     z-index: 1002;
     color: #3f3f3f;
     overflow: hidden;
+    @media (max-width: 750px) {
+      width: calc(100% - 40px);
+      height: calc(100vh + 40px);
+    }
 `;
 
 const Ecabezado = styled.div`
