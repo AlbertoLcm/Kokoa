@@ -364,6 +364,12 @@
             margin-top: 0px;
         }
     /* /// Fin foto de perfil /// */
+
+    /* Eventos */
+    #ContPerfilFeedEventos{
+        grid-template-columns: 1fr;
+    }
+    /* FIN Eventos */
     }
     /* /// Fin responsive de la página /// */
 

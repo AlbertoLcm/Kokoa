@@ -82,7 +82,8 @@ function Mapa({ mapSet, map }) {
         rango.push({
           id_evento: evento.id_evento,
           evento: evento.nombre,
-          ubicacion: evento.ubicacion,
+          fecha: evento.fecha_inicio,
+          ubicacion: evento.direccion,
           lat: evento.lat,
           lng: evento.lng,
           // Enviamos el metodo para que se pueda hacer click en el evento y se muestre en el mapa

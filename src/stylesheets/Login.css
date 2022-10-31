@@ -42,6 +42,9 @@
     user-select: none;
     margin-bottom: 20px;
 }
+.login .form-group{
+    margin-top: 15px;
+}
 .separador{
     height: 20px;
     position: relative;

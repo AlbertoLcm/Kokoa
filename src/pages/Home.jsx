@@ -62,7 +62,7 @@ function Home() {
           </div>
           <div className="feedHome">
             <section id="HeaderFeedHome">
-              <h2>Hola {user.nombre}</h2>
+              <h2>Hola, {user.nombre}</h2>
               <section id="ContBtnFeedAnfitrion">
                 <div id="BtnFeedAnfitrion">
                   <button className="btnFeedHome" onClick={() => setVisua(1)}>Para ti</button>
@@ -84,6 +84,7 @@ function Home() {
                           id={evento.id_evento}
                           lugar={evento.ubicacion}
                           titulo={evento.evento}
+                          fecha={evento.fecha}
                           corrs={{ lat: evento.lat, lng: evento.lng }}
                           mapa={map}
                           metodo={evento.asignacion}

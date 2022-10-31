@@ -55,7 +55,7 @@ export default function AuthProvider({ children }) {
     });
   }
   
-  const login = (usuario, fromLocation) => {
+  const login = (usuario, fromLocation, alertRef) => {
     instance
       .post("/auth/login", usuario)
       .then((usuarioRes) => {
@@ -65,8 +65,9 @@ export default function AuthProvider({ children }) {
           navigate(fromLocation, { replace: true });
         }
       })
-      .catch((err) => {
-        alert(err.response.data.message);
+      .catch((error) => {
+        alertRef.current.classList.remove('d-none');
+        alertRef.current.innerHTML = error.response.data.message;
       });
   };
 

@@ -59,7 +59,7 @@ function ListaEventosFeed({ id, solicito }) {
                     </p>
                     <h2>{evento.nombre}</h2>
                     <p className="infEventoUbicacion">
-                      {evento.ubicacion}
+                      {evento.direccion}
                     </p>
                     <p className="asistentesEvento">
                       Asistiran 12 personas{evento.capacidad}

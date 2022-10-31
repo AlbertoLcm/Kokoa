@@ -98,14 +98,12 @@
                 #ContEventoHomeFeed{
                     overflow: hidden;
                     display: flex;
-                    height: auto;
                     flex-direction: column;
                     margin-bottom: 10px;
                     border-radius: 10px;
-                    /* background-color: #c50d38; */
                     background-color: #2D0E30;
                     backdrop-filter: blur(20px);
-                    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+                    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.4);
                     cursor: pointer;
                     transition: 0.3s;
                     color: #f3f3f3;
@@ -117,7 +115,8 @@
                 }
                 #ContEventoHomeFeed #ContInfEvento{
                     padding: 10px;
-                    height: 100px;
+                    height: auto;
+                    overflow-y: auto;
                 }
                 #ContEventoHomeFeed .infEventoFecha{
                     color: #f3f3f3;
@@ -164,6 +163,7 @@
             align-items: center;
         }
         #MarkerInfoPos .markerInfo{
+            position: relative;
             border-radius: 15px;
             background: #140016;
             backdrop-filter: blur(20px);
@@ -186,13 +186,14 @@
             border-top-right-radius: 15px;
             overflow: hidden;
         }
-        #MarkerInfoPos .contImagenMarkerInfo button{
-            position: absolute;
+        #MarkerInfoPos .btnCerrar{
+            position: fixed;
             top: 10px;
             right: 10px;
             background-color: #f3f3f37c;
             height: 30px;
             width: 30px;
+            z-index: 1000;
             border: none;
             border-radius: 20px;
             color: white;
@@ -215,6 +216,7 @@
             justify-content: end;
             padding-right: 15px;
             gap: 5px;
+            padding-bottom: 15px;
         }
         #MarkerInfoPos .contBtnMarkerInfo button{
             width: 100px;
@@ -232,7 +234,7 @@
             background-color: #f3f3f3c4;
         }
         #MarkerInfoPos #EventoInfo{
-            padding: 15px;
+            padding: 0px 15px 15px 15px;
             display: grid;
             grid-template-columns: 1fr;
             gap: 10px;
@@ -241,7 +243,22 @@
             padding: 10px;
             background-color: #2D0E30;
             border-radius: 10px;
+            color: #f3f3f3;
         }
+        #MarkerInfoPos #EventoInfo .detEvent .detalles{
+            margin-top: 5px;
+        }
+            .detEvent .gratis{
+                color: green;
+                font-weight: 550;
+            }
+            .detEvent .cover{
+                color: orange;
+                font-weight: 550;
+            }
+            .detEvent p{
+                color: #f3f3f3da;
+            }
         #MarkerInfoPos #EventoInfo .detAnfit{
             padding: 10px;
             background-color: #2D0E30;
@@ -256,19 +273,19 @@
         }
         #MarkerInfoPos #EventoInfo .detAnfit .contDetAnfit{
             color: #f3f3f3;
-            margin-top: 10px;
+            margin-top: 5px;
             text-decoration: none;
             display: flex;
             align-items: center;
-            height: 60px;
+            height: auto;
         }
         #MarkerInfoPos #EventoInfo .detAnfitNormal .contDetAnfit{
             color: #f3f3f3;
-            margin-top: 10px;
+            margin-top: 5px;
             text-decoration: none;
             display: flex;
             align-items: center;
-            height: 60px;
+            height: auto;
         }
 
         #MarkerInfoPos #EventoInfo .detAnfit .contDetAnfit label{
@@ -284,8 +301,8 @@
             cursor: pointer;
         }
         #MarkerInfoPos .contDetAnfit .contImgAnfEve {
-            height: 60px;
-            width: 60px;    
+            height: 40px;
+            width: 40px;    
             border-radius: 50%;
             margin-right: 10px;
             border: 2px solid #f3f3f3;
@@ -430,6 +447,30 @@
     
 /* ==== FIN Toggle ==== */
 
+/* Alert */
+.alert{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: tomato;
+    color: #f3f3f3;
+    margin: 10px 0px 0px 0px;
+}
+.d-none{
+    display: none;
+}
+
+.success{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: green;
+    color: #f3f3f3;
+    margin: 10px 0px 0px 0px;
+}
+.d-none{
+    display: none;
+}
+/* FIN Alert */
+
 /* /// Responsive de la página /// */
 @media (max-width: 750px) {
     /* === Home normal === */
@@ -455,16 +496,22 @@
             width: 100%;
         }
 
-        #MarkerInfoPos {
-            height: 100vh;
-            width: 100%;
-            right: 0px;
-            display: flex;
-            align-items: flex-end;
-        }
-        #MarkerInfoPos .markerInfo{
-            border-radius: 15px 15px 0px 0px;
-        }
+        /* === Marker Info de cada evento === */
+            #MarkerInfoPos {
+                height: 100vh;
+                width: 100%;
+                right: 0px;
+                display: flex;
+                align-items: flex-end;
+            }
+            #MarkerInfoPos .markerInfo{
+                border-radius: 15px 15px 0px 0px;
+                max-height: 70%;
+                min-height: 70%;
+                overflow-y: scroll;
+            }
+        /* === FIN Marker Info de cada evento === */
+
     /* === FIN Home normal === */
 
     /* === Home negocios === */

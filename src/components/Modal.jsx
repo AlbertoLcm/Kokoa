@@ -64,9 +64,6 @@ const Overlay = styled.div`
     overflow: hidden;
     @media (max-width: 750px) {
       width: calc(100% - 40px);
-      min-height: calc(100vh - 40px);
-      max-height: calc(100vh - 40px);
-      border-radius: 0px;
     }
 `;
 

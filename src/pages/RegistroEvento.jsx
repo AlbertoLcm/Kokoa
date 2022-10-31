@@ -9,6 +9,9 @@ import useAuth from "../auth/useAuth";
 
 function RegistroEvento() {
   const nav = useNavigate();
+  /** @type React.MutableRefObject<HTMLInputElement> */
+  const alertRef = useRef();
+  const successRef = useRef();
 
   const { addMostrar, user } = useAuth();
 
@@ -23,6 +26,8 @@ function RegistroEvento() {
     horaInicio: "",
     fechaTermino: "",
     horaTermino: "",
+    costo: "",
+    capacidad: "",
   });
 
   const handleChange = (e) => {
@@ -42,6 +47,11 @@ function RegistroEvento() {
   function handleSubmit() {
     // eslint-disable-next-line no-undef
     const geocoder = new google.maps.Geocoder();
+    if (originRef.current.value === "") {
+      alertRef.current.classList.remove('d-none');
+      alertRef.current.innerText = "Debes ingresar la ubicación del evento";
+      return;
+    }
     geocoder.geocode(
       {
         address: originRef.current.value,
@@ -59,12 +69,13 @@ function RegistroEvento() {
           .then((resultsBD) => {
             console.log(resultsBD);
             addMostrar(resultsBD)
-            alert(resultsBD.data.message);
+            successRef.current.classList.remove('d-none');
+            successRef.current.innerHTML = resultsBD.data.message;
             nav(-1)
           })
           .catch((error) => {
-            console.log(error);
-            alert(error.response.data.message);
+            alertRef.current.classList.remove('d-none');
+            alertRef.current.innerHTML = error.response.data.message;
           });
       }
     );
@@ -73,6 +84,12 @@ function RegistroEvento() {
   return (
     <div id="ContGeneralRegistrarEvento">
       <div action="" className="registrarEventoForm">
+        <div ref={alertRef} className="alert d-none">
+          Mensaje alert
+        </div>
+        <div ref={successRef} className="success d-none">
+          Mensaje success
+        </div>
         <p></p>
         <input id="nombre" name="nombre" type="text" onChange={handleChange} value={datosEvento.nombre} placeholder="Nombre del evento" required />
         <p>Ubicacion del evento</p>
@@ -104,11 +121,11 @@ function RegistroEvento() {
         <section className="detalles">
           <div>
             <p></p>
-            <input type="number" placeholder="Costo" />
+            <input type="number" name="costo" min="0" max="10000" placeholder="Costo" onChange={handleChange} required/>
           </div>
           <div>
             <p></p>
-            <input type="number" placeholder="Capacidad" />
+            <input type="number" name="capacidad" min="0" placeholder="Capacidad" onChange={handleChange} />
           </div>
           <div className="contCheckbox">
             <p>

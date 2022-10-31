@@ -2,7 +2,7 @@ import React from "react";
 import "../stylesheets/EventosPagPrin.css"
 import image from "../images/concert.jpg"
 
-function Evento({ titulo, corrs, mapa, lugar, id, metodo }) {
+function Evento({ titulo, fecha, corrs, mapa, lugar, id, metodo }) {
   function handleOnDoubleClick() {
     metodo(id);
     // eslint-disable-next-line no-undef
@@ -10,6 +10,7 @@ function Evento({ titulo, corrs, mapa, lugar, id, metodo }) {
     // eslint-disable-next-line no-undef
     mapa.setZoom(19);
   }
+  let fecini = new Date(fecha)
 
   return (
     <div id="ContEventoHomeFeed" onClick={() => handleOnDoubleClick()}>
@@ -20,14 +21,15 @@ function Evento({ titulo, corrs, mapa, lugar, id, metodo }) {
       <section id="ContInfEvento">
         <div className="infEvento">
           <p className="infEventoFecha">
-            Sab, 17 octubre a las 16:00 horas
+            Incia el
+            {` ${fecini.toLocaleDateString()} `}
+            a las
+            {` ${fecini.toLocaleTimeString()} `}
+            horas
           </p>
           <h2>{titulo}</h2>
           <p className="infEventoUbicacion">
             {lugar}
-          </p>
-          <p className="asistentesEvento">
-            Asistiran 12 personas
           </p>
         </div>
       </section>
