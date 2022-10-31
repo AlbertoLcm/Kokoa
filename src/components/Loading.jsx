@@ -3,10 +3,10 @@ import '../stylesheets/Loading.css';
 
 function Loading() {
   return (
-    <div id="loading">
+    <div id="Loading">
       <h1>Kokoa</h1>
-      <div id="spinner">
-        <div id="fondo"></div>
+      <div className="spinnerLoading">
+        <div className="fondoLoading"></div>
       </div>
     </div>
   )

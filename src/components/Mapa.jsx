@@ -60,6 +60,13 @@ function Mapa({ mapSet, map }) {
     fillOpacity: 0
   });
 
+  const handleActiveMarker = (marker) => {
+    if (marker === activeMarker) {
+      return;
+    }
+    setActiveMarker(marker);
+  };
+
   const asignacion = (id) => {
     handleActiveMarker(id);
     const eve = lugares.find((evento) => evento.id_evento === id);
@@ -85,12 +92,7 @@ function Mapa({ mapSet, map }) {
     });
   }
 
-  const handleActiveMarker = (marker) => {
-    if (marker === activeMarker) {
-      return;
-    }
-    setActiveMarker(marker);
-  };
+  
 
   const desasignacion = () => {
     setActiveMarker(null);
@@ -115,10 +117,6 @@ function Mapa({ mapSet, map }) {
         onClick={() => setActiveMarker(null)}>
 
         {lugares.map((evento) => {
-          let today = new Date();
-          let now = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds());
-
-          // if (evento.fecha_termino > now.toISOString()) {
           return (
             <Marker
               key={evento.id_evento}
@@ -130,18 +128,23 @@ function Mapa({ mapSet, map }) {
               onClick={() => asignacion(evento.id_evento)}>
 
               {activeMarker === evento.id_evento && (
-                <div id="MarkerInfoPos">
-                  <div className="markerInfo">
-                    <InfEvento
-                      evento={eventoInfo}
-                      cerrar={desasignacion}
-                    />
+                  <div id="MarkerInfoPos">
+                    <div className="markerInfo">
+                      <InfEvento
+                        evento={eventoInfo}
+                        cerrar={desasignacion}
+                      />
+                    </div>
                   </div>
-                </div>
+              )}
+              
+              {activeMarker === evento.id_evento && (
+                <InfoWindow>
+                  <h2>{evento.nombre}</h2>
+                </InfoWindow>
               )}
             </Marker>
           )
-          // }
         })}
       </GoogleMap>
     </>
