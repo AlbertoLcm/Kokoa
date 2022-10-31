@@ -26,6 +26,24 @@
     transition: all 300ms ease;
     user-select: none;
 }
+.btnLink2{
+    text-decoration: none;
+    background-color: #196eff;
+    border-radius: 30px;
+    padding: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 18px;
+    color: #f3f3f3;
+    width: 100%;    
+    transition: all 300ms ease;
+    user-select: none;
+    cursor: pointer;
+}
+.btnLink2:hover{
+    background-color: #3a82ff;
+    color: #f3f3f3;
+}
 .btnLink:hover{
     background-color: #196eff;
 }

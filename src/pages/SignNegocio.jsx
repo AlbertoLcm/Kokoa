@@ -55,7 +55,7 @@ function SignNegocio() {
 
   return (
     <div className="contBackground">
-      <Header tipo={'responsive'} user={user.nombre} back={true} />
+      <Header tipo={'responsive'} perfil={user.nombre} back={true} />
 
       <div className="NegcontForm">
         <div action="" className="Negform">

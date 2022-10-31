@@ -95,7 +95,7 @@ function ConPerf() {
 
   return (
     <>
-      <Header tipo={'responsive'} user={user.nombre} back={true} />
+      <Header tipo={'responsive'} perfil={user.nombre} back={true} />
 
       <Modal
         estado={showModal1}

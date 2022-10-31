@@ -2,7 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Modal = ({ children, estado, cambiarEstado }) => {
+const Modal = ({ children, estado, titulo, cambiarEstado }) => {
 
 
   return (
@@ -10,9 +10,7 @@ const Modal = ({ children, estado, cambiarEstado }) => {
       estado && <Overlay>
         <ContModal>
           <Ecabezado>
-            <div>
-              <h2>Editar informacion</h2>
-            </div>
+              <h2>{titulo}</h2>
             <ButtonCerrar onClick={() => cambiarEstado(false)}>
               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-x" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -39,23 +37,25 @@ const Overlay = styled.div`
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
     display: flex;
     padding: 40px;
     justify-content: center;
     align-items: center;
     z-index: 1000;
-`;
-
-const ContModal = styled.div`
-    width: 500px;
+    `;
+    
+    const ContModal = styled.div`
+    width: 580px;
+    max-height: 550px;
     min-height: 100px;
-    background-color: #140016;
+    background-color: #2D0E30;
     position: relative;
     border-radius: 10px;
     padding: 20px;
     z-index: 1002;
     color: #3f3f3f;
-
+    overflow: hidden;
 `;
 
 const Ecabezado = styled.div`
@@ -64,8 +64,12 @@ const Ecabezado = styled.div`
     justify-content: space-between;
     border-bottom: 1px solid #f3f3f354;
     color: #f3f3f3;
-    h3 {
-        font-family: 'Josefin Sans';
+    padding-bottom: 10px;
+    height: auto;
+    h2 {
+      font-weight: 600;
+      display: flex;
+      align-items: center;
     }
 `;
 
@@ -73,7 +77,11 @@ const ButtonCerrar = styled.button`
     border: none;
     background: none;
     cursor: pointer;
+    border-radius: 50%;
     transition: all 0.3s ease;
-    border-radius: 5px;
+    height: 43px;
     color: #1766DC;
+    :hover {
+      background-color: #f3f3f354;
+    }
 `;

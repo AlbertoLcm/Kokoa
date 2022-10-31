@@ -44,7 +44,7 @@ function SignArtista() {
   
   return (
     <div className="contBackground">
-      <Header tipo={'responsive'} user={user.nombre} back={true} />
+      <Header tipo={'responsive'} perfil={user.nombre} back={true} />
 
       <div className="ArtcontForm">
         <div action="" className="Artform">

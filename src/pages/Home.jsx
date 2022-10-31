@@ -11,19 +11,22 @@ import Header from "../components/Header";
 import routes from "../helpers/routes";
 import foto from "../images/Wall (59).jpg";
 import image from "../images/concert.jpg";
+import Modal from "../components/Modal";
 import ListaEventosFeed from "../components/infElements/ListaEventosFeed";
+import RegistroEvento from "./RegistroEvento";
 
 const Mapa = lazy(() => import("../components/Mapa"));
 const MapNegocio = lazy(() => import("../components/maps/MapNegocio"));
 
 function Home() {
-  
+
   const nav = useNavigate();
   const { marcar, eventos, logout, user } = useAuth();
 
   const [map, setMap] = useState(/** @type google.maps.Map */(null));
   const [evCre, setEvCre] = useState([]);
   const [visua, setVisua] = useState(1);
+  const [showModal, setShowModal] = useState(false);
 
 
   const handleSetMap = (mapita) => {
@@ -36,12 +39,20 @@ function Home() {
         setEvCre(resultado.data)
       })
     }
-  }, []); 
+  }, []);
 
   if (user.rol === "usuarios") {
     return (
       <>
-        <Header tipo={'color'} user={user.nombre} back={false} />
+        <Header tipo={'color'} perfil={user.nombre} back={false} />
+
+        <Modal
+          estado={showModal}
+          cambiarEstado={setShowModal}
+          titulo={"Crear un evento"}
+        >
+          <RegistroEvento />
+        </Modal>
 
         <section id="ContGeneralHome">
           <div className="contMapaHome">
@@ -95,7 +106,7 @@ function Home() {
               <>
                 <h3>Comunidad</h3>
                 <section id="ContCrearEvento">
-                  <Link to={routes.registrarevento} className={"btnLink"}>Publicar un evento</Link>
+                  <button onClick={() => setShowModal(!showModal)} className="btnLink2">Crear un evento</button>
                 </section>
 
                 <section id="InfOpinionesAnfitrion">
@@ -311,14 +322,14 @@ function Home() {
   } else {
     return (
       <>
-        <Header tipo={'color'} user={user.nombre} back={false} name={false} />
+        <Header tipo={'color'} perfil={user.nombre} back={false} name={false} />
 
         <div id="ContGeneralNegocios">
 
           <section className="contFeedNegocios">
 
             <h1>{user.nombre_cargo}</h1>
-            
+
             <div className="contBtnFeedNegocios">
               <div className="btnsFeedNegocios">
                 <button className="btnFeedNegocios" onClick={() => setVisua(1)}>Inicio</button>
@@ -334,7 +345,7 @@ function Home() {
                     <h3>Tus eventos</h3>
                     <div id="ContEventosFeed">
                       <Link to={routes.registrarevento} className={"btnLink"}>Crear un evento nuevo</Link>
-                      <ListaEventosFeed id={user.id} solicito="actuales"/>
+                      <ListaEventosFeed id={user.id} solicito="actuales" />
                     </div>
                   </>
                 ) : visua === 1 ? (
@@ -358,11 +369,11 @@ function Home() {
             <Suspense fallback={<Loading />}>
               <MapNegocio mapSet={handleSetMap} map={map} />
             </Suspense>
-            
+
           </section>
 
         </div>
-    </>
+      </>
     )
   }
 

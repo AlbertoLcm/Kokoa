@@ -3,11 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import '../stylesheets/Header.css'
 import routes from "../helpers/routes";
 import useAuth from "../auth/useAuth";
-import perfil from '../images/Wall (59).jpg';
+import fotoPerfil from '../images/Wall (59).jpg';
 
-function Header({ tipo, user, back = false, children, toggle = true, name = false }) {
+function Header({ tipo, perfil, back = false, children, toggle = true, name = false }) {
   const nav = useNavigate();
   const [opcio, setOpcio] = useState(false);
+  const { user } = useAuth();
   const toggleOptions = () => { setOpcio(!opcio) };
   const { logout } = useAuth();
 
@@ -19,23 +20,16 @@ function Header({ tipo, user, back = false, children, toggle = true, name = fals
         </section>
         <section className="userHeader">
           {children}
-          {back ?
-            <div className="btnBack" onClick={() => nav(-1)}>
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <polyline points="15 6 9 12 15 18" />
-              </svg>
-            </div>
-            : null}
-          {user ?
+
+          {perfil ?
             <div className="user" onClick={() => toggleOptions(!opcio)}>
               <section className="contImgPerfil">
-                <img src={perfil} alt="Perfil" />
+                <img src={fotoPerfil} alt="Perfil" />
               </section>
 
               {name ?
                 <section className="contName">
-                  {user}
+                  {user.nombre}
                 </section>
                 : null}
             </div>
@@ -44,13 +38,32 @@ function Header({ tipo, user, back = false, children, toggle = true, name = fals
       </header>
       {opcio && (
         toggle ?
-        <div className="acomodo">
-          <div className="dropiOpcio">
-            <Link to={routes.perfil} id="togglePerfil">Configuración del perfil</Link>
-            <div onClick={() => logout()} id='toggleSalir'>Salir</div>
+          <div className="acomodo">
+            <div className="dropiOpcio">
+              <section className="perfiles">
+                {user.nombre}
+              </section>
+              <section className="contOptions">
+                <Link to={routes.perfil} className="option">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings" width="36" height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                  <label>Configuración del perfil</label>
+                </Link>
+                <div onClick={() => logout()} className="option">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="36" height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                    <path d="M7 12h14l-3 -3m0 6l3 -3" />
+                  </svg>
+                  <label>Salir</label>
+                </div>
+              </section>
+            </div>
           </div>
-        </div>
-        : null
+          : null
       )}
     </>
   );

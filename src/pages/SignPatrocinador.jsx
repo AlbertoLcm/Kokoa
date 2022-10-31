@@ -43,7 +43,7 @@ function SignPatrocinador() {
 
   return (
     <div className="contBackground">
-      <Header tipo={'responsive'} user={user.nombre} back={true} />
+      <Header tipo={'responsive'} perfil={user.nombre} back={true} />
 
       <div className="PatcontForm">
         <div action="" className="Patform">
