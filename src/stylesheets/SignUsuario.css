@@ -37,9 +37,7 @@
     width: 200px;
     padding-right: 30px;
 }
-.UscontInpUs{
-    width: 300px;
-    padding-left: 37%;
+.contInpUs{
     padding-top: 25px;
 }
 .UscontBotChic{
@@ -53,7 +51,13 @@
     display: flex;
     justify-content: center;
 }
-
+@media (max-width: 750px) {
+    .UscontCabeza h2{
+        font-size: 30px;
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
+}
 @media only screen and (max-width: 360px) {
     .UsbotVolverChic{
         display: block;

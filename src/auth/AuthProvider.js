@@ -71,7 +71,7 @@ export default function AuthProvider({ children }) {
       });
   };
 
-  const signup = (usuario, rol, fromLocation) => {
+  const signup = (usuario, rol, fromLocation, alertRef) => {
     instance
       .post(`${rol}/signup`, usuario)
       .then((usuarioRes) => {
@@ -83,7 +83,8 @@ export default function AuthProvider({ children }) {
         }
       })
       .catch((error) => {
-        console.log(error);
+        alertRef.current.classList.remove('d-none');
+        alertRef.current.innerHTML = error.response.data.message;
       });
   };
 

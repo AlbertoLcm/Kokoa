@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import "../stylesheets/Buttons.css";
 import Header from "../components/Header";
 import "../stylesheets/SignUsuario.css";
@@ -10,6 +10,8 @@ import routes from "../helpers/routes";
 function SignUsuario() {
   const { signup } = useAuth();
   const location = useLocation();
+  /** @type React.MutableRefObject<HTMLInputElement> */
+  const alertRef = useRef();
 
   const [usuario, setUsuario] = useState({
     nombre: "",
@@ -50,6 +52,9 @@ function SignUsuario() {
             <div className="UscontCabeza">
               <h2>Crear cuenta nueva.</h2>
             </div>
+              <div ref={alertRef} className="alert d-none">
+                Mensaje alert
+              </div>
             <div className="contInpUs">
               <div className="inputBox">
                 <input name="nombre"
@@ -90,9 +95,7 @@ function SignUsuario() {
               </div>
             </div>
             <button className="boton1"
-              onClick={
-                () => signup(usuario, "usuarios", location)
-              }>
+              onClick={() => signup(usuario, "usuarios", location, alertRef)}>
               Registrarse
             </button>
           </div>
