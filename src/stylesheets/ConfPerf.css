@@ -234,6 +234,52 @@ button :focus {
 #AddDireccion{
     align-items: left;
 }
+
+/* Modals by Alberto */
+    .modalConfPerfil{
+        color: #f3f3f3;
+    }
+    .modalConfPerfil .titulo{
+        font-size: 20px;
+        font-weight: 600;
+        margin-top: 10px;
+    }
+    .modalConfPerfil p{
+        padding-bottom: 5px;
+    }
+    .modalConfPerfil button{
+        margin-top: 15px;
+        background: linear-gradient(to left, #004dc0, #EC1C4E, #d6d300);
+        display: block;
+        width: 100%;
+        color: #f3f3f3;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        user-select: none;
+        padding: 10px;
+        font-size: 18px;
+        transition: all 0.3s ease;
+    }
+
+    .modalConfPerfil input{
+        background-color: #f3f3f3;
+        border: none;
+        border-radius: 10px;
+        padding: 10px;
+        font-size: medium;
+        width: calc(100% - 20px);
+    }
+    .modalConfPerfil input:focus{
+        outline: none;
+    }
+    .modalConfPerfil .modalNombre{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+/* FIN Modals by Alberto */
+
 @media only screen and (max-width: 750px) {
     .contBase{
         padding-top: 0px;

@@ -100,58 +100,66 @@ function ConPerf() {
       <Modal
         estado={showModal1}
         cambiarEstado={setShowModal1}
+        titulo="Cambiar nombre"
       >
-        <div className="modal">
-          <h1>Cambiar nombre</h1>
-          <p>Anterior nombre {user.nombre} {user.apellidos}</p>
-          <label>Nombre</label><input type="text" id="nombre" name="nombre" onChange={handleChange} />
-          <label>Apellidos</label><input type="text" name="apellidos" onChange={handleChange} />
-          <button className="boton3" onClick={() => handleUpdate()}>Guardar</button>
+        <div className="modalConfPerfil">
+          <p className="titulo">Nombre actual {user.nombre} {user.apellidos}</p>
+          <section className="modalNombre">
+            <div>
+              <p>Nombre (s)</p>
+              <input type="text" id="nombre" name="nombre" onChange={handleChange} />
+            </div>
+            <div>
+              <p>Apellidos</p>
+              <input type="text" name="apellidos" onChange={handleChange} />
+            </div>  
+          </section>
+          <button onClick={() => handleUpdate()}>Guardar</button>
         </div>
       </Modal>
       <Modal
         estado={showModal2}
         cambiarEstado={setShowModal2}
+        titulo="Cambiar correo"
       >
-        <div className="modal">
-          <h1>Cambiar Telefono</h1>
-          <p>Anterior telefono{user.telefono} </p>
-          <label>Nuevo telefono</label><input type="text" name="telefono" onChange={handleChange} />
-          <button className="boton3" onClick={() => handleUpdate()}>Guardar</button>
+        <div className="modalConfPerfil">
+          <p className="titulo">Anterior telefono {user.telefono} </p>
+          <p>Nuevo telefono</p>
+          <input type="text" name="telefono" onChange={handleChange} />
+          <button onClick={() => handleUpdate()}>Guardar</button>
         </div>
       </Modal>
       <Modal
         estado={showModal3}
         cambiarEstado={setShowModal3}
+        titulo="Cambiar correo"
       >
-        <div className="modal">
-          <h1>Cambiar Correo</h1>
-          <p>Anterior correo{user.email}</p>
-          <label>Nuevo correo</label><input type="text" name="email" onChange={handleChange} />
-          <button className="boton3" onClick={() => handleUpdate()}>Guardar</button>
+        <div className="modalConfPerfil">
+          <p className="titulo">Anterior correo {user.email}</p>
+          <p>Nuevo correo</p><input type="text" name="email" onChange={handleChange} />
+          <button onClick={() => handleUpdate()}>Guardar</button>
         </div>
       </Modal>
       <Modal
         estado={showModal4}
         cambiarEstado={setShowModal4}
+        titulo="Cambiar domicilio"
       >
-        <div className="modal">
-          <h1>Cambiar Domicilio</h1>
-          <p>Anterior domicilio{user.domicilio}</p>
-          <label>Nuevo domicilio</label><input type="text" name="domicilio" onChange={handleChange} />
-          <button className="boton3" onClick={() => handleUpdate()}>Guardar</button>
+        <div className="modalConfPerfil">
+          <p className="titulo">Anterior domicilio {user.domicilio}</p>
+          <p>Nuevo domicilio</p><input type="text" name="domicilio" onChange={handleChange} />
+          <button onClick={() => handleUpdate()}>Guardar</button>
         </div>
       </Modal>
       <Modal
         estado={showModal5}
         cambiarEstado={setShowModal5}
+        titulo="Cambiar fecha de nacimiento"
       >
-        <div className="modal">
-          <h1>Cambiar Fecha de nacimiento</h1>
-
-          <p>Anterior fecha{user.fecha_nac}</p>
-          <label>Nuevo fecha</label><input type="text" name="fecha_nac" onChange={handleChange} />
-          <button className="boton3" onClick={() => handleUpdate()}>Guardar</button>
+        <div className="modalConfPerfil">
+          <p className="titulo">Anterior fecha {user.fecha_nac}</p>
+          <p>Nuevo fecha</p><input type="text" name="fecha_nac" onChange={handleChange} />
+          <button onClick={() => handleUpdate()}>Guardar</button>
         </div>
       </Modal>
 

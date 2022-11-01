@@ -4,17 +4,14 @@ import InfEvento from "./infElements/InfEvento";
 import useAuth from "../auth/useAuth";
 import { GoogleMap, Marker, InfoWindow, useJsApiLoader } from "@react-google-maps/api";
 import marker from "../images/marker4.png";
+import point from "../images/point.png";
 import { libraries, stylesArray } from "../helpers/methodsMap";
 
 function Mapa({ mapSet, map }) {
   const { addEventos, mostrar } = useAuth();
-
   const [activeMarker, setActiveMarker] = useState(null);
-
   const [lugares, setLugares] = useState([]);
-
   const [eventoInfo, setEventoInfo] = useState({});
-
   const [centerMy, setCenterMy] = useState({ lat: 19.4326077, lng: -99.133208 });
   const rango = [];
 
@@ -116,6 +113,11 @@ function Mapa({ mapSet, map }) {
         icon={marker}
         onLoad={(map) => mapSet(map)}
         onClick={() => setActiveMarker(null)}>
+
+        <Marker 
+        position={centerMy}
+        icon={point}
+        />
 
         {lugares.map((evento) => {
           return (
