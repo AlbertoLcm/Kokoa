@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import instance from "../../api/axios";
 import Skeleton from "../Skeleton";
 import image from "../../images/concert.jpg"
+import { Link, useLocation } from "react-router-dom";
 
 function ListaEventosFeed({ id, solicito }) {
 
   const [eventos, setEventos] = useState({});
   const [loading, setLoading] = useState(true);
+  const location = useLocation();
 
   useEffect(() => {
     instance.get(`/eventos/all/${id}`)
@@ -64,6 +66,7 @@ function ListaEventosFeed({ id, solicito }) {
                     <p className="asistentesEvento">
                       Asistiran 12 personas{evento.capacidad}
                     </p>
+                    <Link to={`/evento/${evento.id_evento}`} state={{from: location}} className="link">Ver más</Link>
                   </div>
 
                   <div className="coverEvento">

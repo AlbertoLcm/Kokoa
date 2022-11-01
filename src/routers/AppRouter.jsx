@@ -17,6 +17,7 @@ import Login from "../pages/Login";
 import Home from "../pages/Home";
 import VisPerfs from "../pages/VisPerfs";
 import Loading from "../components/Loading";
+import Evento from "../pages/Evento";
 
 function AppRouter() {
   return (
@@ -75,6 +76,11 @@ function AppRouter() {
         <Route exact path={'/visperfil/:id'} element={
             <VisPerfs />
         } />
+        <Route path="/evento/:id" element={
+          <Evento />
+        }>
+
+        </Route>
 
         <Route path="*" element={<Error />} />
       </Routes>

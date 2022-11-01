@@ -1,0 +1,286 @@
+/* Estilo evento by Alberto */
+  #ContEventoGeneral{
+    padding-top: 60px;
+    background-color: #2D0E30;
+  }
+
+  #ContEventoGeneral #ContTituloEvento {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+  }
+  #ContEventoGeneral #ContTituloEvento #TituloEvento {
+    width: 750px;
+    height: 100%;
+  }
+  #TituloEvento .botones{
+    padding: 10px;
+    margin-top: -10px;
+    display: flex;
+    justify-content: end;
+  }
+  #TituloEvento .botones .asistir{
+    background: linear-gradient(to left, #004dc0, #EC1C4E, #d6d300);
+    width: 200px;
+    color: #f3f3f3;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    user-select: none;
+    padding: 10px;
+    transition: all 0.3s ease;
+  }
+  #TituloEvento .botones button{
+    background-color: #196eff;
+    width: 200px;
+    color: #f3f3f3;
+    border: none;
+    margin-left: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    user-select: none;
+    padding: 10px;
+    transition: all 0.3s ease;
+  }
+  #TituloEvento .botones button:hover{
+    background-color: #4187ff;
+  }
+  /* === Imagen del evento === */
+    #TituloEvento .contImagenEvento{
+      width: 100%;
+      height: auto;
+      display: flex;
+      justify-content: center;
+    }
+    #ContEventoGeneral .imagenEvento {
+      width: 100%;
+      height: 300px;
+      background-color: #f3f3f3;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      overflow: hidden;
+      user-select: none;
+    }
+    #ContEventoGeneral .contImagenEvento img{
+      width: 100%;
+      height: auto;
+    }
+  /* === FIN Imagen del evento === */
+
+  /* === Titulo del evento === */
+    #TituloEvento .titulo{
+      color: #f3f3f3;
+      padding: 10px;
+      padding-left: 0px;
+      border-radius: 10px;
+    }
+    #TituloEvento .titulo h1{
+      font-size: 30px;
+      font-weight: 600;
+    }
+  /* === FIN Titulo del Evento === */
+
+  /* === Detalles del evento === */
+  #ContEventoGeneral .contDetallesEventoGeneral{
+    background-color: #140016;
+    display: flex;
+    justify-content: center;
+  }
+  .contDetallesEventoGeneral .contDetallesEvento{
+    width: 750px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .contDetallesEventoGeneral .detallesEvento{
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 15px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+    /* === Lateral izquierda ==== */
+      .ubicacion .mapa{
+        background-color: #2D0E30;
+        color: #f3f3f3;
+        border-radius: 10px;
+      }
+      .ubicacion .mapa .mapaSmall{
+        width: 100%;
+        height: 250px;
+        border-radius: 10px 10px 0 0;
+      }
+      .ubicacion p{
+        color: #f3f3f3;
+        padding: 10px;
+        border-radius: 10px;
+      }
+    /* === FIN Lateral izquierda ==== */
+
+    /* === Lateral derecha ==== */
+      .detallesEvento .informacion{
+        background-color: #2D0E30;
+        color: #f3f3f3;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+      }
+        .informacion h1{
+          color: #f3f3f3;
+          font-size: 20px;
+          font-weight: 550;
+          margin-bottom: 5px;
+        }
+        .informacion p{
+          padding: 5px;
+          padding-left: 0px;
+        }
+        .informacion .capacidad{
+          font-weight: 550;
+          color: gold;
+        }
+        .informacion .sinCapacidad{
+          font-weight: 550;
+          color: gold;
+        }
+        .informacion .gratis{
+          font-weight: 550;
+          color: green;
+        }
+        .informacion .cover{
+          font-weight: 550;
+          color: orange;
+        }
+
+      .detallesEvento .descripcion{
+        background-color: #2D0E30;
+        color: #f3f3f3;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+      }
+        .descripcion h1{
+          color: #f3f3f3;
+          font-size: 20px;
+          font-weight: 550;
+          margin-bottom: 10px;
+        }
+        .descripcion p{
+          color: #f3f3f3c0;
+        }
+
+      .detallesEvento .tipo{
+        background-color: #2D0E30;
+        color: #f3f3f3;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+      }
+        .tipo h1{
+          color: #f3f3f3;
+          font-size: 20px;
+          font-weight: 550;
+          margin-bottom: 10px;
+        }
+        .tipo p{
+          font-weight: 550;
+          color: deepskyblue;
+        }
+
+      .detallesEvento .anfitrion{
+        background-color: #2D0E30;
+        color: #f3f3f3;
+        padding: 20px;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+      .detallesEvento .anfitrion .contDetAnfitrion{
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .anfitrion:hover{
+        background-color: #341b36;
+      }
+      .detallesEvento .anfitrion .contDetAnfitrion .tituloAnfitiron{
+        color: #f3f3f3;
+        font-size: 20px;
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+        .tituloAnfitiron label{
+          font-weight: 550;
+          color: blue;
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      .detallesEvento .anfitrion .contDetAnfitrion .contImgAnfitrion{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 3px solid #f3f3f3;
+        overflow: hidden;
+      }
+      .detallesEvento .anfitrion .contDetAnfitrion .contImgAnfitrion img{
+        width: auto;
+        height: 100%;
+      }
+        .anfitrion h1{
+          color: #f3f3f3;
+          font-size: 20px;
+          font-weight: 550;
+          margin-bottom: 10px;
+        }
+    /* === FIN Lateral derecha ==== */
+   
+  /* === FIN Detalles del evento === */
+
+  /* /// Responsive de la página /// */
+  @media (max-width: 750px) {
+    #TituloEvento .titulo{
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
+    }
+    #TituloEvento .titulo h1{
+      text-align: center;
+    }
+    #TituloEvento .botones{
+      display: flex;
+      justify-content: end;
+    }
+    #TituloEvento .botones .asistir{
+      width: 100%;
+    }
+    #TituloEvento .botones button{
+      width: auto;
+    }
+    /* Imagen del evento */
+      #ContEventoGeneral .imagenEvento {
+        height: 200px;
+      }
+    /* FIN imagen del evento */
+    .contDetallesEventoGeneral .contDetallesEvento{
+      width: 95%;
+      height: auto;
+      display: flex;
+      flex-direction: column-reverse;
+    }
+    .contDetallesEventoGeneral .detallesEvento{
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 15px;
+    }
+  }
+  /* /// Fin responsive de la página /// */
+
+  
+/* FIN Estilo evento by Alberto */

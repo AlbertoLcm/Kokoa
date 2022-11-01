@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import instance from '../../api/axios';
 import Skeleton from '../Skeleton';
 import image from '../../images/loginWallpaper.jpg';
@@ -8,6 +8,9 @@ function InfEvento({ evento, cerrar }) {
 
   const [eventoInfo, setEventoInfo] = useState([]);
   const [loading, setLoading] = useState(true);
+  const location = useLocation();
+
+  console.log(location);
 
   useEffect(() => {
     instance(`/eventos/${evento.id_evento}`)
@@ -65,12 +68,13 @@ function InfEvento({ evento, cerrar }) {
               {evento.capacidad ? <p>Capacidad {evento.capacidad} personas</p> : null}
               <p className="asistentes">Asistiran 12 personas</p>
               {evento.precio === 0 || evento.precio === null ? <p className="gratis"> Entrada gratuita </p> : <p className="cover"> Cover ${evento.precio} </p>}
+              <Link to={`evento/${evento.id_evento}`} className="link">Ver más</Link>
             </div>
           </div>
           {evento.rol_anfitrion === "negocios" ? (
             <div className='detAnfit'>
               <h1>Anfitrion (Negocio)</h1>
-              <Link to={`/visperfil/${eventoInfo.anfitrion}`} className={"contDetAnfit"}>
+              <Link to={`/visperfil/${eventoInfo.anfitrion}`}  className={"contDetAnfit"}>
                 <div className='contImgAnfEve'>
                   <img src={image} alt="Predefinir" />
                 </div>

@@ -259,6 +259,11 @@
             .detEvent p{
                 color: #f3f3f3da;
             }
+            .link{
+                color: dodgerblue;
+                text-decoration: underline;
+                font-weight: 600; 
+            }
         #MarkerInfoPos #EventoInfo .detAnfit{
             padding: 10px;
             background-color: #2D0E30;

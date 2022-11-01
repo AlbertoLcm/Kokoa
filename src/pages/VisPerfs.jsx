@@ -9,18 +9,13 @@ import DatosAnfitrion from "../components/infElements/DatosAfitrion";
 import ListaEventosFeed from "../components/infElements/ListaEventosFeed";
 import Header from "../components/Header"
 
-
 function VisPerfs() {
   const { id } = useParams()
-
   const nav = useNavigate();
-
   const { logout, user } = useAuth();
-
   const [opcio, setOpcio] = useState(false);
-  const toggle = () => {setOpcio(!opcio)};
-  
   const [visua, setVisua] = useState(1);
+  const toggle = () => {setOpcio(!opcio)};
 
   return (
     <>

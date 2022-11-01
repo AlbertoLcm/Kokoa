@@ -1,3 +1,7 @@
+/* 
+ color primario: #2D0E30
+ color secundario: #140016 
+*/
 
 /* === Estilos by Alberto === */
 
@@ -253,7 +257,7 @@
             padding-top: 20px;
         }
         #PerfilFeedEvento{
-            height: 400px;
+            height: auto;
             width: auto;
             background-color: #2D0E30;
             border-radius: 10px;
@@ -275,7 +279,7 @@
         }
         #ContInfEvento{
             padding: 15px;
-            height: 220px;
+            height: 250px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
