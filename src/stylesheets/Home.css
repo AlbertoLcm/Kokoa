@@ -18,17 +18,18 @@
             #ContGeneralHome .contMapaHome .mapaHome{
                 height: calc(100vh - 60px);
                 width: 100%;
+                position: relative;
             }
             /* Botones del mapa */
-                .contMapaHome .contBtnMapa{
-                    position: fixed;
+                .mapaHome .contBtnMapa{
+                    position: absolute;
                     z-index: 100;
                     padding: 10px;
                     display: flex;
                     gap: 5px;
                     left: 460px;
                 }
-                .contMapaHome .contBtnMapa button{
+                .mapaHome .contBtnMapa button{
                     background-color: #196eff;
                     width: auto;
                     color: #f3f3f3;
@@ -39,7 +40,7 @@
                     padding: 10px;
                     transition: all 0.3s ease;
                 }
-                .contMapaHome .contBtnMapa button:hover{
+                .mapaHome .contBtnMapa button:hover{
                     background-color: #4187ff;
                 }
             /* FIN Botones del mapa */
@@ -536,15 +537,14 @@
             height: 50vh;
         }
         #ContGeneralHome .contMapaHome .mapaHome{
-            height: 50vh;
+            height: 100%;
             width: 100%;
         }
         /* Botones del mapa */
-        .contMapaHome .contBtnMapa{
-            position: fixed;
+        .mapaHome .contBtnMapa{
             z-index: 10;
             left: 0px;
-            bottom: calc(50vh + 30px);
+            bottom: 25px;
         }
         /* FIN Botones del mapa */
 
