@@ -89,13 +89,21 @@ function Mapa({ mapSet, map }) {
       }
     });
   }
-
-  
-
   const desasignacion = () => {
     setActiveMarker(null);
     map.setZoom(15);
   }
+  const alrededor = () => {
+    // eslint-disable-next-line no-undef
+    map.setZoom(12);
+  }
+  const centrar = () => {
+    // eslint-disable-next-line no-undef
+    map.panTo(centerMy);
+    // eslint-disable-next-line no-undef
+    map.setZoom(15);
+  }
+
 
   return (
     <>
@@ -149,6 +157,10 @@ function Mapa({ mapSet, map }) {
             </Marker>
           )
         })}
+        <div className="contBtnMapa">
+          <button onClick={() => alrededor()}>A tu alrededor</button>
+          <button onClick={() => centrar()}>Centrar</button>
+        </div>
       </GoogleMap>
     </>
   )

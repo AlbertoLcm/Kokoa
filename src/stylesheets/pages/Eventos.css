@@ -1,8 +1,47 @@
 /* Estilo evento by Alberto */
+  /* 404 */
+  #ContEventoGeneralSecundario {
+    padding-top: 60px;
+    height: calc(100vh - 60px);
+    background-color: #2D0E30;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #ContEventoGeneralSecundario div{
+    padding: 30px;
+    color: #f3f3f3;
+    font-size: 30px;
+    font-weight: 550;
+  }
+  /* FIN 404 */
+
   #ContEventoGeneral{
     padding-top: 60px;
     background-color: #2D0E30;
+    position: relative;
+    width: 100%;
+    min-height: calc(100vh - 60px);
   }
+
+  /* Boton back */
+    #ContEventoGeneral .btnBack{
+      position: fixed;
+      height: 40px;
+      width: 40px;
+      top: 75px;
+      left: 60px;
+      background-color: #f3f3f394;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.3s ease;
+    }
+    #ContEventoGeneral .btnBack:hover{
+      background-color: #f3f3f3a9;
+    }
+  /* FIN Boton back */
 
   #ContEventoGeneral #ContTituloEvento {
     width: 100%;
@@ -215,8 +254,7 @@
         align-items: center;
       }
         .tituloAnfitiron label{
-          font-weight: 550;
-          color: blue;
+          color: dodgerblue;
           text-decoration: underline;
           cursor: pointer;
         }
@@ -243,6 +281,13 @@
 
   /* /// Responsive de la página /// */
   @media (max-width: 750px) {
+
+    /* Boton back */
+    #ContEventoGeneral .btnBack{
+      left: 10px;
+    }
+    /* FIN Boton back */
+
     #TituloEvento .titulo{
       display: flex;
       justify-content: center;

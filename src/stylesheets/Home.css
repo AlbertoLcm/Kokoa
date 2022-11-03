@@ -19,6 +19,30 @@
                 height: calc(100vh - 60px);
                 width: 100%;
             }
+            /* Botones del mapa */
+                .contMapaHome .contBtnMapa{
+                    position: fixed;
+                    z-index: 100;
+                    padding: 10px;
+                    display: flex;
+                    gap: 5px;
+                    left: 460px;
+                }
+                .contMapaHome .contBtnMapa button{
+                    background-color: #196eff;
+                    width: auto;
+                    color: #f3f3f3;
+                    border: none;
+                    border-radius: 20px;
+                    cursor: pointer;
+                    user-select: none;
+                    padding: 10px;
+                    transition: all 0.3s ease;
+                }
+                .contMapaHome .contBtnMapa button:hover{
+                    background-color: #4187ff;
+                }
+            /* FIN Botones del mapa */
         /* /// Fin Estilos para el mapa /// */
 
         #ContGeneralHome .feedHome{
@@ -218,21 +242,31 @@
             gap: 5px;
             padding-bottom: 15px;
         }
-        #MarkerInfoPos .contBtnMarkerInfo button{
-            width: 100px;
-            height: 30px;
-            background-color: #f3f3f377;
-            backdrop-filter: blur(10px);
-            border: none;
-            border-radius: 5px;
-            color: #130014;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        #MarkerInfoPos .contBtnMarkerInfo button:hover{
-            background-color: #f3f3f3c4;
-        }
+            #MarkerInfoPos .contBtnMarkerInfo .asistir{
+                background: linear-gradient(to left, #004dc0, #EC1C4E, #d6d300);
+                width: 150px;
+                color: #f3f3f3;
+                border: none;
+                border-radius: 20px;
+                cursor: pointer;
+                user-select: none;
+                padding: 10px;
+                transition: all 0.3s ease;
+            }
+            #MarkerInfoPos .contBtnMarkerInfo .invitar{
+                background-color: #196eff;
+                width: 100px;
+                color: #f3f3f3;
+                border: none;
+                border-radius: 20px;
+                cursor: pointer;
+                user-select: none;
+                padding: 10px;
+                transition: all 0.3s ease;
+            }
+            #MarkerInfoPos .contBtnMarkerInfo .invitar:hover{
+                background-color: #4187ff;
+            }
         #MarkerInfoPos #EventoInfo{
             padding: 0px 15px 15px 15px;
             display: grid;
@@ -262,13 +296,18 @@
             .link{
                 color: dodgerblue;
                 text-decoration: underline;
-                font-weight: 600; 
+                font-weight: 550; 
             }
         #MarkerInfoPos #EventoInfo .detAnfit{
             padding: 10px;
             background-color: #2D0E30;
             border-radius: 10px;
             transition: all 0.3s ease;
+        }
+        #MarkerInfoPos #EventoInfo .detAnfit label{
+            color: dodgerblue;
+            text-decoration: underline;
+            font-weight: 550; 
         }
         #MarkerInfoPos #EventoInfo .detAnfitNormal{
             padding: 10px;
@@ -349,7 +388,7 @@
             font-size: 30px;
         }
         #ContGeneralNegocios .contMapaNegocios{
-            height: 100%;
+            height: 100;
             width: auto;
         }
         #ContGeneralNegocios .contBtnFeedNegocios{
@@ -500,6 +539,15 @@
             height: 50vh;
             width: 100%;
         }
+        /* Botones del mapa */
+        .contMapaHome .contBtnMapa{
+            position: fixed;
+            z-index: 10;
+            left: 0px;
+            bottom: calc(50vh + 30px);
+        }
+        /* FIN Botones del mapa */
+
 
         /* === Marker Info de cada evento === */
             #MarkerInfoPos {

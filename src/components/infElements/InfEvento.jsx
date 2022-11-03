@@ -57,8 +57,8 @@ function InfEvento({ evento, cerrar }) {
         </section>
 
         <section className='contBtnMarkerInfo'>
-          <button> Asistir </button>
-          <button> Invitar </button>
+          <button className='asistir'> Asistir </button>
+          <button className='invitar'> Invitar </button>
         </section>
 
         <section id="EventoInfo">

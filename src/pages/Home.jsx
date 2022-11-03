@@ -56,6 +56,7 @@ function Home() {
 
         <section id="ContGeneralHome">
           <div className="contMapaHome">
+            
             <Suspense fallback={<Loading />}>
               <Mapa mapSet={handleSetMap} map={map} />
             </Suspense>

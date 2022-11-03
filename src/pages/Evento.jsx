@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import instance from "../api/axios";
 import useAuth from "../auth/useAuth";
 import Header from "../components/Header";
-import Loading from "../components/Loading";
 import MapSmall from "../components/maps/MapSmall";
 import imagen from "../images/concert.jpg"
 import '../stylesheets/pages/Eventos.css';
+import Skeleton from "../components/Skeleton";
 
 function Evento() {
   const { id } = useParams();
@@ -16,6 +16,7 @@ function Evento() {
   const [anfitrion, setAnfitrion] = React.useState({});
   const [error, setError] = React.useState(false);
   const location = useLocation();
+  const nav = useNavigate();
 
   console.log(location);
 
@@ -39,7 +40,9 @@ function Evento() {
 
   if (loading) {
     return (
-      <Loading />
+      <section id="ContEventoGeneralSecundario">
+        <Skeleton type={"perfilFeed"} />
+      </section>
     )
   }
 
@@ -47,8 +50,8 @@ function Evento() {
     return (
       <>
         <Header tipo={'responsive'} perfil={user.nombre} back={true} />
-        <section id="ContEventoGeneral">
-          <div> Este evento ha sido borrado o deshabilitado </div>
+        <section id="ContEventoGeneralSecundario">
+          <div> Este evento no existe, ha sido borrado o se ha deshabilitado. </div>
         </section>
       </>
     )
@@ -61,6 +64,15 @@ function Evento() {
       <Header tipo={'responsive'} perfil={user.nombre} back={true} />
       <div id="ContEventoGeneral">
 
+        <div className="btnBack" onClick={() => nav(-1)}>
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <line x1="5" y1="12" x2="11" y2="18" />
+            <line x1="5" y1="12" x2="11" y2="6" />
+          </svg>
+        </div>
+
         <section id="ContTituloEvento">
           <div id="TituloEvento">
             <div className="contImagenEvento">
@@ -68,7 +80,7 @@ function Evento() {
                 <img src={imagen} alt="Imagen del evento" />
               </div>
             </div>
-          
+
             <div className="titulo">
               <p className="infEventoFecha">
                 Incia el
@@ -99,7 +111,7 @@ function Evento() {
 
               <div className="detalles">
                 <section className="informacion">
-                <h1>Detalles</h1>
+                  <h1>Detalles</h1>
                   <p className="direccion">
                     {evento.direccion}
                   </p>
@@ -124,7 +136,7 @@ function Evento() {
                   </p>
                 </section>
 
-              {!location.state? (
+                {!location.state ? (
 
                   <section className="anfitrion">
                     {evento.rol_anfitrion === "negocios" ? (
@@ -141,7 +153,7 @@ function Evento() {
                         </Link>
                       </>
                     ) : (
-                      <> 
+                      <>
                         <h1>Anfitrion</h1>
                         <section className='contDetAnfitrion'>
                           <div className='contImgAnfitrion'>
@@ -154,7 +166,7 @@ function Evento() {
                       </>
                     )}
                   </section>
-              ) : null}
+                ) : null}
               </div>
             </div>
           </div>
