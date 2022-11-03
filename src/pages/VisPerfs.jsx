@@ -1,7 +1,7 @@
 import React from "react";
 import "../stylesheets/VisPerfs.css"
 import useAuth from "../auth/useAuth";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { slide as Menu } from "react-burger-menu";
@@ -16,7 +16,10 @@ function VisPerfs() {
   const [opcio, setOpcio] = useState(false);
   const [visua, setVisua] = useState(1);
   const toggle = () => {setOpcio(!opcio)};
+  const location = useLocation();
 
+  console.log(location);
+  
   return (
     <>
       <Header tipo={"responsive"} perfil={user.nombre} back={true}/>

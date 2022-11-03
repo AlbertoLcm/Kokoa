@@ -213,20 +213,20 @@
         }
         #MarkerInfoPos .btnCerrar{
             position: fixed;
-            top: 10px;
-            right: 10px;
-            background-color: #f3f3f37c;
-            height: 30px;
-            width: 30px;
-            z-index: 1000;
-            border: none;
-            border-radius: 20px;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
+            z-index: 20;
+            height: 40px;
+            width: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
+            top: 5px;
+            right: 5px;
+            background-color: #f3f3f394;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s ease;
         }
         #MarkerInfoPos .contImagenMarkerInfo img{
             width: 100%;
@@ -498,7 +498,9 @@
     border-radius: 10px;
     background-color: tomato;
     color: #f3f3f3;
-    margin: 10px 0px 0px 0px;
+    /* font-size: 20px; */
+    font-weight: 550;
+    margin: 10px 0px 10px 0px;
 }
 .d-none{
     display: none;

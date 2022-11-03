@@ -1,24 +1,106 @@
 #ContGeneralRegistrarEvento{
     /* background: linear-gradient(to left, #410046, #EC1C4E); */
 }
+#ContGeneralRegistrarEvento .descriptionEvento{
+    width: 100%;
+    height: auto;
+}
+#ContGeneralRegistrarEvento .descriptionEvento .inputDescripcion{
+    width: calc(100%);
+    resize: none;
+    min-height: 80px;
+    font-size: 20px;
+    border: none;
+    background: none;
+    color: #f3f3f3;
+    margin-top: 10px;
+}
+#ContGeneralRegistrarEvento .descriptionEvento p{
+    font-size: 20px;
+    color: #f3f3f3;
+}
+#ContGeneralRegistrarEvento .descriptionEvento #nombre{
+    background: #f3f3f341;
+    color: #f3f3f3;
+}
+#ContGeneralRegistrarEvento .descriptionEvento #nombre:focus{
+    outline: none;
+}
+#ContGeneralRegistrarEvento .descriptionEvento .inputDescripcion:focus{
+    outline: none;
+}
+#ContGeneralRegistrarEvento .descriptionEvento .showMore{
+    width: 100%;
+    background: none;
+    border: 1px solid #f3f3f350;
+    border-radius: 20px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    user-select: none;
+}
+#ContGeneralRegistrarEvento .descriptionEvento .showMore:hover{
+    background-color: #f3f3f350;
+}
+
 #ContGeneralRegistrarEvento .registrarEventoForm{
-    max-width: 100%;
+    width: 100%;
     color: #f3f3f3;
     font-size: 17px;
+    height: 300px;
+    padding-right: -10px;
+    overflow: auto;
+    scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0);
+    scrollbar-width: thin;
 }
+        /* Esto es del scoll */
+            #ContGeneralRegistrarEvento .registrarEventoForm::-webkit-scrollbar {
+                -webkit-appearance: none;
+            }
+            #ContGeneralRegistrarEvento .registrarEventoForm::-webkit-scrollbar:vertical {
+                width:5px;
+            }
+            #ContGeneralRegistrarEvento .registrarEventoForm::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
+                display: none;
+            }
+            #ContGeneralRegistrarEvento .registrarEventoForm::-webkit-scrollbar:horizontal {
+                height: 10px;
+            }
+            #ContGeneralRegistrarEvento .registrarEventoForm::-webkit-scrollbar-thumb {
+                background-color: #f3f3f369;
+                border-radius: 50px;
+                margin-left: -10px;
+            }
+            #ContGeneralRegistrarEvento .registrarEventoForm::-webkit-scrollbar-track {
+                border-radius: 10px;  
+            }
+        /* Fin del scroll */
+
 #ContGeneralRegistrarEvento .registrarEventoForm p{
     padding: 10px;
     padding-left: 0px;
     padding-bottom: 5px;
 }
 #ContGeneralRegistrarEvento .registrarEventoForm input{
-    background-color: #f3f3f3;
+    background-color: #f3f3f341;
     border: none;
     border-radius: 10px;
     padding: 10px;
+    color: #f3f3f3;
     font-size: medium;
     width: calc(100% - 20px);
 }
+#ContGeneralRegistrarEvento .registrarEventoForm input[type="date"]::-webkit-calendar-picker-indicator, input[type="time"]::-webkit-calendar-picker-indicator{
+    cursor: pointer;
+    border-radius: 4px;
+    margin-right: 2px;
+    opacity: 0.9;
+    filter: invert(0.9);
+}
+
 #ContGeneralRegistrarEvento .registrarEventoForm input:focus{
     outline: none;
 }
@@ -52,4 +134,6 @@
     padding: 10px;
     font-size: 18px;
     transition: all 0.3s ease;
+    position: relative;
+    z-index: 3;
 }

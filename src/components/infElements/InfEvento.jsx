@@ -10,8 +10,6 @@ function InfEvento({ evento, cerrar }) {
   const [loading, setLoading] = useState(true);
   const location = useLocation();
 
-  console.log(location);
-
   useEffect(() => {
     instance(`/eventos/${evento.id_evento}`)
       .then((anfitrion) => {
@@ -30,10 +28,10 @@ function InfEvento({ evento, cerrar }) {
   return (
     <>
       <button onClick={() => cerrar()} className="btnCerrar">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-x" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <circle cx="12" cy="12" r="9" />
-          <path d="M10 10l4 4m0 -4l-4 4" />
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
         </svg>
       </button>
 
@@ -74,7 +72,7 @@ function InfEvento({ evento, cerrar }) {
           {evento.rol_anfitrion === "negocios" ? (
             <div className='detAnfit'>
               <h1>Anfitrion (Negocio)</h1>
-              <Link to={`/visperfil/${eventoInfo.anfitrion}`}  className={"contDetAnfit"}>
+              <Link to={`/visperfil/${eventoInfo.anfitrion}`} className={"contDetAnfit"}>
                 <div className='contImgAnfEve'>
                   <img src={image} alt="Predefinir" />
                 </div>

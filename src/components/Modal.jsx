@@ -53,7 +53,7 @@ const Overlay = styled.div`
     
     const ContModal = styled.div`
     width: 580px;
-    max-height: 550px;
+    max-height: 470px;
     min-height: 100px;
     background-color: #2D0E30;
     position: relative;

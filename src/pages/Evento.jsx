@@ -64,7 +64,7 @@ function Evento() {
       <Header tipo={'responsive'} perfil={user.nombre} back={true} />
       <div id="ContEventoGeneral">
 
-        <div className="btnBack" onClick={() => nav(-1)}>
+        <div className="btnBack" onClick={() => nav(-1, {state: {visua: 2} })}>
           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <line x1="5" y1="12" x2="19" y2="12" />
@@ -123,10 +123,7 @@ function Evento() {
 
                 <section className="descripcion">
                   <h1>¿De qué trata este evento?</h1>
-                  <p>
-                    Un evento para inagurar mi participacion
-                    en este proyecto
-                  </p>
+                  {evento.descripcion}
                 </section>
 
                 <section className="tipo">
