@@ -10,6 +10,8 @@ function InfEvento({ evento, cerrar }) {
   const [eventoInfo, setEventoInfo] = useState([]);
   const [anfitrion, setAnfitrion] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [asistencia, setAsistencia] = useState([]);
+
   const { user } = useAuth();
 
   useEffect(() => {
@@ -26,6 +28,11 @@ function InfEvento({ evento, cerrar }) {
       .then((evento) => {
         setEventoInfo(evento.data);
       })
+
+    instance.post('/eventos/asistente/check', { id_usuario: user.id })
+      .then((asistencias) => {
+        setAsistencia(asistencias.data)
+      })
   }, []);
 
   if (loading) {
@@ -38,11 +45,34 @@ function InfEvento({ evento, cerrar }) {
     instance.post('/eventos/asistente', { id_evento: id_evento, id_usuario: user.id })
       .then((res) => {
         instance(`/eventos/evento/${id_evento}`)
-        .then((eventoResult) => {
-          setEventoInfo(eventoResult.data);
-        })
+          .then((eventoResult) => {
+            setEventoInfo(eventoResult.data);
+          })
+
+        instance.post('/eventos/asistente/check', { id_usuario: user.id })
+          .then((asistencias) => {
+            setAsistencia(asistencias.data)
+          })
       })
   };
+
+  const actionAusentar = (id_evento) => {
+    instance.post('/eventos/ausentar', { id_evento: id_evento, id_usuario: user.id })
+      .then((res) => {
+        instance(`/eventos/evento/${id_evento}`)
+          .then((eventoResult) => {
+            setEventoInfo(eventoResult.data);
+          })
+
+        instance.post('/eventos/asistente/check', { id_usuario: user.id })
+          .then((asistencias) => {
+            setAsistencia(asistencias.data)
+          })
+      })
+  };
+
+  console.log(asistencia);
+  asistencia.find((asistencia) => asistencia.id_evento === 6) ? console.log('asiste') : console.log('no asiste');
 
   return (
     <>
@@ -73,7 +103,8 @@ function InfEvento({ evento, cerrar }) {
         </section>
 
         <section className='contBtnMarkerInfo'>
-          <button className='asistir' onClick={() => actionAsistir(evento.id_evento)}> Asistir </button>
+          {asistencia.find((asistencia) => asistencia.id_evento === evento.id_evento) ? <button className="asistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button> : <button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>}
+
           <button className='invitar'> Invitar </button>
         </section>
 

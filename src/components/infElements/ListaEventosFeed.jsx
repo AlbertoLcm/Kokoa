@@ -3,11 +3,14 @@ import instance from "../../api/axios";
 import Skeleton from "../Skeleton";
 import image from "../../images/concert.jpg"
 import { Link, useLocation } from "react-router-dom";
+import useAuth from "../../auth/useAuth";
 
 function ListaEventosFeed({ id, solicito }) {
 
   const [eventos, setEventos] = useState({});
   const [loading, setLoading] = useState(true);
+  const [asistencia, setAsistencia] = useState([]);
+  const { user } = useAuth();
   const location = useLocation();
 
   useEffect(() => {
@@ -17,29 +20,45 @@ function ListaEventosFeed({ id, solicito }) {
       })
       .catch((err) => console.log(err))
       .finally(() => setLoading(false));
+
+    instance.post('/eventos/asistente/check', { id_usuario: user.id })
+      .then((asistencias) => {
+        setAsistencia(asistencias.data)
+      })
   }, []);
 
   if (loading) {
     return (
-      <section id="ContPerfilFeedEventoActual"> 
+      <section id="ContPerfilFeedEventoActual">
         <Skeleton type={'eventoFeed'} />
       </section>
     )
-  }
-  if(!eventos.length) {
+  };
+
+  if (!eventos.length) {
     return (
-      <section id="ContPerfilFeedEventoActual"> 
+      <section id="ContPerfilFeedEventoActual">
         <h1>No tienes eventos</h1>
       </section>
     )
-  }
-  const fecact = new Date()
+  };
+  const fecact = new Date();
+
+  const actionAsistir = (id_evento, index) => {
+    instance.post('/eventos/asistente', { id_evento: id_evento, id_usuario: user.id })
+      .then((res) => {
+        instance.get(`/eventos/all/${id}`)
+          .then((eventos) => {
+            setEventos(eventos.data)
+          })
+      })
+  };
 
   return (
     <>
       {
         // solicito === "actuales" ? (
-        eventos.map((evento) => {
+        eventos.map((evento, index) => {
           let fecini = new Date(evento.fecha_inicio)
           let fecter = new Date(evento.fecha_termino)
           // Eventos Actuales
@@ -64,14 +83,16 @@ function ListaEventosFeed({ id, solicito }) {
                       {evento.direccion}
                     </p>
                     <p className="asistentesEvento">
-                      Asistiran 12 personas{evento.capacidad}
+                      Asistiran {evento.asistentes_cont} personas
                     </p>
-                    <Link to={`/evento/${evento.id_evento}`} state={{from: location}} className="link">Ver más</Link>
+                    <Link to={`/evento/${evento.id_evento}`} state={{ from: location }} className="link">Ver más</Link>
                   </div>
 
                   <div className="coverEvento">
-                    {evento.precio === null ? <p> Entrada gratuita </p> : <p className="cover"> Cover: {evento.precio} </p>}
-                    <button className="btnAsistir">Asistir</button>
+                    {evento.precio === null || evento.precio == 0 ? <p> Entrada gratuita </p> : <p className="cover"> Cover: {evento.precio} </p>}
+
+                    {asistencia.find((asistencia) => asistencia.id_evento === evento.id_evento) ? <button className="btnAsistir" onClick={() => actionAsistir(evento.id_evento, index)}>Asistir</button> : <button className="btnAsistirTrue">Ya asistiras</button>}
+
                   </div>
                 </section>
               </div>

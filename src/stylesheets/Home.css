@@ -254,6 +254,17 @@
                 padding: 10px;
                 transition: all 0.3s ease;
             }
+            #MarkerInfoPos .contBtnMarkerInfo .asistirTrue{
+                background: linear-gradient(to left, #004dc0, #22a111, #d6d300);
+                width: 150px;
+                color: #f3f3f3;
+                border: none;
+                border-radius: 20px;
+                cursor: pointer;
+                user-select: none;
+                padding: 10px;
+                transition: all 0.3s ease;
+            }
             #MarkerInfoPos .contBtnMarkerInfo .invitar{
                 background-color: #196eff;
                 width: 100px;
