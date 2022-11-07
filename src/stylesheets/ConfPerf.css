@@ -264,6 +264,7 @@ button :focus {
 
     .modalConfPerfil input{
         background-color: #f3f3f3;
+        color: black;
         border: none;
         border-radius: 10px;
         padding: 10px;

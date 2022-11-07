@@ -1,11 +1,12 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useRef, useState} from "react";
+import { Autocomplete } from "@react-google-maps/api";
 import useAuth from "../auth/useAuth";
 import Header from "../components/Header";
 import { slide as Menu } from "react-burger-menu";
 import "../stylesheets/ConfPerf.css"
 import img from "../images/Plagui.jpg"
-import { Link, useLocation } from "react-router-dom";
+import { Link} from "react-router-dom";
 import routes from "../helpers/routes";
 import backimg from "../images/Wall (15).jpg"
 import { useNavigate } from "react-router-dom";
@@ -41,8 +42,11 @@ function ConPerf() {
     email: "",
     telefono: "",
     domicilio: "",
-    fecha_nac: ""
+    fecha_nacimiento: ""
   });
+
+  /** @type React.MutableRefObject<HTMLInputElement> */
+  const originRef = useRef();
 
   const handleChange = (e) => {
     setUsuarioUpdate({
@@ -50,8 +54,17 @@ function ConPerf() {
       [e.target.name]: e.target.value,
     });
   }
-
+  const handleDomic = () => {
+    // console.log(originRef.current)
+    if(originRef.current !== undefined){
+      setUsuarioUpdate({
+        ...usuarioUpdate,
+        domicilio: originRef.current.value,
+      });
+    }
+  }
   const handleUpdate = () => {
+    handleDomic();
     instance.put(`/usuarios/${user.id}`, usuarioUpdate)
       .then((res) => {
         alert("Se actualizo correctamente");
@@ -147,7 +160,17 @@ function ConPerf() {
       >
         <div className="modalConfPerfil">
           <p className="titulo">Anterior domicilio {user.domicilio}</p>
-          <p>Nuevo domicilio</p><input type="text" name="domicilio" onChange={handleChange} />
+          <p>Nuevo domicilio</p><Autocomplete>
+                <div className="inputBox">
+                  <input
+                    id="ubicacion"
+                    name="direccion"
+                    type="text"
+                    ref={originRef}
+                    required
+                  />
+                </div>
+              </Autocomplete>00
           <button onClick={() => handleUpdate()}>Guardar</button>
         </div>
       </Modal>
@@ -158,7 +181,7 @@ function ConPerf() {
       >
         <div className="modalConfPerfil">
           <p className="titulo">Anterior fecha {user.fecha_nac}</p>
-          <p>Nuevo fecha</p><input type="text" name="fecha_nac" onChange={handleChange} />
+          <p>Nuevo fecha</p><input type="date" name="fecha_nacimiento" onChange={handleChange} />
           <button onClick={() => handleUpdate()}>Guardar</button>
         </div>
       </Modal>
