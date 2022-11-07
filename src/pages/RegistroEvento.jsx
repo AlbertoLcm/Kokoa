@@ -104,7 +104,10 @@ function RegistroEvento() {
               <input id="ubicacion" placeholder="" name="ubicacion" type="text" onChange={handleChange} ref={originRef} required />
             </Autocomplete>
             <p>Tipo de evento</p>
-            <input autoComplete="off" id="nombre" name="tipo" type="text" onChange={handleChange} required />
+            <select name="tipo" id="tipo" onChange={handleChange}>
+              <option value="1" selected>Fiesta</option>
+              <option value="2">Concierto</option>
+            </select>
 
             {/* <section className="showMore" onClick={() => setShowModal(!showModal)}>
               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-plus" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">

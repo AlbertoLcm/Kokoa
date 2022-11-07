@@ -116,7 +116,7 @@ function Evento() {
                     {evento.direccion}
                   </p>
                   {evento.capacidad ? <p className="capacidad">Capacidad para {evento.capacidad} personas</p> : <p className="sinCapacidad">Capacidad para todos</p>}
-                  <p className="asistentes">Asistiran 12 personas</p>
+                  <p className="asistentes">Asistiran {evento.asistentes_cont} personas</p>
                   {evento.precio === 0 || evento.precio === null ? <p className="gratis"> Entrada gratuita </p> : <p className="cover"> Cover ${evento.precio} </p>}
 
                 </section>
@@ -128,9 +128,7 @@ function Evento() {
 
                 <section className="tipo">
                   <h1>Tipo de evento</h1>
-                  <p>
-                    Concierto
-                  </p>
+                  {evento.tipo}
                 </section>
 
                 {!location.state ? (
