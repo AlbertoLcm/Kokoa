@@ -115,7 +115,7 @@ function SignArtista() {
                 cols="50"
                 rows="5"
                 maxlength="150"
-                placeholder="Añada una descripsion de su acto/estilo musical "
+                placeholder="Añada una descripcion de su acto/estilo musical "
                 onChange={handleChange}
                 name="descripcion"
               />

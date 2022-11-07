@@ -31,9 +31,15 @@
     padding-left: 10px;
     background-color: #2a142c;
     color: white;
-}.tipSelect option {
+}.tipSelect option[selected] {
     background-color: #f3f3f354;
     transition: all 0.2s ease-in-out;
+}.tipSelect :first-child {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}.tipSelect :last-child {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 
 .ArtcontTDes > textarea {
