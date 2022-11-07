@@ -1,3 +1,18 @@
+.artContBackground {
+    background-color: #140016;
+    color: white;
+}
+.artContTextAr > textarea {
+    resize: none;
+    border: none;
+    background: #2a142c;
+    border-radius: 15px;
+    padding: 5px;
+    color: white;
+}
+::placeholder {
+    color: rgba(255, 255, 255, 0.616)
+}
 .ArtcontInp > div  input {
     background: #2a142c;
     color: white;
@@ -5,36 +20,22 @@
 .ArtcontInp > .inputBoxCont > input {
     background: #2a142c;
 }
-.artTipPatRad {
-    -webkit-appearance: none;
+.tipSelect {
+    height: 40px;
+    width: 90%;
     appearance: none;
-    margin: 0;
-    background: #2a142c;
-
-    font: inherit;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 15px;
+    border: none;
+    padding-left: 10px;
+    background-color: #2a142c;
     color: white;
-    width: 1.15em;
-    height: 1.15em;
-    border-radius: 50%;
-    transform: translateY(-0.075em);
+}.tipSelect option {
+    background-color: #f3f3f354;
+    transition: all 0.2s ease-in-out;
+}
 
-    display: grid;
-    place-content: center;
-    justify-content:center;
-}input[type="radio"]::before {
-    content: "";
-    width: 0.65em;
-    height: 0.65em;
-    border-radius: 50%;
-    transform: scale(0);
-    transition: 120ms transform ease-in-out;
-    box-shadow: inset 1em 1em ;
-  }input[type="radio"]:checked::before {
-    transform: scale(1);
-  }input[type="radio"]:focus {
-    outline: max(2px, 0.15em) solid currentColor;
-    outline-offset: max(2px, 0.15em);
-  }
 .ArtcontTDes > textarea {
     resize: none;
     border: none;

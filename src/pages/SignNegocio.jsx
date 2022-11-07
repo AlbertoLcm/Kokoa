@@ -54,7 +54,7 @@ function SignNegocio() {
   const originRef = useRef();
 
   return (
-    <div className="contBackground">
+    <div className="negContBackground">
       <Header tipo={'responsive'} perfil={user.nombre} back={true} />
 
       <div className="NegcontForm">
@@ -273,7 +273,18 @@ function SignNegocio() {
               </div>
             </div>
           </div>
-
+          <div className="negContTextAr">
+          <h3>Descripcion</h3>
+              <p></p>
+              <textarea
+                cols="50"
+                rows="5"
+                maxlength="150"
+                placeholder="Añada una descripsion de su acto/estilo musical "
+                onChange={handleChange}
+                name="descripcion"
+              />
+          </div>
           <div className="NegcontBot">
             <button className="boton1" onClick={() => addNeg()}>Registrarse</button>
           </div>

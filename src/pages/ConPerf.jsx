@@ -24,6 +24,7 @@ function ConPerf() {
   const [artistas, setArtistas] = useState([]);
   const [opcio, setOpcio] = useState(false);
   const toggle = () => { setOpcio(!opcio) };
+  
   // Para mostrar un modal diferente (esta fue la primer forma que se me ocurrio no me juzguen)
   const [showModal1, setShowModal1] = useState(false);
   const [showModal2, setShowModal2] = useState(false);

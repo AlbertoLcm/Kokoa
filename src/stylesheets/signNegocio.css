@@ -1,3 +1,19 @@
+.negContBackground {
+    background-color: #140016;
+    color: white;
+}
+.negContTextAr > textarea {
+    resize: none;
+    border: none;
+    background: #2a142c;
+    border-radius: 15px;
+    padding: 5px;
+    color: white;
+}
+::placeholder {
+    color: rgba(255, 255, 255, 0.616)
+}
+
 h1{
     color: white;
 }

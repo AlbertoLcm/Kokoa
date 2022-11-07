@@ -43,7 +43,7 @@ function SignArtista() {
   const originRef = useRef();
   
   return (
-    <div className="contBackground">
+    <div className="artContBackground">
       <Header tipo={'responsive'} perfil={user.nombre} back={true} />
 
       <div className="ArtcontForm">
@@ -103,19 +103,12 @@ function SignArtista() {
           <h2>PERFORMANCE</h2>
           <div className="ArtcontT">
             <div className="ArtcontTipPat">
-            <fieldset>
-                    <div>
-                    <input className="artTipPatRad" type="radio" id="contactChoice1"
-                    name="tipo" value={1} onClick={handleChange} defaultChecked={true} />
-                    <label htmlFor="contactChoice1">Musica</label>
-                    </div>
-                    <br />
-                    <input className="artTipPatRad" type="radio" id="contactChoice2"
-                    name="tipo" value={2} onClick={handleChange}/>
-                    <label htmlFor="contactChoice2">Entretenimiento</label>
-              </fieldset>
+            <select name="tipo" onChange={handleChange} className="tipSelect">
+              <option value="1">Musica</option>
+              <option value="2">Entretenimiento</option>
+            </select>
             </div>
-            <div className="ArtcontTDes">
+            <div className="artContTextAr">
               <h3>Descripcion</h3>
               <p></p>
               <textarea
