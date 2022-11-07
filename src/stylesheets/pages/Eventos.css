@@ -70,6 +70,17 @@
     padding: 10px;
     transition: all 0.3s ease;
   }
+  .asistirTrue{
+    background: linear-gradient(to left, #004dc0, #22a111, #d6d300);
+    width: 150px;
+    color: #f3f3f3;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    user-select: none;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
   #TituloEvento .botones button{
     background-color: #196eff;
     width: 200px;
@@ -303,6 +314,9 @@
       justify-content: end;
     }
     #TituloEvento .botones .asistir{
+      width: 100%;
+    }
+    #TituloEvento .botones .asistirTrue{
       width: 100%;
     }
     #TituloEvento .botones button{

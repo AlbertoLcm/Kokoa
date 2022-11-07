@@ -93,12 +93,36 @@
     font-size: medium;
     width: calc(100% - 20px);
 }
+#ContGeneralRegistrarEvento .registrarEventoForm #tipo{
+    background-color: #f3f3f341;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    color: #f3f3f3;
+    font-size: medium;
+    width: calc(100%);
+}
+#ContGeneralRegistrarEvento .registrarEventoForm #tipo option{
+    background-color: tomato;
+    color: #3f3f3f;
+    width: calc(100% - 50px);
+}
+#ContGeneralRegistrarEvento .registrarEventoForm #tipo:focus{
+    outline: none;
+}
 #ContGeneralRegistrarEvento .registrarEventoForm input[type="date"]::-webkit-calendar-picker-indicator, input[type="time"]::-webkit-calendar-picker-indicator{
     cursor: pointer;
     border-radius: 4px;
     margin-right: 2px;
     opacity: 0.9;
     filter: invert(0.9);
+}
+
+.content-input input,
+.content-select select{
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
 }
 
 #ContGeneralRegistrarEvento .registrarEventoForm input:focus{

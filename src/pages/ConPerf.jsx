@@ -1,12 +1,12 @@
-import React from "react";
-import { useRef, useState} from "react";
+import React, { useEffect } from "react";
+import { useRef, useState } from "react";
 import { Autocomplete } from "@react-google-maps/api";
 import useAuth from "../auth/useAuth";
 import Header from "../components/Header";
 import { slide as Menu } from "react-burger-menu";
 import "../stylesheets/ConfPerf.css"
 import img from "../images/Plagui.jpg"
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import routes from "../helpers/routes";
 import backimg from "../images/Wall (15).jpg"
 import { useNavigate } from "react-router-dom";
@@ -16,15 +16,24 @@ import '../stylesheets/Modal.css'
 
 function ConPerf() {
   const nav = useNavigate();
-  const { logout, user, loginCargo } = useAuth();
+  const { logout, loginCargo, user } = useAuth();
   const [cont, setCont] = useState(1);
 
   const [negocios, setNegocios] = useState([]);
   const [patrocinios, setPatrocinios] = useState([]);
   const [artistas, setArtistas] = useState([]);
   const [opcio, setOpcio] = useState(false);
+  const [usuario, setUsuario] = useState({});
+
   const toggle = () => { setOpcio(!opcio) };
-  
+
+  useEffect(() => {
+    instance.get(`/usuarios/${user.id}`)
+      .then((res) => {
+        setUsuario(res.data)
+      })
+  }, []);
+
   // Para mostrar un modal diferente (esta fue la primer forma que se me ocurrio no me juzguen)
   const [showModal1, setShowModal1] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
@@ -57,7 +66,7 @@ function ConPerf() {
   }
   const handleDomic = () => {
     // console.log(originRef.current)
-    if(originRef.current !== undefined){
+    if (originRef.current !== undefined) {
       setUsuarioUpdate({
         ...usuarioUpdate,
         domicilio: originRef.current.value,
@@ -66,13 +75,19 @@ function ConPerf() {
   }
   const handleUpdate = () => {
     handleDomic();
+    setShowModal1(false);
+    setShowModal2(false);
+    setShowModal3(false);
+    setShowModal4(false);
+    setShowModal5(false);
     instance.put(`/usuarios/${user.id}`, usuarioUpdate)
-      .then((res) => {
-        alert("Se actualizo correctamente");
+      .then(() => {
+        instance.get(`/usuarios/${user.id}`)
+          .then((res) => {
+            setUsuario(res.data);
+            console.log(res.data);
+          })
       })
-      .catch((err) => {
-        console.log(err);
-      });
   }
 
   let consneg = false;
@@ -126,7 +141,7 @@ function ConPerf() {
             <div>
               <p>Apellidos</p>
               <input type="text" name="apellidos" onChange={handleChange} />
-            </div>  
+            </div>
           </section>
           <button onClick={() => handleUpdate()}>Guardar</button>
         </div>
@@ -162,16 +177,16 @@ function ConPerf() {
         <div className="modalConfPerfil">
           <p className="titulo">Anterior domicilio {user.domicilio}</p>
           <p>Nuevo domicilio</p><Autocomplete>
-                <div className="inputBox">
-                  <input
-                    id="ubicacion"
-                    name="direccion"
-                    type="text"
-                    ref={originRef}
-                    required
-                  />
-                </div>
-              </Autocomplete>00
+            <div className="inputBox">
+              <input
+                id="ubicacion"
+                name="direccion"
+                type="text"
+                ref={originRef}
+                required
+              />
+            </div>
+          </Autocomplete>00
           <button onClick={() => handleUpdate()}>Guardar</button>
         </div>
       </Modal>

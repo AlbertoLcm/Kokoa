@@ -104,7 +104,6 @@ function Mapa({ mapSet, map }) {
     map.setZoom(15);
   }
 
-
   return (
     <>
       <GoogleMap

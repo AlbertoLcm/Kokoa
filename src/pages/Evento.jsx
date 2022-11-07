@@ -15,6 +15,8 @@ function Evento() {
   const [loading, setLoading] = React.useState(true);
   const [anfitrion, setAnfitrion] = React.useState({});
   const [error, setError] = React.useState(false);
+  const [asistencia, setAsistencia] = React.useState([]);
+
   const location = useLocation();
   const nav = useNavigate();
 
@@ -36,6 +38,11 @@ function Evento() {
       .then((res) => {
         setAnfitrion(res.data);
       })
+
+    instance.post('/eventos/asistente/check', { id_usuario: user.id })
+    .then((asistencias) => {
+      setAsistencia(asistencias.data)
+    })
   }, []);
 
   if (loading) {
@@ -56,6 +63,36 @@ function Evento() {
       </>
     )
   }
+
+  const actionAsistir = (id_evento) => {
+    instance.post('/eventos/asistente', { id_evento: id_evento, id_usuario: user.id })
+      .then((res) => {
+        instance(`/eventos/evento/${id_evento}`)
+          .then((eventoResult) => {
+            setEvento(eventoResult.data);
+          })
+
+        instance.post('/eventos/asistente/check', { id_usuario: user.id })
+          .then((asistencias) => {
+            setAsistencia(asistencias.data)
+          })
+      })
+  };
+
+  const actionAusentar = (id_evento) => {
+    instance.post('/eventos/ausentar', { id_evento: id_evento, id_usuario: user.id })
+      .then((res) => {
+        instance(`/eventos/evento/${id_evento}`)
+          .then((eventoResult) => {
+            setEvento(eventoResult.data);
+          })
+
+        instance.post('/eventos/asistente/check', { id_usuario: user.id })
+          .then((asistencias) => {
+            setAsistencia(asistencias.data)
+          })
+      })
+  };
 
   let fecini = new Date(evento.fecha_inicio)
 
@@ -93,7 +130,7 @@ function Evento() {
             </div>
 
             <div className="botones">
-              <button className="asistir">Asistir</button>
+              {asistencia.find((asistencia) => asistencia.id_evento === evento.id_evento) ? <button className="asistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button> : <button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>}
               <button>Compartir</button>
             </div>
           </div>
@@ -116,7 +153,7 @@ function Evento() {
                     {evento.direccion}
                   </p>
                   {evento.capacidad ? <p className="capacidad">Capacidad para {evento.capacidad} personas</p> : <p className="sinCapacidad">Capacidad para todos</p>}
-                  <p className="asistentes">Asistiran 12 personas</p>
+                  <p className="asistentes">Asistiran {evento.asistentes_cont} personas</p>
                   {evento.precio === 0 || evento.precio === null ? <p className="gratis"> Entrada gratuita </p> : <p className="cover"> Cover ${evento.precio} </p>}
 
                 </section>
@@ -128,9 +165,7 @@ function Evento() {
 
                 <section className="tipo">
                   <h1>Tipo de evento</h1>
-                  <p>
-                    Concierto
-                  </p>
+                  {evento.tipo}
                 </section>
 
                 {!location.state ? (

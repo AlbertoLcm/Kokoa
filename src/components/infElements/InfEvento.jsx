@@ -3,27 +3,76 @@ import { Link, useLocation } from 'react-router-dom';
 import instance from '../../api/axios';
 import Skeleton from '../Skeleton';
 import image from '../../images/loginWallpaper.jpg';
+import useAuth from '../../auth/useAuth';
 
 function InfEvento({ evento, cerrar }) {
 
   const [eventoInfo, setEventoInfo] = useState([]);
+  const [anfitrion, setAnfitrion] = useState([]);
   const [loading, setLoading] = useState(true);
-  const location = useLocation();
+  const [asistencia, setAsistencia] = useState([]);
+
+  const { user } = useAuth();
 
   useEffect(() => {
+    // Obtenemos el anfitrion
     instance(`/eventos/${evento.id_evento}`)
       .then((anfitrion) => {
-        evento.hostNombre = anfitrion.data.nombre;
-        setEventoInfo(evento)
+        setAnfitrion(anfitrion.data);
       })
       .catch((err) => console.log(err))
       .finally(() => setLoading(false));
+
+    // Obtenemos el evento
+    instance(`/eventos/evento/${evento.id_evento}`)
+      .then((evento) => {
+        setEventoInfo(evento.data);
+      })
+
+    instance.post('/eventos/asistente/check', { id_usuario: user.id })
+      .then((asistencias) => {
+        setAsistencia(asistencias.data)
+      })
   }, []);
 
   if (loading) {
     return <Skeleton type={'evento'} />
   }
-  let fecini = new Date(eventoInfo.fecha_inicio)
+
+  let fecini = new Date(eventoInfo.fecha_inicio);
+
+  const actionAsistir = (id_evento) => {
+    instance.post('/eventos/asistente', { id_evento: id_evento, id_usuario: user.id })
+      .then((res) => {
+        instance(`/eventos/evento/${id_evento}`)
+          .then((eventoResult) => {
+            setEventoInfo(eventoResult.data);
+          })
+
+        instance.post('/eventos/asistente/check', { id_usuario: user.id })
+          .then((asistencias) => {
+            setAsistencia(asistencias.data)
+          })
+      })
+  };
+
+  const actionAusentar = (id_evento) => {
+    instance.post('/eventos/ausentar', { id_evento: id_evento, id_usuario: user.id })
+      .then((res) => {
+        instance(`/eventos/evento/${id_evento}`)
+          .then((eventoResult) => {
+            setEventoInfo(eventoResult.data);
+          })
+
+        instance.post('/eventos/asistente/check', { id_usuario: user.id })
+          .then((asistencias) => {
+            setAsistencia(asistencias.data)
+          })
+      })
+  };
+
+  console.log(asistencia);
+  asistencia.find((asistencia) => asistencia.id_evento === 6) ? console.log('asiste') : console.log('no asiste');
 
   return (
     <>
@@ -34,7 +83,6 @@ function InfEvento({ evento, cerrar }) {
           <line x1="6" y1="6" x2="18" y2="18" />
         </svg>
       </button>
-
       <div className="contImagenMarkerInfo">
         <img src={image} alt="imagen" />
       </div>
@@ -55,7 +103,8 @@ function InfEvento({ evento, cerrar }) {
         </section>
 
         <section className='contBtnMarkerInfo'>
-          <button className='asistir'> Asistir </button>
+          {asistencia.find((asistencia) => asistencia.id_evento === evento.id_evento) ? <button className="asistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button> : <button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>}
+
           <button className='invitar'> Invitar </button>
         </section>
 
@@ -64,7 +113,7 @@ function InfEvento({ evento, cerrar }) {
             <h1>Detalles</h1>
             <div className="detalles">
               {evento.capacidad ? <p>Capacidad {evento.capacidad} personas</p> : null}
-              <p className="asistentes">Asistiran 12 personas</p>
+              <p className="asistentes">Asistiran {eventoInfo.asistentes_cont} personas</p>
               {evento.precio === 0 || evento.precio === null ? <p className="gratis"> Entrada gratuita </p> : <p className="cover"> Cover ${evento.precio} </p>}
               <Link to={`evento/${evento.id_evento}`} className="link">Ver más</Link>
             </div>
@@ -77,7 +126,7 @@ function InfEvento({ evento, cerrar }) {
                   <img src={image} alt="Predefinir" />
                 </div>
                 <div>
-                  Un evento de {eventoInfo.hostNombre}. <br />
+                  Un evento de {anfitrion.nombre}. <br />
                   <label> Conocer </label>
                 </div>
               </Link>
@@ -90,7 +139,7 @@ function InfEvento({ evento, cerrar }) {
                   <img src={image} alt="Predefinir" />
                 </div>
                 <div>
-                  Un evento de {eventoInfo.hostNombre}. <br />
+                  Un evento de {anfitrion.nombre}. <br />
                 </div>
               </section>
             </div>

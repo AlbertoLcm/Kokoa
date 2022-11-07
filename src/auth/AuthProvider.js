@@ -131,6 +131,7 @@ export default function AuthProvider({ children }) {
   const contextValue = {
     user,
     hasRole,
+    setUser,
     isLogged,
     login,
     signup,
