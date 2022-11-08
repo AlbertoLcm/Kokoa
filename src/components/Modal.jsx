@@ -4,13 +4,12 @@ import styled from 'styled-components';
 
 const Modal = ({ children, estado, titulo, cambiarEstado }) => {
 
-
   return (
     <> {
       estado && <Overlay>
         <ContModal>
           <Ecabezado>
-              <h2>{titulo}</h2>
+              <h3>{titulo}</h3>
             <ButtonCerrar onClick={() => cambiarEstado(false)}>
               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-x" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -48,7 +47,6 @@ const Overlay = styled.div`
       width: 100%;
       height: 100vh;
     }
-    
     `;
     
     const ContModal = styled.div`
@@ -75,7 +73,8 @@ const Ecabezado = styled.div`
     color: #f3f3f3;
     padding-bottom: 10px;
     height: auto;
-    h2 {
+    h3 {
+      font-size: 22px;
       font-weight: 600;
       display: flex;
       align-items: center;

@@ -1,0 +1,82 @@
+/* Diseño para los componentes sociales (Comentarios, comentar ....) */
+
+  /* ==== Apartado comentar ==== */
+    #Comentar {
+      border-radius: 10px;
+      background-color: #2D0E30;
+      margin-bottom: 15px;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+    }
+    #Comentar .contFotoUsuario{
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #f3f3f3;
+      float: left;
+      overflow: hidden;
+      border: 2px solid #f3f3f3;
+    }
+    #Comentar .contFotoUsuario img{
+      width: auto;
+      height: 100%;
+    }
+
+    #Comentar .comentario{
+      margin-left: 10px;
+      width: calc(100% - 70px);
+    }
+    #Comentar .comentario p{
+      padding: 10px;
+      border-radius: 10px;
+      background-color: #f3f3f336;
+      transition: all 0.3s ease;
+    }
+    #Comentar .comentario p:hover{
+      padding: 10px;
+      border-radius: 10px;
+      background-color: #f3f3f356;
+    }
+
+      /* Modal para comentar */
+        #contComentarModal{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+        }
+        #contComentarModal #txtComentar{
+          resize: none;
+          width: 100%;
+          min-height: 150px;
+          font-size: 20px;
+          border: none;
+          background: none;
+          color: #f3f3f3;
+          margin-top: 10px;
+        }
+        #contComentarModal #txtComentar:focus{
+          outline: none;
+        }
+        #contComentarModal button{
+          margin-top: 15px;
+          background: linear-gradient(to left, #004dc0, #EC1C4E, #d6d300);
+          display: block;
+          width: 100%;
+          color: #f3f3f3;
+          border: none;
+          border-radius: 20px;
+          cursor: pointer;
+          user-select: none;
+          padding: 10px;
+          font-size: 18px;
+          transition: all 0.3s ease;
+          position: relative;
+          z-index: 3;
+      }
+      /* FIN Modal para comentar */
+    
+  /* ==== FIN Apartado comentar ==== */
+
+/* FIN General */

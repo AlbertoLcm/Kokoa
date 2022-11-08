@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import instance from "../../api/axios";
 import Skeleton from "../Skeleton";
-import image from "../../images/Wall (15).jpg"
-import foto from "../../images/Wall (59).jpg"
-import fotos from "../../images/establecimiento.jpg"
-import '../../stylesheets/VisPerfs.css'
+import image from "../../images/Wall (15).jpg";
+import foto from "../../images/Wall (59).jpg";
+import fotos from "../../images/establecimiento.jpg";
+import '../../stylesheets/VisPerfs.css';
+import Comentario from "../social/Comentario";
+import Comentar from "../social/Comentar";
 
 function DatosAnfitrion({ id, section }) {
 
   const [anfitrion, setAnfitrion] = useState({});
   const [loading, setLoading] = useState(true);
+  const [comentarios, setComentarios] = useState([]);
 
   useEffect(() => {
     instance.get(`/negocios/${id}`)
@@ -18,6 +21,11 @@ function DatosAnfitrion({ id, section }) {
       })
       .catch((err) => console.log(err))
       .finally(() => setLoading(false));
+
+    instance.get(`/negocios/comentarios/${id}`)
+      .then((comentarios) => {
+        setComentarios(comentarios.data)
+      })
   }, []);
 
   if (loading) {
@@ -85,194 +93,18 @@ function DatosAnfitrion({ id, section }) {
         <section id="InfOpinionesAnfitrion">
           <h2>Calificacion - 4.9 (19 Opiniones)</h2>
 
-          <div className="opinionesAnfitrion">
-            <div className="opinionAnfitrion">
-              <section className="contOpinador">
-                <div className="fotoOpinador">
-                  <img src={foto} />
-                </div>
-                <div className="nombreOpinador">
-                  <p>Alberto Cruz Marín</p>
-                  <p className="fecha">Noviembre 17</p>
-                </div>
+          <Comentar id_negocio={id} />
 
-              </section>
-              <section className="contOpinion">
-                <p>
-                  Es un grandioso lugar para pasar el rato,
-                  buen ambiente. Sin duda volveré.
-                </p>
-              </section>
-            </div>
-          </div>
-
-          <div className="opinionesAnfitrion">
-            <div className="opinionAnfitrion">
-              <section className="contOpinador">
-                <div className="fotoOpinador">
-                  <img src={foto} />
-                </div>
-                <div className="nombreOpinador">
-                  <p>Alberto Cruz Marín</p>
-                  <p className="fecha">Noviembre 17</p>
-                </div>
-
-              </section>
-              <section className="contOpinion">
-                <p>
-                  Es un grandioso lugar para pasar el rato,
-                  buen ambiente. Sin duda volveré.
-                </p>
-              </section>
-            </div>
-          </div>
-
-          <div className="opinionesAnfitrion">
-            <div className="opinionAnfitrion">
-              <section className="contOpinador">
-                <div className="fotoOpinador">
-                  <img src={foto} />
-                </div>
-                <div className="nombreOpinador">
-                  <p>Alberto Cruz Marín</p>
-                  <p className="fecha">Noviembre 17</p>
-                </div>
-
-              </section>
-              <section className="contOpinion">
-                <p>
-                  Es un grandioso lugar para pasar el rato,
-                  buen ambiente. Sin duda volveré.
-                </p>
-              </section>
-            </div>
-          </div>
-
-          <div className="opinionesAnfitrion">
-            <div className="opinionAnfitrion">
-              <section className="contOpinador">
-                <div className="fotoOpinador">
-                  <img src={foto} />
-                </div>
-                <div className="nombreOpinador">
-                  <p>Alberto Cruz Marín</p>
-                  <p className="fecha">Noviembre 17</p>
-                </div>
-
-              </section>
-              <section className="contOpinion">
-                <p>
-                  Es un grandioso lugar para pasar el rato,
-                  buen ambiente. Sin duda volveré.
-                </p>
-              </section>
-            </div>
-          </div>
-
-          <div className="opinionesAnfitrion">
-            <div className="opinionAnfitrion">
-              <section className="contOpinador">
-                <div className="fotoOpinador">
-                  <img src={foto} />
-                </div>
-                <div className="nombreOpinador">
-                  <p>Alberto Cruz Marín</p>
-                  <p className="fecha">Noviembre 17</p>
-                </div>
-
-              </section>
-              <section className="contOpinion">
-                <p>
-                  Es un grandioso lugar para pasar el rato,
-                  buen ambiente. Sin duda volveré.
-                </p>
-              </section>
-            </div>
-          </div>
-
-          <div className="opinionesAnfitrion">
-            <div className="opinionAnfitrion">
-              <section className="contOpinador">
-                <div className="fotoOpinador">
-                  <img src={foto} />
-                </div>
-                <div className="nombreOpinador">
-                  <p>Alberto Cruz Marín</p>
-                  <p className="fecha">Noviembre 17</p>
-                </div>
-
-              </section>
-              <section className="contOpinion">
-                <p>
-                  Es un grandioso lugar para pasar el rato,
-                  buen ambiente. Sin duda volveré.
-                </p>
-              </section>
-            </div>
-          </div>
-
-          <div className="opinionesAnfitrion">
-            <div className="opinionAnfitrion">
-              <section className="contOpinador">
-                <div className="fotoOpinador">
-                  <img src={foto} />
-                </div>
-                <div className="nombreOpinador">
-                  <p>Alberto Cruz Marín</p>
-                  <p className="fecha">Noviembre 17</p>
-                </div>
-
-              </section>
-              <section className="contOpinion">
-                <p>
-                  Es un grandioso lugar para pasar el rato,
-                  buen ambiente. Sin duda volveré.
-                </p>
-              </section>
-            </div>
-          </div>
-
-          <div className="opinionesAnfitrion">
-            <div className="opinionAnfitrion">
-              <section className="contOpinador">
-                <div className="fotoOpinador">
-                  <img src={foto} />
-                </div>
-                <div className="nombreOpinador">
-                  <p>Alberto Cruz Marín</p>
-                  <p className="fecha">Noviembre 17</p>
-                </div>
-
-              </section>
-              <section className="contOpinion">
-                <p>
-                  Es un grandioso lugar para pasar el rato,
-                  buen ambiente. Sin duda volveré.
-                </p>
-              </section>
-            </div>
-          </div>
-
-           <div className="opinionesAnfitrion">
-            <div className="opinionAnfitrion">
-              <section className="contOpinador">
-                <div className="fotoOpinador">
-                  <img src={foto} />
-                </div>
-                <div className="nombreOpinador">
-                  <p>Alberto Cruz Marín</p>
-                  <p className="fecha">Noviembre 17</p>
-                </div>
-
-              </section>
-              <section className="contOpinion">
-                <p>
-                  Es un grandioso lugar para pasar el rato,
-                  buen ambiente. Sin duda volveré.
-                </p>
-              </section>
-            </div>
-          </div>
+          {comentarios.map((comentario) => {
+            return (
+              <Comentario
+                id_usuario={comentario.id_usuario}
+                comentario={comentario.comentario}
+                fecha={comentario.fecha}
+              />
+            )
+          })}
+          
         </section>
       </>
     );

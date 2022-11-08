@@ -71,9 +71,6 @@ function InfEvento({ evento, cerrar }) {
       })
   };
 
-  console.log(asistencia);
-  asistencia.find((asistencia) => asistencia.id_evento === 6) ? console.log('asiste') : console.log('no asiste');
-
   return (
     <>
       <button onClick={() => cerrar()} className="btnCerrar">
