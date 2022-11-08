@@ -35,18 +35,30 @@ function Home() {
   const [showModal3, setShowModal3] = useState(false);
   const [showModal4, setShowModal4] = useState(false);
   const [showModal5, setShowModal5] = useState(false);
+  const [showModal6, setShowModal6] = useState(false);
 
   const handleSetMap = (mapita) => {
     setMap(mapita);
   };
+  
   const [rol, setRol] = useState({});
   useEffect(() => {
     if (user.rol === "negocios") {
       instance.get(`/eventos/all/${user.id}`).then((resultado) => {
         setEvCre(resultado.data)
       })
-
       instance.get(`/negocios/${user.id}`).then((res) => {
+        setRol(res.data)
+      })
+    }
+    if(user.rol === "patrocinadores"){
+      instance.get(`/patrocinadores/${user.id}`).then((res) => {
+        setRol(res.data)
+      })
+      console.log(rol)
+    }
+    if(user.rol === "artistas"){
+      instance.get(`/artistas/${user.id}`).then((res) => {
         setRol(res.data)
       })
     }
@@ -56,8 +68,9 @@ function Home() {
   const [updateRol, setUpdateRol] = useState({
     nombre: "",
     direccion: "",
-    telefono: "",
-    descripcion: ""
+    numero: "",
+    descripcion: "",
+    sitio_web: ""
   });
 
   /** @type React.MutableRefObject<HTMLInputElement> */
@@ -80,18 +93,23 @@ function Home() {
   }
   const handleUpdate = () => {
     handleDomic();
-    // instance.put(`/usuarios/${user.id}`, usuarioUpdate)
-    //   .then((res) => {
-    //     alert("Se actualizo correctamente");
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    console.log(updateRol)
+    instance.put(`/${rol.rol}/${rol.id}`, updateRol)
+      .then((res) => {
+        alert("Se actualizo correctamente");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
-
-
-
+  let parsHor = []
+  const formHorar = (hor) => {
+    hor = hor.split(",");
+    parsHor = [("Lunes: " + hor[0]), ("Martes: " + hor[1]), ("Miercoles: " + hor[2]), ("Jueves: " + hor[3]), ("Viernes: " + hor[4]), ("Sabado: " + hor[5]), ("Domingo: " + hor[6])];
+  }
+  if(rol.rol === "negocios"){formHorar(rol.horario)}
+  
   if (user.rol === "usuarios") {
     return (
       <>
@@ -383,15 +401,11 @@ function Home() {
         titulo="Cambiar nombre"
       >
         <div className="modalConfPerfil">
-          <p className="titulo">Nombre actual {user.nombre} {user.apellidos}</p>
+          <p className="titulo">Nombre actual: {rol.nombre} </p>
           <section className="modalNombre">
             <div>
-              <p>Nombre (s)</p>
+              <p>Nombre</p>
               <input type="text" id="nombre" name="nombre" onChange={handleChange} />
-            </div>
-            <div>
-              <p>Apellidos</p>
-              <input type="text" name="apellidos" onChange={handleChange} />
             </div>  
           </section>
           <button onClick={() => handleUpdate()}>Guardar</button>
@@ -400,12 +414,12 @@ function Home() {
       <Modal
         estado={showModal2}
         cambiarEstado={setShowModal2}
-        titulo="Cambiar correo"
+        titulo="Cambiar telefono de contacto"
       >
         <div className="modalConfPerfil">
-          <p className="titulo">Anterior telefono {user.telefono} </p>
+          <p className="titulo">Anterior telefono de contacto: {rol.numero} </p>
           <p>Nuevo telefono</p>
-          <input type="text" name="telefono" onChange={handleChange} />
+          <input type="text" name="numero" onChange={handleChange} />
           <button onClick={() => handleUpdate()}>Guardar</button>
         </div>
       </Modal>
@@ -415,7 +429,7 @@ function Home() {
         titulo="Cambiar correo"
       >
         <div className="modalConfPerfil">
-          <p className="titulo">Anterior correo {user.email}</p>
+          <p className="titulo">Anterior correo {rol.email}</p>
           <p>Nuevo correo</p><input type="text" name="email" onChange={handleChange} />
           <button onClick={() => handleUpdate()}>Guardar</button>
         </div>
@@ -426,7 +440,7 @@ function Home() {
         titulo="Cambiar domicilio"
       >
         <div className="modalConfPerfil">
-          <p className="titulo">Anterior domicilio {user.domicilio}</p>
+          <p className="titulo">Anterior domicilio {rol.domicilio}</p>
           <p>Nuevo domicilio</p><Autocomplete>
                 <div className="inputBox">
                   <input
@@ -444,11 +458,22 @@ function Home() {
       <Modal
         estado={showModal5}
         cambiarEstado={setShowModal5}
-        titulo="Cambiar fecha de nacimiento"
+        titulo="Cambiar sitio web"
       >
         <div className="modalConfPerfil">
-          <p className="titulo">Anterior fecha {user.fecha_nac}</p>
-          <p>Nuevo fecha</p><input type="date" name="fecha_nacimiento" onChange={handleChange} />
+          <p className="titulo">Anterior sitio web {rol.sitio_web}</p>
+          <p>Nuevo fecha</p><input type="date" name="sitio_web" onChange={handleChange} />
+          <button onClick={() => handleUpdate()}>Guardar</button>
+        </div>
+      </Modal>
+      <Modal
+        estado={showModal6}
+        cambiarEstado={setShowModal6}
+        titulo="Cambiar horario"
+      >
+        <div className="modalConfPerfil">
+          <p className="titulo">Anterior horario {rol.horario}</p>
+          <p>Nuevo fecha</p><input type="date" name="horario" onChange={handleChange} />
           <button onClick={() => handleUpdate()}>Guardar</button>
         </div>
       </Modal>
@@ -493,12 +518,15 @@ function Home() {
                 </>) : (
                   <>
                     {/* Datos de roles */}
-                    {console.log(user)}
-                    <div id="contInfoGen" ><h2>{user.nombre} {" "} {user.apellidos} </h2> <button onClick={() => setShowModal1(!showModal1)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
-                    <div id="contInfoGen"><h2>{user.telefono}</h2> <button onClick={() => setShowModal2(!showModal2)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
-                    <div id="contInfoGen"><h2>{user.email}</h2> <button onClick={() => setShowModal3(!showModal3)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
-                    <div id="contInfoGen"><h2>{user.domicilio !== null ? (user.domicilio) : ("Sin dirección")}</h2> <button onClick={() => setShowModal4(!showModal4)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
-                    <div id="contInfoGen"><h2>{user.fecha_nacimiento !== null ? (user.fecha_nacimiento) : ("Sin fecha de nacimiento")}</h2> <button onClick={() => setShowModal5(!showModal5)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
+                    <div id="contInfoGen" ><h2>{rol.nombre} </h2> <button onClick={() => setShowModal1(!showModal1)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
+                    <div id="contInfoGen"><h2>{rol.numero !== null ? (rol.numero) : ("Sin numero de contacto")}</h2> <button onClick={() => setShowModal2(!showModal2)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
+                    <div id="contInfoGen"><h2>{rol.email !== null ? (rol.email) : ("Sin correo de contacto")}</h2> <button onClick={() => setShowModal3(!showModal3)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
+                    <div id="contInfoGen"><h2>{rol.direccion}</h2> <button onClick={() => setShowModal4(!showModal4)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
+                    <div id="contInfoGen"><h2>{rol.descripcion !== null ? (rol.descripcion) : ("Sin descripcion")}</h2> <button onClick={() => setShowModal5(!showModal5)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
+                    <div id="contInfoGen"><h2>{rol.sitio_web !== null ? (rol.sitio_web) : ("Sin sitio web")}</h2> <button onClick={() => setShowModal5(!showModal5)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
+                    {
+                       rol.rol === "negocios" && (<div id="contInfoGen"> <h2> <span>{parsHor[0]}</span> <br/> <span>{parsHor[1]}</span> <br/> <span>{parsHor[2]}</span> <br /> <span>{parsHor[3]}</span> <br /> <span>{parsHor[4]}</span> <br /> <span>{parsHor[5]}</span> <br /> <span>{parsHor[6]}</span> </h2> <button onClick={() => setShowModal5(!showModal5)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>)
+                    }
                   </>
                 )
               }
