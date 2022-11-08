@@ -30,7 +30,7 @@ function SignPatrocinador() {
   const originRef = useRef();
 
   const addPat = () => {
-    console.log(patrocinador)
+    // console.log(patrocinador)
     instance.post('/cargos/patrocinador', { patrocinador, direccion: originRef.current.value, id: user.id })
     .then((registro) => {
       alert("Patrocinio registrado con éxito");
@@ -103,19 +103,11 @@ function SignPatrocinador() {
           <h2>Forma de patrocinio</h2>
           <div className="PatcontT">
             <div className="PatcontTipPat">
-              <fieldset>
-                    <input type="radio" id="contactChoice1"
-                    name="tipo" value={1} onClick={handleChange} defaultChecked="true" />
-                    <label for="contactChoice1">Bebidas</label>
-                    <br />
-                    <input type="radio" id="contactChoice2"
-                    name="tipo" value={2} onClick={handleChange}/>
-                    <label for="contactChoice2">Alcohol</label>
-                    <br />
-                    <input type="radio" id="contactChoice3"
-                    name="tipo" value={3} onClick={handleChange}/>
-                    <label for="contactChoice3">Entretenimiento</label>
-              </fieldset>
+              <select name="tipo" onChange={handleChange} className="tipSelect">
+                <option value={1}>Bebidas</option>
+                <option value={2}>Alcohol</option>
+                <option value={3}>Entretenimiento</option>
+              </select>
             </div>
             <div className="PatcontTDes">
               <h3>Descripcion</h3>
