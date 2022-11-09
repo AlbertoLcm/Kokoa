@@ -4,11 +4,12 @@ import '../stylesheets/Header.css'
 import routes from "../helpers/routes";
 import useAuth from "../auth/useAuth";
 import fotoPerfil from '../images/Wall (59).jpg';
+import instance from "../api/axios";
 
 function Header({ tipo, perfil, back = false, children, toggle = true, name = false }) {
   const nav = useNavigate();
   const [opcio, setOpcio] = useState(false);
-  const { user } = useAuth();
+  const { user, actionBackLogin } = useAuth();
   const toggleOptions = () => { setOpcio(!opcio) };
   const { logout } = useAuth();
 
@@ -45,8 +46,8 @@ function Header({ tipo, perfil, back = false, children, toggle = true, name = fa
                 {user.nombre}
               </section>
               <section className="contOptions">
-                {user.rol === "negocios" ? (
-                  <div onClick={() => logout()} className="option">
+                {user.rol !== "usuarios" ? (
+                  <div onClick={() => actionBackLogin()} className="option">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-refresh" width="36" height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
                       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                       <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />

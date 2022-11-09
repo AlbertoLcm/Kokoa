@@ -81,19 +81,19 @@ function RegistroEvento() {
       }
     );
   }
-  
+
   return (
 
     <>
 
       <div id="ContGeneralRegistrarEvento">
 
-          <div ref={alertRef} className="alert d-none">
-            Mensaje alert
-          </div>
-          <div ref={successRef} className="success d-none">
-            Mensaje success
-          </div>
+        <div ref={alertRef} className="alert d-none">
+          Mensaje alert
+        </div>
+        <div ref={successRef} className="success d-none">
+          Mensaje success
+        </div>
         <div action="" className="registrarEventoForm">
           <div className="descriptionEvento">
             <textarea className="inputDescripcion" name="descripcion" onChange={handleChange} placeholder="¿De qué trata tu evento?" />
@@ -109,15 +109,6 @@ function RegistroEvento() {
               <option value="2">Concierto</option>
             </select>
 
-            {/* <section className="showMore" onClick={() => setShowModal(!showModal)}>
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-plus" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <circle cx="12" cy="12" r="9" />
-                <line x1="9" y1="12" x2="15" y2="12" />
-                <line x1="12" y1="9" x2="12" y2="15" />
-              </svg>
-              Agregar más detalles importantes
-            </section> */}
           </div>
 
           <div id="ContDetallesEvento" >
