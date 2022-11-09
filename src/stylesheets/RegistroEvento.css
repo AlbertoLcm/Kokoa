@@ -36,9 +36,6 @@
     border-top-left-radius: 0px !important;
 }
 
-#ContGeneralRegistrarEvento{
-    /* background: linear-gradient(to left, #410046, #EC1C4E); */
-}
 #ContGeneralRegistrarEvento .descriptionEvento{
     width: 100%;
     height: auto;

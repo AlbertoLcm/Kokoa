@@ -108,10 +108,6 @@ function RegistroEvento() {
               <option value="1" selected>Fiesta</option>
               <option value="2">Concierto</option>
             </select>
-<<<<<<< HEAD
-=======
-
->>>>>>> d8cdd95070511f56169efb83cfb11d71fc241dea
           </div>
 
           <div id="ContDetallesEvento" >
