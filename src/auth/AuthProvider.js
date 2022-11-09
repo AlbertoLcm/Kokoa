@@ -21,6 +21,17 @@ export default function AuthProvider({ children }) {
   }, []);
 
   const isLogged = () => !!user;
+
+  const actionBackLogin = () => {
+    localStorage.removeItem("token");
+    instance.post('auth/login/back', { id: user.id_user })
+      .then(usuarioRes => {
+        setUser(usuarioRes.data.user.data);
+        localStorage.setItem("token", usuarioRes.data.user.token);
+        navigate(routes.home);
+      })
+      .catch(err => console.log(err));
+  }
   
   const islogin = () => {
     const token = localStorage.getItem("token");
@@ -47,17 +58,16 @@ export default function AuthProvider({ children }) {
 
   const loginCargo = (cargo) => {
     localStorage.removeItem("token");
-    instance
-    .post("/auth/login/cargo", cargo)
-    .then((usuarioRes) => {
-      console.log(usuarioRes);
-      setUser(usuarioRes.data.user.data);
-      localStorage.setItem("token", usuarioRes.data.user.token);
-      navigate(routes.home);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    instance.post("/auth/login/cargo", cargo)
+      .then((usuarioRes) => {
+        console.log(usuarioRes);
+        setUser(usuarioRes.data.user.data);
+        localStorage.setItem("token", usuarioRes.data.user.token);
+        navigate(routes.home);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   
   const login = (usuario, fromLocation, alertRef) => {
@@ -149,6 +159,7 @@ export default function AuthProvider({ children }) {
     mostrar,
     addMostrar,
     islogin,
+    actionBackLogin,
     loginCargo
   };
 

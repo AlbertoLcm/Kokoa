@@ -81,19 +81,19 @@ function RegistroEvento() {
       }
     );
   }
-  
+
   return (
 
     <>
 
       <div id="ContGeneralRegistrarEvento">
 
-          <div ref={alertRef} className="alert d-none">
-            Mensaje alert
-          </div>
-          <div ref={successRef} className="success d-none">
-            Mensaje success
-          </div>
+        <div ref={alertRef} className="alert d-none">
+          Mensaje alert
+        </div>
+        <div ref={successRef} className="success d-none">
+          Mensaje success
+        </div>
         <div action="" className="registrarEventoForm">
           <div className="descriptionEvento">
             <textarea className="inputDescripcion" name="descripcion" onChange={handleChange} placeholder="¿De qué trata tu evento?" />
@@ -108,6 +108,10 @@ function RegistroEvento() {
               <option value="1" selected>Fiesta</option>
               <option value="2">Concierto</option>
             </select>
+<<<<<<< HEAD
+=======
+
+>>>>>>> d8cdd95070511f56169efb83cfb11d71fc241dea
           </div>
 
           <div id="ContDetallesEvento" >
