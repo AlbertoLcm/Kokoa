@@ -154,11 +154,7 @@ function DatosAnfitrion({ id, section }) {
 
           {comentarios.map((comentario) => {
             return (
-              <Comentario
-                id_usuario={comentario.id_usuario}
-                comentario={comentario.comentario}
-                fecha={comentario.fecha}
-              />
+              <Comentario data={comentario} />
             )
           })}
 

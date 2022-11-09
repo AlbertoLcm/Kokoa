@@ -281,11 +281,7 @@ function Evento() {
                 {!comentarios.length ? (<div className="comentariosNull"> No hay comentarios </div>) : (null)}
                 {comentarios.map((comentario) => {
                   return (
-                    <Comentario
-                      id_usuario={comentario.id_usuario}
-                      comentario={comentario.comentario}
-                      fecha={comentario.fecha}
-                    />
+                    <Comentario data={comentario} />
                   )
                 })}
               </section>
