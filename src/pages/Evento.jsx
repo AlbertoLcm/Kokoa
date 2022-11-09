@@ -69,7 +69,7 @@ function Evento() {
       [e.target.name]: e.target.value,
     });
   };
-  
+
   if (loading) {
     return (
       <section id="ContEventoGeneralSecundario">
@@ -123,7 +123,7 @@ function Evento() {
     const fecha = new Date();
     const fechaActual = `${fecha.getFullYear()}-${fecha.getMonth() + 1}-${fecha.getDate()} ${fecha.getHours()}:${fecha.getMinutes()}:${fecha.getSeconds()}`;
 
-    instance.post("/eventos/comentarios", {comentarioEvento, fecha: fechaActual})
+    instance.post("/eventos/comentarios", { comentarioEvento, fecha: fechaActual })
       .then((res) => {
         setShowModalEvento(false);
         instance.get(`/eventos/comentarios/${id}`)

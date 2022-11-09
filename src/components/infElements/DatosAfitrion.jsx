@@ -7,12 +7,22 @@ import fotos from "../../images/establecimiento.jpg";
 import '../../stylesheets/VisPerfs.css';
 import Comentario from "../social/Comentario";
 import Comentar from "../social/Comentar";
+import useAuth from "../../auth/useAuth";
+import Modal from "../Modal";
 
 function DatosAnfitrion({ id, section }) {
 
   const [anfitrion, setAnfitrion] = useState({});
   const [loading, setLoading] = useState(true);
   const [comentarios, setComentarios] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const { user } = useAuth();
+
+  const [comentario, setComentario] = useState({
+    comentario: "",
+    id_usuario: user.id,
+    id_negocio: id,
+  });
 
   useEffect(() => {
     instance.get(`/negocios/${id}`)
@@ -31,6 +41,30 @@ function DatosAnfitrion({ id, section }) {
   if (loading) {
     return <Skeleton type={'perfilFeed'} />
   }
+
+
+
+  const handleChange = (e) => {
+    setComentario({
+      ...comentario,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const actionPublicar = () => {
+    const fecha = new Date();
+    const fechaActual = `${fecha.getFullYear()}-${fecha.getMonth() + 1}-${fecha.getDate()} ${fecha.getHours()}:${fecha.getMinutes()}:${fecha.getSeconds()}`;
+
+    instance.post("/negocios/comentarios", { comentario, fecha: fechaActual })
+      .then((res) => {
+        setShowModal(false);
+        instance.get(`/negocios/comentarios/${id}`)
+          .then((comentarios) => {
+            setComentarios(comentarios.data)
+          })
+      })
+      .catch((err) => console.log(err));
+  };
 
   switch (section) {
     case 'perfil': return (
@@ -93,7 +127,30 @@ function DatosAnfitrion({ id, section }) {
         <section id="InfOpinionesAnfitrion">
           <h2>Calificacion - 4.9 (19 Opiniones)</h2>
 
-          <Comentar id_negocio={id} />
+          <Modal
+            estado={showModal}
+            cambiarEstado={setShowModal}
+            titulo={"Comentar"}
+          >
+            <div id="contComentarModal">
+              <textarea name="comentario" id="txtComentar" placeholder="Comenta algo sobre este negocio" onChange={handleChange} />
+              <button onClick={() => actionPublicar()}>Comentar</button>
+            </div>
+          </Modal>
+
+          <div id="Comentar">
+            <section className="contFotoUsuario">
+              <img src={foto} alt="Foto Usuario" />
+            </section>
+
+            <section className="comentario">
+              <p onClick={() => setShowModal(!showModal)}>
+                Comenta algo sobre este negocio
+              </p>
+            </section>
+          </div>
+
+          {!comentarios.length ? (<div className="comentariosNull"> No hay comentarios </div>) : (null)}
 
           {comentarios.map((comentario) => {
             return (
@@ -104,7 +161,7 @@ function DatosAnfitrion({ id, section }) {
               />
             )
           })}
-          
+
         </section>
       </>
     );

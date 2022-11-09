@@ -2,6 +2,7 @@ import {
   React,
   createContext,
   useState,
+  useEffect,
 } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import instance from "../api/axios";
@@ -14,6 +15,10 @@ export default function AuthProvider({ children }) {
 
   const [user, setUser] = useState(false);
   const [eventos, setEventos] = useState(null);
+
+  useEffect(() => {
+    islogin();
+  }, []);
 
   const isLogged = () => !!user;
   

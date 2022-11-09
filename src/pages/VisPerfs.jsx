@@ -36,7 +36,7 @@ function VisPerfs() {
             <div className="vrLine" />
             <button className="BotEvesVisPerf" onClick={() => setVisua(2)}>Eventos</button>
             <div className="vrLine" />
-            <button className="BotEvesVisPerf" onClick={() => setVisua(3)}>Comunidad</button>
+            <button className="BotEvesVisPerf" onClick={() => setVisua(3)}>Anteriormente</button>
           </div>
         </section>
 
@@ -53,14 +53,14 @@ function VisPerfs() {
                 <> 
                   <h1>Actualmente</h1>
                   <div id="ContPerfilFeedEventos">
-                    <ListaEventosFeed id={id} solicito="actuales"/>
+                    <ListaEventosFeed id={id} solicito="todos"/>
                   </div>
                 </>
               ) : (
                 <>
-                <h1>Todos nuestros eventos</h1>
+                <h1>Eventos pasados</h1>
                 <div id="ContPerfilFeedEventos">
-                  <ListaEventosFeed id={id} solicito="actuales"/>
+                  {/* <ListaEventosFeed id={id} solicito="todos"/> */}
                 </div>
                 </>
               )

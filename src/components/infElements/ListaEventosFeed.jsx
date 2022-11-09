@@ -44,25 +44,43 @@ function ListaEventosFeed({ id, solicito }) {
   };
   const fecact = new Date();
 
-  const actionAsistir = (id_evento, index) => {
+  const actionAsistir = (id_evento) => {
     instance.post('/eventos/asistente', { id_evento: id_evento, id_usuario: user.id })
       .then((res) => {
         instance.get(`/eventos/all/${id}`)
           .then((eventos) => {
             setEventos(eventos.data)
           })
+
+        instance.post('/eventos/asistente/check', { id_usuario: user.id })
+          .then((asistencias) => {
+            setAsistencia(asistencias.data)
+          })
       })
   };
 
-  return (
-    <>
-      {
-        // solicito === "actuales" ? (
-        eventos.map((evento, index) => {
+  const actionAusentar = (id_evento) => {
+    instance.post('/eventos/ausentar', { id_evento: id_evento, id_usuario: user.id })
+      .then((res) => {
+        instance.get(`/eventos/all/${id}`)
+          .then((eventos) => {
+            setEventos(eventos.data)
+          })
+
+        instance.post('/eventos/asistente/check', { id_usuario: user.id })
+          .then((asistencias) => {
+            setAsistencia(asistencias.data)
+          })
+      })
+  };
+
+  switch (solicito) {
+    case 'proximos': return (
+      <>
+        {eventos.map((evento, index) => {
           let fecini = new Date(evento.fecha_inicio)
           let fecter = new Date(evento.fecha_termino)
-          // Eventos Actuales
-          if (fecact) {
+          if (fecini > fecact) {
             return (
               <div id="PerfilFeedEvento">
                 <section id="ContImgEventoFeed">
@@ -91,7 +109,7 @@ function ListaEventosFeed({ id, solicito }) {
                   <div className="coverEvento">
                     {evento.precio === null || evento.precio == 0 ? <p> Entrada gratuita </p> : <p className="cover"> Cover: {evento.precio} </p>}
 
-                    {asistencia.find((asistencia) => asistencia.id_evento === evento.id_evento) ? <button className="btnAsistir" onClick={() => actionAsistir(evento.id_evento, index)}>Asistir</button> : <button className="btnAsistirTrue">Ya asistiras</button>}
+                    {asistencia.find((asistencia) => asistencia.id_evento === evento.id_evento) ? <button className="btnAsistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button> : <button className="btnAsistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>}
 
                   </div>
                 </section>
@@ -99,103 +117,100 @@ function ListaEventosFeed({ id, solicito }) {
             )
           }
         })
-        // ) : solicito === "futuros" ? (
-        //   eventos.map((evento) => {
-        //     let fecini = new Date(evento.fecha_inicio)
-        //     let fecter = new Date(evento.fecha_termino)
-        //     // Eventos futuros
-        //     if(fecact < fecini){
-        //       return (
-        //         <div id="PerfilFeedEvento">
-        //           {/* Imagen del evento */}
-        //           <div id="ContImgEvento"><img src={image} alt="Imagen no encontrada" /></div>
-        //           {/* Informacion del evento */}
-        //           <h2>{evento.nombre}</h2>
-        //           <p>
-        //           <label>Ubicado: </label>
-        //           {evento.ubicacion}
-        //           </p>
-        //           <p>
-        //             <label>Incia el dia: </label>
-        //             {fecini.toLocaleDateString()}
-        //             <br />
-        //             <label> A las: </label>
-        //             {fecter.toLocaleTimeString()}
-        //             <label> horas</label>
-        //           </p>
-        //           <p>
-        //             <label>Termina el dia: </label>
-        //             {fecini.toLocaleDateString()}
-        //             <br />
-        //             <label> A las: </label>
-        //             {fecini.toLocaleTimeString()}
-        //             <label> horas </label>
-        //           </p>
-        //           <p>
-        //             <label>Capacidad</label>
-        //             {evento.capacidad}
-        //           </p>
-        //           <p>
-        //             <label>Cover</label>
-        //             {evento.precio}
-        //           </p>
-        //           <p>{evento.descripcion}</p>
-        //         </div>
-        //       )
-        //     }
-        //   })
-        // ) : solicito === "todos" ? (
-        //   eventos.map((evento) => {
-        //     let fecini = new Date(evento.fecha_inicio)
-        //     let fecter = new Date(evento.fecha_termino)
-        //     // Todos los eventos
-        //       return (
-        //         <div id="PerfilFeedEvento">
-        //           {/* Imagen del evento */}
-        //           <div id="ContImgEvento"><img src={image} alt="Imagen no encontrada" /></div>
-        //           {/* Informacion del evento */}
-        //           <h2>{evento.nombre}</h2>
-        //           <p>
-        //           <label>Ubicado: </label>
-        //           {evento.ubicacion}
-        //           </p>
-        //           <p>
-        //             <label>Incia el dia: </label>
-        //             {fecini.toLocaleDateString()}
-        //             <br />
-        //             <label> A las: </label>
-        //             {fecter.toLocaleTimeString()}
-        //             <label> horas</label>
-        //           </p>
-        //           <p>
-        //             <label>Termina el dia: </label>
-        //             {fecini.toLocaleDateString()}
-        //             <br />
-        //             <label> A las: </label>
-        //             {fecini.toLocaleTimeString()}
-        //             <label> horas </label>
-        //           </p>
-        //           <p>
-        //             <label>Capacidad</label>
-        //             {evento.capacidad}
-        //           </p>
-        //           <p>
-        //             <label>Cover</label>
-        //             {evento.precio}
-        //           </p>
-        //           <p>{evento.descripcion}</p>
-        //         </div>
-        //       )
-        //     }
-        //   )
-        // ) : (
-        //   <div>Asi no</div>
-        // )
+        }
+      </>
+    )
 
+    case 'anteriores': return (
+      <>
+        {eventos.map((evento, index) => {
+          let fecini = new Date(evento.fecha_inicio)
+          let fecter = new Date(evento.fecha_termino)
+          if (fecact < fecter) {
+            return (
+              <div id="PerfilFeedEvento">
+                <section id="ContImgEventoFeed">
+                  <img src={image} id="ImgEventoFeed" />
+                </section>
 
-      }
-    </>
-  )
+                <section id="ContInfEvento">
+                  <div className="infEvento">
+                    <p className="infEventoFecha">
+                      Incia el
+                      {` ${fecini.toLocaleDateString()} `}
+                      a las
+                      {` ${fecter.toLocaleTimeString()} `}
+                      horas
+                    </p>
+                    <h2>{evento.nombre}</h2>
+                    <p className="infEventoUbicacion">
+                      {evento.direccion}
+                    </p>
+                    <p className="asistentesEvento">
+                      Asistieron {evento.asistentes_cont} personas
+                    </p>
+                    <Link to={`/evento/${evento.id_evento}`} state={{ from: location }} className="link">Ver más</Link>
+                  </div>
+
+                  <div className="coverEvento">
+                    {evento.precio === null || evento.precio == 0 ? <p> La entrada fue gratuita </p> : <p className="cover"> Tuvo un cover de: ${evento.precio} </p>}
+
+                    {/* {asistencia.find((asistencia) => asistencia.id_evento === evento.id_evento) ? <button className="btnAsistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button> : <button className="btnAsistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>} */}
+
+                  </div>
+                </section>
+              </div>
+            )
+          }
+        })
+        }
+      </>
+    )
+
+    case 'todos': return (
+      <>
+        {eventos.map((evento) => {
+          let fecini = new Date(evento.fecha_inicio)
+          let fecter = new Date(evento.fecha_termino)
+            return (
+              <div id="PerfilFeedEvento">
+                <section id="ContImgEventoFeed">
+                  <img src={image} id="ImgEventoFeed" />
+                </section>
+
+                <section id="ContInfEvento">
+                  <div className="infEvento">
+                    <p className="infEventoFecha">
+                      Incia el
+                      {` ${fecini.toLocaleDateString()} `}
+                      a las
+                      {` ${fecter.toLocaleTimeString()} `}
+                      horas
+                    </p>
+                    <h2>{evento.nombre}</h2>
+                    <p className="infEventoUbicacion">
+                      {evento.direccion}
+                    </p>
+                    <p className="asistentesEvento">
+                      Asistiran {evento.asistentes_cont} personas
+                    </p>
+                    <Link to={`/evento/${evento.id_evento}`} state={{ from: location }} className="link">Ver más</Link>
+                  </div>
+
+                  <div className="coverEvento">
+                    {evento.precio === null || evento.precio == 0 ? <p> Entrada gratuita </p> : <p className="cover"> Cover: {evento.precio} </p>}
+
+                    {asistencia.find((asistencia) => asistencia.id_evento === evento.id_evento) ? <button className="btnAsistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button> : <button className="btnAsistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>}
+
+                  </div>
+                </section>
+              </div>
+            )
+        })
+        }
+      </>
+    )
+  }
 }
 
 export default ListaEventosFeed;
