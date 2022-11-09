@@ -71,6 +71,7 @@ export default function AuthProvider({ children }) {
         }
       })
       .catch((error) => {
+        console.log(error);
         alertRef.current.classList.remove('d-none');
         alertRef.current.innerHTML = error.response.data.message;
       });

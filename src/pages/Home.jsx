@@ -36,6 +36,7 @@ function Home() {
   const [showModal4, setShowModal4] = useState(false);
   const [showModal5, setShowModal5] = useState(false);
   const [showModal6, setShowModal6] = useState(false);
+  const [showModalRegistrar, setShowModalRegistrar] = useState(false);
 
   const handleSetMap = (mapita) => {
     setMap(mapita);
@@ -400,6 +401,7 @@ function Home() {
         cambiarEstado={setShowModal1}
         titulo="Cambiar nombre"
       >
+        
         <div className="modalConfPerfil">
           <p className="titulo">Nombre actual: {rol.nombre} </p>
           <section className="modalNombre">
@@ -499,7 +501,14 @@ function Home() {
                   <>
                     <h3>Tus eventos</h3>
                     <div id="ContEventosFeed">
-                      <Link to={routes.registrarevento} className={"btnLink"}>Crear un evento nuevo</Link>
+                    <Modal
+        estado={showModalRegistrar}
+        cambiarEstado={setShowModalRegistrar}
+        titulo="Registrar evento"
+      >
+        <RegistroEvento />
+        </Modal>
+                      <button onClick={() => setShowModalRegistrar(!showModalRegistrar)}>Crear evento</button>
                       <ListaEventosFeed id={user.id} solicito="actuales" />
                     </div>
                   </>
