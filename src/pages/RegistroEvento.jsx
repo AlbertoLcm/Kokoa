@@ -108,16 +108,6 @@ function RegistroEvento() {
               <option value="1" selected>Fiesta</option>
               <option value="2">Concierto</option>
             </select>
-
-            {/* <section className="showMore" onClick={() => setShowModal(!showModal)}>
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-plus" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <circle cx="12" cy="12" r="9" />
-                <line x1="9" y1="12" x2="15" y2="12" />
-                <line x1="12" y1="9" x2="12" y2="15" />
-              </svg>
-              Agregar más detalles importantes
-            </section> */}
           </div>
 
           <div id="ContDetallesEvento" >
@@ -160,7 +150,45 @@ function RegistroEvento() {
               </div>
             </section>
           </div>
+          <center><hr id="hrBusc"/></center>
+          <h2>Patrocinadores</h2>
+          <div className="contBusc">
+            <section id="secHeBusc">
+              <select type="text" name="buscPatr" className="selBusc">
+                <option value="1">Bebidas</option>
+                <option value="2">Alcohol</option>
+                <option value="3">Entretenimiento</option>
+              </select> 
+              <button className="botBusc">Buscar</button> 
+            </section>
+            
+            <section className="contBuscPatr">
+              <p>Aqui van eventos ;C</p>
+              {
+                // Mapa de los eventos en busca de patrocinador
+              }
+            </section>
+          </div>
 
+          <center><hr id="hrBusc"/></center>
+          <h2>Entretenimiento</h2>
+          <div className="contBusc">
+            <section id="secHeBusc">
+              <select type="text" name="buscPatr" className="selBusc">
+                <option value="1">Bebidas</option>
+                <option value="2">Alcohol</option>
+                <option value="3">Entretenimiento</option>
+              </select> 
+              <button className="botBusc">Buscar</button> 
+            </section>
+            
+            <section className="contBuscPatr">
+              <p>Aqui van eventos ;C</p>
+              {
+                // Mapa de los eventos en busca de patrocinador
+              }
+            </section>
+          </div>
         </div>
         <button className="btnEvento" onClick={() => handleSubmit()}>
           Crear evento

@@ -1,3 +1,41 @@
+#hrBusc {
+    width: 90%;
+    margin-top: 10px;
+}
+#secHeBusc {
+    display: grid;
+    grid-template-columns: 1fr .5fr;
+    border-radius: 15px;
+    /* border: 1px dotted #f3f3f3; */
+    margin-top: 10px;
+    align-items: center;
+}
+#secHeBusc > select {
+    height: 40px;
+    border-bottom-right-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+    border-radius: 15px;
+    appearance: none;
+    padding-left: 20px;
+    background-color: #f3f3f341;
+    color: white;
+}.selBusc option[selected] {
+    background-color: #f3f3f354;
+    transition: all 0.2s ease-in-out;
+}.selBusc :first-child {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}.selBusc :last-child {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+#secHeBusc > button {
+    height: 40px;
+    margin-top: 0px !important;
+    border-bottom-left-radius: 0px !important;
+    border-top-left-radius: 0px !important;
+}
+
 #ContGeneralRegistrarEvento{
     /* background: linear-gradient(to left, #410046, #EC1C4E); */
 }
