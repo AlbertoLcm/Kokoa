@@ -16,7 +16,8 @@ function SignArtista() {
     nombre: "",
     email: "",
     telefono: "",
-    tipo: 1,
+    tipo: "1",
+    genero: "1",
     descripcion: "",
   });
 
@@ -107,6 +108,19 @@ function SignArtista() {
               <option value="1">Musica</option>
               <option value="2">Entretenimiento</option>
             </select>
+            {
+            artista.tipo === "1" && (
+              <div>
+                <select id="selectbajo" name="genero" onChange={handleChange} className="tipSelect">
+                  <option value="1">Rock</option>
+                  <option value="2">Rap</option>
+                  <option value="3">Mariachi</option>
+                  <option value="4">Electronica / DJ</option>
+                  <option value="5">Sonidero</option>
+                </select>
+              </div>
+            )
+          }
             </div>
             <div className="artContTextAr">
               <h3>Descripcion</h3>
