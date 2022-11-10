@@ -5,7 +5,7 @@ import { Autocomplete, useJsApiLoader } from "@react-google-maps/api";
 import instance from "../api/axios";
 import useAuth from "../auth/useAuth";
 
-function RegistroEvento() {
+function RegistroEvento({ negocio = false }) {
   const nav = useNavigate();
   /** @type React.MutableRefObject<HTMLInputElement> */
   const alertRef = useRef();
@@ -13,10 +13,20 @@ function RegistroEvento() {
 
   const { addMostrar, user } = useAuth();
   const [showModal, setShowModal] = useState(false);
+  const [patrocinadores, setPatrocinadores] = useState([]);
+  const [artistas, setArtistas] = useState([]);
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyBqhV6i7d19_4MlXk1gEtZ0flSx_7yYfo8",
     libraries: ["places"],
+  });
+
+  const [buscador, setBuscador] = useState({
+    tipo: "1"
+  });
+
+  const [buscadorEntretenimiento, setBuscadorEntretenimiento] = useState({
+    tipo: "1"
   });
 
   const [datosEvento, setDatosEvento] = useState({
@@ -31,12 +41,27 @@ function RegistroEvento() {
     tipo: "",
   });
 
+  const handleBuscador = (e) => {
+    setBuscador({
+      ...buscador,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleBuscadorEnt = (e) => {
+    setBuscadorEntretenimiento({
+      ...buscadorEntretenimiento,
+      [e.target.name]: e.target.value,
+    });
+  };
+  
   const handleChange = (e) => {
     setDatosEvento({
       ...datosEvento,
       [e.target.name]: e.target.value,
     });
   };
+
 
   /** @type React.MutableRefObject<HTMLInputElement> */
   const originRef = useRef();
@@ -82,6 +107,26 @@ function RegistroEvento() {
     );
   }
 
+  const actionBuscarPatrocinador = () => {
+    instance.post('/patrocinadores/tipo', buscador)
+      .then((results) => {
+        setPatrocinadores(results.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const actionBuscarEntretenimiento = () => {
+    instance.post('/artistas/tipo', buscadorEntretenimiento)
+      .then((results) => {
+        setArtistas(results.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  
   return (
 
     <>
@@ -150,46 +195,55 @@ function RegistroEvento() {
               </div>
             </section>
           </div>
-          <center><hr id="hrBusc"/></center>
-          <h2>Patrocinadores</h2>
-          <div className="contBusc">
-            <section id="secHeBusc">
-              <select type="text" name="buscPatr" className="selBusc">
-                <option value="1">Bebidas</option>
-                <option value="2">Alcohol</option>
-                <option value="3">Entretenimiento</option>
-              </select> 
-              <button className="botBusc">Buscar</button> 
-            </section>
-            
-            <section className="contBuscPatr">
-              <p>Aqui van eventos ;C</p>
-              {
-                // Mapa de los eventos en busca de patrocinador
-              }
-            </section>
-          </div>
 
-          <center><hr id="hrBusc"/></center>
-          <h2>Entretenimiento</h2>
-          <div className="contBusc">
-            <section id="secHeBusc">
-              <select type="text" name="buscPatr" className="selBusc">
-                <option value="1">Bebidas</option>
-                <option value="2">Alcohol</option>
-                <option value="3">Entretenimiento</option>
-              </select> 
-              <button className="botBusc">Buscar</button> 
-            </section>
-            
-            <section className="contBuscPatr">
-              <p>Aqui van eventos ;C</p>
-              {
-                // Mapa de los eventos en busca de patrocinador
-              }
-            </section>
-          </div>
+          {negocio ? (
+            <>
+              <center><hr id="hrBusc" /></center>
+              <h2>Patrocinadores</h2>
+              <div className="contBusc">
+                <section id="secHeBusc">
+                  <select type="text" name="tipo" onChange={handleBuscador} className="selBusc">
+                    <option value="1">Bebidas</option>
+                    <option value="2">Alcohol</option>
+                    <option value="3">Entretenimiento</option>
+                  </select>
+                  <button className="botBusc" onClick={() => actionBuscarPatrocinador()} >Buscar</button>
+                </section>
+
+                <section className="contBuscPatr">
+                  {!patrocinadores.length ? (<p>Busca un patrocinador para mostrar algo</p>) : (null)}
+                  {patrocinadores.map((patrocinador) => {
+                    return (
+                      <h1> {patrocinador.nombre} </h1>
+                    )
+                    })}
+                </section>
+              </div>
+
+              <center><hr id="hrBusc" /></center>
+              <h2>Entretenimiento</h2>
+              <div className="contBusc">
+                <section id="secHeBusc">
+                  <select type="text" name="tipo" onChange={handleBuscadorEnt} className="selBusc">
+                    <option value="1">Entretenimiento</option>
+                    <option value="2">Música</option>
+                  </select>
+                  <button className="botBusc" onClick={() => actionBuscarEntretenimiento()}>Buscar</button>
+                </section>
+
+                <section className="contBuscPatr">
+                  {!artistas.length ? (<p>Busca un artista para mostrar algo</p>) : (null)}
+                  {artistas.map((artista) => {
+                    return (
+                      <h1> {artista.nombre} </h1>
+                    )
+                    })}
+                </section>
+              </div>
+            </>
+          ) : (null)}
         </div>
+
         <button className="btnEvento" onClick={() => handleSubmit()}>
           Crear evento
         </button>

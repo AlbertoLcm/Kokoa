@@ -28,12 +28,22 @@
 }.selBusc :last-child {
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+}.selBusc:focus {
+    outline: none;
 }
 #secHeBusc > button {
     height: 40px;
     margin-top: 0px !important;
     border-bottom-left-radius: 0px !important;
     border-top-left-radius: 0px !important;
+}
+#secHeBusc .botBusc{
+    background-color: #f3f3f393;
+    color: white;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
 }
 
 #ContGeneralRegistrarEvento .descriptionEvento{
@@ -180,7 +190,7 @@
 #ContGeneralRegistrarEvento .registrarEventoForm .detalles .checkbox{
     width: auto;
 }
-#ContGeneralRegistrarEvento button{
+#ContGeneralRegistrarEvento .btnEvento{
     margin-top: 15px;
     background: linear-gradient(to left, #004dc0, #EC1C4E, #d6d300);
     display: block;

@@ -29,6 +29,7 @@ body::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
 }
 body::-webkit-scrollbar:horizontal {
     height: 10px;
+
 }
 body::-webkit-scrollbar-thumb {
     background-color: #f3f3f391;

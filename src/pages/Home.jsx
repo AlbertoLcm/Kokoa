@@ -15,6 +15,7 @@ import image from "../images/concert.jpg";
 import Modal from "../components/Modal";
 import ListaEventosFeed from "../components/infElements/ListaEventosFeed";
 import RegistroEvento from "./RegistroEvento";
+import ListarComentarios from "../components/social/ListarComentarios";
 
 const Mapa = lazy(() => import("../components/Mapa"));
 const MapNegocio = lazy(() => import("../components/maps/MapNegocio"));
@@ -41,7 +42,7 @@ function Home() {
   const handleSetMap = (mapita) => {
     setMap(mapita);
   };
-  
+
   const [rol, setRol] = useState({});
   useEffect(() => {
     if (user.rol === "negocios") {
@@ -52,13 +53,13 @@ function Home() {
         setRol(res.data)
       })
     }
-    if(user.rol === "patrocinadores"){
+    if (user.rol === "patrocinadores") {
       instance.get(`/patrocinadores/${user.id}`).then((res) => {
         setRol(res.data)
       })
       console.log(rol)
     }
-    if(user.rol === "artistas"){
+    if (user.rol === "artistas") {
       instance.get(`/artistas/${user.id}`).then((res) => {
         setRol(res.data)
       })
@@ -85,7 +86,7 @@ function Home() {
   }
   const handleDomic = () => {
     // console.log(originRef.current)
-    if(originRef.current !== undefined){
+    if (originRef.current !== undefined) {
       setUpdateRol({
         ...updateRol,
         domicilio: originRef.current.value,
@@ -109,8 +110,8 @@ function Home() {
     hor = hor.split(",");
     parsHor = [("Lunes: " + hor[0]), ("Martes: " + hor[1]), ("Miercoles: " + hor[2]), ("Jueves: " + hor[3]), ("Viernes: " + hor[4]), ("Sabado: " + hor[5]), ("Domingo: " + hor[6])];
   }
-  if(rol.rol === "negocios"){formHorar(rol.horario)}
-  
+  if (rol.rol === "negocios") { formHorar(rol.horario) }
+
   if (user.rol === "usuarios") {
     return (
       <>
@@ -126,7 +127,7 @@ function Home() {
 
         <section id="ContGeneralHome">
           <div className="contMapaHome">
-            
+
             <Suspense fallback={<Loading />}>
               <Mapa mapSet={handleSetMap} map={map} />
             </Suspense>
@@ -397,91 +398,98 @@ function Home() {
         <Header tipo={'color'} perfil={user.nombre} back={false} name={false} />
 
         <Modal
-        estado={showModal1}
-        cambiarEstado={setShowModal1}
-        titulo="Cambiar nombre"
-      >
-        
-        <div className="modalConfPerfil">
-          <p className="titulo">Nombre actual: {rol.nombre} </p>
-          <section className="modalNombre">
-            <div>
-              <p>Nombre</p>
-              <input type="text" id="nombre" name="nombre" onChange={handleChange} />
-            </div>  
-          </section>
-          <button onClick={() => handleUpdate()}>Guardar</button>
-        </div>
-      </Modal>
-      <Modal
-        estado={showModal2}
-        cambiarEstado={setShowModal2}
-        titulo="Cambiar telefono de contacto"
-      >
-        <div className="modalConfPerfil">
-          <p className="titulo">Anterior telefono de contacto: {rol.numero} </p>
-          <p>Nuevo telefono</p>
-          <input type="text" name="numero" onChange={handleChange} />
-          <button onClick={() => handleUpdate()}>Guardar</button>
-        </div>
-      </Modal>
-      <Modal
-        estado={showModal3}
-        cambiarEstado={setShowModal3}
-        titulo="Cambiar correo"
-      >
-        <div className="modalConfPerfil">
-          <p className="titulo">Anterior correo {rol.email}</p>
-          <p>Nuevo correo</p><input type="text" name="email" onChange={handleChange} />
-          <button onClick={() => handleUpdate()}>Guardar</button>
-        </div>
-      </Modal>
-      <Modal
-        estado={showModal4}
-        cambiarEstado={setShowModal4}
-        titulo="Cambiar domicilio"
-      >
-        <div className="modalConfPerfil">
-          <p className="titulo">Anterior domicilio {rol.domicilio}</p>
-          <p>Nuevo domicilio</p><Autocomplete>
-                <div className="inputBox">
-                  <input
-                    id="ubicacion"
-                    name="direccion"
-                    type="text"
-                    ref={originRef}
-                    required
-                  />
-                </div>
-              </Autocomplete>00
-          <button onClick={() => handleUpdate()}>Guardar</button>
-        </div>
-      </Modal>
-      <Modal
-        estado={showModal5}
-        cambiarEstado={setShowModal5}
-        titulo="Cambiar sitio web"
-      >
-        <div className="modalConfPerfil">
-          <p className="titulo">Anterior sitio web {rol.sitio_web}</p>
-          <p>Nuevo fecha</p><input type="date" name="sitio_web" onChange={handleChange} />
-          <button onClick={() => handleUpdate()}>Guardar</button>
-        </div>
-      </Modal>
-      <Modal
-        estado={showModal6}
-        cambiarEstado={setShowModal6}
-        titulo="Cambiar horario"
-      >
-        <div className="modalConfPerfil">
-          <p className="titulo">Anterior horario {rol.horario}</p>
-          <p>Nuevo fecha</p><input type="date" name="horario" onChange={handleChange} />
-          <button onClick={() => handleUpdate()}>Guardar</button>
-        </div>
-      </Modal>
+          estado={showModal1}
+          cambiarEstado={setShowModal1}
+          titulo="Cambiar nombre"
+        >
+
+          <div className="modalConfPerfil">
+            <p className="titulo">Nombre actual: {rol.nombre} </p>
+            <section className="modalNombre">
+              <div>
+                <p>Nombre</p>
+                <input type="text" id="nombre" name="nombre" onChange={handleChange} />
+              </div>
+            </section>
+            <button onClick={() => handleUpdate()}>Guardar</button>
+          </div>
+        </Modal>
+
+        <Modal
+          estado={showModal2}
+          cambiarEstado={setShowModal2}
+          titulo="Cambiar telefono de contacto"
+        >
+          <div className="modalConfPerfil">
+            <p className="titulo">Anterior telefono de contacto: {rol.numero} </p>
+            <p>Nuevo telefono</p>
+            <input type="text" name="numero" onChange={handleChange} />
+            <button onClick={() => handleUpdate()}>Guardar</button>
+          </div>
+        </Modal>
+
+        <Modal
+          estado={showModal3}
+          cambiarEstado={setShowModal3}
+          titulo="Cambiar correo"
+        >
+          <div className="modalConfPerfil">
+            <p className="titulo">Anterior correo {rol.email}</p>
+            <p>Nuevo correo</p><input type="text" name="email" onChange={handleChange} />
+            <button onClick={() => handleUpdate()}>Guardar</button>
+          </div>
+        </Modal>
+
+        <Modal
+          estado={showModal4}
+          cambiarEstado={setShowModal4}
+          titulo="Cambiar domicilio"
+        >
+          <div className="modalConfPerfil">
+            <p className="titulo">Anterior domicilio {rol.domicilio}</p>
+            <p>Nuevo domicilio</p><Autocomplete>
+              <div className="inputBox">
+                <input
+                  id="ubicacion"
+                  name="direccion"
+                  type="text"
+                  ref={originRef}
+                  required
+                />
+              </div>
+            </Autocomplete>00
+            <button onClick={() => handleUpdate()}>Guardar</button>
+          </div>
+        </Modal>
+        <Modal
+          estado={showModal5}
+          cambiarEstado={setShowModal5}
+          titulo="Cambiar sitio web"
+        >
+          <div className="modalConfPerfil">
+            <p className="titulo">Anterior sitio web {rol.sitio_web}</p>
+            <p>Nuevo fecha</p><input type="date" name="sitio_web" onChange={handleChange} />
+            <button onClick={() => handleUpdate()}>Guardar</button>
+          </div>
+        </Modal>
+        <Modal
+          estado={showModal6}
+          cambiarEstado={setShowModal6}
+          titulo="Cambiar horario"
+        >
+          <div className="modalConfPerfil">
+            <p className="titulo">Anterior horario {rol.horario}</p>
+            <p>Nuevo fecha</p><input type="date" name="horario" onChange={handleChange} />
+            <button onClick={() => handleUpdate()}>Guardar</button>
+          </div>
+        </Modal>
 
         <div id="ContGeneralNegocios">
-
+        <section className="contMapaNegocios">
+            <Suspense fallback={<Loading />}>
+              <MapNegocio mapSet={handleSetMap} map={map} />
+            </Suspense>
+          </section>
           <section className="contFeedNegocios">
 
             <h1>{user.nombre_cargo}</h1>
@@ -500,24 +508,27 @@ function Home() {
                 visua === 2 ? (
                   <>
                     <h3>Tus eventos</h3>
-                    <div id="ContEventosFeed">
-                    <Modal
-        estado={showModalRegistrar}
-        cambiarEstado={setShowModalRegistrar}
-        titulo="Registrar evento"
-      >
-        <RegistroEvento />
-        </Modal>
-                      <button onClick={() => setShowModalRegistrar(!showModalRegistrar)}>Crear evento</button>
-                      <ListaEventosFeed id={user.id} solicito="actuales" />
+                    <div id="ContEventosNegocioFeed">
+                      
+                      <Modal
+                        estado={showModalRegistrar}
+                        cambiarEstado={setShowModalRegistrar}
+                        titulo="Registrar evento"
+                      >
+                        <RegistroEvento negocio={true}/>
+                      </Modal>
+
+                      <button className="btnLink2" onClick={() => setShowModalRegistrar(!showModalRegistrar)}>Crear un nuevo evento</button>
+
+                      <section id="ContEventosNegocio">
+                        <ListaEventosFeed id={user.id} solicito="negocio" />
+                      </section>
                     </div>
                   </>
                 ) : visua === 1 ? (
                   <>
                     <h3>Incio</h3>
-                    <h3>
-                      Aquí puedes ver tus comentarios de eventos pasados
-                    </h3>
+                    <ListarComentarios id_negocio={user.id} />
                   </>
                 ) : visua === 3 ? (<>
                   <h3>Estadisticas</h3>
@@ -534,21 +545,13 @@ function Home() {
                     <div id="contInfoGen"><h2>{rol.descripcion !== null ? (rol.descripcion) : ("Sin descripcion")}</h2> <button onClick={() => setShowModal5(!showModal5)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
                     <div id="contInfoGen"><h2>{rol.sitio_web !== null ? (rol.sitio_web) : ("Sin sitio web")}</h2> <button onClick={() => setShowModal5(!showModal5)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
                     {
-                       rol.rol === "negocios" && (<div id="contInfoGen"> <h2> <span>{parsHor[0]}</span> <br/> <span>{parsHor[1]}</span> <br/> <span>{parsHor[2]}</span> <br /> <span>{parsHor[3]}</span> <br /> <span>{parsHor[4]}</span> <br /> <span>{parsHor[5]}</span> <br /> <span>{parsHor[6]}</span> </h2> <button onClick={() => setShowModal5(!showModal5)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>)
+                      rol.rol === "negocios" && (<div id="contInfoGen"> <h2> <span>{parsHor[0]}</span> <br /> <span>{parsHor[1]}</span> <br /> <span>{parsHor[2]}</span> <br /> <span>{parsHor[3]}</span> <br /> <span>{parsHor[4]}</span> <br /> <span>{parsHor[5]}</span> <br /> <span>{parsHor[6]}</span> </h2> <button onClick={() => setShowModal5(!showModal5)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>)
                     }
                   </>
                 )
               }
             </div>
           </section>
-
-          <section className="contMapaNegocios">
-            <Suspense fallback={<Loading />}>
-              <MapNegocio mapSet={handleSetMap} map={map} />
-            </Suspense>
-
-          </section>
-
         </div>
       </>
     )

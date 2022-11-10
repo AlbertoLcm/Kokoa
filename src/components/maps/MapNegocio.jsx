@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
 import { libraries, stylesArray } from "../../helpers/methodsMap";
 import Loading from "../Loading";
 
 function MapNegocio({ mapSet, map }) {
+
+  const [center, setCenter] = useState({ lat: 19.4326077, lng: -99.133208 });
+  
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyBqhV6i7d19_4MlXk1gEtZ0flSx_7yYfo8",
     libraries,
@@ -16,8 +19,9 @@ function MapNegocio({ mapSet, map }) {
     <>
       <GoogleMap
         mapContainerClassName="mapaNegocios"
-        center={{ lat: 19.4326077, lng: -99.133208 }}
+        center={center}
         zoom={15}
+        onLoad={(map) => mapSet(map)}
         options={{
           styles: stylesArray,
           streetViewControl: false,

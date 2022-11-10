@@ -387,11 +387,12 @@
             padding-top: 60px;
             height: calc(100vh - 60px);
             display: grid;
-            grid-template-columns: 2.5fr 1fr;
+            grid-template-columns: 1fr 2.5fr;
         }
         #ContGeneralNegocios .contFeedNegocios{
-            height: 100%;
+            max-height: 100%;
             width: 100%;
+            overflow: auto;
             background-color: #140016;
         }
         #ContGeneralNegocios .contFeedNegocios h1{
@@ -430,7 +431,6 @@
         }
         #ContGeneralNegocios .contenidoFeedNegocios{
             padding: 10px;
-            width: 95%;
             display: flex;
             flex-direction: column;
             gap: 10px;
@@ -441,6 +441,33 @@
                 width: 100%;
             }
         /* /// FIN Mapa /// */
+
+        /* Sección 1, Inicio */
+            #ContGeneralComentariosNegocio{
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                color: #f3f3f3;
+            }
+            #ContGeneralComentariosNegocio #ContComentariosNegocio .contEvento{
+                border-radius: 10px;
+                padding: 10px;
+                font-size: 30px;
+                display: flex;
+                background-color: #EC1C4E;
+                justify-content: start;
+            }
+        /* Sección 1, Inicio */
+
+        /* Sección 2, eventos */
+            #ContEventosNegocio{
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 10px;
+                margin-top: 10px;
+            } 
+        /* FIN Sección 2, eventos */
+        
     /* ==== FIN Home negocios ==== */
 
 /* ==== Toggle ==== */

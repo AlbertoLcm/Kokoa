@@ -210,6 +210,50 @@ function ListaEventosFeed({ id, solicito }) {
         }
       </>
     )
+
+    case 'negocio': return (
+      <>
+        {eventos.map((evento) => {
+          let fecini = new Date(evento.fecha_inicio)
+          let fecter = new Date(evento.fecha_termino)
+            return (
+              <div id="PerfilFeedEvento">
+                <section id="ContImgEventoFeed">
+                  <img src={image} id="ImgEventoFeed" />
+                </section>
+
+                <section id="ContInfEvento">
+                  <div className="infEvento">
+                    <p className="infEventoFecha">
+                      Incia el
+                      {` ${fecini.toLocaleDateString()} `}
+                      a las
+                      {` ${fecter.toLocaleTimeString()} `}
+                      horas
+                    </p>
+                    <h2>{evento.nombre}</h2>
+                    <p className="infEventoUbicacion">
+                      {evento.direccion}
+                    </p>
+                    <p className="asistentesEvento">
+                      Asistiran {evento.asistentes_cont} personas
+                    </p>
+                    <Link to={`/evento/${evento.id_evento}`} state={{ from: location }} className="link">Ver más</Link>
+                  </div>
+
+                  <div className="coverEvento">
+                    {evento.precio === null || evento.precio == 0 ? <p> Entrada gratuita </p> : <p className="cover"> Cover: {evento.precio} </p>}
+
+                    <button className="btnAsistirTrue">Editar este evento</button>
+
+                  </div>
+                </section>
+              </div>
+            )
+        })
+        }
+      </>
+    )
   }
 }
 
