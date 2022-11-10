@@ -4,7 +4,7 @@ import {
   useState,
   useEffect,
 } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import instance from "../api/axios";
 import routes from "../helpers/routes";
 
@@ -12,6 +12,7 @@ export const AuthContext = createContext();
 
 export default function AuthProvider({ children }) {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [user, setUser] = useState(false);
   const [eventos, setEventos] = useState(null);
@@ -52,7 +53,7 @@ export default function AuthProvider({ children }) {
       .catch((err) => {
         console.log(err);
         localStorage.removeItem("token");
-        navigate(routes.login);
+        navigate(location.pathname);
       });
   };
 
