@@ -703,6 +703,7 @@ function Home() {
                 <button className="btnFeedNegocios" onClick={() => setVisua(3)}>Estadisticas</button>
                 <button className="btnFeedNegocios" onClick={() => setVisua(4)}>Tus datos</button>
                 <button className="btnFeedNegocios" onClick={() => setVisua(5)}>Tu perfil de negocio</button>
+                <button className="btnFeedNegocios" onClick={() => setVisua(6)}>Tu perfil de negocio</button>
               </div>
             </div>
 
@@ -751,7 +752,7 @@ function Home() {
                       rol.rol === "negocios" && (<div id="contInfoGen"> <h2> <span>{parsHor[0]}</span> <br /> <span>{parsHor[1]}</span> <br /> <span>{parsHor[2]}</span> <br /> <span>{parsHor[3]}</span> <br /> <span>{parsHor[4]}</span> <br /> <span>{parsHor[5]}</span> <br /> <span>{parsHor[6]}</span> </h2> <button onClick={() => setShowModal6(!showModal6)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>)
                     }
                   </>
-                ) : (
+                ) : visua === 5 ? (
                   <>
                     <section id="PortadaPerfilAnfitrion">
                       <img src={image} id="ImagePortadaPerfilAnfitrion" />
@@ -801,6 +802,10 @@ function Home() {
           <ComentariosNegocio id_negocio={user.id} />
 
         </section>
+                  </>
+                ) : (
+                  <>
+
                   </>
                 )
               }

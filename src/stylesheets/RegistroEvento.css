@@ -19,8 +19,8 @@
     padding-left: 20px;
     background-color: #f3f3f341;
     color: white;
-}.selBusc option[selected] {
-    background-color: #f3f3f354;
+}.selBusc option:hover {
+    background: #f3f3f354;
     transition: all 0.2s ease-in-out;
 }.selBusc :first-child {
     border-top-left-radius: 15px;
@@ -30,6 +30,8 @@
     border-bottom-right-radius: 15px;
 }.selBusc:focus {
     outline: none;
+}.selBusc option {
+    background-color: #2a142c;
 }
 #secHeBusc > button {
     height: 40px;
