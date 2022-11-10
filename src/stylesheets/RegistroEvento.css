@@ -206,3 +206,52 @@
     position: relative;
     z-index: 3;
 }
+/* === tarjetas de negocios y entretenimiento */
+.modalConfPerfil > textarea {
+    resize: none;
+    border: none;
+    background: none;
+    border-radius: 15px;
+    padding: 5px;
+    color: white;
+}
+.tarjHome {
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: #f3f3f341;
+    border-radius: 25px;
+    padding: 5px;
+    max-height: 150px;
+    display: flex;
+    gap: 20px;
+}
+
+.contBuscPatr {
+    height: 200px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: scroll;
+}
+/* Esto es del scoll */
+.contBuscPatr::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+.contBuscPatr::-webkit-scrollbar:vertical {
+    width:7px;
+}
+.contBuscPatr::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
+    display: none;
+}
+.contBuscPatr::-webkit-scrollbar:horizontal {
+    height: 10px;
+}
+.contBuscPatr::-webkit-scrollbar-thumb {
+    background-color: #f3f3f369;
+    border-radius: 20px;
+}
+.contBuscPatr::-webkit-scrollbar-track {
+    border-radius: 10px;  
+}
+/* Fin del scroll */
