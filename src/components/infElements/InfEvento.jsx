@@ -86,13 +86,8 @@ function InfEvento({ evento, cerrar }) {
 
       <div className='contDataMarkerInfo'>
         <section className="contMarkerInfo">
-          <p className="infEventoFecha">
-            Incia el
-            {` ${fecini.toLocaleDateString()} `}
-            a las
-            {` ${fecini.toLocaleTimeString()} `}
-            horas
-          </p>
+        <p className="infEventoFecha">{fecini.toLocaleDateString('es-us', { weekday:"long", month:"short", year:"numeric", day:"numeric"})}, {fecini.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
+
           <h2>{evento.nombre}</h2>
           <p className="infEventoUbicacion">
             {evento.direccion}

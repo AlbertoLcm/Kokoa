@@ -27,8 +27,6 @@ function Evento() {
   const location = useLocation();
   const nav = useNavigate();
 
-  console.log(location);
-
   useEffect(() => {
     // Obtenemos el evento
     instance.get(`/eventos/evento/${id}`)
@@ -159,13 +157,8 @@ function Evento() {
             </div>
 
             <div className="titulo">
-              <p className="infEventoFecha">
-                Incia el
-                {` ${fecini.toLocaleDateString()} `}
-                a las
-                {` ${fecini.toLocaleTimeString()} `}
-                horas
-              </p>
+            <p className="infEventoFecha">{fecini.toLocaleDateString('es-us', { weekday:"long", month:"short", year:"numeric", day:"numeric"})}, a las {fecini.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
+
               <h1>{evento.nombre}</h1>
             </div>
 

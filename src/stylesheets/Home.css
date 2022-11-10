@@ -453,6 +453,7 @@
                 border-radius: 10px;
                 padding: 10px;
                 font-size: 30px;
+                margin-bottom: 10px;
                 display: flex;
                 background-color: #EC1C4E;
                 justify-content: start;
@@ -557,6 +558,14 @@
 /* FIN Alert */
 
 /* /// Responsive de la página /// */
+@media (max-width: 1120px) {
+    /* Sección 2, eventos */
+        #ContEventosNegocio{
+            grid-template-columns: 1fr 1fr;
+        } 
+    /* FIN Sección 2, eventos */
+}
+
 @media (max-width: 750px) {
     /* === Home normal === */
         #ContGeneralHome{
@@ -610,16 +619,24 @@
     /* === Home negocios === */
         #ContGeneralNegocios{
             display: flex;
-            flex-direction: column-reverse;
+            flex-direction: column;
             padding-top: 0px;
             height: 100vh;
         }
         #ContGeneralNegocios .contFeedNegocios{
-            height: 60%;
+            height: 70%;
         }
         #ContGeneralNegocios .contMapaNegocios{
-            height: 40%;
+            height: 30%;
         }
+
+        /* Sección 2, eventos */
+            #ContEventosNegocio{
+                grid-template-columns: 1fr;
+            } 
+        /* FIN Sección 2, eventos */
     /* === Home negocios === */
+
+    
 }
 /* /// Fin responsive de la página /// */

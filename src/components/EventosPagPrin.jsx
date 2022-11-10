@@ -20,13 +20,8 @@ function Evento({ titulo, fecha, corrs, mapa, lugar, id, metodo }) {
 
       <section id="ContInfEvento">
         <div className="infEvento">
-          <p className="infEventoFecha">
-            Incia el
-            {` ${fecini.toLocaleDateString()} `}
-            a las
-            {` ${fecini.toLocaleTimeString()} `}
-            horas
-          </p>
+        <p className="infEventoFecha">{fecini.toLocaleDateString('es-us', { weekday:"long", month:"short", year:"numeric", day:"numeric"})}, {fecini.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
+          
           <h2>{titulo}</h2>
           <p className="infEventoUbicacion">
             {lugar}

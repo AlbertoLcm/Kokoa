@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import instance from "../../api/axios";
-import foto from "../../images/Wall (59).jpg";
+import Comentario from "./Comentario";
 import '../../stylesheets/VisPerfs.css';
 
 const ListarComentarios = ({ id_negocio }) => {
@@ -33,7 +33,6 @@ const ListarComentarios = ({ id_negocio }) => {
               <p>{evento.nombre}</p>
             </div>
 
-            <p>Estos son los comentarios del evento</p>
 
             {comentarios.map((comentario) => {
               let fechaComentario = new Date(comentario.fecha);
@@ -41,26 +40,7 @@ const ListarComentarios = ({ id_negocio }) => {
               if (comentario.id_evento === evento.id_evento) {
                 return (
                   <section id="InfOpinionesAnfitrion">
-
-                    <div className="opinionesAnfitrion">
-                      <div className="opinionAnfitrion">
-
-                        <section className="contOpinador">
-                          <div className="fotoOpinador">
-                            <img src={foto} />
-                          </div>
-                          <div className="nombreOpinador">
-                            <p>{comentario.nombre} {comentario.apellidos}</p>
-                            <p className="fecha">{fechaComentario.toLocaleDateString()}</p>
-                          </div>
-                        </section>
-
-                        <section className="contOpinion">
-                          <p>{comentario.comentario}</p>
-                        </section>
-
-                      </div>
-                    </div>
+                    <Comentario data={comentario} />
                   </section>
                 )
               }

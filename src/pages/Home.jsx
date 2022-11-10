@@ -16,9 +16,11 @@ import Modal from "../components/Modal";
 import ListaEventosFeed from "../components/infElements/ListaEventosFeed";
 import RegistroEvento from "./RegistroEvento";
 import ListarComentarios from "../components/social/ListarComentarios";
+import ComentariosNegocio from "../components/social/ComentariosNegocio";
 
 const Mapa = lazy(() => import("../components/Mapa"));
 const MapNegocio = lazy(() => import("../components/maps/MapNegocio"));
+
 
 function Home() {
 
@@ -42,6 +44,8 @@ function Home() {
   const handleSetMap = (mapita) => {
     setMap(mapita);
   };
+
+  console.log(user);
 
   const [rol, setRol] = useState({});
   useEffect(() => {
@@ -485,7 +489,7 @@ function Home() {
         </Modal>
 
         <div id="ContGeneralNegocios">
-        <section className="contMapaNegocios">
+          <section className="contMapaNegocios">
             <Suspense fallback={<Loading />}>
               <MapNegocio mapSet={handleSetMap} map={map} />
             </Suspense>
@@ -500,6 +504,7 @@ function Home() {
                 <button className="btnFeedNegocios" onClick={() => setVisua(2)}>Tus eventos</button>
                 <button className="btnFeedNegocios" onClick={() => setVisua(3)}>Estadisticas</button>
                 <button className="btnFeedNegocios" onClick={() => setVisua(4)}>Tus datos</button>
+                <button className="btnFeedNegocios" onClick={() => setVisua(5)}>Tu perfil de negocio</button>
               </div>
             </div>
 
@@ -509,13 +514,13 @@ function Home() {
                   <>
                     <h3>Tus eventos</h3>
                     <div id="ContEventosNegocioFeed">
-                      
+
                       <Modal
                         estado={showModalRegistrar}
                         cambiarEstado={setShowModalRegistrar}
                         titulo="Registrar evento"
                       >
-                        <RegistroEvento negocio={true}/>
+                        <RegistroEvento negocio={true} />
                       </Modal>
 
                       <button className="btnLink2" onClick={() => setShowModalRegistrar(!showModalRegistrar)}>Crear un nuevo evento</button>
@@ -535,7 +540,7 @@ function Home() {
                   <h3>
                     Aquí puedes ver tus estadisticas de eventos pasados
                   </h3>
-                </>) : (
+                </>) : visua === 4 ? (
                   <>
                     {/* Datos de roles */}
                     <div id="contInfoGen" ><h2>{rol.nombre} </h2> <button onClick={() => setShowModal1(!showModal1)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
@@ -547,6 +552,57 @@ function Home() {
                     {
                       rol.rol === "negocios" && (<div id="contInfoGen"> <h2> <span>{parsHor[0]}</span> <br /> <span>{parsHor[1]}</span> <br /> <span>{parsHor[2]}</span> <br /> <span>{parsHor[3]}</span> <br /> <span>{parsHor[4]}</span> <br /> <span>{parsHor[5]}</span> <br /> <span>{parsHor[6]}</span> </h2> <button onClick={() => setShowModal5(!showModal5)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>)
                     }
+                  </>
+                ) : (
+                  <>
+                    <section id="PortadaPerfilAnfitrion">
+                      <img src={image} id="ImagePortadaPerfilAnfitrion" />
+                    </section>
+
+                    <section id="InfPerfilAnfitrion">
+                      <section id="DatosPerfilAnfitrion">
+                        <h1>{user.nombre_cargo}</h1>
+                        <p>4.9 Opiniones</p>
+                      </section>
+
+                      <section id="ContFotoPerfilAnfitrion">
+                        <div id="FotoPerfilAnfitrion">
+                          <img src={foto} id="ImageFotoPerfilAnfitrion" />
+                        </div>
+                      </section>
+                    </section>
+
+
+                    
+        <section id="InfOpinionesAnfitrion">
+          <h2>Calificacion - 4.9 (19 Opiniones)</h2>
+
+          <Modal
+            estado={showModal}
+            cambiarEstado={setShowModal}
+            titulo={"Comentar"}
+          >
+            <div id="contComentarModal">
+              <textarea name="comentario" id="txtComentar" placeholder="Comenta algo sobre este negocio" onChange={handleChange} />
+              <button>Comentar</button>
+            </div>
+          </Modal>
+
+          <div id="Comentar">
+            <section className="contFotoUsuario">
+              <img src={foto} alt="Foto Usuario" />
+            </section>
+
+            <section className="comentario">
+              <p onClick={() => setShowModal(!showModal)}>
+                Comenta algo interesante
+              </p>
+            </section>
+          </div>
+
+          <ComentariosNegocio id_negocio={user.id} />
+
+        </section>
                   </>
                 )
               }

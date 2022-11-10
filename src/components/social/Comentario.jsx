@@ -16,7 +16,7 @@ const Comentario = ({data}) => {
           </div>
           <div className="nombreOpinador">
             <p>{data.nombre} {data.apellidos}</p>
-            <p className="fecha">{fechaComentario.toLocaleDateString()}</p>
+            <p className="fecha">{fechaComentario.toLocaleDateString('es-us', { weekday:"long", month:"short", day:"numeric"})}, {fechaComentario.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
           </div>
         </section>
 
