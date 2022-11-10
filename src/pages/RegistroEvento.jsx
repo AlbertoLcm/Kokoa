@@ -4,6 +4,7 @@ import "../stylesheets/RegistroEvento.css";
 import { Autocomplete, useJsApiLoader } from "@react-google-maps/api";
 import instance from "../api/axios";
 import useAuth from "../auth/useAuth";
+import img from "../images/Plagui.jpg"
 
 function RegistroEvento({ negocio = false }) {
   const nav = useNavigate();
@@ -212,16 +213,25 @@ function RegistroEvento({ negocio = false }) {
 
                 <section className="contBuscPatr">
                   {!patrocinadores.length ? (<p>Busca un patrocinador para mostrar algo</p>) : (null)}
+                  {console.log(patrocinadores)}
                   {patrocinadores.map((patrocinador) => {
                     return (
-                      <h1> {patrocinador.nombre} </h1>
+                      <div className="tarjHome" >
+                        <div className="contImgTarj">
+                          <div className="contContimg"><img src={img} alt="Sin imagen" /></div>
+                        </div>
+                        <div className="contInfoTarj">
+                          <h1>{patrocinador.nombre} </h1>
+                          <p>{patrocinador.descripcion}</p>
+                        </div>
+                      </div>
                     )
                     })}
                 </section>
               </div>
 
               <center><hr id="hrBusc" /></center>
-              <h2>Entretenimiento</h2>
+              <div><h2>Entretenimiento</h2> a</div>
               <div className="contBusc">
                 <section id="secHeBusc">
                   <select type="text" name="tipo" onChange={handleBuscadorEnt} className="selBusc">
@@ -235,7 +245,15 @@ function RegistroEvento({ negocio = false }) {
                   {!artistas.length ? (<p>Busca un artista para mostrar algo</p>) : (null)}
                   {artistas.map((artista) => {
                     return (
-                      <h1> {artista.nombre} </h1>
+                      <div className="tarjHome" >
+                        <div className="contImgTarj">
+                          <div className="contContimg"><img src={img} alt="Sin imagen" /></div>
+                        </div>
+                        <div className="contInfoTarj">
+                          <h1>{artista.nombre} </h1>
+                          <p>{artista.descripcion}</p>
+                        </div>
+                      </div>
                     )
                     })}
                 </section>

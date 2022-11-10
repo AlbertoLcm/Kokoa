@@ -1,3 +1,19 @@
+.modalConfPerfil > .NegcontHorario {
+    height: 100px;
+    overflow-y: scroll;
+}
+.modalConfPerfil > .NegcontHorario > div {
+    padding-right:0px !important;
+}
+.modalConfPerfil > .NegcontHorario input {
+    background: none !important;
+    width: 90px;
+    padding: 5px;
+}
+.modalConfPerfil > .NegcontHorario div:first-child {
+    margin-left: 0px !important;
+}
+
 /* ==== Estilos by Alberto ==== */
 
     /* /// Home normal /// */

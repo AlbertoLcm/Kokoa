@@ -39,6 +39,7 @@ function Home() {
   const [showModal4, setShowModal4] = useState(false);
   const [showModal5, setShowModal5] = useState(false);
   const [showModal6, setShowModal6] = useState(false);
+  const [showModal7, setShowModal7] = useState(false);
   const [showModalRegistrar, setShowModalRegistrar] = useState(false);
 
   const handleSetMap = (mapita) => {
@@ -76,7 +77,21 @@ function Home() {
     direccion: "",
     numero: "",
     descripcion: "",
-    sitio_web: ""
+    sitio_web: "",
+    Lun1: "",
+    Lun2: "",
+    Mar1: "",
+    Mar2: "",
+    Mie1: "",
+    Mie2: "",
+    Jue1: "",
+    Jue2: "",
+    Vie1: "",
+    Vie2: "",
+    Sab1: "",
+    Sab2: "",
+    Dom1: "",
+    Dom2: ""
   });
 
   /** @type React.MutableRefObject<HTMLInputElement> */
@@ -98,6 +113,7 @@ function Home() {
     }
   }
   const handleUpdate = () => {
+    console.log(updateRol)
     handleDomic();
     console.log(updateRol)
     instance.put(`/${rol.rol}/${rol.id}`, updateRol)
@@ -468,11 +484,18 @@ function Home() {
         <Modal
           estado={showModal5}
           cambiarEstado={setShowModal5}
-          titulo="Cambiar sitio web"
+          titulo="Cambiar descripcion"
         >
           <div className="modalConfPerfil">
-            <p className="titulo">Anterior sitio web {rol.sitio_web}</p>
-            <p>Nuevo fecha</p><input type="date" name="sitio_web" onChange={handleChange} />
+            <p className="titulo">Anterior descripcion {rol.descripcion}</p>
+            <p>Nueva descripcion</p><textarea
+                cols="87"
+                rows="3"
+                maxlength="150"
+                placeholder="Añada una descripcion de la forma y tipo de patrocinio que proporciona"
+                onChange={handleChange}
+                name="descripcion"
+              />
             <button onClick={() => handleUpdate()}>Guardar</button>
           </div>
         </Modal>
@@ -482,8 +505,183 @@ function Home() {
           titulo="Cambiar horario"
         >
           <div className="modalConfPerfil">
-            <p className="titulo">Anterior horario {rol.horario}</p>
-            <p>Nuevo fecha</p><input type="date" name="horario" onChange={handleChange} />
+            <p className="titulo">Anterior horario <span> <br /> {parsHor[0]}</span> -- <span>{parsHor[1]}</span> <br /> <span>{parsHor[2]}</span> -- <span>{parsHor[3]}</span> <br /> <span>{parsHor[4]}</span> -- <span>{parsHor[5]}</span> <br /> <span>{parsHor[6]}</span></p>
+            <p>Nuevo fecha</p>
+            <h2>Horario</h2>
+          <div className="NegcontHorario">
+            <div>
+              <h2>Lunes</h2>
+              <div className="NegcontHorDia">
+                <h2 className="NegtextHor">De: </h2>
+                <div className="inputBox">
+                  <input
+                    name="Lun1"
+                    onChange={handleChange}
+                    type="time"
+                    required
+                  />
+                </div>
+                <h2 className="NegtextHor"> a: </h2>
+                <div className="inputBox">
+                  <input
+                    name="Lun2"
+                    onChange={handleChange}
+                    type="time"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+            <div>
+              <h2>Martes</h2>
+              <div className="NegcontHorDia">
+                <h2 className="NegtextHor">De: </h2>
+                <div className="inputBox">
+                  <input
+                    name="Mar1"
+                    onChange={handleChange}
+                    type="time"
+                    required
+                  />
+                </div>
+                <h2 className="NegtextHor"> a: </h2>
+                <div className="inputBox">
+                  <input
+                    name="Mar2"
+                    onChange={handleChange}
+                    type="time"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+            <div>
+              <h2>Miercoles</h2>
+              <div className="NegcontHorDia">
+                <h2 className="NegtextHor">De: </h2>
+                <div className="inputBox">
+                  <input
+                    name="Mie1"
+                    onChange={handleChange}
+                    type="time"
+                    required
+                  />
+                </div>
+                <h2 className="NegtextHor"> a: </h2>
+                <div className="inputBox">
+                  <input
+                    name="Mie2"
+                    onChange={handleChange}
+                    type="time"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+            <div>
+              <h2>Jueves</h2>
+              <div className="NegcontHorDia">
+                <h2 className="NegtextHor">De: </h2>
+                <div className="inputBox">
+                  <input
+                    name="Jue1"
+                    onChange={handleChange}
+                    type="time"
+                    required
+                  />
+                </div>
+                <h2 className="NegtextHor"> a: </h2>
+                <div className="inputBox">
+                  <input
+                    name="Jue2"
+                    onChange={handleChange}
+                    type="time"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+            <div>
+              <h2>Viernes</h2>
+              <div className="NegcontHorDia">
+                <h2 className="NegtextHor">De: </h2>
+                <div className="inputBox">
+                  <input
+                    name="Vie1"
+                    onChange={handleChange}
+                    type="time"
+                    required
+                  />
+                </div>
+                <h2 className="NegtextHor"> a: </h2>
+                <div className="inputBox">
+                  <input
+                    name="Vie2"
+                    onChange={handleChange}
+                    type="time"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+            <div>
+              <h2>Sabado</h2>
+              <div className="NegcontHorDia">
+                <h2 className="NegtextHor">De: </h2>
+                <div className="inputBox">
+                  <input
+                    name="Sab1"
+                    onChange={handleChange}
+                    type="time"
+                    required
+                  />
+                </div>
+                <h2 className="NegtextHor"> a: </h2>
+                <div className="inputBox">
+                  <input
+                    name="Sab2"
+                    onChange={handleChange}
+                    type="time"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+            <div>
+              <h2>Domigo</h2>
+              <div className="NegcontHorDia">
+                <h2 className="NegtextHor">De: </h2>
+                <div className="inputBox">
+                  <input
+                    name="Dom1"
+                    onChange={handleChange}
+                    type="time"
+                    required
+                  />
+                </div>
+                <h2 className="NegtextHor"> a: </h2>
+                <div className="inputBox">
+                  <input
+                    name="Dom2"
+                    onChange={handleChange}
+                    type="time"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+            <button onClick={() => handleUpdate()}>Guardar</button>
+          </div>
+        </Modal>
+        <Modal
+          estado={showModal7}
+          cambiarEstado={setShowModal7}
+          titulo="Cambiar sitio web"
+        >
+          <div className="modalConfPerfil">
+            <p className="titulo">Anterior sitio web <a href={rol.sitio_web}>{rol.sitio_web}</a> </p>
+            <p>Nuevo sitio web</p><input type="text" name="sitio_web" onChange={handleChange} />
             <button onClick={() => handleUpdate()}>Guardar</button>
           </div>
         </Modal>
@@ -548,9 +746,9 @@ function Home() {
                     <div id="contInfoGen"><h2>{rol.email !== null ? (rol.email) : ("Sin correo de contacto")}</h2> <button onClick={() => setShowModal3(!showModal3)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
                     <div id="contInfoGen"><h2>{rol.direccion}</h2> <button onClick={() => setShowModal4(!showModal4)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
                     <div id="contInfoGen"><h2>{rol.descripcion !== null ? (rol.descripcion) : ("Sin descripcion")}</h2> <button onClick={() => setShowModal5(!showModal5)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
-                    <div id="contInfoGen"><h2>{rol.sitio_web !== null ? (rol.sitio_web) : ("Sin sitio web")}</h2> <button onClick={() => setShowModal5(!showModal5)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
+                    <div id="contInfoGen"><h2>{rol.sitio_web !== null ? (<a href={rol.sitio_web}>{rol.sitio_web}</a>) : ("Sin sitio web")}</h2> <button onClick={() => setShowModal7(!showModal7)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
                     {
-                      rol.rol === "negocios" && (<div id="contInfoGen"> <h2> <span>{parsHor[0]}</span> <br /> <span>{parsHor[1]}</span> <br /> <span>{parsHor[2]}</span> <br /> <span>{parsHor[3]}</span> <br /> <span>{parsHor[4]}</span> <br /> <span>{parsHor[5]}</span> <br /> <span>{parsHor[6]}</span> </h2> <button onClick={() => setShowModal5(!showModal5)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>)
+                      rol.rol === "negocios" && (<div id="contInfoGen"> <h2> <span>{parsHor[0]}</span> <br /> <span>{parsHor[1]}</span> <br /> <span>{parsHor[2]}</span> <br /> <span>{parsHor[3]}</span> <br /> <span>{parsHor[4]}</span> <br /> <span>{parsHor[5]}</span> <br /> <span>{parsHor[6]}</span> </h2> <button onClick={() => setShowModal6(!showModal6)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>)
                     }
                   </>
                 ) : (
