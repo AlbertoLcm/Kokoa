@@ -680,7 +680,7 @@ function Home() {
           titulo="Cambiar sitio web"
         >
           <div className="modalConfPerfil">
-            <p className="titulo">Anterior sitio web <a href={rol.sitio_web}>{rol.sitio_web}</a> </p>
+            <p className="titulo">Anterior sitio web <a href={rol.sitio_web} target="_blank">{rol.sitio_web}</a> </p>
             <p>Nuevo sitio web</p><input type="text" name="sitio_web" onChange={handleChange} />
             <button onClick={() => handleUpdate()}>Guardar</button>
           </div>
