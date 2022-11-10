@@ -231,7 +231,7 @@ function RegistroEvento({ negocio = false }) {
               </div>
 
               <center><hr id="hrBusc" /></center>
-              <div><h2>Entretenimiento</h2> a</div>
+              <div><h2>Entretenimiento</h2></div>
               <div className="contBusc">
                 <section id="secHeBusc">
                   <select type="text" name="tipo" onChange={handleBuscadorEnt} className="selBusc">
