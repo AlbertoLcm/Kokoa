@@ -35,7 +35,7 @@
     background-color: #2a142c;
     color: white;
 }.tipSelect option[selected] {
-    background-color: #f3f3f354;
+    background-color: #f3f3f354 !important;
     transition: all 0.2s ease-in-out;
 }.tipSelect :first-child {
     border-top-left-radius: 15px;
