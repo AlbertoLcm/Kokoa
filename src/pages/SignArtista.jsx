@@ -22,7 +22,6 @@ function SignArtista() {
   });
 
   const addArt = () => {
-    // console.log(artista)
     instance.post('/cargos/artista', { artista, direccion: originRef.current.value, id: user.id })
     .then((registro) => {
       alert("Entretenimiento registrado con éxito");

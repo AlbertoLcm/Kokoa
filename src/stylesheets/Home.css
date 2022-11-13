@@ -254,7 +254,7 @@
         }
         #MarkerInfoPos .contBtnMarkerInfo{
             display: flex;
-            justify-content: end;
+            justify-content: flex-end;
             padding-right: 15px;
             gap: 5px;
             padding-bottom: 15px;
@@ -472,7 +472,7 @@
                 margin-bottom: 10px;
                 display: flex;
                 background-color: #EC1C4E;
-                justify-content: start;
+                justify-content: flex-start;
             }
         /* Sección 1, Inicio */
 

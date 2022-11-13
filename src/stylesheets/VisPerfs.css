@@ -63,7 +63,7 @@
         height: auto;
         display: flex;
         justify-content: center;
-        align-items: end;
+        align-items: flex-end;
         flex-direction: column;
         margin-right: 20px;
         color: #f3f3f3;

@@ -3,7 +3,7 @@ import instance from "../api/axios";
 import InfEvento from "./infElements/InfEvento";
 import useAuth from "../auth/useAuth";
 import { GoogleMap, Marker, InfoWindow, useJsApiLoader } from "@react-google-maps/api";
-import marker from "../images/marker4.png";
+import marker from "../images/marker.png";
 import point from "../images/point.png";
 import { libraries, stylesArray } from "../helpers/methodsMap";
 

@@ -46,8 +46,6 @@ function Home() {
     setMap(mapita);
   };
 
-  console.log(user);
-
   const [rol, setRol] = useState({});
   useEffect(() => {
     if (user.rol === "negocios") {
@@ -104,7 +102,6 @@ function Home() {
     });
   }
   const handleDomic = () => {
-    // console.log(originRef.current)
     if (originRef.current !== undefined) {
       setUpdateRol({
         ...updateRol,
@@ -113,9 +110,7 @@ function Home() {
     }
   }
   const handleUpdate = () => {
-    console.log(updateRol)
     handleDomic();
-    console.log(updateRol)
     instance.put(`/${rol.rol}/${rol.id}`, updateRol)
       .then((res) => {
         alert("Se actualizo correctamente");

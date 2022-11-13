@@ -9,7 +9,6 @@ import foto from "../images/Wall (59).jpg";
 import '../stylesheets/pages/Eventos.css';
 import Skeleton from "../components/Skeleton";
 import Comentario from "../components/social/Comentario";
-import Comentar from "../components/social/Comentar";
 import Modal from "../components/Modal";
 
 function Evento() {

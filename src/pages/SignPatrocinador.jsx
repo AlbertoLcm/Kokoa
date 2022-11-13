@@ -30,7 +30,6 @@ function SignPatrocinador() {
   const originRef = useRef();
 
   const addPat = () => {
-    // console.log(patrocinador)
     instance.post('/cargos/patrocinador', { patrocinador, direccion: originRef.current.value, id: user.id })
     .then((registro) => {
       alert("Patrocinio registrado con éxito");

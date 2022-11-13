@@ -45,14 +45,14 @@ const Comentar = ({ id_negocio, id_evento, tipo }) => {
     if (tipo === "negocio") {
       instance.post("/negocios/comentarios", comentario)
       .then((res) => {
-        console.log(res);
+  
       })
       .catch((err) => console.log(err));
     }
 
     instance.post("/eventos/comentarios", comentarioEvento)
       .then((res) => {
-        console.log(res);
+    
       })
       .catch((err) => console.log(err));
   };

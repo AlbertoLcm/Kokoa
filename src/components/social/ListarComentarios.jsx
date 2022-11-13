@@ -21,8 +21,7 @@ const ListarComentarios = ({ id_negocio }) => {
       })
       .catch((err) => console.log(err))
   }, []);
-
-  console.log(comentarios);
+  
 
   return (
     <div id="ContGeneralComentariosNegocio">
@@ -32,11 +31,7 @@ const ListarComentarios = ({ id_negocio }) => {
             <div className="contEvento">
               <p>{evento.nombre}</p>
             </div>
-
-
             {comentarios.map((comentario) => {
-              let fechaComentario = new Date(comentario.fecha);
-
               if (comentario.id_evento === evento.id_evento) {
                 return (
                   <section id="InfOpinionesAnfitrion">
@@ -45,7 +40,6 @@ const ListarComentarios = ({ id_negocio }) => {
                 )
               }
             })}
-
           </div>
         )
       })}

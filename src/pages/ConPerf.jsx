@@ -65,7 +65,6 @@ function ConPerf() {
     });
   }
   const handleDomic = () => {
-    // console.log(originRef.current)
     if (originRef.current !== undefined) {
       setUsuarioUpdate({
         ...usuarioUpdate,
@@ -85,7 +84,6 @@ function ConPerf() {
         instance.get(`/usuarios/${user.id}`)
           .then((res) => {
             setUsuario(res.data);
-            console.log(res.data);
           })
       })
   }

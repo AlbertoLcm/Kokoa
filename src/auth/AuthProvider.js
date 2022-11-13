@@ -61,7 +61,6 @@ export default function AuthProvider({ children }) {
     localStorage.removeItem("token");
     instance.post("/auth/login/cargo", cargo)
       .then((usuarioRes) => {
-        console.log(usuarioRes);
         setUser(usuarioRes.data.user.data);
         localStorage.setItem("token", usuarioRes.data.user.token);
         navigate(routes.home);
@@ -92,7 +91,6 @@ export default function AuthProvider({ children }) {
     instance
       .post(`${rol}/signup`, usuario)
       .then((usuarioRes) => {
-        console.log(usuarioRes)
         setUser(usuarioRes.data.user.data);
         localStorage.setItem("token", usuarioRes.data.user.token);
         if (fromLocation) {
@@ -118,7 +116,6 @@ export default function AuthProvider({ children }) {
         }
       )
       .then((res) => {
-        console.log(res);
         localStorage.removeItem("token");
         setUser(null);
         navigate(routes.login);
