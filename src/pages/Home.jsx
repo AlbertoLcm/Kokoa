@@ -149,7 +149,7 @@ function Home() {
           cambiarEstado={setShowModal}
           titulo={"Crear un evento"}
         >
-          <RegistroEvento />
+          <RegistroEvento map={map} />
         </Modal>
 
         <section id="ContGeneralHome">
