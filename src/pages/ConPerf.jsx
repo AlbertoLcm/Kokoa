@@ -312,6 +312,7 @@ function ConPerf() {
               cont === 1 ? (
                 <div className="confPerfVisPrin">
                   <div className="confPerfContImgUsBack">
+                    
                     <div className="confPerfImg">
                       <img src={usuario.perfil} alt="Ahí no era" id="imgConfPerfPers" />
                     </div>
