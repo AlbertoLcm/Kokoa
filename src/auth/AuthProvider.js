@@ -87,6 +87,19 @@ export default function AuthProvider({ children }) {
       });
   };
 
+  const resetPasswordLogin = (id) => {
+    instance
+      .post("/auth/resetpassword", {id: id})
+      .then((usuarioRes) => {
+        setUser(usuarioRes.data.user.data);
+        localStorage.setItem("token", usuarioRes.data.user.token);
+        navigate(routes.home);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  
   const signup = (usuario, rol, fromLocation, alertRef) => {
     instance
       .post(`${rol}/signup`, usuario)
@@ -158,7 +171,8 @@ export default function AuthProvider({ children }) {
     addMostrar,
     islogin,
     actionBackLogin,
-    loginCargo
+    loginCargo,
+    resetPasswordLogin
   };
 
   return (

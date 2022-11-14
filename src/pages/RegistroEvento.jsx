@@ -134,10 +134,10 @@ function RegistroEvento({ negocio = false }) {
       <div id="ContGeneralRegistrarEvento">
 
         <div ref={alertRef} className="alert d-none">
-          Mensaje alert
+          Algo salio mal
         </div>
         <div ref={successRef} className="success d-none">
-          Mensaje success
+          Todo correcto
         </div>
         <div action="" className="registrarEventoForm">
           <div className="descriptionEvento">

@@ -18,6 +18,8 @@ import Home from "../pages/Home";
 import VisPerfs from "../pages/VisPerfs";
 import Loading from "../components/Loading";
 import Evento from "../pages/Evento";
+import Recuperar from "../pages/recuperar/Recuperar";
+import NewPassword from "../pages/recuperar/NewPassword";
 
 function AppRouter() {
   return (
@@ -72,6 +74,16 @@ function AppRouter() {
           <PrivateRoute>
             <ConPerf />
           </PrivateRoute>
+        } />
+        <Route exact path={routes.recuperar} element={
+          <PublicRoute>
+            <Recuperar />
+          </PublicRoute>
+        } />
+        <Route exact path={'/resetpassword/:id/:token'} element={
+          <PublicRoute>
+            <NewPassword />
+          </PublicRoute>
         } />
         <Route exact path={'/visperfil/:id'} element={
             <VisPerfs />

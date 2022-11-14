@@ -80,7 +80,9 @@ function Login() {
                   </svg> */}
                 </div>
               </div>
-              <h3>¿Olvidaste tu contraseña?</h3>
+              <Link to={routes.recuperar}>
+                <h3>¿Olvidaste tu contraseña?</h3>
+              </Link>
               <button
                 className="boton1"
                 onClick={() => login(userCredentials, location.state?.from, alertRef)}

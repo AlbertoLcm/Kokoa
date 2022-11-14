@@ -1,9 +1,9 @@
 import axios from "axios";
 
 const instance = axios.create({
-  // * en producción
+  // En producción
   baseURL: "https://koko-server.fly.dev/api"
-  // * en local
+  // En local
   // baseURL: 'http://localhost:8080/api'
 });
 
