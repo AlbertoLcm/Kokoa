@@ -17,6 +17,7 @@ import ListaEventosFeed from "../components/infElements/ListaEventosFeed";
 import RegistroEvento from "./RegistroEvento";
 import ListarComentarios from "../components/social/ListarComentarios";
 import ComentariosNegocio from "../components/social/ComentariosNegocio";
+import img from "../images/Plagui.jpg"
 
 const Mapa = lazy(() => import("../components/Mapa"));
 const MapNegocio = lazy(() => import("../components/maps/MapNegocio"));
@@ -45,6 +46,8 @@ function Home() {
   const handleSetMap = (mapita) => {
     setMap(mapita);
   };
+
+  console.log(user);
 
   const [rol, setRol] = useState({});
   useEffect(() => {
@@ -102,6 +105,7 @@ function Home() {
     });
   }
   const handleDomic = () => {
+    // console.log(originRef.current)
     if (originRef.current !== undefined) {
       setUpdateRol({
         ...updateRol,
@@ -110,7 +114,9 @@ function Home() {
     }
   }
   const handleUpdate = () => {
+    console.log(updateRol)
     handleDomic();
+    console.log(updateRol)
     instance.put(`/${rol.rol}/${rol.id}`, updateRol)
       .then((res) => {
         alert("Se actualizo correctamente");
@@ -484,13 +490,13 @@ function Home() {
           <div className="modalConfPerfil">
             <p className="titulo">Anterior descripcion {rol.descripcion}</p>
             <p>Nueva descripcion</p><textarea
-              cols="87"
-              rows="3"
-              maxlength="150"
-              placeholder="Añada una descripcion de la forma y tipo de patrocinio que proporciona"
-              onChange={handleChange}
-              name="descripcion"
-            />
+                cols="87"
+                rows="3"
+                maxlength="150"
+                placeholder="Añada una descripcion de la forma y tipo de patrocinio que proporciona"
+                onChange={handleChange}
+                name="descripcion"
+              />
             <button onClick={() => handleUpdate()}>Guardar</button>
           </div>
         </Modal>
@@ -503,169 +509,169 @@ function Home() {
             <p className="titulo">Anterior horario <span> <br /> {parsHor[0]}</span> -- <span>{parsHor[1]}</span> <br /> <span>{parsHor[2]}</span> -- <span>{parsHor[3]}</span> <br /> <span>{parsHor[4]}</span> -- <span>{parsHor[5]}</span> <br /> <span>{parsHor[6]}</span></p>
             <p>Nuevo fecha</p>
             <h2>Horario</h2>
-            <div className="NegcontHorario">
-              <div>
-                <h2>Lunes</h2>
-                <div className="NegcontHorDia">
-                  <h2 className="NegtextHor">De: </h2>
-                  <div className="inputBox">
-                    <input
-                      name="Lun1"
-                      onChange={handleChange}
-                      type="time"
-                      required
-                    />
-                  </div>
-                  <h2 className="NegtextHor"> a: </h2>
-                  <div className="inputBox">
-                    <input
-                      name="Lun2"
-                      onChange={handleChange}
-                      type="time"
-                      required
-                    />
-                  </div>
+          <div className="NegcontHorario">
+            <div>
+              <h2>Lunes</h2>
+              <div className="NegcontHorDia">
+                <h2 className="NegtextHor">De: </h2>
+                <div className="inputBox">
+                  <input
+                    name="Lun1"
+                    onChange={handleChange}
+                    type="time"
+                    required
+                  />
                 </div>
-              </div>
-              <div>
-                <h2>Martes</h2>
-                <div className="NegcontHorDia">
-                  <h2 className="NegtextHor">De: </h2>
-                  <div className="inputBox">
-                    <input
-                      name="Mar1"
-                      onChange={handleChange}
-                      type="time"
-                      required
-                    />
-                  </div>
-                  <h2 className="NegtextHor"> a: </h2>
-                  <div className="inputBox">
-                    <input
-                      name="Mar2"
-                      onChange={handleChange}
-                      type="time"
-                      required
-                    />
-                  </div>
-                </div>
-              </div>
-              <div>
-                <h2>Miercoles</h2>
-                <div className="NegcontHorDia">
-                  <h2 className="NegtextHor">De: </h2>
-                  <div className="inputBox">
-                    <input
-                      name="Mie1"
-                      onChange={handleChange}
-                      type="time"
-                      required
-                    />
-                  </div>
-                  <h2 className="NegtextHor"> a: </h2>
-                  <div className="inputBox">
-                    <input
-                      name="Mie2"
-                      onChange={handleChange}
-                      type="time"
-                      required
-                    />
-                  </div>
-                </div>
-              </div>
-              <div>
-                <h2>Jueves</h2>
-                <div className="NegcontHorDia">
-                  <h2 className="NegtextHor">De: </h2>
-                  <div className="inputBox">
-                    <input
-                      name="Jue1"
-                      onChange={handleChange}
-                      type="time"
-                      required
-                    />
-                  </div>
-                  <h2 className="NegtextHor"> a: </h2>
-                  <div className="inputBox">
-                    <input
-                      name="Jue2"
-                      onChange={handleChange}
-                      type="time"
-                      required
-                    />
-                  </div>
-                </div>
-              </div>
-              <div>
-                <h2>Viernes</h2>
-                <div className="NegcontHorDia">
-                  <h2 className="NegtextHor">De: </h2>
-                  <div className="inputBox">
-                    <input
-                      name="Vie1"
-                      onChange={handleChange}
-                      type="time"
-                      required
-                    />
-                  </div>
-                  <h2 className="NegtextHor"> a: </h2>
-                  <div className="inputBox">
-                    <input
-                      name="Vie2"
-                      onChange={handleChange}
-                      type="time"
-                      required
-                    />
-                  </div>
-                </div>
-              </div>
-              <div>
-                <h2>Sabado</h2>
-                <div className="NegcontHorDia">
-                  <h2 className="NegtextHor">De: </h2>
-                  <div className="inputBox">
-                    <input
-                      name="Sab1"
-                      onChange={handleChange}
-                      type="time"
-                      required
-                    />
-                  </div>
-                  <h2 className="NegtextHor"> a: </h2>
-                  <div className="inputBox">
-                    <input
-                      name="Sab2"
-                      onChange={handleChange}
-                      type="time"
-                      required
-                    />
-                  </div>
-                </div>
-              </div>
-              <div>
-                <h2>Domigo</h2>
-                <div className="NegcontHorDia">
-                  <h2 className="NegtextHor">De: </h2>
-                  <div className="inputBox">
-                    <input
-                      name="Dom1"
-                      onChange={handleChange}
-                      type="time"
-                      required
-                    />
-                  </div>
-                  <h2 className="NegtextHor"> a: </h2>
-                  <div className="inputBox">
-                    <input
-                      name="Dom2"
-                      onChange={handleChange}
-                      type="time"
-                      required
-                    />
-                  </div>
+                <h2 className="NegtextHor"> a: </h2>
+                <div className="inputBox">
+                  <input
+                    name="Lun2"
+                    onChange={handleChange}
+                    type="time"
+                    required
+                  />
                 </div>
               </div>
             </div>
+            <div>
+              <h2>Martes</h2>
+              <div className="NegcontHorDia">
+                <h2 className="NegtextHor">De: </h2>
+                <div className="inputBox">
+                  <input
+                    name="Mar1"
+                    onChange={handleChange}
+                    type="time"
+                    required
+                  />
+                </div>
+                <h2 className="NegtextHor"> a: </h2>
+                <div className="inputBox">
+                  <input
+                    name="Mar2"
+                    onChange={handleChange}
+                    type="time"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+            <div>
+              <h2>Miercoles</h2>
+              <div className="NegcontHorDia">
+                <h2 className="NegtextHor">De: </h2>
+                <div className="inputBox">
+                  <input
+                    name="Mie1"
+                    onChange={handleChange}
+                    type="time"
+                    required
+                  />
+                </div>
+                <h2 className="NegtextHor"> a: </h2>
+                <div className="inputBox">
+                  <input
+                    name="Mie2"
+                    onChange={handleChange}
+                    type="time"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+            <div>
+              <h2>Jueves</h2>
+              <div className="NegcontHorDia">
+                <h2 className="NegtextHor">De: </h2>
+                <div className="inputBox">
+                  <input
+                    name="Jue1"
+                    onChange={handleChange}
+                    type="time"
+                    required
+                  />
+                </div>
+                <h2 className="NegtextHor"> a: </h2>
+                <div className="inputBox">
+                  <input
+                    name="Jue2"
+                    onChange={handleChange}
+                    type="time"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+            <div>
+              <h2>Viernes</h2>
+              <div className="NegcontHorDia">
+                <h2 className="NegtextHor">De: </h2>
+                <div className="inputBox">
+                  <input
+                    name="Vie1"
+                    onChange={handleChange}
+                    type="time"
+                    required
+                  />
+                </div>
+                <h2 className="NegtextHor"> a: </h2>
+                <div className="inputBox">
+                  <input
+                    name="Vie2"
+                    onChange={handleChange}
+                    type="time"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+            <div>
+              <h2>Sabado</h2>
+              <div className="NegcontHorDia">
+                <h2 className="NegtextHor">De: </h2>
+                <div className="inputBox">
+                  <input
+                    name="Sab1"
+                    onChange={handleChange}
+                    type="time"
+                    required
+                  />
+                </div>
+                <h2 className="NegtextHor"> a: </h2>
+                <div className="inputBox">
+                  <input
+                    name="Sab2"
+                    onChange={handleChange}
+                    type="time"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+            <div>
+              <h2>Domigo</h2>
+              <div className="NegcontHorDia">
+                <h2 className="NegtextHor">De: </h2>
+                <div className="inputBox">
+                  <input
+                    name="Dom1"
+                    onChange={handleChange}
+                    type="time"
+                    required
+                  />
+                </div>
+                <h2 className="NegtextHor"> a: </h2>
+                <div className="inputBox">
+                  <input
+                    name="Dom2"
+                    onChange={handleChange}
+                    type="time"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
             <button onClick={() => handleUpdate()}>Guardar</button>
           </div>
         </Modal>
@@ -767,41 +773,82 @@ function Home() {
                     </section>
 
 
+                    
+        <section id="InfOpinionesAnfitrion">
+          <h2>Calificacion - 4.9 (19 Opiniones)</h2>
 
-                    <section id="InfOpinionesAnfitrion">
-                      <h2>Calificacion - 4.9 (19 Opiniones)</h2>
+          <Modal
+            estado={showModal}
+            cambiarEstado={setShowModal}
+            titulo={"Comentar"}
+          >
+            <div id="contComentarModal">
+              <textarea name="comentario" id="txtComentar" placeholder="Comenta algo sobre este negocio" onChange={handleChange} />
+              <button>Comentar</button>
+            </div>
+          </Modal>
 
-                      <Modal
-                        estado={showModal}
-                        cambiarEstado={setShowModal}
-                        titulo={"Comentar"}
-                      >
-                        <div id="contComentarModal">
-                          <textarea name="comentario" id="txtComentar" placeholder="Comenta algo sobre este negocio" onChange={handleChange} />
-                          <button>Comentar</button>
-                        </div>
-                      </Modal>
+          <div id="Comentar">
+            <section className="contFotoUsuario">
+              <img src={foto} alt="Foto Usuario" />
+            </section>
 
-                      <div id="Comentar">
-                        <section className="contFotoUsuario">
-                          <img src={user.perfil} alt="Foto Usuario" />
-                        </section>
+            <section className="comentario">
+              <p onClick={() => setShowModal(!showModal)}>
+                Comenta algo interesante
+              </p>
+            </section>
+          </div>
 
-                        <section className="comentario">
-                          <p onClick={() => setShowModal(!showModal)}>
-                            Comenta algo interesante
-                          </p>
-                        </section>
-                      </div>
+          <ComentariosNegocio id_negocio={user.id} />
 
-                      <ComentariosNegocio id_negocio={user.id} />
-
-                    </section>
+        </section>
                   </>
                 ) : (
                   <>
-                    {/* Aqui van los chats */}
-                    <h2>Aqui van las weas de chats</h2>
+                    <div className="contHomeChat">
+                      <div className="contSelChat">
+                        {/* Selector de chats */}
+                          {/* Este es un ejemplo del contenedor de selector de chat */}
+                          <div>
+                            <div className="selChat">
+                              <div className="contImgSelChat"><img src={img} alt="si" /></div>
+                            </div>
+                            <hr id="hrSelChat"/>
+                          </div>
+                          {/* acaba el ejemplo */}
+                      </div>
+                      <div className="contGenChat">
+
+                        <div className="homeChat">
+                          {/* Chat */}
+                          {/* Para meter los mensajes debera haber una manera de distinguir entre entrada y salida */}
+                          {/* Despues neterlo en el div correspondiente */}
+                          {/* Ejemplo mensaje entrante */}
+                          <div className="contMensajeEntrada">
+                            <div className="mensajeEntrada">
+                            Este es un mensaje recibido pero intentando que sea medianamente largo
+                            </div>
+                          </div>
+                          {/* Termina ejemplo mensaje entrante */}
+                          {/* Ejemplo de mensaje saliente */}
+                          <div className="contMensajeSalida">
+                            <div className="mensajeSalida">
+                              Este es un mensaje enviado pero intentando que sea estupidamente largo con la idea de que salga mas largo por intentar ver como se ve
+                            </div>
+                          </div>
+                          {/* Termina ejemplo de mensaje saliente */}
+                        </div>
+
+                        <div className="homeEscrituraChat">
+                          {/* Escribir mensaje, enviar mensaje */}
+                          {/* Se debera hacer la funcion correspondiente para añadir los mensajes */}
+                          <section className="contMensaje"><textarea name="mensaje" id="mensaje" cols="100" rows="3"></textarea></section>
+                          <section className="contSendMensaje"><button id="sendMensaje"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-send" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><line x1="10" y1="14" x2="21" y2="3" /><path d="M21 3l-6.5 18a0.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a0.55 .55 0 0 1 0 -1l18 -6.5" /></svg></button></section>
+                        </div>
+
+                      </div>
+                    </div>
                   </>
                 )
               }

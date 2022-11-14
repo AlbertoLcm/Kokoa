@@ -1,3 +1,99 @@
+/* estilos del chat */
+    #hrSelChat {
+        width: 80%;
+        color: white;
+        background-color: white;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    .contHomeChat {
+        display: flex;
+        height: 100%;
+    }
+    .contSelChat {
+        height: 100%;
+        width: 55px;
+        color: white !important;
+    }
+    .selChat{
+        width: 50px;
+        height: 50px;
+        overflow: hidden;
+        border-radius: 50%;
+    }.contImgSelChat {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        
+        overflow: hidden;
+    }
+    .contGenChat {
+        width: 90%;
+    }
+    .homeChat{
+        width: 100%;
+        height: 90%;
+        color:white !important;
+    }
+    .homeChat > div {
+        margin-bottom: 10px;
+    }.homeChat > div :last-child{
+        margin-bottom: 0px;
+    }
+    .contMensajeEntrada {
+        float: left; 
+    }.mensajeEntrada{
+        float: left;
+        min-width: 20%;
+        max-width: 50%;
+        background-color: #2a142c;
+        padding: 5px;
+        border-radius: 15px;
+    }
+    .contMensajeSalida {
+        float: right; 
+    }.mensajeSalida{
+        float: right;
+        min-width: 20%;
+        max-width: 50%;
+        background-color: #2a142c;
+        padding: 5px;
+        border-radius: 15px;
+    }
+    .homeEscrituraChat {
+        width: 100%;
+        height: 10%;
+        display: flex;
+        align-items: center;
+    }
+    .contMensaje{
+        min-width: 90%;
+        max-width: 90%;
+    }#mensaje {
+        resize: none;
+        border: none;
+        background: #2a142c;
+        border-radius: 15px;
+        padding: 5px;
+        color: white;
+        cursor: text;
+        width: calc(100% - 10px);
+    }
+    .contSendMensaje{
+        width: 10%;
+        display: flex;
+        justify-content: center;
+    }#sendMensaje {
+        background: #2a142c;
+        border: none;
+        padding: 5px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+    }
+/* fin de los etilos del chat */
+
 .modalConfPerfil > .NegcontHorario {
     height: 100px;
     overflow-y: scroll;
@@ -451,6 +547,7 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+            height: calc(100% - 130px);
         }
         /* /// Mapa /// */
             .mapaNegocios{
