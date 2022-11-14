@@ -71,8 +71,9 @@ header{
         border: 2px solid #f3f3f3;
     }
     header .contImgPerfil img{
+        width: 100%;
         height: 100%;
-        width: auto;
+        object-fit: cover;
     }
     /* /// FIN Foto de perfil /// */
 /* === FIN Superior derecha Perfil del usuario === */

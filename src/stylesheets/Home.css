@@ -381,8 +381,9 @@
             overflow: hidden;
         }
         #MarkerInfoPos .contDetAnfit .contImgAnfEve img {
+            width: 100%;
             height: 100%;
-            width: auto;
+            object-fit: cover;
         }
         
         #contMarkerInfo{
@@ -417,7 +418,7 @@
             font-size: 30px;
         }
         #ContGeneralNegocios .contMapaNegocios{
-            height: 100;
+            height: 100%;
             width: auto;
         }
         #ContGeneralNegocios .contBtnFeedNegocios{

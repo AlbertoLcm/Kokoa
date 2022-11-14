@@ -73,7 +73,7 @@ const Comentar = ({ id_negocio, id_evento, tipo }) => {
   
         <div id="Comentar">
           <section className="contFotoUsuario">
-            <img src={foto} alt="Foto Usuario" />
+            <img src={user.perfil} alt="Foto Usuario" />
           </section>
   
           <section className="comentario">
@@ -101,7 +101,7 @@ const Comentar = ({ id_negocio, id_evento, tipo }) => {
   
         <div id="Comentar">
           <section className="contFotoUsuario">
-            <img src={foto} alt="Foto Usuario" />
+            <img src={user.perfil} alt="Foto Usuario" />
           </section>
   
           <section className="comentario">

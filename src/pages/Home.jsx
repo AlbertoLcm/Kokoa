@@ -484,13 +484,13 @@ function Home() {
           <div className="modalConfPerfil">
             <p className="titulo">Anterior descripcion {rol.descripcion}</p>
             <p>Nueva descripcion</p><textarea
-                cols="87"
-                rows="3"
-                maxlength="150"
-                placeholder="Añada una descripcion de la forma y tipo de patrocinio que proporciona"
-                onChange={handleChange}
-                name="descripcion"
-              />
+              cols="87"
+              rows="3"
+              maxlength="150"
+              placeholder="Añada una descripcion de la forma y tipo de patrocinio que proporciona"
+              onChange={handleChange}
+              name="descripcion"
+            />
             <button onClick={() => handleUpdate()}>Guardar</button>
           </div>
         </Modal>
@@ -503,169 +503,169 @@ function Home() {
             <p className="titulo">Anterior horario <span> <br /> {parsHor[0]}</span> -- <span>{parsHor[1]}</span> <br /> <span>{parsHor[2]}</span> -- <span>{parsHor[3]}</span> <br /> <span>{parsHor[4]}</span> -- <span>{parsHor[5]}</span> <br /> <span>{parsHor[6]}</span></p>
             <p>Nuevo fecha</p>
             <h2>Horario</h2>
-          <div className="NegcontHorario">
-            <div>
-              <h2>Lunes</h2>
-              <div className="NegcontHorDia">
-                <h2 className="NegtextHor">De: </h2>
-                <div className="inputBox">
-                  <input
-                    name="Lun1"
-                    onChange={handleChange}
-                    type="time"
-                    required
-                  />
+            <div className="NegcontHorario">
+              <div>
+                <h2>Lunes</h2>
+                <div className="NegcontHorDia">
+                  <h2 className="NegtextHor">De: </h2>
+                  <div className="inputBox">
+                    <input
+                      name="Lun1"
+                      onChange={handleChange}
+                      type="time"
+                      required
+                    />
+                  </div>
+                  <h2 className="NegtextHor"> a: </h2>
+                  <div className="inputBox">
+                    <input
+                      name="Lun2"
+                      onChange={handleChange}
+                      type="time"
+                      required
+                    />
+                  </div>
                 </div>
-                <h2 className="NegtextHor"> a: </h2>
-                <div className="inputBox">
-                  <input
-                    name="Lun2"
-                    onChange={handleChange}
-                    type="time"
-                    required
-                  />
+              </div>
+              <div>
+                <h2>Martes</h2>
+                <div className="NegcontHorDia">
+                  <h2 className="NegtextHor">De: </h2>
+                  <div className="inputBox">
+                    <input
+                      name="Mar1"
+                      onChange={handleChange}
+                      type="time"
+                      required
+                    />
+                  </div>
+                  <h2 className="NegtextHor"> a: </h2>
+                  <div className="inputBox">
+                    <input
+                      name="Mar2"
+                      onChange={handleChange}
+                      type="time"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h2>Miercoles</h2>
+                <div className="NegcontHorDia">
+                  <h2 className="NegtextHor">De: </h2>
+                  <div className="inputBox">
+                    <input
+                      name="Mie1"
+                      onChange={handleChange}
+                      type="time"
+                      required
+                    />
+                  </div>
+                  <h2 className="NegtextHor"> a: </h2>
+                  <div className="inputBox">
+                    <input
+                      name="Mie2"
+                      onChange={handleChange}
+                      type="time"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h2>Jueves</h2>
+                <div className="NegcontHorDia">
+                  <h2 className="NegtextHor">De: </h2>
+                  <div className="inputBox">
+                    <input
+                      name="Jue1"
+                      onChange={handleChange}
+                      type="time"
+                      required
+                    />
+                  </div>
+                  <h2 className="NegtextHor"> a: </h2>
+                  <div className="inputBox">
+                    <input
+                      name="Jue2"
+                      onChange={handleChange}
+                      type="time"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h2>Viernes</h2>
+                <div className="NegcontHorDia">
+                  <h2 className="NegtextHor">De: </h2>
+                  <div className="inputBox">
+                    <input
+                      name="Vie1"
+                      onChange={handleChange}
+                      type="time"
+                      required
+                    />
+                  </div>
+                  <h2 className="NegtextHor"> a: </h2>
+                  <div className="inputBox">
+                    <input
+                      name="Vie2"
+                      onChange={handleChange}
+                      type="time"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h2>Sabado</h2>
+                <div className="NegcontHorDia">
+                  <h2 className="NegtextHor">De: </h2>
+                  <div className="inputBox">
+                    <input
+                      name="Sab1"
+                      onChange={handleChange}
+                      type="time"
+                      required
+                    />
+                  </div>
+                  <h2 className="NegtextHor"> a: </h2>
+                  <div className="inputBox">
+                    <input
+                      name="Sab2"
+                      onChange={handleChange}
+                      type="time"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h2>Domigo</h2>
+                <div className="NegcontHorDia">
+                  <h2 className="NegtextHor">De: </h2>
+                  <div className="inputBox">
+                    <input
+                      name="Dom1"
+                      onChange={handleChange}
+                      type="time"
+                      required
+                    />
+                  </div>
+                  <h2 className="NegtextHor"> a: </h2>
+                  <div className="inputBox">
+                    <input
+                      name="Dom2"
+                      onChange={handleChange}
+                      type="time"
+                      required
+                    />
+                  </div>
                 </div>
               </div>
             </div>
-            <div>
-              <h2>Martes</h2>
-              <div className="NegcontHorDia">
-                <h2 className="NegtextHor">De: </h2>
-                <div className="inputBox">
-                  <input
-                    name="Mar1"
-                    onChange={handleChange}
-                    type="time"
-                    required
-                  />
-                </div>
-                <h2 className="NegtextHor"> a: </h2>
-                <div className="inputBox">
-                  <input
-                    name="Mar2"
-                    onChange={handleChange}
-                    type="time"
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-            <div>
-              <h2>Miercoles</h2>
-              <div className="NegcontHorDia">
-                <h2 className="NegtextHor">De: </h2>
-                <div className="inputBox">
-                  <input
-                    name="Mie1"
-                    onChange={handleChange}
-                    type="time"
-                    required
-                  />
-                </div>
-                <h2 className="NegtextHor"> a: </h2>
-                <div className="inputBox">
-                  <input
-                    name="Mie2"
-                    onChange={handleChange}
-                    type="time"
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-            <div>
-              <h2>Jueves</h2>
-              <div className="NegcontHorDia">
-                <h2 className="NegtextHor">De: </h2>
-                <div className="inputBox">
-                  <input
-                    name="Jue1"
-                    onChange={handleChange}
-                    type="time"
-                    required
-                  />
-                </div>
-                <h2 className="NegtextHor"> a: </h2>
-                <div className="inputBox">
-                  <input
-                    name="Jue2"
-                    onChange={handleChange}
-                    type="time"
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-            <div>
-              <h2>Viernes</h2>
-              <div className="NegcontHorDia">
-                <h2 className="NegtextHor">De: </h2>
-                <div className="inputBox">
-                  <input
-                    name="Vie1"
-                    onChange={handleChange}
-                    type="time"
-                    required
-                  />
-                </div>
-                <h2 className="NegtextHor"> a: </h2>
-                <div className="inputBox">
-                  <input
-                    name="Vie2"
-                    onChange={handleChange}
-                    type="time"
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-            <div>
-              <h2>Sabado</h2>
-              <div className="NegcontHorDia">
-                <h2 className="NegtextHor">De: </h2>
-                <div className="inputBox">
-                  <input
-                    name="Sab1"
-                    onChange={handleChange}
-                    type="time"
-                    required
-                  />
-                </div>
-                <h2 className="NegtextHor"> a: </h2>
-                <div className="inputBox">
-                  <input
-                    name="Sab2"
-                    onChange={handleChange}
-                    type="time"
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-            <div>
-              <h2>Domigo</h2>
-              <div className="NegcontHorDia">
-                <h2 className="NegtextHor">De: </h2>
-                <div className="inputBox">
-                  <input
-                    name="Dom1"
-                    onChange={handleChange}
-                    type="time"
-                    required
-                  />
-                </div>
-                <h2 className="NegtextHor"> a: </h2>
-                <div className="inputBox">
-                  <input
-                    name="Dom2"
-                    onChange={handleChange}
-                    type="time"
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
             <button onClick={() => handleUpdate()}>Guardar</button>
           </div>
         </Modal>
@@ -767,36 +767,36 @@ function Home() {
                     </section>
 
 
-                    
-        <section id="InfOpinionesAnfitrion">
-          <h2>Calificacion - 4.9 (19 Opiniones)</h2>
 
-          <Modal
-            estado={showModal}
-            cambiarEstado={setShowModal}
-            titulo={"Comentar"}
-          >
-            <div id="contComentarModal">
-              <textarea name="comentario" id="txtComentar" placeholder="Comenta algo sobre este negocio" onChange={handleChange} />
-              <button>Comentar</button>
-            </div>
-          </Modal>
+                    <section id="InfOpinionesAnfitrion">
+                      <h2>Calificacion - 4.9 (19 Opiniones)</h2>
 
-          <div id="Comentar">
-            <section className="contFotoUsuario">
-              <img src={foto} alt="Foto Usuario" />
-            </section>
+                      <Modal
+                        estado={showModal}
+                        cambiarEstado={setShowModal}
+                        titulo={"Comentar"}
+                      >
+                        <div id="contComentarModal">
+                          <textarea name="comentario" id="txtComentar" placeholder="Comenta algo sobre este negocio" onChange={handleChange} />
+                          <button>Comentar</button>
+                        </div>
+                      </Modal>
 
-            <section className="comentario">
-              <p onClick={() => setShowModal(!showModal)}>
-                Comenta algo interesante
-              </p>
-            </section>
-          </div>
+                      <div id="Comentar">
+                        <section className="contFotoUsuario">
+                          <img src={user.perfil} alt="Foto Usuario" />
+                        </section>
 
-          <ComentariosNegocio id_negocio={user.id} />
+                        <section className="comentario">
+                          <p onClick={() => setShowModal(!showModal)}>
+                            Comenta algo interesante
+                          </p>
+                        </section>
+                      </div>
 
-        </section>
+                      <ComentariosNegocio id_negocio={user.id} />
+
+                    </section>
                   </>
                 ) : (
                   <>

@@ -30,7 +30,7 @@ function Header({ tipo, perfil, back = false, children, toggle = true, name = fa
           {perfil ?
             <div className="user" onClick={() => toggleOptions(!opcio)}>
               <section className="contImgPerfil">
-                <img src={fotoPerfil} alt="Perfil" />
+                <img src={user.perfil} alt="Perfil" />
               </section>
 
               {name ?
