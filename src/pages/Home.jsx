@@ -703,7 +703,7 @@ function Home() {
                 <button className="btnFeedNegocios" onClick={() => setVisua(3)}>Estadisticas</button>
                 <button className="btnFeedNegocios" onClick={() => setVisua(4)}>Tus datos</button>
                 <button className="btnFeedNegocios" onClick={() => setVisua(5)}>Tu perfil de negocio</button>
-                <button className="btnFeedNegocios" onClick={() => setVisua(6)}>Tu perfil de negocio</button>
+                <button className="btnFeedNegocios" onClick={() => setVisua(6)}>Mensajeria</button>
               </div>
             </div>
 
@@ -805,7 +805,8 @@ function Home() {
                   </>
                 ) : (
                   <>
-
+                    {/* Aqui van los chats */}
+                    <h2>Aqui van las weas de chats</h2>
                   </>
                 )
               }
