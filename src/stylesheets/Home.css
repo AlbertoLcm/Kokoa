@@ -35,11 +35,12 @@
         width: 100%;
         height: 90%;
         color:white !important;
+        overflow-y: auto;
     }
     .homeChat > div {
         margin-bottom: 10px;
-    }.homeChat > div :last-child{
-        margin-bottom: 0px;
+    }.homeChat >:last-child{
+        margin-bottom: 20px;
     }
     .contMensajeEntrada {
         float: left; 
@@ -92,6 +93,26 @@
         display: flex;
         align-items: center;
     }
+    .homeChat::-webkit-scrollbar {
+        -webkit-appearance: none;
+    }
+    .homeChat::-webkit-scrollbar:vertical {
+        width:7px;
+    }
+    .homeChat::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
+        display: none;
+    }
+    .homeChat::-webkit-scrollbar:horizontal {
+        height: 10px;
+    }
+    .homeChat::-webkit-scrollbar-thumb {
+        background-color: #f3f3f369;
+        border-radius: 20px;
+    }
+    .homeChat::-webkit-scrollbar-track {
+        border-radius: 10px;  
+    }
+
 /* fin de los etilos del chat */
 
 .modalConfPerfil > .NegcontHorario {
@@ -528,6 +549,7 @@
             width: 95%;
             display: flex;
             border-bottom: 1px solid #f3f3f354;
+            overflow-x: auto;
         }
         #ContGeneralNegocios .contBtnFeedNegocios .btnFeedNegocios{
             color: #f3f3f3;

@@ -131,6 +131,12 @@ function Home() {
     hor = hor.split(",");
     parsHor = [("Lunes: " + hor[0]), ("Martes: " + hor[1]), ("Miercoles: " + hor[2]), ("Jueves: " + hor[3]), ("Viernes: " + hor[4]), ("Sabado: " + hor[5]), ("Domingo: " + hor[6])];
   }
+
+  const BajarChat = () => {
+    const div = document.getElementById('homeChat');
+    div.scrollTop = div.scrollHeight;
+  }
+
   if (rol.rol === "negocios") { formHorar(rol.horario) }
 
   if (user.rol === "usuarios") {
@@ -820,7 +826,7 @@ function Home() {
                       </div>
                       <div className="contGenChat">
 
-                        <div className="homeChat">
+                        <div className="homeChat" id="homeChat">
                           {/* Chat */}
                           {/* Para meter los mensajes debera haber una manera de distinguir entre entrada y salida */}
                           {/* Despues neterlo en el div correspondiente */}
@@ -838,6 +844,36 @@ function Home() {
                             </div>
                           </div>
                           {/* Termina ejemplo de mensaje saliente */}
+                          <div className="contMensajeSalida">
+                            <div className="mensajeSalida">
+                              Este es un mensaje enviado pero intentando que sea estupidamente largo con la idea de que salga mas largo por intentar ver como se ve
+                            </div>
+                          </div>
+                          <div className="contMensajeSalida">
+                            <div className="mensajeSalida">
+                              Este es un mensaje enviado pero intentando que sea estupidamente largo con la idea de que salga mas largo por intentar ver como se ve
+                            </div>
+                          </div>
+                          <div className="contMensajeSalida">
+                            <div className="mensajeSalida">
+                              Este es un mensaje enviado pero intentando que sea estupidamente largo con la idea de que salga mas largo por intentar ver como se ve
+                            </div>
+                          </div>
+                          <div className="contMensajeSalida">
+                            <div className="mensajeSalida">
+                              Este es un mensaje enviado pero intentando que sea estupidamente largo con la idea de que salga mas largo por intentar ver como se ve
+                            </div>
+                          </div>
+                          <div className="contMensajeSalida">
+                            <div className="mensajeSalida">
+                              Este es un mensaje enviado pero intentando que sea estupidamente largo con la idea de que salga mas largo por intentar ver como se ve
+                            </div>
+                          </div>
+                          {/* Sera necesario ejecutar esta funcion al añadir mensajs en tiempo real cada vez */}
+                          {
+                            BajarChat()
+                          }
+                          {/* fin de la funcion :3 */}
                         </div>
 
                         <div className="homeEscrituraChat">
