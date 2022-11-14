@@ -94,7 +94,6 @@ function RegistroEvento({ negocio = false }) {
             lng: results[0].geometry.location.lng(),
           })
           .then((resultsBD) => {
-            console.log(resultsBD);
             addMostrar(resultsBD)
             successRef.current.classList.remove('d-none');
             successRef.current.innerHTML = resultsBD.data.message;
@@ -213,7 +212,6 @@ function RegistroEvento({ negocio = false }) {
 
                 <section className="contBuscPatr">
                   {!patrocinadores.length ? (<p>Busca un patrocinador para mostrar algo</p>) : (null)}
-                  {console.log(patrocinadores)}
                   {patrocinadores.map((patrocinador) => {
                     return (
                       <div className="tarjHome" >

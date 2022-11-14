@@ -115,7 +115,7 @@ function InfEvento({ evento, cerrar }) {
               <h1>Anfitrion (Negocio)</h1>
               <Link to={`/visperfil/${eventoInfo.anfitrion}`} className={"contDetAnfit"}>
                 <div className='contImgAnfEve'>
-                  <img src={image} alt="Predefinir" />
+                  <img src={anfitrion.perfil} alt="Predefinir" />
                 </div>
                 <div>
                   Un evento de {anfitrion.nombre}. <br />
@@ -128,7 +128,7 @@ function InfEvento({ evento, cerrar }) {
               <h1>Anfitrion</h1>
               <section className='contDetAnfit'>
                 <div className='contImgAnfEve'>
-                  <img src={image} alt="Predefinir" />
+                  <img src={anfitrion.perfil} alt="Predefinir" />
                 </div>
                 <div>
                   Un evento de {anfitrion.nombre}. <br />

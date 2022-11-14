@@ -1,7 +1,7 @@
 import React from "react";
 import { stylesArray, libraries } from "../../helpers/methodsMap";
 import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
-import marker from "../../images/marker4.png";
+import marker from "../../images/marker.png";
 import Loading from "../Loading";
 
 function MapSmall({ evento }) {

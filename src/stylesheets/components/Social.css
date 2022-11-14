@@ -19,8 +19,9 @@
       border: 2px solid #f3f3f3;
     }
     #Comentar .contFotoUsuario img{
-      width: auto;
+      width: 100%;
       height: 100%;
+      object-fit: cover;
     }
 
     #Comentar .comentario{

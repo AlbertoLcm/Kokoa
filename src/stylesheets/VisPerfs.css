@@ -53,8 +53,9 @@
             margin-top: -30px;
         }
         #ImageFotoPerfilAnfitrion{
-            width: auto;
+            width: 100%;
             height: 100%;
+            object-fit: cover;
         }
     /* /// Fin foto de perfil /// */
 
@@ -63,7 +64,7 @@
         height: auto;
         display: flex;
         justify-content: center;
-        align-items: end;
+        align-items: flex-end;
         flex-direction: column;
         margin-right: 20px;
         color: #f3f3f3;
@@ -240,8 +241,9 @@
                     user-select: none;
                 }
                 #InfOpinionesAnfitrion .fotoOpinador img{
+                    width: 100%;
                     height: 100%;
-                    width: auto;
+                    object-fit: cover;
                 }
                 
             /* Fin lateral derecha */
@@ -280,8 +282,9 @@
                     user-select: none;
                 }
                 #OpinionesEvento .fotoOpinador img{
+                    width: 100%;
                     height: 100%;
-                    width: auto;
+                    object-fit: cover;
                 }
             /* Fin */
         

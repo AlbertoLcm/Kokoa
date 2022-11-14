@@ -18,8 +18,6 @@ function VisPerfs() {
   const toggle = () => {setOpcio(!opcio)};
   const location = useLocation();
 
-  console.log(location);
-  
   return (
     <>
       <Header tipo={"responsive"} perfil={user.nombre} back={true}/>

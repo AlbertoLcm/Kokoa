@@ -12,7 +12,7 @@ const Comentario = ({data}) => {
 
         <section className="contOpinador">
           <div className="fotoOpinador">
-            <img src={foto} />
+            <img src={data.perfil} />
           </div>
           <div className="nombreOpinador">
             <p>{data.nombre} {data.apellidos}</p>

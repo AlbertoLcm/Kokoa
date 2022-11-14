@@ -9,7 +9,6 @@ import foto from "../images/Wall (59).jpg";
 import '../stylesheets/pages/Eventos.css';
 import Skeleton from "../components/Skeleton";
 import Comentario from "../components/social/Comentario";
-import Comentar from "../components/social/Comentar";
 import Modal from "../components/Modal";
 
 function Evento() {
@@ -260,7 +259,7 @@ function Evento() {
 
                 <div id="Comentar">
                   <section className="contFotoUsuario">
-                    <img src={foto} alt="Foto Usuario" />
+                    <img src={user.perfil} alt="Foto Usuario" />
                   </section>
 
                   <section className="comentario">
