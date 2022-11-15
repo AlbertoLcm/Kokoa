@@ -19,6 +19,9 @@ function ConPerf() {
   const { logout, loginCargo, user } = useAuth();
   const [cont, setCont] = useState(1);
 
+  /** @type React.MutableRefObject<HTMLInputElement> */
+  const alertRef = useRef();
+
   const [negocios, setNegocios] = useState([]);
   const [patrocinios, setPatrocinios] = useState([]);
   const [artistas, setArtistas] = useState([]);
@@ -43,16 +46,17 @@ function ConPerf() {
   const [showCambiarFoto, setShowCambiarFoto] = useState(false);
   const [foto, setFoto] = useState({
     id: user.id,
+    anterior: user.perfil,
     avatar: null,
   });
   const [selectFoto, setSelectFoto] = useState(user.perfil);
 
   const handleFile = (e) => {
+    alertRef.current.classList.add("d-none");
     setFoto({
       ...foto,
       [e.target.name]: e.target.files[0]
     });
-    // setSelectFoto(e.target.files[0]);
     const reader = new FileReader();
     reader.onloadend = () => {
       setSelectFoto(reader.result);
@@ -109,6 +113,19 @@ function ConPerf() {
   }
 
   const subirFoto = () => {
+    if(foto.avatar === null) {
+      alertRef.current.classList.remove('d-none');
+      alertRef.current.innerText = "Debes subir una nueva foto";
+      return;
+    }
+    if(foto.avatar.size > 2097152) {
+      alertRef.current.classList.remove('d-none');
+      alertRef.current.innerText = "La foto debe ser menor a 2MB";
+      return;
+    }
+
+    console.log(foto);
+
     setShowCambiarFoto(false);
     instance.post('/upload/profile', foto, {headers: { "Content-Type": "multipart/form-data" }})
       .then((res) => {
@@ -249,6 +266,10 @@ function ConPerf() {
               <input type="file" accept="image/*" name="avatar" onChange={handleFile} />
             </div>
           </section>
+
+          <div ref={alertRef} className="alert d-none">
+            Algo salio mal
+          </div>
 
           <section className="previsualizacion">
             <div className="contImagen">

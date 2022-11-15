@@ -182,8 +182,6 @@ function Home() {
     chatRef.current?.scrollIntoView({behavior: 'smooth'});
   }, [mensajesCarg]);
 
-  if (rol.rol === "negocios") { formHorar(rol.horario) }
-
   if (user.rol === "usuarios") {
     return (
       <>
@@ -194,7 +192,7 @@ function Home() {
           cambiarEstado={setShowModal}
           titulo={"Crear un evento"}
         >
-          <RegistroEvento />
+          <RegistroEvento map={map} />
         </Modal>
 
         <section id="ContGeneralHome">
@@ -464,17 +462,18 @@ function Home() {
         </section>
       </>
     );
-  } else {
+  }
+
+  if (rol.rol === "negocios") {
+    formHorar(rol.horario)
     return (
       <>
-        <Header tipo={'color'} perfil={user.nombre} back={false} name={false} />
+        <Header tipo={"responsive"} perfil={user.nombre} back={false} name={false} />
 
         <Modal
           estado={showModal1}
           cambiarEstado={setShowModal1}
-          titulo="Cambiar nombre"
-        >
-
+          titulo="Cambiar nombre">
           <div className="modalConfPerfil">
             <p className="titulo">Nombre actual: {rol.nombre} </p>
             <section className="modalNombre">
@@ -519,7 +518,8 @@ function Home() {
         >
           <div className="modalConfPerfil">
             <p className="titulo">Anterior domicilio {rol.domicilio}</p>
-            <p>Nuevo domicilio</p><Autocomplete>
+            <p>Nuevo domicilio</p>
+            <Autocomplete>
               <div className="inputBox">
                 <input
                   id="ubicacion"
@@ -529,10 +529,11 @@ function Home() {
                   required
                 />
               </div>
-            </Autocomplete>00
+            </Autocomplete>
             <button onClick={() => handleUpdate()}>Guardar</button>
           </div>
         </Modal>
+
         <Modal
           estado={showModal5}
           cambiarEstado={setShowModal5}
@@ -541,16 +542,17 @@ function Home() {
           <div className="modalConfPerfil">
             <p className="titulo">Anterior descripcion {rol.descripcion}</p>
             <p>Nueva descripcion</p><textarea
-                cols="87"
-                rows="3"
-                maxlength="150"
-                placeholder="Añada una descripcion de la forma y tipo de patrocinio que proporciona"
-                onChange={handleChange}
-                name="descripcion"
-              />
+              cols="87"
+              rows="3"
+              maxlength="150"
+              placeholder="Añada una descripcion de la forma y tipo de patrocinio que proporciona"
+              onChange={handleChange}
+              name="descripcion"
+            />
             <button onClick={() => handleUpdate()}>Guardar</button>
           </div>
         </Modal>
+
         <Modal
           estado={showModal6}
           cambiarEstado={setShowModal6}
@@ -560,172 +562,173 @@ function Home() {
             <p className="titulo">Anterior horario <span> <br /> {parsHor[0]}</span> -- <span>{parsHor[1]}</span> <br /> <span>{parsHor[2]}</span> -- <span>{parsHor[3]}</span> <br /> <span>{parsHor[4]}</span> -- <span>{parsHor[5]}</span> <br /> <span>{parsHor[6]}</span></p>
             <p>Nuevo fecha</p>
             <h2>Horario</h2>
-          <div className="NegcontHorario">
-            <div>
-              <h2>Lunes</h2>
-              <div className="NegcontHorDia">
-                <h2 className="NegtextHor">De: </h2>
-                <div className="inputBox">
-                  <input
-                    name="Lun1"
-                    onChange={handleChange}
-                    type="time"
-                    required
-                  />
+            <div className="NegcontHorario">
+              <div>
+                <h2>Lunes</h2>
+                <div className="NegcontHorDia">
+                  <h2 className="NegtextHor">De: </h2>
+                  <div className="inputBox">
+                    <input
+                      name="Lun1"
+                      onChange={handleChange}
+                      type="time"
+                      required
+                    />
+                  </div>
+                  <h2 className="NegtextHor"> a: </h2>
+                  <div className="inputBox">
+                    <input
+                      name="Lun2"
+                      onChange={handleChange}
+                      type="time"
+                      required
+                    />
+                  </div>
                 </div>
-                <h2 className="NegtextHor"> a: </h2>
-                <div className="inputBox">
-                  <input
-                    name="Lun2"
-                    onChange={handleChange}
-                    type="time"
-                    required
-                  />
+              </div>
+              <div>
+                <h2>Martes</h2>
+                <div className="NegcontHorDia">
+                  <h2 className="NegtextHor">De: </h2>
+                  <div className="inputBox">
+                    <input
+                      name="Mar1"
+                      onChange={handleChange}
+                      type="time"
+                      required
+                    />
+                  </div>
+                  <h2 className="NegtextHor"> a: </h2>
+                  <div className="inputBox">
+                    <input
+                      name="Mar2"
+                      onChange={handleChange}
+                      type="time"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h2>Miercoles</h2>
+                <div className="NegcontHorDia">
+                  <h2 className="NegtextHor">De: </h2>
+                  <div className="inputBox">
+                    <input
+                      name="Mie1"
+                      onChange={handleChange}
+                      type="time"
+                      required
+                    />
+                  </div>
+                  <h2 className="NegtextHor"> a: </h2>
+                  <div className="inputBox">
+                    <input
+                      name="Mie2"
+                      onChange={handleChange}
+                      type="time"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h2>Jueves</h2>
+                <div className="NegcontHorDia">
+                  <h2 className="NegtextHor">De: </h2>
+                  <div className="inputBox">
+                    <input
+                      name="Jue1"
+                      onChange={handleChange}
+                      type="time"
+                      required
+                    />
+                  </div>
+                  <h2 className="NegtextHor"> a: </h2>
+                  <div className="inputBox">
+                    <input
+                      name="Jue2"
+                      onChange={handleChange}
+                      type="time"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h2>Viernes</h2>
+                <div className="NegcontHorDia">
+                  <h2 className="NegtextHor">De: </h2>
+                  <div className="inputBox">
+                    <input
+                      name="Vie1"
+                      onChange={handleChange}
+                      type="time"
+                      required
+                    />
+                  </div>
+                  <h2 className="NegtextHor"> a: </h2>
+                  <div className="inputBox">
+                    <input
+                      name="Vie2"
+                      onChange={handleChange}
+                      type="time"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h2>Sabado</h2>
+                <div className="NegcontHorDia">
+                  <h2 className="NegtextHor">De: </h2>
+                  <div className="inputBox">
+                    <input
+                      name="Sab1"
+                      onChange={handleChange}
+                      type="time"
+                      required
+                    />
+                  </div>
+                  <h2 className="NegtextHor"> a: </h2>
+                  <div className="inputBox">
+                    <input
+                      name="Sab2"
+                      onChange={handleChange}
+                      type="time"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h2>Domigo</h2>
+                <div className="NegcontHorDia">
+                  <h2 className="NegtextHor">De: </h2>
+                  <div className="inputBox">
+                    <input
+                      name="Dom1"
+                      onChange={handleChange}
+                      type="time"
+                      required
+                    />
+                  </div>
+                  <h2 className="NegtextHor"> a: </h2>
+                  <div className="inputBox">
+                    <input
+                      name="Dom2"
+                      onChange={handleChange}
+                      type="time"
+                      required
+                    />
+                  </div>
                 </div>
               </div>
             </div>
-            <div>
-              <h2>Martes</h2>
-              <div className="NegcontHorDia">
-                <h2 className="NegtextHor">De: </h2>
-                <div className="inputBox">
-                  <input
-                    name="Mar1"
-                    onChange={handleChange}
-                    type="time"
-                    required
-                  />
-                </div>
-                <h2 className="NegtextHor"> a: </h2>
-                <div className="inputBox">
-                  <input
-                    name="Mar2"
-                    onChange={handleChange}
-                    type="time"
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-            <div>
-              <h2>Miercoles</h2>
-              <div className="NegcontHorDia">
-                <h2 className="NegtextHor">De: </h2>
-                <div className="inputBox">
-                  <input
-                    name="Mie1"
-                    onChange={handleChange}
-                    type="time"
-                    required
-                  />
-                </div>
-                <h2 className="NegtextHor"> a: </h2>
-                <div className="inputBox">
-                  <input
-                    name="Mie2"
-                    onChange={handleChange}
-                    type="time"
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-            <div>
-              <h2>Jueves</h2>
-              <div className="NegcontHorDia">
-                <h2 className="NegtextHor">De: </h2>
-                <div className="inputBox">
-                  <input
-                    name="Jue1"
-                    onChange={handleChange}
-                    type="time"
-                    required
-                  />
-                </div>
-                <h2 className="NegtextHor"> a: </h2>
-                <div className="inputBox">
-                  <input
-                    name="Jue2"
-                    onChange={handleChange}
-                    type="time"
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-            <div>
-              <h2>Viernes</h2>
-              <div className="NegcontHorDia">
-                <h2 className="NegtextHor">De: </h2>
-                <div className="inputBox">
-                  <input
-                    name="Vie1"
-                    onChange={handleChange}
-                    type="time"
-                    required
-                  />
-                </div>
-                <h2 className="NegtextHor"> a: </h2>
-                <div className="inputBox">
-                  <input
-                    name="Vie2"
-                    onChange={handleChange}
-                    type="time"
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-            <div>
-              <h2>Sabado</h2>
-              <div className="NegcontHorDia">
-                <h2 className="NegtextHor">De: </h2>
-                <div className="inputBox">
-                  <input
-                    name="Sab1"
-                    onChange={handleChange}
-                    type="time"
-                    required
-                  />
-                </div>
-                <h2 className="NegtextHor"> a: </h2>
-                <div className="inputBox">
-                  <input
-                    name="Sab2"
-                    onChange={handleChange}
-                    type="time"
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-            <div>
-              <h2>Domigo</h2>
-              <div className="NegcontHorDia">
-                <h2 className="NegtextHor">De: </h2>
-                <div className="inputBox">
-                  <input
-                    name="Dom1"
-                    onChange={handleChange}
-                    type="time"
-                    required
-                  />
-                </div>
-                <h2 className="NegtextHor"> a: </h2>
-                <div className="inputBox">
-                  <input
-                    name="Dom2"
-                    onChange={handleChange}
-                    type="time"
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
             <button onClick={() => handleUpdate()}>Guardar</button>
           </div>
         </Modal>
+
         <Modal
           estado={showModal7}
           cambiarEstado={setShowModal7}
@@ -739,193 +742,269 @@ function Home() {
         </Modal>
 
         <div id="ContGeneralNegocios">
-          <section className="contMapaNegocios">
-            <Suspense fallback={<Loading />}>
-              <MapNegocio mapSet={handleSetMap} map={map} />
-            </Suspense>
-          </section>
           <section className="contFeedNegocios">
 
-            <h1>{user.nombre_cargo}</h1>
-
-            <div className="contBtnFeedNegocios">
-              <div className="btnsFeedNegocios">
-                <button className="btnFeedNegocios" onClick={() => setVisua(1)}>Inicio</button>
-                <button className="btnFeedNegocios" onClick={() => setVisua(2)}>Tus eventos</button>
-                <button className="btnFeedNegocios" onClick={() => setVisua(3)}>Estadisticas</button>
-                <button className="btnFeedNegocios" onClick={() => setVisua(4)}>Tus datos</button>
-                <button className="btnFeedNegocios" onClick={() => setVisua(5)}>Tu perfil de negocio</button>
-                <button className="btnFeedNegocios" onClick={() => setVisua(6)}>Mensajeria</button>
+            <section id="contGeneralBtn">
+              <div className="contBtnFeedNegocios">
+                <section className="titulo">
+                  <h1>{user.nombre_cargo}</h1>
+                </section>
+                <div className="btnsFeedNegocios">
+                  <button className="btnFeedNegocios" onClick={() => setVisua(1)}>Inicio</button>
+                  <button className="btnFeedNegocios" onClick={() => setVisua(2)}>Tus eventos</button>
+                  <button className="btnFeedNegocios" onClick={() => setVisua(3)}>Estadisticas</button>
+                  <button className="btnFeedNegocios" onClick={() => setVisua(4)}>Tu información</button>
+                  <button className="btnFeedNegocios" onClick={() => setVisua(5)}>Tu perfil de negocio</button>
+                  <button className="btnFeedNegocios" onClick={() => setVisua(6)}>Mensajeria</button>
+                  <button className="btnFeedNegocios" onClick={() => setVisua(7)}>Tu negocio</button>
+                </div>
               </div>
-            </div>
-
-            <div className="contenidoFeedNegocios">
-              {
-                visua === 2 ? (
-                  <>
-                    <h3>Tus eventos</h3>
-                    <div id="ContEventosNegocioFeed">
-
-                      <Modal
-                        estado={showModalRegistrar}
-                        cambiarEstado={setShowModalRegistrar}
-                        titulo="Registrar evento"
-                      >
-                        <RegistroEvento negocio={true} />
-                      </Modal>
-
-                      <button className="btnLink2" onClick={() => setShowModalRegistrar(!showModalRegistrar)}>Crear un nuevo evento</button>
-
-                      <section id="ContEventosNegocio">
-                        <ListaEventosFeed id={user.id} solicito="negocio" />
-                      </section>
-                    </div>
-                  </>
-                ) : visua === 1 ? (
-                  <>
-                    <h3>Incio</h3>
-                    <ListarComentarios id_negocio={user.id} />
-                  </>
-                ) : visua === 3 ? (<>
-                  <h3>Estadisticas</h3>
-                  <h3>
-                    Aquí puedes ver tus estadisticas de eventos pasados
-                  </h3>
-                </>) : visua === 4 ? (
-                  <>
-                    {/* Datos de roles */}
-                    <div id="contInfoGen" ><h2>{rol.nombre} </h2> <button onClick={() => setShowModal1(!showModal1)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
-                    <div id="contInfoGen"><h2>{rol.numero !== null ? (rol.numero) : ("Sin numero de contacto")}</h2> <button onClick={() => setShowModal2(!showModal2)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
-                    <div id="contInfoGen"><h2>{rol.email !== null ? (rol.email) : ("Sin correo de contacto")}</h2> <button onClick={() => setShowModal3(!showModal3)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
-                    <div id="contInfoGen"><h2>{rol.direccion}</h2> <button onClick={() => setShowModal4(!showModal4)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
-                    <div id="contInfoGen"><h2>{rol.descripcion !== null ? (rol.descripcion) : ("Sin descripcion")}</h2> <button onClick={() => setShowModal5(!showModal5)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
-                    <div id="contInfoGen"><h2>{rol.sitio_web !== null ? (<a href={rol.sitio_web}>{rol.sitio_web}</a>) : ("Sin sitio web")}</h2> <button onClick={() => setShowModal7(!showModal7)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
-                    {
-                      rol.rol === "negocios" && (<div id="contInfoGen"> <h2> <span>{parsHor[0]}</span> <br /> <span>{parsHor[1]}</span> <br /> <span>{parsHor[2]}</span> <br /> <span>{parsHor[3]}</span> <br /> <span>{parsHor[4]}</span> <br /> <span>{parsHor[5]}</span> <br /> <span>{parsHor[6]}</span> </h2> <button onClick={() => setShowModal6(!showModal6)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>)
-                    }
-                  </>
-                ) : visua === 5 ? (
-                  <>
-                    <section id="PortadaPerfilAnfitrion">
-                      <img src={image} id="ImagePortadaPerfilAnfitrion" />
-                    </section>
-
-                    <section id="InfPerfilAnfitrion">
-                      <section id="DatosPerfilAnfitrion">
-                        <h1>{user.nombre_cargo}</h1>
-                        <p>4.9 Opiniones</p>
-                      </section>
-
-                      <section id="ContFotoPerfilAnfitrion">
-                        <div id="FotoPerfilAnfitrion">
-                          <img src={foto} id="ImageFotoPerfilAnfitrion" />
-                        </div>
-                      </section>
-                    </section>
-
-
-                    
-        <section id="InfOpinionesAnfitrion">
-          <h2>Calificacion - 4.9 (19 Opiniones)</h2>
-
-          <Modal
-            estado={showModal}
-            cambiarEstado={setShowModal}
-            titulo={"Comentar"}
-          >
-            <div id="contComentarModal">
-              <textarea name="comentario" id="txtComentar" placeholder="Comenta algo sobre este negocio" onChange={handleChange} />
-              <button>Comentar</button>
-            </div>
-          </Modal>
-
-          <div id="Comentar">
-            <section className="contFotoUsuario">
-              <img src={foto} alt="Foto Usuario" />
             </section>
 
-            <section className="comentario">
-              <p onClick={() => setShowModal(!showModal)}>
-                Comenta algo interesante
-              </p>
-            </section>
-          </div>
+            <section id="contenedorGeneralFeedNegocios">
 
-          <ComentariosNegocio id_negocio={user.id} />
+              <div className="contenidoFeedNegocios">
+                {
+                  visua === 2 ? (
+                    <>
+                      <div id="ContEventosNegocioFeed">
 
-        </section>
-                  </>
-                ) : (
-                  <>
-                    <div className="contHomeChat">
-                      <div className="contSelChat">
-                        {/* Selector de chats */}
-                          {/* Este es un ejemplo del contenedor de selector de chat */}
-                          <div>
-                            <div className="selChat" onClick={() => cambiarMensajes(mensajesPrev)} onDoubleClick={() => cambiarMensajes([])}>
-                              <div className="contImgSelChat"><img src={img} alt="si" /></div>
-                            </div>
-                            <hr id="hrSelChat"/>
-                          </div>
-                          {/* acaba el ejemplo */}
+                        <Modal
+                          estado={showModalRegistrar}
+                          cambiarEstado={setShowModalRegistrar}
+                          titulo="Registrar evento"
+                        >
+                          <RegistroEvento negocio={true} />
+                        </Modal>
+
+                        <button className="btnLink2" onClick={() => setShowModalRegistrar(!showModalRegistrar)}>Crear un nuevo evento</button>
+
+                        <section id="ContEventosNegocio">
+                          <ListaEventosFeed id={user.id} solicito="negocio" />
+                        </section>
                       </div>
-                      <div className="contGenChat">
-                        <div className="homeChat">
-                        {
-                        mensajesCarg.map((mensaje, index) => {
-                          return (
-                            
-                              mensaje.origen === "envio" ? (
-                                <div className="contMensajeSalida" key={index}>
-                                  <div className="mensajeSalida">
-                                    {mensaje.mensaje}
-                                  </div>
-                                </div>
-                                
-                              ) : (
-                                <div className="contMensajeEntrada" key={index}>
-                                  <div className="mensajeEntrada">
-                                    {mensaje.mensaje}
-                                  </div>
-                                </div>
-                              )
-                            
-                          )
-                        })
-                        
+                    </>
+                  ) : visua === 1 ? (
+                    <>
+                      <ListarComentarios id_negocio={user.id} />
+                    </>
+                  ) : visua === 3 ? (
+                    <>
+                      <h3>Estadisticas</h3>
+                      <h3>
+                        Aquí puedes ver tus estadisticas de eventos pasados
+                      </h3>
+                    </>
+                  ) : visua === 4 ? (
+                    <>
+                      {/* Datos de roles */}
+                      <div id="contInfoGen" ><h2>{rol.nombre} </h2> <button onClick={() => setShowModal1(!showModal1)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
+                      <div id="contInfoGen"><h2>{rol.numero !== null ? (rol.numero) : ("Sin numero de contacto")}</h2> <button onClick={() => setShowModal2(!showModal2)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
+                      <div id="contInfoGen"><h2>{rol.email !== null ? (rol.email) : ("Sin correo de contacto")}</h2> <button onClick={() => setShowModal3(!showModal3)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
+                      <div id="contInfoGen"><h2>{rol.direccion}</h2> <button onClick={() => setShowModal4(!showModal4)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
+                      <div id="contInfoGen"><h2>{rol.descripcion !== null ? (rol.descripcion) : ("Sin descripcion")}</h2> <button onClick={() => setShowModal5(!showModal5)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
+                      <div id="contInfoGen"><h2>{rol.sitio_web !== null ? (<a href={rol.sitio_web}>{rol.sitio_web}</a>) : ("Sin sitio web")}</h2> <button onClick={() => setShowModal7(!showModal7)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
+                      {
+                        rol.rol === "negocios" && (<div id="contInfoGen"> <h2> <span>{parsHor[0]}</span> <br /> <span>{parsHor[1]}</span> <br /> <span>{parsHor[2]}</span> <br /> <span>{parsHor[3]}</span> <br /> <span>{parsHor[4]}</span> <br /> <span>{parsHor[5]}</span> <br /> <span>{parsHor[6]}</span> </h2> <button onClick={() => setShowModal6(!showModal6)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>)
                       }
-                      <div ref={chatRef}/>
-                          {/* Chat */}
-                          {/* Ejemplo mensaje entrante */}
-                          {/* <div className="contMensajeEntrada">
-                            <div className="mensajeEntrada">
-                            Este es un mensaje recibido pero intentando que sea medianamente largo
-                            </div>
-                          </div> */}
-                          {/* Termina ejemplo mensaje entrante */}
-                          {/* Ejemplo de mensaje saliente */}
-                          {/* <div className="contMensajeSalida">
-                            <div className="mensajeSalida">
-                              Este es un mensaje enviado pero intentando que sea estupidamente largo con la idea de que salga mas largo por intentar ver como se ve
-                            </div>
-                          </div> */}
-                          {/* Termina ejemplo de mensaje saliente */}
-                        </div>
-                        <div className="homeEscrituraChat">
-                          {/* Escribir mensaje, enviar mensaje */}
-                          {/* Se debera hacer la funcion correspondiente para añadir los mensajes */}
-                          <section className="contMensaje"><textarea name="mensaje" id="mensaje" cols="100" rows="3"></textarea></section>
-                          <section className="contSendMensaje"><button id="sendMensaje"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-send" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><line x1="10" y1="14" x2="21" y2="3" /><path d="M21 3l-6.5 18a0.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a0.55 .55 0 0 1 0 -1l18 -6.5" /></svg></button></section>
+                    </>
+                  ) : visua === 5 ? (
+                    <>
+                      <section id="PortadaPerfilAnfitrion">
+                        <img src={image} id="ImagePortadaPerfilAnfitrion" />
+                      </section>
+
+                      <section id="InfPerfilAnfitrion">
+                        <section id="DatosPerfilAnfitrion">
+                          <h1>{user.nombre_cargo}</h1>
+                          <p>4.9 Opiniones</p>
+                        </section>
+
+                        <section id="ContFotoPerfilAnfitrion">
+                          <div id="FotoPerfilAnfitrion">
+                            <img src={foto} id="ImageFotoPerfilAnfitrion" />
+                          </div>
+                        </section>
+                      </section>
+                      <section id="InfOpinionesAnfitrion">
+                        <h2>Calificacion - 4.9 (19 Opiniones)</h2>
+
+                        <Modal
+                          estado={showModal}
+                          cambiarEstado={setShowModal}
+                          titulo={"Comentar"}
+                        >
+                          <div id="contComentarModal">
+                            <textarea name="comentario" id="txtComentar" placeholder="Comenta algo sobre este negocio" onChange={handleChange} />
+                            <button>Comentar</button>
+                          </div>
+                        </Modal>
+
+                        <div id="Comentar">
+                          <section className="contFotoUsuario">
+                            <img src={foto} alt="Foto Usuario" />
+                          </section>
+
+                          <section className="comentario">
+                            <p onClick={() => setShowModal(!showModal)}>
+                              Comenta algo interesante
+                            </p>
+                          </section>
                         </div>
 
+                        <ComentariosNegocio id_negocio={user.id} />
+
+                      </section>
+                    </>
+                  ) : visua === 6 ? (
+                    <>
+                      <div className="contHomeChat">
+
+                        <section className="contSeleccion">
+                          <section className="contSelChat">
+                            <div className="contImgSelChat">
+                              <img src={img} alt="si" />
+                            </div>
+                            <div className="contInfoSelChat">
+                              <h2>Nombre del chat 1</h2>
+                              <p>Ultimo mensaje</p>
+                            </div>
+                          </section>
+
+                          <section className="contSelChat">
+                            <div className="contImgSelChat">
+                              <img src={img} alt="si" />
+                            </div>
+                            <div className="contInfoSelChat">
+                              <h2>Nombre del chat 2</h2>
+                              <p>Ultimo mensaje</p>
+                            </div>
+                          </section>
+                        </section>
+
+                        <section className="homeChat">
+                          <section className="titulo">
+                            <div className="contImagen">
+                              <img src={img} alt="si" className="imagenTitulo" />
+                            </div>
+
+                            <div className="nombre">
+                              Usuario de chat
+                            </div>
+                          </section>
+
+                          <section className="mensajes">
+                            <div className="mensajeEmisor">
+                              <p>
+                                Este es un mensaje recibido pero intentando que sea medianamente largo
+                              </p>
+                            </div>
+                            <div className="mensajeReceptor">
+                              <p>
+                                Este es un mensaje enviado pero intentando que sea estupidamente largo con la idea de que salga mas largo por intentar ver como se ve
+                              </p>
+                            </div>
+                            <div className="mensajeEmisor">
+                              <p>
+                                Este es un mensaje recibido pero intentando que sea medianamente largo
+                              </p>
+                            </div>
+                            <div className="mensajeReceptor">
+                              <p>
+                                Este es un mensaje enviado pero intentando que sea estupidamente largo con la idea de que salga mas largo por intentar ver como se ve
+                              </p>
+                            </div>
+                            <div className="mensajeEmisor">
+                              <p>
+                                Este es un mensaje recibido pero intentando que sea medianamente largo
+                              </p>
+                            </div>
+                            <div className="mensajeReceptor">
+                              <p>
+                                Este es un mensaje enviado pero intentando que sea estupidamente largo con la idea de que salga mas largo por intentar ver como se ve
+                              </p>
+                            </div>
+                            <div className="mensajeEmisor">
+                              <p>
+                                Este es un mensaje recibido pero intentando que sea medianamente largo
+                              </p>
+                            </div>
+                            <div className="mensajeReceptor">
+                              <p>
+                                Este es un mensaje enviado pero intentando que sea estupidamente largo con la idea de que salga mas largo por intentar ver como se ve
+                              </p>
+                            </div>
+                            <div className="mensajeEmisor">
+                              <p>
+                                Este es un mensaje recibido pero intentando que sea medianamente largo
+                              </p>
+                            </div>
+                            <div className="mensajeReceptor">
+                              <p>
+                                Este es un mensaje enviado pero intentando que sea estupidamente largo con la idea de que salga mas largo por intentar ver como se ve
+                              </p>
+                            </div>
+                            <div className="mensajeEmisor">
+                              <p>
+                                Este es un mensaje recibido pero intentando que sea medianamente largo
+                              </p>
+                            </div>
+                            <div className="mensajeReceptor">
+                              <p>
+                                Este es un mensaje enviado pero intentando que sea estupidamente largo con la idea de que salga mas largo por intentar ver como se ve
+                              </p>
+                            </div>
+                            <div className="mensajeEmisor">
+                              <p>
+                                Este es un mensaje recibido pero intentando que sea medianamente largo
+                              </p>
+                            </div>
+                            <div className="mensajeReceptor">
+                              <p>
+                                Este es un mensaje enviado pero intentando que sea estupidamente largo con la idea de que salga mas largo por intentar ver como se ve
+                              </p>
+                            </div>
+                            <div className="mensajeEmisor">
+                              <p>
+                                Este es un mensaje recibido pero intentando que sea medianamente largo
+                              </p>
+                            </div>
+                            <div className="mensajeReceptor">
+                              <p>
+                                Este es un mensaje enviado pero intentando que sea estupidamente largo con la idea de que salga mas largo por intentar ver como se ve
+                              </p>
+                            </div>
+                          </section>
+
+                          <section className="homeEscrituraChat">
+                            <div className="contMensaje">
+                              <textarea name="mensaje" id="mensaje" cols="100" rows="3"></textarea>
+                            </div>
+
+                            <div className="send">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-send" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <line x1="10" y1="14" x2="21" y2="3" />
+                                <path d="M21 3l-6.5 18a0.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a0.55 .55 0 0 1 0 -1l18 -6.5" />
+                              </svg>
+                            </div>
+                          </section>
+                        </section>
+
                       </div>
-                    </div>
-                    
-                  </>
-                )
-                
-              }
-            </div>
+                    </>
+                  ) : (
+                    <>
+                      <section className="contMapaNegocios">
+                        <Suspense fallback={<Loading />}>
+                          <MapNegocio mapSet={handleSetMap} map={map} />
+                        </Suspense>
+                      </section>
+                    </>
+                  )
+                }
+              </div>
+            </section>
           </section>
         </div>
       </>

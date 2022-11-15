@@ -11,6 +11,8 @@ const routes = {
     perfil : '/perfil',
     visperfil: '/visperfil',
     homeNegocio: '/negocio',
+    recuperar: '/recuperar',
+    resetPassword: '/resetPassword',
 }
 
 export default routes;

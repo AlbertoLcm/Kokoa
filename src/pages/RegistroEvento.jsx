@@ -4,9 +4,9 @@ import "../stylesheets/RegistroEvento.css";
 import { Autocomplete, useJsApiLoader } from "@react-google-maps/api";
 import instance from "../api/axios";
 import useAuth from "../auth/useAuth";
-import img from "../images/Plagui.jpg"
+import img from "../images/Plagui.jpg";
 
-function RegistroEvento({ negocio = false }) {
+function RegistroEvento({ negocio = false, map }) {
   const nav = useNavigate();
   /** @type React.MutableRefObject<HTMLInputElement> */
   const alertRef = useRef();
@@ -97,7 +97,7 @@ function RegistroEvento({ negocio = false }) {
             addMostrar(resultsBD)
             successRef.current.classList.remove('d-none');
             successRef.current.innerHTML = resultsBD.data.message;
-            nav(-1)
+            setShowModal(false);
           })
           .catch((error) => {
             alertRef.current.classList.remove('d-none');
@@ -128,16 +128,13 @@ function RegistroEvento({ negocio = false }) {
   };
   
   return (
-
     <>
-
       <div id="ContGeneralRegistrarEvento">
-
         <div ref={alertRef} className="alert d-none">
-          Mensaje alert
+          Algo salio mal
         </div>
         <div ref={successRef} className="success d-none">
-          Mensaje success
+          Todo correcto
         </div>
         <div action="" className="registrarEventoForm">
           <div className="descriptionEvento">

@@ -16,6 +16,7 @@ function SignNegocio() {
     nombre: "",
     email: "",
     telefono: "",
+    descripcion: "",
     Lun1: "",
     Lun2: "",
     Mar1: "",
@@ -67,6 +68,7 @@ function SignNegocio() {
               <h2>DATOS DE CONTACTO</h2>
               <div className="inputBox">
                 <input
+                  autoComplete="off"
                   name="nombre"
                   onChange={handleChange}
                   type="text"
@@ -76,12 +78,13 @@ function SignNegocio() {
               </div>
               <div className="inputBox">
                 <input
+                  autoComplete="off"
                   name="email"
                   onChange={handleChange}
                   type="text"
                   required
                 />
-                <span>Email</span>
+                <span>Email para su negocio</span>
               </div>
               <div className="inputBox">
                 <input
@@ -280,7 +283,7 @@ function SignNegocio() {
                 cols="50"
                 rows="5"
                 maxlength="150"
-                placeholder="Añada una descripsion de su acto/estilo musical "
+                placeholder="Añada una descripsion de su negocio"
                 onChange={handleChange}
                 name="descripcion"
               />

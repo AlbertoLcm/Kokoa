@@ -7,74 +7,152 @@
         margin-bottom: 5px;
     }
     .contHomeChat {
-        display: flex;
-        height: 100%;
+        height: calc(100vh - 190px);
+        display: grid;
+        grid-template-columns: 1fr 2fr;
     }
-    .contSelChat {
-        height: 100%;
-        width: 55px;
-        color: white !important;
-    }
-    .selChat{
-        width: 50px;
-        height: 50px;
-        overflow: hidden;
-        border-radius: 50%;
-    }.contImgSelChat {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        
-        overflow: hidden;
-    }
-    .contGenChat {
-        width: 90%;
-    }
+    /* Chats seleccion */
+
+        /* Contenedor de los chats */
+            .contSeleccion{
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+        /* Contenedor de los chats */
+
+        .contSelChat {
+            height: 60px;
+            width: calc(100% - 30px);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            padding-right: 10px;
+            background-color: tomato;
+            color: #f3f3f3;
+        }
+        .contSelChat .contImgSelChat{
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 10px;
+            border: 2px solid #f3f3f3;
+        }
+        .contSelChat .contImgSelChat img{
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+    /* FIN Chats seleccion */
     .homeChat{
         width: 100%;
-        height: 90%;
-        color:white !important;
-        overflow-y: auto;
+        height: 100%;
+        color:white;
+        display: grid;
+        grid-template-rows: auto minmax(330px, 330px) auto;
     }
-    .homeChat > div {
+    .homeChat .titulo{
+        width: calc(100% - 20px);
         margin-bottom: 10px;
-    }.homeChat >:last-child{
-        margin-bottom: 20px;
-    }
-    .contMensajeEntrada {
-        width: 100%;
-        display: flex;
-        justify-content: left;
-    }.mensajeEntrada{
-        float: left;
-        min-width: 20%;
-        max-width: 50%;
-        background-color: #2a142c;
-        padding: 5px;
-        border-radius: 15px;
-    }
-    .contMensajeSalida {
-        width: 100%;
-        display: flex;
-        justify-content: right;
-    }.mensajeSalida{
-        display: inline-block;
-        min-width: 20%;
-        max-width: 50%;
-        background-color: #2a142c;
-        padding: 5px;
-        border-radius: 15px;
-    }
-    .homeEscrituraChat {
-        width: 100%;
-        height: 10%;
+        background-color: tomato;
+        border-radius: 10px;
+        padding: 5px 10px 5px 10px;
         display: flex;
         align-items: center;
     }
+    .titulo .contImagen{
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 2px solid #f3f3f3;
+    }
+    .titulo .contImagen img{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+    .titulo .nombre{
+        margin-left: 10px;
+    }
+    .homeChat .mensajes{
+        max-height: auto;
+        overflow-y: scroll;
+    }
+    .homeChat .mensajes::-webkit-scrollbar {
+        -webkit-appearance: none;
+    }
+    .homeChat .mensajes::-webkit-scrollbar:vertical {
+        width:7px;
+        background-color: #452847;
+    }
+    .homeChat .mensajes::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
+        display: none;
+    }
+    .homeChat .mensajes::-webkit-scrollbar:horizontal {
+        height: 10px;
+    
+    }
+    .homeChat .mensajes::-webkit-scrollbar-thumb {
+        background-color: #f3f3f391;
+        border-radius: 20px;
+    }
+    .homeChat .mensajes::-webkit-scrollbar-track {
+        border-radius: 10px;  
+    }
+    .homeChat .mensajeEmisor{
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        height: auto;
+    }
+    .homeChat .mensajeEmisor p{
+        max-width: 70%;
+        height: auto;
+        background-color: #2f0033;
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+    .homeChat .mensajeReceptor{
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        height: auto;
+    }
+    .homeChat .mensajeReceptor p{
+        max-width: 70%;
+        height: auto;
+        background-color: #9b3ea3;
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+
+    .homeEscrituraChat {
+        width: 100%;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+    }
+    .homeEscrituraChat .send{
+        width: 40px;
+        height: 40px;
+        margin-left: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: tomato;
+        border-radius: 50%;
+    }
+    
     .contMensaje{
-        min-width: 90%;
-        max-width: 90%;
+        width: calc(100% - 50px);
+        display: flex;
+        justify-content: center;
     }#mensaje {
         resize: none;
         border: none;
@@ -83,19 +161,11 @@
         padding: 5px;
         color: white;
         cursor: text;
-        width: calc(100% - 10px);
+        height: 30px;
+        width: 100%;
     }
-    .contSendMensaje{
-        width: 10%;
-        display: flex;
-        justify-content: center;
-    }#sendMensaje {
-        background: #2a142c;
-        border: none;
-        padding: 5px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
+    #mensaje:focus {
+        outline: none;
     }
     .homeChat::-webkit-scrollbar {
         -webkit-appearance: none;
@@ -525,38 +595,52 @@
             padding-top: 60px;
             height: calc(100vh - 60px);
             display: grid;
-            grid-template-columns: 1fr 2.5fr;
+            grid-template-columns: 1fr;
         }
+        
         #ContGeneralNegocios .contFeedNegocios{
             max-height: 100%;
             width: 100%;
             overflow: auto;
             background-color: #140016;
-        }
-        #ContGeneralNegocios .contFeedNegocios h1{
-            padding: 10px;
-            padding-bottom: 0px;
-            font-size: 30px;
+            
         }
         #ContGeneralNegocios .contMapaNegocios{
             height: 100%;
             width: auto;
         }
-        #ContGeneralNegocios .contBtnFeedNegocios{
-            background-color: none;
+        #ContGeneralNegocios #contGeneralBtn{
             display: flex;
             justify-content: center;
         }
+        #ContGeneralNegocios .contBtnFeedNegocios{
+            background: #140016;
+            display: flex;
+            position: fixed;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 95%;
+            overflow: auto;
+            border-bottom: 1px solid #f3f3f354;
+        }
+        #ContGeneralNegocios .contBtnFeedNegocios .titulo{
+            margin-top: 10px;
+            position: fixed;
+        }
+        .titulo h1{
+            font-size: 30px;
+            font-weight: 550;
+        }
         #ContGeneralNegocios .contBtnFeedNegocios .btnsFeedNegocios{
             padding: 10px;
+            padding-top: 55px;
             padding-left: 0px;
-            width: 95%;
             display: flex;
-            border-bottom: 1px solid #f3f3f354;
-            overflow-x: auto;
+            overflow: auto;
         }
         #ContGeneralNegocios .contBtnFeedNegocios .btnFeedNegocios{
             color: #f3f3f3;
+            white-space: nowrap;
             border: none;
             border-radius: 10px;
             padding: 10px;
@@ -568,13 +652,74 @@
         #ContGeneralNegocios .contBtnFeedNegocios .btnFeedNegocios:hover{
             background-color: #f3f3f341;
         }
+        #ContGeneralNegocios #contenedorGeneralFeedNegocios{
+            display: flex;
+            justify-content: center;
+        }
         #ContGeneralNegocios .contenidoFeedNegocios{
-            padding: 10px;
+            padding-top: 120px;
+            width: 95%;
             display: flex;
             flex-direction: column;
             gap: 10px;
             height: calc(100% - 130px);
+            scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0);
+            scrollbar-width: thin;
         }
+
+        /* Scroll para el home de negocios */
+
+            /* Para la pagina principal (vertical) */
+                #ContGeneralNegocios .contFeedNegocios::-webkit-scrollbar {
+                    -webkit-appearance: none;
+                }
+                #ContGeneralNegocios .contFeedNegocios::-webkit-scrollbar:vertical {
+                    width:7px;
+                    background-color: #452847;
+                }
+                #ContGeneralNegocios .contFeedNegocios::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
+                    display: none;
+                }
+                #ContGeneralNegocios .contFeedNegocios::-webkit-scrollbar:horizontal {
+                    height: 10px;
+                
+                }
+                #ContGeneralNegocios .contFeedNegocios::-webkit-scrollbar-thumb {
+                    background-color: #f3f3f391;
+                    border-radius: 20px;
+                }
+                #ContGeneralNegocios .contFeedNegocios::-webkit-scrollbar-track {
+                    border-radius: 10px;  
+                }
+            /* FIN Para la pagina principal (vertical) */
+
+            /* Para el contenido de los botones (Horizontal) */
+                #ContGeneralNegocios .contBtnFeedNegocios::-webkit-scrollbar {
+                    -webkit-appearance: none;
+                }
+                #ContGeneralNegocios .contBtnFeedNegocios::-webkit-scrollbar:vertical {
+                    width:7px;
+                    background-color: #452847;
+                }
+                #ContGeneralNegocios .contBtnFeedNegocios::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
+                    display: none;
+                }
+                #ContGeneralNegocios .contBtnFeedNegocios::-webkit-scrollbar:horizontal {
+                    height: 1px;
+                
+                }
+                #ContGeneralNegocios .contBtnFeedNegocios::-webkit-scrollbar-thumb {
+                    background-color: #f3f3f391;
+                    border-radius: 20px;
+                }
+                #ContGeneralNegocios .contBtnFeedNegocios::-webkit-scrollbar-track {
+                    border-radius: 10px;  
+                }
+            /* Para el contenido de los botones (Horizontal) */
+
+        /* FIN Scroll para el home de negocios */
+
+        
         /* /// Mapa /// */
             .mapaNegocios{
                 height: 100%;
@@ -706,6 +851,44 @@
     /* FIN Sección 2, eventos */
 }
 
+@media (max-width: 900px) {
+    /* Esto es para los chats */
+    .contHomeChat {
+        height: calc(100vh - 190px);
+        display: grid;
+        grid-template-columns: 60px 1fr;
+    }
+    .contInfoSelChat{
+        display: none;
+    }
+
+    .contSelChat {
+        height: 60px;
+        width: 100%;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        padding-left: 0px;
+        padding-right: 0px;
+        background: none;   
+        color: #f3f3f3;
+    }
+    .contSelChat .contImgSelChat{
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 0px;
+        border: 2px solid #f3f3f3;
+    }
+    .contSelChat .contImgSelChat img{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+/* FIN Chats seleccion */
+}
+
 @media (max-width: 750px) {
     /* === Home normal === */
         #ContGeneralHome{
@@ -757,23 +940,9 @@
     /* === FIN Home normal === */
 
     /* === Home negocios === */
-        #ContGeneralNegocios{
-            display: flex;
-            flex-direction: column;
-            padding-top: 0px;
-            height: 100vh;
-        }
-        #ContGeneralNegocios .contFeedNegocios{
-            height: 70%;
-        }
-        #ContGeneralNegocios .contMapaNegocios{
-            height: 30%;
-        }
 
         /* Sección 2, eventos */
-            #ContEventosNegocio{
-                grid-template-columns: 1fr;
-            } 
+           
         /* FIN Sección 2, eventos */
     /* === Home negocios === */
 

@@ -1,0 +1,46 @@
+/* Diseño recuperar contraseña by alberto */
+  #ContRecuperar{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #ContRecuperar .formRecuperar{
+    background-color: #ffffff86;
+    padding: 10px;
+    border-radius: 10px;
+    scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0);
+  }
+  #ContRecuperar .formRecuperar h2{
+    margin-bottom: 10px;
+  }
+  #ContRecuperar .formRecuperar p{
+    margin-bottom: 10px;
+  }
+  #ContRecuperar .formRecuperar input{
+    background-color: #f3f3f367;
+    border: 1px solid #f3f3f367;
+    border-radius: 10px;
+    padding: 10px;
+    color: #3f3f3f;
+    font-size: medium;
+    width: calc(100% - 20px);
+  }
+  #ContRecuperar .formRecuperar input:focus{
+    outline: none;
+  }
+  #ContRecuperar .formRecuperar button{
+    background: linear-gradient(to left, #004dc0, #EC1C4E, #d6d300);
+    width: 100%;
+    color: #f3f3f3;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    user-select: none;
+    padding: 10px;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+  }
+
+/* FIN Diseño recuperar contraseña by alberto */
