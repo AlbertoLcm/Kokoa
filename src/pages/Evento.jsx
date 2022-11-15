@@ -230,7 +230,7 @@ function Evento() {
                           <h1>Anfitrion</h1>
                           <section className='contDetAnfitrion'>
                             <div className='contImgAnfitrion'>
-                              <img src={imagen} alt="Predefinir" />
+                              <img src={anfitrion.perfil} alt="Predefinir" />
                             </div>
                             <div className="tituloAnfitiron">
                               Un evento de {anfitrion.nombre}. <br />

@@ -128,11 +128,8 @@ function RegistroEvento({ negocio = false, map }) {
   };
   
   return (
-
     <>
-
       <div id="ContGeneralRegistrarEvento">
-
         <div ref={alertRef} className="alert d-none">
           Algo salio mal
         </div>
