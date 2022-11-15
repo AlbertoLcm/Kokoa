@@ -36,22 +36,12 @@ export default function AuthProvider({ children }) {
   
   const islogin = () => {
     const token = localStorage.getItem("token");
-    instance
-      .post(
-        "/auth",
-        { usuario: "prueba" },
-        {
-          headers: {
-            authorization: token,
-          },
-        }
-      )
+    instance.post("/auth",{ usuario: "prueba" }, {headers: {authorization: token,}})
       .then((usuarioRes) => {
         setUser(usuarioRes.data.user.data);
         localStorage.setItem("token", usuarioRes.data.user.token);
       })
       .catch((err) => {
-        console.log(err);
         localStorage.removeItem("token");
         navigate(location.pathname);
       });

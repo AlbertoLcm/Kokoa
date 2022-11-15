@@ -4,7 +4,7 @@ import "../stylesheets/RegistroEvento.css";
 import { Autocomplete, useJsApiLoader } from "@react-google-maps/api";
 import instance from "../api/axios";
 import useAuth from "../auth/useAuth";
-import img from "../images/Plagui.jpg"
+import img from "../images/Plagui.jpg";
 
 function RegistroEvento({ negocio = false, map }) {
   const nav = useNavigate();

@@ -21,8 +21,15 @@ const ListarComentarios = ({ id_negocio }) => {
       })
       .catch((err) => console.log(err))
   }, []);
-  
 
+  if(!eventos.length && !comentarios.length) { 
+    return( 
+      <div id="ContGeneralComentariosNegocio">
+        <div className="noComentarios">Aún no tienes publicaciones</div>
+      </div>
+    )
+  }
+  
   return (
     <div id="ContGeneralComentariosNegocio">
       {eventos.map((evento) => {
