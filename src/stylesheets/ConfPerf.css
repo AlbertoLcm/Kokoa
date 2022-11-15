@@ -93,15 +93,6 @@
     width: 100%;
     background-color: rgb(17, 0, 19);
 }
-.confPerfImg {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: white solid 2px;
-    top: 140px;
-    left: 20%;
-}
     /* Diseño del input file by Alberto */
 
         /* Boton para abrir el modal */
@@ -170,19 +161,9 @@
             }
 
     /* FIN Diseño del input file */
-
-#confPerfImgBack {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    overflow: hidden;
-    position: absolute;
-    top: 0px;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-}
 .confPerfInfoGen{
-    padding-top: 150px;
+    padding-bottom: 100px;
+    margin-top: 20px;
 }
 #contInfoGen {
     display: flex;
@@ -226,6 +207,9 @@
     font-size: 25px;
     background: transparent;
     color: white;
+    margin-bottom: 10px;
+    align-items: center;
+    display: flex !important;
 }
 .entrVis{
     display: flex;
@@ -268,8 +252,6 @@
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     text-align: start;
-}.navSideBar button:hover{
-    background-color: #f3f3f346;
 }
 .contVis{
     height: 100%;
@@ -300,6 +282,22 @@ button :focus {
 }
 #AddDireccion{
     align-items: left;
+}
+.confPerfImg {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: white solid 2px;
+    position: relative;
+    top: 0px;
+    left: 20%;
+}.confPerfImg >img {
+    width: 100%;
+}
+.confPerfContImgUsBack {
+    display: flex;
+    align-items: center;
 }
 
 /* Modals by Alberto */
@@ -359,17 +357,8 @@ button :focus {
 }
 @media only screen and (min-width: 768px) {
     .confPerfInfoGen{
+        padding-bottom: 0px;
         padding-top: 270px;
-    }
-    #confPerfImgBack {
-        width: auto;
-        height: 250px;
-        left: 20%;
-        object-fit: cover;
-        overflow: hidden;
-        position: absolute;
-        border-bottom-left-radius: 15px;
-        border-bottom-right-radius: 15px;
     }
     .confPerfNombrNum {
         margin-left: 20px;
@@ -388,23 +377,30 @@ button :focus {
         display: flex;
         align-items: center;
         position: absolute;
-    }
+    }    
     .confPerfImg {
         width: 200px;
         height: 200px;
         border-radius: 50%;
         position: relative;
         top: 0px;
-        left: 10%;
+        left: 34%;
         overflow: hidden;
         border: white solid 2px;
-        z-index: 1;
     }
 }
 .contBase .bm-burger-bars {
     background: white;
 }
 @media only screen and (min-width: 1024px) {
+    .confPerfImg {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: white solid 2px;
+        left: 13%;
+    }
     .confPerfVisPrin {
         width: 80%;
     }

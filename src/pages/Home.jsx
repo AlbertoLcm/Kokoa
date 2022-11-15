@@ -871,7 +871,7 @@ function Home() {
                             </div>
                           </section>
 
-                          <section className="contSelChat">
+                          <section className="contSelChat" onClick={() => setMensajesCarg(mensajesPrev)} onDoubleClick={() => setMensajesCarg([])}>
                             <div className="contImgSelChat">
                               <img src={img} alt="si" />
                             </div>
@@ -894,86 +894,25 @@ function Home() {
                           </section>
 
                           <section className="mensajes">
-                            <div className="mensajeEmisor">
-                              <p>
-                                Este es un mensaje recibido pero intentando que sea medianamente largo
-                              </p>
-                            </div>
-                            <div className="mensajeReceptor">
-                              <p>
-                                Este es un mensaje enviado pero intentando que sea estupidamente largo con la idea de que salga mas largo por intentar ver como se ve
-                              </p>
-                            </div>
-                            <div className="mensajeEmisor">
-                              <p>
-                                Este es un mensaje recibido pero intentando que sea medianamente largo
-                              </p>
-                            </div>
-                            <div className="mensajeReceptor">
-                              <p>
-                                Este es un mensaje enviado pero intentando que sea estupidamente largo con la idea de que salga mas largo por intentar ver como se ve
-                              </p>
-                            </div>
-                            <div className="mensajeEmisor">
-                              <p>
-                                Este es un mensaje recibido pero intentando que sea medianamente largo
-                              </p>
-                            </div>
-                            <div className="mensajeReceptor">
-                              <p>
-                                Este es un mensaje enviado pero intentando que sea estupidamente largo con la idea de que salga mas largo por intentar ver como se ve
-                              </p>
-                            </div>
-                            <div className="mensajeEmisor">
-                              <p>
-                                Este es un mensaje recibido pero intentando que sea medianamente largo
-                              </p>
-                            </div>
-                            <div className="mensajeReceptor">
-                              <p>
-                                Este es un mensaje enviado pero intentando que sea estupidamente largo con la idea de que salga mas largo por intentar ver como se ve
-                              </p>
-                            </div>
-                            <div className="mensajeEmisor">
-                              <p>
-                                Este es un mensaje recibido pero intentando que sea medianamente largo
-                              </p>
-                            </div>
-                            <div className="mensajeReceptor">
-                              <p>
-                                Este es un mensaje enviado pero intentando que sea estupidamente largo con la idea de que salga mas largo por intentar ver como se ve
-                              </p>
-                            </div>
-                            <div className="mensajeEmisor">
-                              <p>
-                                Este es un mensaje recibido pero intentando que sea medianamente largo
-                              </p>
-                            </div>
-                            <div className="mensajeReceptor">
-                              <p>
-                                Este es un mensaje enviado pero intentando que sea estupidamente largo con la idea de que salga mas largo por intentar ver como se ve
-                              </p>
-                            </div>
-                            <div className="mensajeEmisor">
-                              <p>
-                                Este es un mensaje recibido pero intentando que sea medianamente largo
-                              </p>
-                            </div>
-                            <div className="mensajeReceptor">
-                              <p>
-                                Este es un mensaje enviado pero intentando que sea estupidamente largo con la idea de que salga mas largo por intentar ver como se ve
-                              </p>
-                            </div>
-                            <div className="mensajeEmisor">
-                              <p>
-                                Este es un mensaje recibido pero intentando que sea medianamente largo
-                              </p>
-                            </div>
-                            <div className="mensajeReceptor">
-                              <p>
-                                Este es un mensaje enviado pero intentando que sea estupidamente largo con la idea de que salga mas largo por intentar ver como se ve
-                              </p>
-                            </div>
+                            {
+                              mensajesCarg.map((mensaje, index) => {
+                                return (
+                                  mensaje.origen === "recibo" ? (
+                                    <div className="mensajeEmisor" key={index}>
+                                      <p>
+                                        {mensaje.mensaje}
+                                      </p>
+                                    </div>
+                                  ) : (
+                                    <div className="mensajeReceptor" key={index}>
+                                      <p>
+                                        {mensaje.mensaje}
+                                      </p>
+                                    </div>
+                                  )
+                                )})
+                            }
+                          <div ref={chatRef} />
                           </section>
 
                           <section className="homeEscrituraChat">
