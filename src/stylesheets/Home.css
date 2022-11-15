@@ -43,7 +43,9 @@
         margin-bottom: 20px;
     }
     .contMensajeEntrada {
-        float: left; 
+        width: 100%;
+        display: flex;
+        justify-content: left;
     }.mensajeEntrada{
         float: left;
         min-width: 20%;
@@ -53,9 +55,11 @@
         border-radius: 15px;
     }
     .contMensajeSalida {
-        float: right; 
+        width: 100%;
+        display: flex;
+        justify-content: right;
     }.mensajeSalida{
-        float: right;
+        display: inline-block;
         min-width: 20%;
         max-width: 50%;
         background-color: #2a142c;

@@ -24,6 +24,54 @@ const MapNegocio = lazy(() => import("../components/maps/MapNegocio"));
 
 
 function Home() {
+  // Area de pruebas
+  const [mensajesCarg, setMensajesCarg] = useState([]);
+  const mensajesPrev = [
+    {
+      mensaje: "Hola que tal buenas nohces",
+      origen: "recibo"
+    },
+    {
+      mensaje: "Hola que tal buenas nohces, en que le podemos ayudar",
+      origen: "envio"
+    },
+    {
+      mensaje: "Quisiera cocontratar sus servicios como patrocinador",
+      origen: "recibo"
+    },
+    {
+      mensaje: "Lo siento debe haber algun error en el sistema, puesto que esta cuenta no es de patrocinador si no de neogocio",
+      origen: "envio"
+    },
+    {
+      mensaje: "Ho, lo siento mucho, sin embargo, no sera de casualidad el administrador de el patrocinio llamado Pruebacinio?",
+      origen: "recibo"
+    },
+    {
+      mensaje: "Efectivamente. si lo soy",
+      origen: "envio"
+    },
+    {
+      mensaje: "sin embargo preferiria que mantener separados ambos negocios",
+      origen: "envio"
+    },
+    {
+      mensaje: "Emmm, creo que es usted quien se confunde ya que en el chat declara que este es el contacto de Pruebacinio",
+      origen: "recibo"
+    },
+    {
+      mensaje: "Tiene usted toda la razon disculpe, ahora si podemos hacer el negocio :3",
+      origen: "envio"
+    }
+  ]
+  const cambiarMensajes = (mensajes) => {
+    setMensajesCarg(mensajes)
+  }
+
+  const chatRef = useRef(null);
+  // Fin del area de pruebas
+
+  
 
   const nav = useNavigate();
   const { marcar, eventos, logout, user } = useAuth();
@@ -46,8 +94,6 @@ function Home() {
   const handleSetMap = (mapita) => {
     setMap(mapita);
   };
-
-  console.log(user);
 
   const [rol, setRol] = useState({});
   useEffect(() => {
@@ -131,11 +177,10 @@ function Home() {
     hor = hor.split(",");
     parsHor = [("Lunes: " + hor[0]), ("Martes: " + hor[1]), ("Miercoles: " + hor[2]), ("Jueves: " + hor[3]), ("Viernes: " + hor[4]), ("Sabado: " + hor[5]), ("Domingo: " + hor[6])];
   }
-
-  const BajarChat = () => {
-    const div = document.getElementById('homeChat');
-    div.scrollTop = div.scrollHeight;
-  }
+  
+  useEffect(() => {
+    chatRef.current?.scrollIntoView({behavior: 'smooth'});
+  }, [mensajesCarg]);
 
   if (rol.rol === "negocios") { formHorar(rol.horario) }
 
@@ -817,7 +862,7 @@ function Home() {
                         {/* Selector de chats */}
                           {/* Este es un ejemplo del contenedor de selector de chat */}
                           <div>
-                            <div className="selChat">
+                            <div className="selChat" onClick={() => cambiarMensajes(mensajesPrev)} onDoubleClick={() => cambiarMensajes([])}>
                               <div className="contImgSelChat"><img src={img} alt="si" /></div>
                             </div>
                             <hr id="hrSelChat"/>
@@ -825,57 +870,47 @@ function Home() {
                           {/* acaba el ejemplo */}
                       </div>
                       <div className="contGenChat">
-
-                        <div className="homeChat" id="homeChat">
+                        <div className="homeChat">
+                        {
+                        mensajesCarg.map((mensaje, index) => {
+                          return (
+                            
+                              mensaje.origen === "envio" ? (
+                                <div className="contMensajeSalida" key={index}>
+                                  <div className="mensajeSalida">
+                                    {mensaje.mensaje}
+                                  </div>
+                                </div>
+                                
+                              ) : (
+                                <div className="contMensajeEntrada" key={index}>
+                                  <div className="mensajeEntrada">
+                                    {mensaje.mensaje}
+                                  </div>
+                                </div>
+                              )
+                            
+                          )
+                        })
+                        
+                      }
+                      <div ref={chatRef}/>
                           {/* Chat */}
-                          {/* Para meter los mensajes debera haber una manera de distinguir entre entrada y salida */}
-                          {/* Despues neterlo en el div correspondiente */}
                           {/* Ejemplo mensaje entrante */}
-                          <div className="contMensajeEntrada">
+                          {/* <div className="contMensajeEntrada">
                             <div className="mensajeEntrada">
                             Este es un mensaje recibido pero intentando que sea medianamente largo
                             </div>
-                          </div>
+                          </div> */}
                           {/* Termina ejemplo mensaje entrante */}
                           {/* Ejemplo de mensaje saliente */}
-                          <div className="contMensajeSalida">
+                          {/* <div className="contMensajeSalida">
                             <div className="mensajeSalida">
                               Este es un mensaje enviado pero intentando que sea estupidamente largo con la idea de que salga mas largo por intentar ver como se ve
                             </div>
-                          </div>
+                          </div> */}
                           {/* Termina ejemplo de mensaje saliente */}
-                          <div className="contMensajeSalida">
-                            <div className="mensajeSalida">
-                              Este es un mensaje enviado pero intentando que sea estupidamente largo con la idea de que salga mas largo por intentar ver como se ve
-                            </div>
-                          </div>
-                          <div className="contMensajeSalida">
-                            <div className="mensajeSalida">
-                              Este es un mensaje enviado pero intentando que sea estupidamente largo con la idea de que salga mas largo por intentar ver como se ve
-                            </div>
-                          </div>
-                          <div className="contMensajeSalida">
-                            <div className="mensajeSalida">
-                              Este es un mensaje enviado pero intentando que sea estupidamente largo con la idea de que salga mas largo por intentar ver como se ve
-                            </div>
-                          </div>
-                          <div className="contMensajeSalida">
-                            <div className="mensajeSalida">
-                              Este es un mensaje enviado pero intentando que sea estupidamente largo con la idea de que salga mas largo por intentar ver como se ve
-                            </div>
-                          </div>
-                          <div className="contMensajeSalida">
-                            <div className="mensajeSalida">
-                              Este es un mensaje enviado pero intentando que sea estupidamente largo con la idea de que salga mas largo por intentar ver como se ve
-                            </div>
-                          </div>
-                          {/* Sera necesario ejecutar esta funcion al añadir mensajs en tiempo real cada vez */}
-                          {
-                            BajarChat()
-                          }
-                          {/* fin de la funcion :3 */}
                         </div>
-
                         <div className="homeEscrituraChat">
                           {/* Escribir mensaje, enviar mensaje */}
                           {/* Se debera hacer la funcion correspondiente para añadir los mensajes */}
@@ -885,8 +920,10 @@ function Home() {
 
                       </div>
                     </div>
+                    
                   </>
                 )
+                
               }
             </div>
           </section>
@@ -894,7 +931,6 @@ function Home() {
       </>
     )
   }
-
 }
 
 export default Home;
