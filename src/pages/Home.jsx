@@ -18,6 +18,7 @@ import RegistroEvento from "./RegistroEvento";
 import ListarComentarios from "../components/social/ListarComentarios";
 import ComentariosNegocio from "../components/social/ComentariosNegocio";
 import img from "../images/Plagui.jpg"
+import socket from "../components/sockets/Socket";
 
 const Mapa = lazy(() => import("../components/Mapa"));
 const MapNegocio = lazy(() => import("../components/maps/MapNegocio"));
@@ -27,6 +28,38 @@ function Home() {
   // Area de pruebas
   const [mensajesCarg, setMensajesCarg] = useState([]);
   const mensajesPrev = [
+    {
+      mensaje: "Hola que tal buenas nohces",
+      origen: "recibo"
+    },
+    {
+      mensaje: "Hola que tal buenas nohces, en que le podemos ayudar",
+      origen: "envio"
+    },
+    {
+      mensaje: "Quisiera cocontratar sus servicios como patrocinador",
+      origen: "recibo"
+    },
+    {
+      mensaje: "Lo siento debe haber algun error en el sistema, puesto que esta cuenta no es de patrocinador si no de neogocio",
+      origen: "envio"
+    },
+    {
+      mensaje: "Ho, lo siento mucho, sin embargo, no sera de casualidad el administrador de el patrocinio llamado Pruebacinio?",
+      origen: "recibo"
+    },
+    {
+      mensaje: "Efectivamente. si lo soy",
+      origen: "envio"
+    },
+    {
+      mensaje: "sin embargo preferiria que mantener separados ambos negocios",
+      origen: "envio"
+    },
+    {
+      mensaje: "Emmm, creo que es usted quien se confunde ya que en el chat declara que este es el contacto de Pruebacinio",
+      origen: "recibo"
+    },
     {
       mensaje: "Hola que tal buenas nohces",
       origen: "recibo"
@@ -71,7 +104,6 @@ function Home() {
   const chatRef = useRef(null);
   // Fin del area de pruebas
 
-  
 
   const nav = useNavigate();
   const { marcar, eventos, logout, user } = useAuth();
@@ -91,11 +123,45 @@ function Home() {
   const [showModal7, setShowModal7] = useState(false);
   const [showModalRegistrar, setShowModalRegistrar] = useState(false);
 
+  // Esto es para el chat
+  const [mensajeEmisor, setMensajeEmisor] = useState({
+    mensaje: "",
+    origen: "envio"
+  });
+
+  const [mensajes, setMensajes] = useState([]);
+  
+  const handleChat = (e) => {
+    setMensajeEmisor({
+      ...mensajeEmisor,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const actionEviarMensaje = () => {
+    socket.emit('chat message', mensajeEmisor.mensaje);
+    setMensajeEmisor({
+      mensaje: "",
+    });
+  };
+
+  const [mensajeRecibido, setMensajeRecibido] = useState([]);
+
+  useEffect(() => {
+    socket.on('chat message', (msg) => {
+      setMensajes([...mensajes, {mensaje: msg, origen: "envio"}]);
+    });
+  }, [mensajeRecibido]);
+
+  console.log(mensajeRecibido);
+  // Fin del chat
+
   const handleSetMap = (mapita) => {
     setMap(mapita);
   };
 
   const [rol, setRol] = useState({});
+  
   useEffect(() => {
     if (user.rol === "negocios") {
       instance.get(`/eventos/all/${user.id}`).then((resultado) => {
@@ -894,33 +960,33 @@ function Home() {
                           </section>
 
                           <section className="mensajes">
-                            {
-                              mensajesCarg.map((mensaje, index) => {
-                                return (
-                                  mensaje.origen === "recibo" ? (
-                                    <div className="mensajeEmisor" key={index}>
-                                      <p>
-                                        {mensaje.mensaje}
-                                      </p>
-                                    </div>
-                                  ) : (
-                                    <div className="mensajeReceptor" key={index}>
-                                      <p>
-                                        {mensaje.mensaje}
-                                      </p>
-                                    </div>
-                                  )
-                                )})
-                            }
+                              {
+                                mensajes.map((mensaje, index) => {
+                                  return (
+                                    mensaje.origen === "recibo" ? (
+                                      <div className="mensajeEmisor" key={index}>
+                                        <p>
+                                          {mensaje.mensaje}
+                                        </p>
+                                      </div>
+                                    ) : (
+                                      <div className="mensajeReceptor" key={index}>
+                                        <p>
+                                          {mensaje.mensaje}
+                                        </p>
+                                      </div>
+                                    )
+                                  )})
+                              }
                           <div ref={chatRef} />
                           </section>
 
                           <section className="homeEscrituraChat">
                             <div className="contMensaje">
-                              <textarea name="mensaje" id="mensaje" cols="100" rows="3"></textarea>
+                              <input autoComplete="off" type={'text'} name="mensaje" id="mensaje" value={mensajeEmisor.mensaje} onChange={handleChat} /> 
                             </div>
 
-                            <div className="send">
+                            <div className="send" onClick={() => actionEviarMensaje()}>
                               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-send" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <line x1="10" y1="14" x2="21" y2="3" />

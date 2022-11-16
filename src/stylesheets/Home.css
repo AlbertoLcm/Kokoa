@@ -29,7 +29,7 @@
             align-items: center;
             padding-left: 10px;
             padding-right: 10px;
-            background-color: tomato;
+            background-color: #2D0E30;
             color: #f3f3f3;
         }
         .contSelChat .contImgSelChat{
@@ -49,22 +49,22 @@
     .homeChat{
         width: 100%;
         height: 100%;
-        color:white;
+        color:#f3f3f3;
         display: grid;
-        grid-template-rows: auto minmax(330px, 330px) auto;
+        grid-template-rows: 60px 1fr 40px;
     }
     .homeChat .titulo{
         width: calc(100% - 20px);
         margin-bottom: 10px;
-        background-color: tomato;
+        background-color: #2D0E30;
         border-radius: 10px;
         padding: 5px 10px 5px 10px;
         display: flex;
         align-items: center;
     }
     .titulo .contImagen{
-        height: 50px;
-        width: 50px;
+        height: 35px;
+        width: 35px;
         border-radius: 50%;
         overflow: hidden;
         border: 2px solid #f3f3f3;
@@ -78,8 +78,7 @@
         margin-left: 10px;
     }
     .homeChat .mensajes{
-        max-height: auto;
-        overflow-y: scroll;
+        overflow-y: auto;
     }
     .homeChat .mensajes::-webkit-scrollbar {
         -webkit-appearance: none;
@@ -214,7 +213,6 @@
             width: 100%;
             height: calc(100vh - 60px);
             position: relative;
-            
         }
         /* /// Estilos para el mapa /// */
             #ContGeneralHome .contMapaHome{
@@ -618,6 +616,7 @@
             display: flex;
             position: fixed;
             flex-direction: column;
+            z-index: 10;
             align-items: flex-start;
             width: 95%;
             overflow: auto;
@@ -853,18 +852,35 @@
 
 @media (max-width: 900px) {
     /* Esto es para los chats */
+
     .contHomeChat {
         height: calc(100vh - 190px);
-        display: grid;
-        grid-template-columns: 60px 1fr;
+        display: flex;
+        flex-direction: column;
     }
     .contInfoSelChat{
         display: none;
     }
-
+    
+    /* Contenedor de los chats */
+    .contSeleccion{
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+    /* Contenedor de los chats */
+    
+    .homeChat{
+        width: 100%;
+        height: 100%;
+        color:white;
+        display: grid;
+        grid-template-rows: auto minmax(260px, 260px) auto;
+    }
     .contSelChat {
         height: 60px;
-        width: 100%;
+        width: 60px;
         border-radius: 10px;
         display: flex;
         align-items: center;
