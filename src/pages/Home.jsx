@@ -1,7 +1,7 @@
 import React from "react";
 import useAuth from "../auth/useAuth";
 import { useRef, useState, Suspense, lazy, useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import { Autocomplete } from "@react-google-maps/api";
 import "../stylesheets/Home.css";
 import "../stylesheets/BurguerMenu.css";
@@ -9,7 +9,6 @@ import Evento from "../components/EventosPagPrin";
 import Loading from "../components/Loading";
 import instance from "../api/axios";
 import Header from "../components/Header";
-import routes from "../helpers/routes";
 import foto from "../images/Wall (59).jpg";
 import image from "../images/concert.jpg";
 import Modal from "../components/Modal";
@@ -17,9 +16,7 @@ import ListaEventosFeed from "../components/infElements/ListaEventosFeed";
 import RegistroEvento from "./RegistroEvento";
 import ListarComentarios from "../components/social/ListarComentarios";
 import ComentariosNegocio from "../components/social/ComentariosNegocio";
-import img from "../images/Plagui.jpg"
-import socket from "../components/sockets/Socket";
-import Chat from "../components/social/Chat";
+
 import AllChats from "../components/social/AllChats";
 
 const Mapa = lazy(() => import("../components/Mapa"));
@@ -29,76 +26,7 @@ const MapNegocio = lazy(() => import("../components/maps/MapNegocio"));
 function Home() {
   // Area de pruebas
   const [mensajesCarg, setMensajesCarg] = useState([]);
-  const mensajesPrev = [
-    {
-      mensaje: "Hola que tal buenas nohces",
-      origen: "recibo"
-    },
-    {
-      mensaje: "Hola que tal buenas nohces, en que le podemos ayudar",
-      origen: "envio"
-    },
-    {
-      mensaje: "Quisiera cocontratar sus servicios como patrocinador",
-      origen: "recibo"
-    },
-    {
-      mensaje: "Lo siento debe haber algun error en el sistema, puesto que esta cuenta no es de patrocinador si no de neogocio",
-      origen: "envio"
-    },
-    {
-      mensaje: "Ho, lo siento mucho, sin embargo, no sera de casualidad el administrador de el patrocinio llamado Pruebacinio?",
-      origen: "recibo"
-    },
-    {
-      mensaje: "Efectivamente. si lo soy",
-      origen: "envio"
-    },
-    {
-      mensaje: "sin embargo preferiria que mantener separados ambos negocios",
-      origen: "envio"
-    },
-    {
-      mensaje: "Emmm, creo que es usted quien se confunde ya que en el chat declara que este es el contacto de Pruebacinio",
-      origen: "recibo"
-    },
-    {
-      mensaje: "Hola que tal buenas nohces",
-      origen: "recibo"
-    },
-    {
-      mensaje: "Hola que tal buenas nohces, en que le podemos ayudar",
-      origen: "envio"
-    },
-    {
-      mensaje: "Quisiera cocontratar sus servicios como patrocinador",
-      origen: "recibo"
-    },
-    {
-      mensaje: "Lo siento debe haber algun error en el sistema, puesto que esta cuenta no es de patrocinador si no de neogocio",
-      origen: "envio"
-    },
-    {
-      mensaje: "Ho, lo siento mucho, sin embargo, no sera de casualidad el administrador de el patrocinio llamado Pruebacinio?",
-      origen: "recibo"
-    },
-    {
-      mensaje: "Efectivamente. si lo soy",
-      origen: "envio"
-    },
-    {
-      mensaje: "sin embargo preferiria que mantener separados ambos negocios",
-      origen: "envio"
-    },
-    {
-      mensaje: "Emmm, creo que es usted quien se confunde ya que en el chat declara que este es el contacto de Pruebacinio",
-      origen: "recibo"
-    },
-    {
-      mensaje: "Tiene usted toda la razon disculpe, ahora si podemos hacer el negocio :3",
-      origen: "envio"
-    }
-  ]
+  
   const cambiarMensajes = (mensajes) => {
     setMensajesCarg(mensajes)
   }
@@ -239,7 +167,8 @@ function Home() {
           </div>
           <div className="feedHome">
             <section id="HeaderFeedHome">
-              <h2>Hola, {user.nombre}</h2>
+              <h2>Hola, {user.nombre}</h2> 
+              <button onClick={() => setShowModal(!showModal)} className="btnLink2">Crear un evento</button>
               <section id="ContBtnFeedAnfitrion">
                 <div id="BtnFeedAnfitrion">
                   <button className="btnFeedHome" onClick={() => setVisua(1)}>Para ti</button>
@@ -284,7 +213,7 @@ function Home() {
               <>
                 <h3>Comunidad</h3>
                 <section id="ContCrearEvento">
-                  <button onClick={() => setShowModal(!showModal)} className="btnLink2">Crear un evento</button>
+                  
                 </section>
 
                 <section id="InfOpinionesAnfitrion">

@@ -80,32 +80,35 @@ function RegistroEvento({ negocio = false, map }) {
       alertRef.current.innerText = "Debes ingresar la ubicación del evento";
       return;
     }
-    geocoder.geocode(
-      {
-        address: originRef.current.value,
-      },
-      (results, status) => {
-        instance
-          .post("eventos/add", {
-            datosEvento,
-            id: user.id,
-            rol: user.rol,
-            ubicacion: originRef.current.value,
-            lat: results[0].geometry.location.lat(),
-            lng: results[0].geometry.location.lng(),
-          })
-          .then((resultsBD) => {
-            addMostrar(resultsBD)
-            successRef.current.classList.remove('d-none');
-            successRef.current.innerHTML = resultsBD.data.message;
-            setShowModal(false);
-          })
-          .catch((error) => {
-            alertRef.current.classList.remove('d-none');
-            alertRef.current.innerHTML = error.response.data.message;
-          });
-      }
-    );
+    // Al chile no se que pedo, pero dice que hay algo mal con el post de eventos
+    // geocoder.geocode(
+    //   {
+    //     address: originRef.current.value,
+    //   },
+    //   (results, status) => {
+    //     instance
+    //       .post("eventos/add", {
+    //         datosEvento,
+    //         id: user.id,
+    //         rol: user.rol,
+    //         ubicacion: originRef.current.value,
+    //         lat: results[0].geometry.location.lat(),
+    //         lng: results[0].geometry.location.lng(),
+    //       })
+    //       .then((resultsBD) => {
+    //         addMostrar(resultsBD)
+    //         successRef.current.classList.remove('d-none');
+    //         successRef.current.innerHTML = resultsBD.data.message;
+    //         setShowModal(false);
+    //       })
+    //       .catch((error) => {
+    //         console.log(error)
+    //         alertRef.current.classList.remove('d-none');
+    //         alertRef.current.innerHTML = error.response.data.message;
+    //       });
+    //   }
+    // );
+    EnvSols()
   }
 
   const actionBuscarPatrocinador = () => {
@@ -130,13 +133,30 @@ function RegistroEvento({ negocio = false, map }) {
 
   const AñSols = (id, nombre, rol) => {
     if((solis.filter((sol) => sol.nombre === nombre).length === 0)){
-      setSolis([...solis, {nombre: nombre, id:id, rol: rol} ] )
+      setSolis([...solis, {
+        nombre: nombre,
+        propietario: user.id, 
+        propietario_rol: user.rol, 
+        receptor: id,
+        receptor_rol: rol} ] )
     }
   }
-
   const DelSols = (nombre) => {
     setSolis(solis.filter((sol) => sol.nombre !== nombre ))
   }
+  const EnvSols = () => {
+      solis.map((sol) => {
+        instance.post('/mensajes/chats', {propietario: sol.propietario, propietario_rol: sol.propietario_rol, receptor: sol.receptor, receptor_rol: sol.receptor_rol})
+        .then((res) => {
+          console.log(res)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+      })
+  }
+
+
 
   return (
     <>
@@ -222,7 +242,7 @@ function RegistroEvento({ negocio = false, map }) {
                   {!patrocinadores.length ? (<p>Selecciona un tipo de patrocinador y haz click en buscar (si ya lo has echo y no aparece nada, no hay patrocinadores disponibles de ese tipo).</p>) : (null)}
                   {patrocinadores.map((patrocinador, index) => {
                     return (
-                      <div key={index} className="tarjHome" onClick={() => AñSols(patrocinador.id, patrocinador.nombre, "Patr.")}>
+                      <div key={index} className="tarjHome" onClick={() => AñSols(patrocinador.id, patrocinador.nombre, patrocinador.rol)}>
                         <div className="contImgTarj">
                           <div className="contContimg"><img src={img} alt="Sin imagen" /></div>
                         </div>
@@ -251,7 +271,7 @@ function RegistroEvento({ negocio = false, map }) {
                   {!artistas.length ? (<p>Selecciona un tipo de entretenimiento y haz click en buscar (si ya lo has echo y no aparece nada, no hay entretenimientos disponibles de ese tipo).</p>) : (null)}
                   {artistas.map((artista, index) => {
                     return (
-                      <div key={index} className="tarjHome" onClick={() => AñSols(artista.id, artista.nombre, "Ent.")}>
+                      <div key={index} className="tarjHome" onClick={() => AñSols(artista.id, artista.nombre, artista.rol)}>
                         <div className="contImgTarj">
                           <div className="contContimg"><img src={img} alt="Sin imagen" /></div>
                         </div>

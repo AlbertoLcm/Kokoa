@@ -1,22 +1,42 @@
-import React, { useEffect, useState } from "react";
-import instance from "../../api/axios";
-import useAuth from "../../auth/useAuth";
+import React, { useState } from "react";
 import Modal from "../Modal";
 import Chat from "./Chat";
 
 const AllChats = () => {
 
   const [showModal, setShowModal] = useState(false);
-  const [chats, setChats] = useState([]);
   const [receptor, setReceptor] = useState({});
-  const { user } = useAuth();
 
-  useEffect(() => {
-    instance.get(`/api/mensajes/${user.id}/${user.rol}`)
-    .then((res) => {
-      setChats(res.data);
-    })
-  }, []);
+  const chats = [{
+    "id": 5,
+    "nombre": "Restaurante Meli",
+    "direccion": "Ixtapaluca, Méx., México",
+    "descripcion": "esto es un ejemplo\n",
+    "horario": " - ,  - ,  - ,  - ,  - ,  - ,  - ",
+    "rol": "negocios",
+    "propietario": 2,
+    "tipo": null,
+    "numero": "",
+    "email": "",
+    "sitio_web": null,
+    "portada": null,
+    "perfil": "https://koko-server.fly.dev/api/upload/user.jpg"
+  },
+  {
+    "id": 6,
+    "nombre": "Tienda de tomates",
+    "direccion": "",
+    "descripcion": "preuba no es real",
+    "horario": " - ,  - ,  - ,  - ,  - ,  - ,  - ",
+    "rol": "negocios",
+    "propietario": 6,
+    "tipo": null,
+    "numero": "",
+    "email": "",
+    "sitio_web": null,
+    "portada": null,
+    "perfil": "https://koko-server.fly.dev/api/upload/user.jpg"
+  }]
 
   const actionMostrarChat = (chat) => {
     setShowModal(true);
@@ -26,7 +46,6 @@ const AllChats = () => {
   return (
     <>
       <section className="contSeleccion">
-        {!chats.length ? (<h1> No hay chats </h1>) : (null)}
         {chats.map((chat, index) => {
           return (
             <>
@@ -36,7 +55,6 @@ const AllChats = () => {
                 </div>
                 <div className="contInfoSelChat">
                   <h2>{chat.nombre}</h2>
-                  <p>Ultimo mensaje</p>
                 </div>
               </section>
             </>
@@ -44,14 +62,17 @@ const AllChats = () => {
         })}
       </section>
       <section>
-        <Chat receptor={receptor} />
+        {console.log(receptor.id)}
+        {
+          receptor.id !== undefined ? (
+            <Chat receptor={receptor} />
+          ) : (
+            <div id="altChat">
+              <h1>Seleccina un chat y comienza tus negociaciones</h1>
+            </div>
+          )
+        }
       </section>
-      <Modal
-      estado={showModal}
-      cambiarEstado={setShowModal}
-      titulo={receptor.nombre}>
-        
-      </Modal>
     </>
   );
 };

@@ -10,6 +10,7 @@
         height: calc(100vh - 190px);
         display: grid;
         grid-template-columns: 1fr 2fr;
+        gap: 10px;
     }
     /* Chats seleccion */
 
@@ -20,17 +21,25 @@
                 gap: 10px;
             }
         /* Contenedor de los chats */
-
+        #altChat{
+            text-align: center;
+            padding-top: 20%;
+        }#altChat > h1 {
+            color:gray !important;
+        }
         .contSelChat {
             height: 60px;
-            width: calc(100% - 30px);
+            width: calc(100% - 10px);
             border-radius: 10px;
             display: flex;
             align-items: center;
-            padding-left: 10px;
-            padding-right: 10px;
+            padding-left: 5px;
+            padding-right: 5px;
             background-color: #2D0E30;
             color: #f3f3f3;
+        }.contInfoSelChat > h2 {
+            overflow: hidden;
+            word-wrap: break-word;
         }
         .contSelChat .contImgSelChat{
             height: 50px;
@@ -113,8 +122,8 @@
         height: auto;
         background-color: #2f0033;
         padding: 10px;
-        border-radius: 10px;
-        margin-bottom: 10px;
+        border-radius: 10px 15px 0px 10px;
+        margin-bottom: 10px
     }
     .homeChat .mensajeReceptor{
         width: 100%;
@@ -127,7 +136,7 @@
         height: auto;
         background-color: #9b3ea3;
         padding: 10px;
-        border-radius: 10px;
+        border-radius: 0px 10px 10px 10px;
         margin-bottom: 10px;
     }
 
@@ -277,6 +286,8 @@
         }
         #ContGeneralHome #HeaderFeedHome{
             height: auto;
+        }#HeaderFeedHome > h2 {
+            display: inline-block;
         }
         #ContGeneralHome .feedHome #BtnFeedAnfitrion {
             border-bottom: 1px solid #f3f3f369;
@@ -851,7 +862,7 @@
     /* FIN Sección 2, eventos */
 }
 
-@media (max-width: 900px) {
+@media (max-width: 425px) {
     /* Esto es para los chats */
 
     .contHomeChat {
@@ -880,7 +891,8 @@
         grid-template-rows: auto minmax(260px, 260px) auto;
     }
     .contSelChat {
-        height: 60px;
+        height: 6
+        0px;
         width: 60px;
         border-radius: 10px;
         display: flex;
@@ -889,6 +901,7 @@
         padding-right: 0px;
         background: none;   
         color: #f3f3f3;
+        overflow-y: auto;
     }
     .contSelChat .contImgSelChat{
         height: 50px;

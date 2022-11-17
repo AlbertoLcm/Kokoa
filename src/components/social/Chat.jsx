@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import instance from "../../api/axios";
 import useAuth from "../../auth/useAuth";
 import socket from "../../components/sockets/Socket";
@@ -6,7 +6,8 @@ import socket from "../../components/sockets/Socket";
 const Chat = ({ receptor }) => {
 
   const { user } = useAuth();
-
+  
+  const chatPos = useRef()
   const [mensajes, setMensajes] = useState([]);
   const [mensajeEmisor, setMensajeEmisor] = useState({
     mensaje: "",
@@ -83,6 +84,7 @@ const Chat = ({ receptor }) => {
             )
           })
         }
+        <div ref={chatPos}/>
       </section>
 
       <form onSubmit={actionEviarMensaje} method="POST" action="/" className="homeEscrituraChat">
