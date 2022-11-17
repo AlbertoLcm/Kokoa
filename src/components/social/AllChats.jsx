@@ -62,11 +62,14 @@ const AllChats = () => {
           )
         })}
       </section>
+      <section>
+        <Chat receptor={receptor} />
+      </section>
       <Modal
       estado={showModal}
       cambiarEstado={setShowModal}
       titulo={receptor.nombre}>
-        <Chat receptor={receptor} />
+        
       </Modal>
     </>
   );

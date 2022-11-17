@@ -105,7 +105,6 @@ function ConPerf() {
     setShowModal5(false);
     instance.put(`/usuarios/${user.id}`, usuarioUpdate)
       .then((res) => {
-        console.log(res)
         instance.get(`/usuarios/${user.id}`)
         .then((res) => {
           setUsuario(res.data)

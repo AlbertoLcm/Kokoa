@@ -894,12 +894,7 @@ function Home() {
                   ) : visua === 6 ? (
                     <>
                       <div className="contHomeChat">
-
-                        
-                 
                           <AllChats />
-                       
-
                       </div>
                     </>
                   ) : (
