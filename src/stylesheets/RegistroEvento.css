@@ -1,3 +1,20 @@
+/* Seccion de solicutudes */
+    .tarjSol {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr;
+        align-items: center;
+        background-color: #f3f3f341;
+        border-radius: 25px;
+        padding: 5px 15px 5px 5px;
+        margin: 10px;
+    }.tarjSol > button {
+        background: #f3f3f375;
+        border-radius: 10px;
+        margin: 0px 5px 0px 5px;
+        border: 1px solid white;
+    }
+/* Fin de seccion de solicitudes */
+
 #hrBusc {
     width: 90%;
     margin-top: 10px;

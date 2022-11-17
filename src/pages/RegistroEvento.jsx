@@ -16,6 +16,7 @@ function RegistroEvento({ negocio = false, map }) {
   const [showModal, setShowModal] = useState(false);
   const [patrocinadores, setPatrocinadores] = useState([]);
   const [artistas, setArtistas] = useState([]);
+  const [solis, setSolis] = useState([]);
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyBqhV6i7d19_4MlXk1gEtZ0flSx_7yYfo8",
@@ -126,7 +127,17 @@ function RegistroEvento({ negocio = false, map }) {
         console.log(error);
       });
   };
-  
+
+  const AñSols = (id, nombre, rol) => {
+    if((solis.filter((sol) => sol.nombre === nombre).length === 0)){
+      setSolis([...solis, {nombre: nombre, id:id, rol: rol} ] )
+    }
+  }
+
+  const DelSols = (nombre) => {
+    setSolis(solis.filter((sol) => sol.nombre !== nombre ))
+  }
+
   return (
     <>
       <div id="ContGeneralRegistrarEvento">
@@ -208,10 +219,10 @@ function RegistroEvento({ negocio = false, map }) {
                 </section>
 
                 <section className="contBuscPatr">
-                  {!patrocinadores.length ? (<p>Busca un patrocinador para mostrar algo</p>) : (null)}
-                  {patrocinadores.map((patrocinador) => {
+                  {!patrocinadores.length ? (<p>Selecciona un tipo de patrocinador y haz click en buscar (si ya lo has echo y no aparece nada, no hay patrocinadores disponibles de ese tipo).</p>) : (null)}
+                  {patrocinadores.map((patrocinador, index) => {
                     return (
-                      <div className="tarjHome" >
+                      <div key={index} className="tarjHome" onClick={() => AñSols(patrocinador.id, patrocinador.nombre, "Patr.")}>
                         <div className="contImgTarj">
                           <div className="contContimg"><img src={img} alt="Sin imagen" /></div>
                         </div>
@@ -237,10 +248,10 @@ function RegistroEvento({ negocio = false, map }) {
                 </section>
 
                 <section className="contBuscPatr">
-                  {!artistas.length ? (<p>Busca un artista para mostrar algo</p>) : (null)}
-                  {artistas.map((artista) => {
+                  {!artistas.length ? (<p>Selecciona un tipo de entretenimiento y haz click en buscar (si ya lo has echo y no aparece nada, no hay entretenimientos disponibles de ese tipo).</p>) : (null)}
+                  {artistas.map((artista, index) => {
                     return (
-                      <div className="tarjHome" >
+                      <div key={index} className="tarjHome" onClick={() => AñSols(artista.id, artista.nombre, "Ent.")}>
                         <div className="contImgTarj">
                           <div className="contContimg"><img src={img} alt="Sin imagen" /></div>
                         </div>
@@ -252,6 +263,27 @@ function RegistroEvento({ negocio = false, map }) {
                     )
                     })}
                 </section>
+                {
+                  solis.length > 0 ? (
+                    <section>
+                      <center><hr id="hrBusc" /></center>
+                      <fieldset>
+                        <legend>Seleccion de patrocinios y entretenimiento</legend>
+                        {solis.map((sol, index) => {
+                          return (
+                            <div className="tarjSol" key={index}>
+                              <span>{sol.nombre} ({sol.rol})</span>
+                              <button onClick={() => DelSols(sol.nombre)} title="Borrar de la lista"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash-x" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7h16" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /><path d="M10 12l4 4m0 -4l-4 4" /></svg></button>
+                              <button title="Ir a su perfil"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="2" /><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" /></svg></button>
+                            </div>
+                          )
+                        })}
+                      </fieldset>
+                    </section>
+                  ) :(
+                    <div/>
+                  )
+                }
               </div>
             </>
           ) : (null)}
