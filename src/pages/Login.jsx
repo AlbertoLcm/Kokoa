@@ -29,6 +29,11 @@ function Login() {
     return <Loading />;
   }
 
+  const actionLogear = (e) => {
+    e.preventDefault(); //esto previene que el form se mande.
+    login(userCredentials, location.state?.from, alertRef)
+  };
+
   return (
     <div className="contImagen">
       <Header>
@@ -43,7 +48,7 @@ function Login() {
             <div ref={alertRef} className="alert d-none">
               Mensaje alert
             </div>
-            <div className="form-group">
+            <form onSubmit={actionLogear} method="POST" className="form-group">
               <div className="inputBox">
                 <input
                   id="email"
@@ -84,8 +89,8 @@ function Login() {
                 <h3>¿Olvidaste tu contraseña?</h3>
               </Link>
               <button
+                type="submit"
                 className="boton1"
-                onClick={() => login(userCredentials, location.state?.from, alertRef)}
               >
                 Ingresar
               </button>
@@ -96,7 +101,7 @@ function Login() {
               <Link to="/signup" className="boton3">
                 Crear Cuenta
               </Link> */}
-            </div>
+            </form>
           </div>
         </div>
       </div>

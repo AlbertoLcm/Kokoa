@@ -108,6 +108,7 @@
         height: auto;
     }
     .homeChat .mensajeEmisor p{
+        width: auto;
         max-width: 70%;
         height: auto;
         background-color: #2f0033;
