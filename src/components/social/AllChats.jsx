@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import instance from "../../api/axios";
+import useAuth from "../../auth/useAuth";
 import Modal from "../Modal";
 import Chat from "./Chat";
 
@@ -6,38 +8,19 @@ const AllChats = () => {
 
   const [showModal, setShowModal] = useState(false);
   const [receptor, setReceptor] = useState({});
+  const [chats, setChats] = useState([]);
+  const { user } = useAuth();
 
-  const chats = [{
-    "id": 5,
-    "nombre": "Restaurante Meli",
-    "direccion": "Ixtapaluca, Méx., México",
-    "descripcion": "esto es un ejemplo\n",
-    "horario": " - ,  - ,  - ,  - ,  - ,  - ,  - ",
-    "rol": "negocios",
-    "propietario": 2,
-    "tipo": null,
-    "numero": "",
-    "email": "",
-    "sitio_web": null,
-    "portada": null,
-    "perfil": "https://koko-server.fly.dev/api/upload/user.jpg"
-  },
-  {
-    "id": 6,
-    "nombre": "Tienda de tomates",
-    "direccion": "",
-    "descripcion": "preuba no es real",
-    "horario": " - ,  - ,  - ,  - ,  - ,  - ,  - ",
-    "rol": "negocios",
-    "propietario": 6,
-    "tipo": null,
-    "numero": "",
-    "email": "",
-    "sitio_web": null,
-    "portada": null,
-    "perfil": "https://koko-server.fly.dev/api/upload/user.jpg"
-  }]
-
+  useEffect(() => {
+    instance.get(`/mensajes/chats/${user.id}/${user.rol}`)
+      .then((response) => {
+        setChats(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+  
   const actionMostrarChat = (chat) => {
     setShowModal(true);
     setReceptor(chat);
@@ -46,6 +29,7 @@ const AllChats = () => {
   return (
     <>
       <section className="contSeleccion">
+        {!chats.length ? (<h1> No hay chats </h1>) : (null)}
         {chats.map((chat, index) => {
           return (
             <>

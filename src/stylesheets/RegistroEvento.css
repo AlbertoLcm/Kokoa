@@ -253,6 +253,26 @@
     gap: 10px;
     overflow-y: scroll;
 }
+.message1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: #f3f3f3;
+}
+.d-none{
+    display: none;
+}
+.message2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: #f3f3f3;
+}
+.d-none{
+    display: none;
+}
 /* Esto es del scoll */
 .contBuscPatr::-webkit-scrollbar {
     -webkit-appearance: none;

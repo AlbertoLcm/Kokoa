@@ -428,8 +428,8 @@ function Home() {
     );
   }
 
-  if (rol.rol === "negocios") {
-    formHorar(rol.horario)
+  if (user.rol !== "usuarios") {
+    // formHorar(rol.horario)
     return (
       <>
         <Header tipo={"responsive"} perfil={user.nombre} back={false} name={false} />

@@ -11,21 +11,21 @@ const Chat = ({ receptor }) => {
   const [mensajes, setMensajes] = useState([]);
   const [mensajeEmisor, setMensajeEmisor] = useState({
     mensaje: "",
-    receptor: { id: receptor.id, rol: receptor.rol },
+    receptor: { id: receptor.receptor, rol: receptor.receptor_rol },
     emisor: user.id,
     emisor_rol: user.rol,
     origen: "envio"
   });
   
   useEffect(() => {
-    instance.get(`/mensajes/${user.id}/${user.rol}/${receptor.id}/${receptor.rol}`)
+    instance.get(`/mensajes/${user.id}/${user.rol}/${receptor.receptor}/${receptor.receptor_rol}`)
       .then((response) => {
         setMensajes(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
-    socket.on(`new-from-${receptor.id}-to-${user.id}-${receptor.rol}`, (msg) => {
+    socket.on(`new-from-${receptor.receptor}-to-${user.id}-${receptor.receptor_rol}`, (msg) => {
       setMensajes([...mensajes, {mensaje: msg, origen: "recibo"}]);
     });
   }, [mensajes]);
@@ -45,8 +45,9 @@ const Chat = ({ receptor }) => {
       setMensajes([...mensajes, {mensaje: mensajeEmisor.mensaje, origen: "envio"}]);
       setMensajeEmisor({
         mensaje: "",
-        receptor: { id: receptor.id, rol: receptor.rol },
+        receptor: { id: receptor.receptor, rol: receptor.receptor_rol },
         emisor: user.id,
+        emisor_rol: user.rol,
         origen: "envio"
       });
     }

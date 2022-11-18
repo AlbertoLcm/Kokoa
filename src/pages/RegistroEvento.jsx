@@ -11,6 +11,8 @@ function RegistroEvento({ negocio = false, map }) {
   /** @type React.MutableRefObject<HTMLInputElement> */
   const alertRef = useRef();
   const successRef = useRef();
+  const mensajeRef1 = useRef();
+  const mensajeRef2 = useRef();
 
   const { addMostrar, user } = useAuth();
   const [showModal, setShowModal] = useState(false);
@@ -74,12 +76,12 @@ function RegistroEvento({ negocio = false, map }) {
 
   function handleSubmit() {
     // eslint-disable-next-line no-undef
-    const geocoder = new google.maps.Geocoder();
-    if (originRef.current.value === "") {
-      alertRef.current.classList.remove('d-none');
-      alertRef.current.innerText = "Debes ingresar la ubicación del evento";
-      return;
-    }
+    // const geocoder = new google.maps.Geocoder();
+    // if (originRef.current.value === "") {
+    //   alertRef.current.classList.remove('d-none');
+    //   alertRef.current.innerText = "Debes ingresar la ubicación del evento";
+    //   return;
+    // }
     // Al chile no se que pedo, pero dice que hay algo mal con el post de eventos
     // geocoder.geocode(
     //   {
@@ -114,27 +116,34 @@ function RegistroEvento({ negocio = false, map }) {
   const actionBuscarPatrocinador = () => {
     instance.post('/patrocinadores/tipo', buscador)
       .then((results) => {
+        mensajeRef1.current.classList.add('d-none');
         setPatrocinadores(results.data);
       })
       .catch((error) => {
-        console.log(error);
+        mensajeRef1.current.classList.remove('d-none');
+        mensajeRef1.current.innerHTML = error.response.data.message;
+        setPatrocinadores([]);
       });
   };
 
   const actionBuscarEntretenimiento = () => {
     instance.post('/artistas/tipo', buscadorEntretenimiento)
       .then((results) => {
+        mensajeRef2.current.classList.add('d-none');
         setArtistas(results.data);
       })
       .catch((error) => {
-        console.log(error);
+        mensajeRef2.current.classList.remove('d-none');
+        mensajeRef2.current.innerHTML = error.response.data.message;
+        setArtistas([]);
       });
   };
 
-  const AñSols = (id, nombre, rol) => {
+  const AñSols = (id, nombre, rol, perfil) => {
     if((solis.filter((sol) => sol.nombre === nombre).length === 0)){
       setSolis([...solis, {
         nombre: nombre,
+        perfil: perfil,
         propietario: user.id, 
         propietario_rol: user.rol, 
         receptor: id,
@@ -146,7 +155,14 @@ function RegistroEvento({ negocio = false, map }) {
   }
   const EnvSols = () => {
       solis.map((sol) => {
-        instance.post('/mensajes/chats', {propietario: sol.propietario, propietario_rol: sol.propietario_rol, receptor: sol.receptor, receptor_rol: sol.receptor_rol})
+        instance.post('/mensajes/chats', {
+          propietario: sol.propietario, 
+          propietario_rol: sol.propietario_rol, 
+          receptor: sol.receptor, 
+          receptor_rol: sol.receptor_rol,
+          perfil: sol.perfil,
+          nombre: sol.nombre
+        })
         .then((res) => {
           console.log(res)
         })
@@ -239,10 +255,12 @@ function RegistroEvento({ negocio = false, map }) {
                 </section>
 
                 <section className="contBuscPatr">
-                  {!patrocinadores.length ? (<p>Selecciona un tipo de patrocinador y haz click en buscar (si ya lo has echo y no aparece nada, no hay patrocinadores disponibles de ese tipo).</p>) : (null)}
+                <div className="mensaje1" ref={mensajeRef1}>
+                    Busca un artista
+                  </div>
                   {patrocinadores.map((patrocinador, index) => {
                     return (
-                      <div key={index} className="tarjHome" onClick={() => AñSols(patrocinador.id, patrocinador.nombre, patrocinador.rol)}>
+                      <div key={index} className="tarjHome" onClick={() => AñSols(patrocinador.id, patrocinador.nombre, patrocinador.rol, patrocinador.perfil)}>
                         <div className="contImgTarj">
                           <div className="contContimg"><img src={img} alt="Sin imagen" /></div>
                         </div>
@@ -268,10 +286,12 @@ function RegistroEvento({ negocio = false, map }) {
                 </section>
 
                 <section className="contBuscPatr">
-                  {!artistas.length ? (<p>Selecciona un tipo de entretenimiento y haz click en buscar (si ya lo has echo y no aparece nada, no hay entretenimientos disponibles de ese tipo).</p>) : (null)}
+                  <div className="mensaje2" ref={mensajeRef2}>
+                    Busca un artista
+                  </div>
                   {artistas.map((artista, index) => {
                     return (
-                      <div key={index} className="tarjHome" onClick={() => AñSols(artista.id, artista.nombre, artista.rol)}>
+                      <div key={index} className="tarjHome" onClick={() => AñSols(artista.id, artista.nombre, artista.rol, artista.perfil)}>
                         <div className="contImgTarj">
                           <div className="contContimg"><img src={img} alt="Sin imagen" /></div>
                         </div>

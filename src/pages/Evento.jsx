@@ -10,6 +10,7 @@ import '../stylesheets/pages/Eventos.css';
 import Skeleton from "../components/Skeleton";
 import Comentario from "../components/social/Comentario";
 import Modal from "../components/Modal";
+import socket from "../components/sockets/Socket";
 
 function Evento() {
   const { id } = useParams();
@@ -47,11 +48,16 @@ function Evento() {
       .then((asistencias) => {
         setAsistencia(asistencias.data)
       })
-
+    instance.get(`/eventos/comentarios/${id}`)
+    .then((comentarios) => {
+      setComentarios(comentarios.data)
+    })
+    socket.on('new-comentario', (comentario) => {
     instance.get(`/eventos/comentarios/${id}`)
       .then((comentarios) => {
         setComentarios(comentarios.data)
       })
+    })
   }, []);
 
   const [comentarioEvento, setComentarioEvento] = useState({
@@ -123,10 +129,7 @@ function Evento() {
     instance.post("/eventos/comentarios", { comentarioEvento, fecha: fechaActual })
       .then((res) => {
         setShowModalEvento(false);
-        instance.get(`/eventos/comentarios/${id}`)
-          .then((comentarios) => {
-            setComentarios(comentarios.data)
-          })
+        socket.emit('comentar', comentarioEvento);
       })
       .catch((err) => console.log(err));
   };
