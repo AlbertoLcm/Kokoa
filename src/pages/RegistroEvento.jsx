@@ -76,41 +76,40 @@ function RegistroEvento({ negocio = false, map }) {
 
   function handleSubmit() {
     // eslint-disable-next-line no-undef
-    // const geocoder = new google.maps.Geocoder();
-    // if (originRef.current.value === "") {
-    //   alertRef.current.classList.remove('d-none');
-    //   alertRef.current.innerText = "Debes ingresar la ubicación del evento";
-    //   return;
-    // }
-    // Al chile no se que pedo, pero dice que hay algo mal con el post de eventos
-    // geocoder.geocode(
-    //   {
-    //     address: originRef.current.value,
-    //   },
-    //   (results, status) => {
-    //     instance
-    //       .post("eventos/add", {
-    //         datosEvento,
-    //         id: user.id,
-    //         rol: user.rol,
-    //         ubicacion: originRef.current.value,
-    //         lat: results[0].geometry.location.lat(),
-    //         lng: results[0].geometry.location.lng(),
-    //       })
-    //       .then((resultsBD) => {
-    //         addMostrar(resultsBD)
-    //         successRef.current.classList.remove('d-none');
-    //         successRef.current.innerHTML = resultsBD.data.message;
-    //         setShowModal(false);
-    //       })
-    //       .catch((error) => {
-    //         console.log(error)
-    //         alertRef.current.classList.remove('d-none');
-    //         alertRef.current.innerHTML = error.response.data.message;
-    //       });
-    //   }
-    // );
-    EnvSols()
+    const geocoder = new google.maps.Geocoder();
+    if (originRef.current.value === "") {
+      alertRef.current.classList.remove('d-none');
+      alertRef.current.innerText = "Debes ingresar la ubicación del evento";
+      return;
+    }
+    geocoder.geocode(
+      {
+        address: originRef.current.value,
+      },
+      (results, status) => {
+        instance
+          .post("eventos/add", {
+            datosEvento,
+            id: user.id,
+            rol: user.rol,
+            ubicacion: originRef.current.value,
+            lat: results[0].geometry.location.lat(),
+            lng: results[0].geometry.location.lng(),
+          })
+          .then((resultsBD) => {
+            addMostrar(resultsBD)
+            successRef.current.classList.remove('d-none');
+            successRef.current.innerHTML = resultsBD.data.message;
+            setShowModal(false);
+          })
+          .catch((error) => {
+            console.log(error)
+            alertRef.current.classList.remove('d-none');
+            alertRef.current.innerHTML = error.response.data.message;
+          });
+      }
+    );
+    // EnvSols()
   }
 
   const actionBuscarPatrocinador = () => {
