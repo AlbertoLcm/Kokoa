@@ -19,7 +19,7 @@ body::-webkit-scrollbar {
 }
 body::-webkit-scrollbar:vertical {
     width:7px;
-    background-color: #452847;
+    background-color: #340d38;
 }
 body::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
     display: none;

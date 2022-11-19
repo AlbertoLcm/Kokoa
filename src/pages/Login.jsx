@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import React, { useRef, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import useAuth from "../auth/useAuth";
 import Header from "../components/Header";
 import Loading from "../components/Loading";
@@ -7,7 +7,7 @@ import routes from "../helpers/routes";
 import "../stylesheets/Login.css";
 
 function Login() {
-  const { login, islogin, user } = useAuth();
+  const { login, islogin } = useAuth();
   const location = useLocation();
   /** @type React.MutableRefObject<HTMLInputElement> */
   const alertRef = useRef();
@@ -16,6 +16,8 @@ function Login() {
     email: "",
     password: "",
   });
+
+  console.log(location)
 
   const handleChange = (e) => {
     setUserCredentials({
@@ -31,13 +33,13 @@ function Login() {
 
   const actionLogear = (e) => {
     e.preventDefault(); //esto previene que el form se mande.
-    login(userCredentials, location.state?.from, alertRef)
+    login(userCredentials, location.state, alertRef)
   };
 
   return (
     <div className="contImagen">
       <Header>
-        <Link to={routes.newusuario} className="btnLink">
+        <Link to={routes.newusuario} state={{from: location.state?.from, pagina: location.state?.pagina}} className="btnLink">
           Crear Cuenta
         </Link>
       </Header>

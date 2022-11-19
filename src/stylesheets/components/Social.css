@@ -77,6 +77,28 @@
           z-index: 3;
       }
       /* FIN Modal para comentar */
+
+      /* Modal para compartir */
+        #contCompartirModal{
+          padding-top: 10px;
+          color: #f3f3f3;
+        }
+        #contCompartirModal .url{
+          background-color: dodgerblue;
+          padding: 10px;
+          border-radius: 10px;
+          margin-top: 10px;
+          margin-bottom: 10px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          color: #f3f3f3bb;
+        }
+        #contCompartirModal .url:hover{
+          background-color: rgb(6, 127, 248);
+          cursor: pointer;
+        }
+
+      /* FIN Modal para compartir */
     
   /* ==== FIN Apartado comentar ==== */
 

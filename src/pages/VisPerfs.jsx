@@ -8,6 +8,7 @@ import { slide as Menu } from "react-burger-menu";
 import DatosAnfitrion from "../components/infElements/DatosAfitrion";
 import ListaEventosFeed from "../components/infElements/ListaEventosFeed";
 import Header from "../components/Header"
+import { useEffect } from "react";
 
 function VisPerfs() {
   const { id } = useParams()
@@ -17,6 +18,14 @@ function VisPerfs() {
   const [visua, setVisua] = useState(1);
   const toggle = () => {setOpcio(!opcio)};
   const location = useLocation();
+
+  console.log(location)
+
+  useEffect(() => {
+    if (location.state?.pagina) {
+      setVisua(location.state.pagina);
+    }
+  }, []);
 
   return (
     <>

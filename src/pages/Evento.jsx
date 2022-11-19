@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import instance from "../api/axios";
 import useAuth from "../auth/useAuth";
 import Header from "../components/Header";
 import MapSmall from "../components/maps/MapSmall";
 import imagen from "../images/concert.jpg"
-import foto from "../images/Wall (59).jpg";
 import '../stylesheets/pages/Eventos.css';
 import Skeleton from "../components/Skeleton";
 import Comentario from "../components/social/Comentario";
 import Modal from "../components/Modal";
 import socket from "../components/sockets/Socket";
+import routes from "../helpers/routes";
 
 function Evento() {
   const { id } = useParams();
@@ -23,11 +23,21 @@ function Evento() {
   const [visua, setVisua] = useState(1);
   const [showModalEvento, setShowModalEvento] = useState(false);
   const [comentarios, setComentarios] = useState([]);
+  const [showModalCompartir, setShowModalCompartir] = useState(false);
+
+  /** @type React.MutableRefObject<HTMLInputElement> */
+  const urlRef = useRef();
+  const successRef = useRef();
 
   const location = useLocation();
   const nav = useNavigate();
 
   useEffect(() => {
+
+    if (location.state?.pagina) {
+      setVisua(location.state.pagina);
+    }
+
     // Obtenemos el evento
     instance.get(`/eventos/evento/${id}`)
       .then((res) => {
@@ -49,14 +59,14 @@ function Evento() {
         setAsistencia(asistencias.data)
       })
     instance.get(`/eventos/comentarios/${id}`)
-    .then((comentarios) => {
-      setComentarios(comentarios.data)
-    })
-    socket.on('new-comentario', (comentario) => {
-    instance.get(`/eventos/comentarios/${id}`)
       .then((comentarios) => {
         setComentarios(comentarios.data)
       })
+    socket.on('new-comentario', (comentario) => {
+      instance.get(`/eventos/comentarios/${id}`)
+        .then((comentarios) => {
+          setComentarios(comentarios.data)
+        })
     })
   }, []);
 
@@ -135,13 +145,41 @@ function Evento() {
   };
 
   let fecini = new Date(evento.fecha_inicio)
+  const actionCopiar = () => {
+    let aux = document.createElement("input");
+    aux.setAttribute("value", window.location.href);
+    document.body.appendChild(aux);
+    aux.select();
+    document.execCommand("copy");
+    document.body.removeChild(aux);
+
+    successRef.current.classList.remove('d-none');
+    successRef.current.innerHTML = 'Enlace copiado';
+  }
 
   return (
     <>
+
+      <Modal
+        estado={showModalCompartir}
+        cambiarEstado={setShowModalCompartir}
+        titulo={"Compartir"}
+      >
+        <div id="contCompartirModal">
+          <div ref={successRef} className="success d-none">
+            Todo correcto
+          </div>
+          <p>Link del evento</p>
+          <div className="url" ref={urlRef} onClick={() => actionCopiar()}>{window.location.href}</div>
+          <p>Compartir</p>
+          <button onClick={() => actionCopiar()}>Copiar link</button>
+        </div>
+      </Modal>
+
       <Header tipo={'responsive'} perfil={user.nombre} back={true} />
       <div id="ContEventoGeneral">
 
-        <div className="btnBack" onClick={() => nav(-1, { state: { visua: 2 } })}>
+        <div className="btnBack" onClick={() => nav(-1, { state: { from: location, pagina: 2 } })}>
           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <line x1="5" y1="12" x2="19" y2="12" />
@@ -159,14 +197,18 @@ function Evento() {
             </div>
 
             <div className="titulo">
-            <p className="infEventoFecha">{fecini.toLocaleDateString('es-us', { weekday:"long", month:"short", year:"numeric", day:"numeric"})}, a las {fecini.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
+              <p className="infEventoFecha">{fecini.toLocaleDateString('es-us', { weekday: "long", month: "short", year: "numeric", day: "numeric" })}, a las {fecini.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
 
               <h1>{evento.nombre}</h1>
             </div>
 
             <div className="botones">
-              {asistencia.find((asistencia) => asistencia.id_evento === evento.id_evento) ? <button className="asistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button> : <button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>}
-              <button>Compartir</button>
+              {user ? (
+                asistencia.find((asistencia) => asistencia.id_evento === evento.id_evento) ? <button className="asistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button> : <button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>
+              ) : (
+                <button className="asistir" onClick={() => nav(routes.login, { state: { from: location, pagina: 1 } })}>Asistir</button>
+              )}
+              <button onClick={() => setShowModalCompartir(!showModalCompartir)}>Compartir</button>
             </div>
             <section id="ContBtnEvento">
               <div id="BtnEvento">
@@ -212,7 +254,7 @@ function Evento() {
                     {evento.tipo}
                   </section>
 
-                  {!location.state ? (
+                  {!location.state?.from ? (
 
                     <section className="anfitrion">
                       {evento.rol_anfitrion === "negocios" ? (
@@ -260,7 +302,7 @@ function Evento() {
                   </div>
                 </Modal>
 
-                <div id="Comentar">
+                {user ? (<div id="Comentar">
                   <section className="contFotoUsuario">
                     <img src={user.perfil} alt="Foto Usuario" />
                   </section>
@@ -270,7 +312,15 @@ function Evento() {
                       Comenta algo sobre este evento
                     </p>
                   </section>
+                </div>) : (<div id="Comentar">
+                  <section className="comentario">
+                    <p onClick={() => nav(routes.login, { state: { from: location, pagina: 2 } })}>
+                      Comenta algo sobre este evento
+                    </p>
+                  </section>
                 </div>
+                )}
+
 
 
                 {!comentarios.length ? (<div className="comentariosNull"> No hay comentarios </div>) : (null)}

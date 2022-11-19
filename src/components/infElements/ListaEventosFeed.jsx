@@ -98,7 +98,7 @@ function ListaEventosFeed({ id, solicito }) {
                     <p className="asistentesEvento">
                       Asistiran {evento.asistentes_cont} personas
                     </p>
-                    <Link to={`/evento/${evento.id_evento}`} state={{ from: location }} className="link">Ver más</Link>
+                    <Link to={`/evento/${evento.id_evento}`} state={{ from: location, pagina: 2 }} className="link">Ver más</Link>
                   </div>
 
                   <div className="coverEvento">

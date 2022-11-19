@@ -67,7 +67,7 @@ export default function AuthProvider({ children }) {
         setUser(usuarioRes.data.user.data);
         localStorage.setItem("token", usuarioRes.data.user.token);
         if (fromLocation) {
-          navigate(fromLocation, { replace: true });
+          navigate(fromLocation.from, {state: {pagina: fromLocation.pagina}});
         }
       })
       .catch((error) => {
@@ -90,14 +90,13 @@ export default function AuthProvider({ children }) {
       });
   };
   
-  const signup = (usuario, rol, fromLocation, alertRef) => {
-    instance
-      .post(`${rol}/signup`, usuario)
+  const signup = (usuario, fromLocation, alertRef) => {
+    instance.post(`/usuarios/signup`, usuario)
       .then((usuarioRes) => {
         setUser(usuarioRes.data.user.data);
         localStorage.setItem("token", usuarioRes.data.user.token);
         if (fromLocation) {
-          navigate(fromLocation, { replace: true });
+          navigate(fromLocation.from, {state: {pagina: fromLocation.pagina}});
         }
       })
       .catch((error) => {
@@ -109,15 +108,9 @@ export default function AuthProvider({ children }) {
   const logout = () => {
     const token = localStorage.getItem("token");
     instance
-      .put(
-        "/auth/logout",
-        { usuario: "prueba" },
-        {
-          headers: {
+      .put("/auth/logout", { usuario: "prueba" }, {headers: {
             authorization: token,
-          },
-        }
-      )
+          }})
       .then((res) => {
         localStorage.removeItem("token");
         setUser(null);

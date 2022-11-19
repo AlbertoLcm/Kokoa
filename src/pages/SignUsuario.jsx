@@ -13,13 +13,14 @@ function SignUsuario() {
   /** @type React.MutableRefObject<HTMLInputElement> */
   const alertRef = useRef();
 
+  console.log(location);
+
   const [usuario, setUsuario] = useState({
     nombre: "",
     apellidos: "",
     email: "",
     telefono: "",
     password: "",
-    rol: "usuarios"
   });
 
   const nav = useNavigate();
@@ -34,7 +35,7 @@ function SignUsuario() {
   return (
     <div className="contBackground">
       <Header>
-        <Link to={routes.login} className="btnLink">
+        <Link to={routes.login} state={{from: location.state?.from, pagina: location.state?.pagina}} className="btnLink">
           Iniciar Sesión
         </Link>
       </Header>
@@ -95,7 +96,7 @@ function SignUsuario() {
               </div>
             </div>
             <button className="boton1"
-              onClick={() => signup(usuario, "usuarios", location, alertRef)}>
+              onClick={() => signup(usuario, location.state, alertRef)}>
               Registrarse
             </button>
           </div>

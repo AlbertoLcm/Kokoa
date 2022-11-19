@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import instance from '../../api/axios';
 import Skeleton from '../Skeleton';
 import image from '../../images/loginWallpaper.jpg';
 import useAuth from '../../auth/useAuth';
+import Modal from '../Modal';
 
 function InfEvento({ evento, cerrar }) {
 
@@ -11,8 +12,12 @@ function InfEvento({ evento, cerrar }) {
   const [anfitrion, setAnfitrion] = useState([]);
   const [loading, setLoading] = useState(true);
   const [asistencia, setAsistencia] = useState([]);
+  const [showModalCompartir, setShowModalCompartir] = useState(false);
 
   const { user } = useAuth();
+  /** @type React.MutableRefObject<HTMLInputElement> */
+  const urlRef = useRef();
+  const successRef = useRef();
 
   useEffect(() => {
     // Obtenemos el anfitrion
@@ -71,8 +76,34 @@ function InfEvento({ evento, cerrar }) {
       })
   };
 
+  const actionCopiar = (url) => {
+    let aux = document.createElement("input");
+    aux.setAttribute("value", url);
+    document.body.appendChild(aux);
+    aux.select();
+    document.execCommand("copy");
+    document.body.removeChild(aux);
+
+    successRef.current.classList.remove('d-none');
+    successRef.current.innerHTML = 'Enlace copiado';
+  }
+
   return (
     <>
+      <Modal
+        estado={showModalCompartir}
+        cambiarEstado={setShowModalCompartir}
+        titulo={"Compartir"}
+      >
+        <div id="contCompartirModal">
+          <div ref={successRef} className="success d-none">
+            Todo correcto
+          </div>
+          <p>Link del evento</p>
+          <div className="url" ref={urlRef} onClick={() => actionCopiar(`${window.location.href}evento/${evento.id_evento}`)}>{`${window.location.href}evento/${evento.id_evento}`}</div>
+        </div>
+      </Modal>
+
       <button onClick={() => cerrar()} className="btnCerrar">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -86,7 +117,7 @@ function InfEvento({ evento, cerrar }) {
 
       <div className='contDataMarkerInfo'>
         <section className="contMarkerInfo">
-        <p className="infEventoFecha">{fecini.toLocaleDateString('es-us', { weekday:"long", month:"short", year:"numeric", day:"numeric"})}, {fecini.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
+          <p className="infEventoFecha">{fecini.toLocaleDateString('es-us', { weekday: "long", month: "short", year: "numeric", day: "numeric" })}, {fecini.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
 
           <h2>{evento.nombre}</h2>
           <p className="infEventoUbicacion">
@@ -97,7 +128,7 @@ function InfEvento({ evento, cerrar }) {
         <section className='contBtnMarkerInfo'>
           {asistencia.find((asistencia) => asistencia.id_evento === evento.id_evento) ? <button className="asistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button> : <button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>}
 
-          <button className='invitar'> Invitar </button>
+          <button className='invitar' onClick={() => setShowModalCompartir(!showModalCompartir)}> Compartir </button>
         </section>
 
         <section id="EventoInfo">

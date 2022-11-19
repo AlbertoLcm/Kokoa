@@ -10,12 +10,8 @@ const Comentar = ({ id_negocio, id_evento, tipo }) => {
   const [showModalEvento, setShowModalEvento] = useState(false);
   const { user } = useAuth();
 
-  const fecha = new Date();
-  const fechaActual = `${fecha.getFullYear()}-${fecha.getMonth() + 1}-${fecha.getDate()} ${fecha.getHours()}:${fecha.getMinutes()}:${fecha.getSeconds()}`;
-
   const [comentario, setComentario] = useState({
     comentario: "",
-    fecha: fechaActual,
     id_usuario: user.id,
     id_negocio: id_negocio,
   });
@@ -29,7 +25,6 @@ const Comentar = ({ id_negocio, id_evento, tipo }) => {
 
   const [comentarioEvento, setComentarioEvento] = useState({
     comentario: "",
-    fecha: fechaActual,
     id_usuario: user.id,
     id_evento: id_evento,
   });

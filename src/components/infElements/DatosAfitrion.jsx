@@ -42,8 +42,6 @@ function DatosAnfitrion({ id, section }) {
     return <Skeleton type={'perfilFeed'} />
   }
 
-
-
   const handleChange = (e) => {
     setComentario({
       ...comentario,
@@ -94,15 +92,14 @@ function DatosAnfitrion({ id, section }) {
         <section id="InfDetallesAnfitrion">
           <div className="datosAnfitrion">
             <h2>Detalles</h2>
-            <p> <b> Negocio </b> - Restaurante</p>
-            <p className="horario">Siempre abierto</p>
-            <p className="telefono">552255533</p>
-            <p className="correo">tunegocio@gmail.com</p>
-            <p className="web"><a href="">www.grannegocio.com</a></p>
-            <p className="ubicacion">San roberto ixtapaluca México, 55645, N. 8</p>
+            <p> <b> Negocio </b> </p>
+            <p className="horario">{anfitrion.horario}</p>
+            <p className="telefono">{anfitrion.numero}</p>
+            <p className="correo">{anfitrion.email}</p>
+            <p className="web"><a href="">{anfitrion.sitio_web}</a></p>
+            <p className="ubicacion">{anfitrion.direccion}</p>
             <p className="descripcion">
-              Somos un negocio comercial con grandes
-              ofertas accecibles para todos
+              {anfitrion.descripcion}
             </p>
           </div>
           <section className="fotosAnfitrion">
