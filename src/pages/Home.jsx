@@ -26,11 +26,16 @@ const MapNegocio = lazy(() => import("../components/maps/MapNegocio"));
 function Home() {
   // Area de pruebas
   const [mensajesCarg, setMensajesCarg] = useState([]);
-  
   const cambiarMensajes = (mensajes) => {
     setMensajesCarg(mensajes)
   }
-
+  const [allChats, setAllChats] = useState([]);
+  const ObtChats = () => {
+    instance.get('mensajes/chats', user.id)
+    .then((res) => {
+      console.log(res.data)
+    })
+  }
   const chatRef = useRef(null);
   // Fin del area de pruebas
 
