@@ -29,7 +29,7 @@
     background-color: #2a142c;
     border-radius: 25px;
     padding: 5px;
-    height: 100px;
+    min-height: 100px;
     display: flex;
     gap: 20px;
 }

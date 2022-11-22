@@ -27,13 +27,13 @@ const MapNegocio = lazy(() => import("../components/maps/MapNegocio"));
 function Home() {
   // Area de pruebas
   const [mensajesCarg, setMensajesCarg] = useState([]);
-  
   const cambiarMensajes = (mensajes) => {
     setMensajesCarg(mensajes)
   }
   const nav = useNavigate();
 
   const chatRef = useRef(null);
+
   // Fin del area de pruebas
   const { marcar, eventos, logout, user } = useAuth();
 

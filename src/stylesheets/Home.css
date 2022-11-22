@@ -453,6 +453,9 @@
             padding: 15px;
             color: #f3f3f3;
         }
+        #MarkerInfoPos .contMarkerInfo > .opCompartir:before {
+            left: 70%
+        }
         #MarkerInfoPos .contBtnMarkerInfo{
             display: flex;
             justify-content: flex-end;

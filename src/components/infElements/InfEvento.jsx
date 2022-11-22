@@ -12,7 +12,7 @@ function InfEvento({ evento, cerrar }) {
   const [anfitrion, setAnfitrion] = useState([]);
   const [loading, setLoading] = useState(true);
   const [asistencia, setAsistencia] = useState([]);
-  const [showModalCompartir, setShowModalCompartir] = useState(false);
+  const [opComp, setOpComp] = useState(false);
   const location = useLocation();
 
   const { user } = useAuth();
@@ -91,20 +91,6 @@ function InfEvento({ evento, cerrar }) {
 
   return (
     <>
-      <Modal
-        estado={showModalCompartir}
-        cambiarEstado={setShowModalCompartir}
-        titulo={"Compartir"}
-      >
-        <div id="contCompartirModal">
-          <div ref={successRef} className="success d-none">
-            Todo correcto
-          </div>
-          <p>Link del evento</p>
-          <div className="url" ref={urlRef} onClick={() => actionCopiar(`${window.location.href}evento/${evento.id_evento}`)}>{`${window.location.href}evento/${evento.id_evento}`}</div>
-        </div>
-      </Modal>
-
       <button onClick={() => cerrar()} className="btnCerrar">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -129,7 +115,19 @@ function InfEvento({ evento, cerrar }) {
         <section className='contBtnMarkerInfo'>
           {asistencia.find((asistencia) => asistencia.id_evento === evento.id_evento) ? <button className="asistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button> : <button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>}
 
-          <button className='invitar' onClick={() => setShowModalCompartir(!showModalCompartir)}> Compartir </button>
+          <button className='invitar' onClick={() => setOpComp(!opComp)}>Compartir</button>
+          {
+                opComp && (
+                  <div className="opCompartir">
+                    <div ref={successRef} className="success d-none">
+                      Todo correcto
+                    </div>
+                    <p>Link del evento</p>
+                    <p id="linkComp">{window.location.href}</p>
+                    <button className='invitar' onClick={() => actionCopiar()}>Copiar Link</button>
+                  </div>
+                )
+              }
         </section>
 
         <section id="EventoInfo">
