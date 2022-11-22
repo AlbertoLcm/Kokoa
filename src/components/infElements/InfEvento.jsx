@@ -13,6 +13,7 @@ function InfEvento({ evento, cerrar }) {
   const [loading, setLoading] = useState(true);
   const [asistencia, setAsistencia] = useState([]);
   const [showModalCompartir, setShowModalCompartir] = useState(false);
+  const location = useLocation();
 
   const { user } = useAuth();
   /** @type React.MutableRefObject<HTMLInputElement> */
@@ -138,7 +139,7 @@ function InfEvento({ evento, cerrar }) {
               {evento.capacidad ? <p>Capacidad {evento.capacidad} personas</p> : null}
               <p className="asistentes">Asistiran {eventoInfo.asistentes_cont} personas</p>
               {evento.precio === 0 || evento.precio === null ? <p className="gratis"> Entrada gratuita </p> : <p className="cover"> Cover ${evento.precio} </p>}
-              <Link to={`evento/${evento.id_evento}`} className="link">Ver más</Link>
+              <Link to={`evento/${evento.id_evento}`} state={{ from: location }} className="link">Ver más</Link>
             </div>
           </div>
           {evento.rol_anfitrion === "negocios" ? (

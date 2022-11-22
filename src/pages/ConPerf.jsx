@@ -6,7 +6,7 @@ import Header from "../components/Header";
 import { slide as Menu } from "react-burger-menu";
 import "../stylesheets/ConfPerf.css"
 import img from "../images/Plagui.jpg"
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import routes from "../helpers/routes";
 import backimg from "../images/Wall (15).jpg"
 import { useNavigate } from "react-router-dom";
@@ -16,6 +16,7 @@ import '../stylesheets/Modal.css'
 
 function ConPerf() {
   const nav = useNavigate();
+  const location = useLocation();
   const { logout, loginCargo, user } = useAuth();
   const [cont, setCont] = useState(1);
 

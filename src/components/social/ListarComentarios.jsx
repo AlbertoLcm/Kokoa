@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import instance from "../../api/axios";
 import Comentario from "./Comentario";
 import '../../stylesheets/VisPerfs.css';
+import socket from "../sockets/Socket";
 
 const ListarComentarios = ({ id_negocio }) => {
 
@@ -20,6 +21,14 @@ const ListarComentarios = ({ id_negocio }) => {
         setEventos(eventos.data)
       })
       .catch((err) => console.log(err))
+
+      socket.on('new-comentario', (comentario) => {
+        instance.get(`negocios/comentarios/eventos/${id_negocio}`)
+        .then((comentarios) => {
+          setComentarios(comentarios.data)
+        })
+        .catch((err) => console.log(err))
+      });
   }, []);
 
   if(!eventos.length && !comentarios.length) { 

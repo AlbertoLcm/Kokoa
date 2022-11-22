@@ -6,7 +6,9 @@ import routes from "../helpers/routes";
 const PrivateRoute = ({ children, Role }) => {
     const location = useLocation();
 
-    const { hasRole, isLogged } = useAuth();
+    const { hasRole, isLogged, user } = useAuth();
+    
+    if(Role && user.rol !== Role) return <Navigate to={routes.home} />;
 
     if (!isLogged()) return <Navigate to={routes.login} state={{from: location}} />;
     return children;

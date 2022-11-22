@@ -71,7 +71,7 @@ function AppRouter() {
           </PrivateRoute>
         } />
         <Route exact path={routes.perfil} element={
-          <PrivateRoute>
+          <PrivateRoute Role={"usuarios"}>
             <ConPerf />
           </PrivateRoute>
         } />
