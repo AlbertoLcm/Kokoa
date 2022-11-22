@@ -55,7 +55,7 @@ const ListarComentarios = ({ id_negocio }) => {
         
         return (
           <div id="ContComentariosNegocio" key={index}>
-            <div className="contEvento" onClick={() => ActionShow(index)}>
+            <div className="contEventoFeed" onClick={() => ActionShow(index)}>
               <p>{evento.nombre}</p>
             </div>
             <section id="InfOpinionesAnfitrion">
