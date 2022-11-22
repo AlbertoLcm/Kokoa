@@ -44,7 +44,7 @@ const ListarComentarios = ({ id_negocio }) => {
       {eventos.map((evento) => {
         return (
           <div id="ContComentariosNegocio">
-            <div className="contEvento">
+            <div className="contEventoFeed">
               <p>{evento.nombre}</p>
             </div>
             {comentarios.map((comentario) => {
