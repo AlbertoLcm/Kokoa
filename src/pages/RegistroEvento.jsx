@@ -171,8 +171,6 @@ function RegistroEvento({ negocio = false, map }) {
       })
   }
 
-
-
   return (
     <>
       <div id="ContGeneralRegistrarEvento">

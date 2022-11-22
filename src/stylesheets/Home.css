@@ -748,10 +748,10 @@
                 gap: 10px;
                 color: #f3f3f3;
             }
-            #ContGeneralComentariosNegocio #ContComentariosNegocio .contEvento{
+            #ContGeneralComentariosNegocio #ContComentariosNegocio .contEventoFeed{
                 border-radius: 10px;
                 padding: 10px;
-                font-size: 30px;
+                font-size: 20px;
                 margin-bottom: 10px;
                 display: flex;
                 background-color: #EC1C4E;
@@ -759,7 +759,7 @@
             }
         /* Sección 1, Inicio */
 
-        /* Sección 2, eventos */
+        /* Sección 2, eventos */    
             #ContEventosNegocio{
                 display: grid;
                 grid-template-columns: 1fr 1fr 1fr;
@@ -975,8 +975,10 @@
     /* === Home negocios === */
 
         /* Sección 2, eventos */
-           
-        /* FIN Sección 2, eventos */
+        #ContEventosNegocio{
+            grid-template-columns: 1fr;
+        } 
+    /* FIN Sección 2, eventos */
     /* === Home negocios === */
 
     

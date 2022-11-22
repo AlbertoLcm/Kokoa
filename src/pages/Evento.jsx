@@ -257,7 +257,7 @@ function Evento() {
                           <h1>Anfitrion (Negocio)</h1>
                           <Link to={`/visperfil/${evento.anfitrion}`} className={"contDetAnfitrion"}>
                             <div className='contImgAnfitrion'>
-                              <img src={imagen} alt="Predefinir" />
+                              <img src={anfitrion.perfil} alt="Predefinir" />
                             </div>
                             <div className="tituloAnfitiron">
                               Un evento de {anfitrion.nombre}. <br />
@@ -287,7 +287,7 @@ function Evento() {
                           <h1>Anfitrion (Negocio)</h1>
                           <Link to={`/visperfil/${evento.anfitrion}`} className={"contDetAnfitrion"}>
                             <div className='contImgAnfitrion'>
-                              <img src={imagen} alt="Predefinir" />
+                              <img src={anfitrion.perfil} alt="Predefinir" />
                             </div>
                             <div className="tituloAnfitiron">
                               Un evento de {anfitrion.nombre}. <br />
