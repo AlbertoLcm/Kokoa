@@ -1,7 +1,7 @@
 import React from "react";
 import useAuth from "../auth/useAuth";
 import { useRef, useState, Suspense, lazy, useEffect } from "react";
-import { useNavigate} from "react-router-dom";
+import { useLocation, useNavigate} from "react-router-dom";
 import { Autocomplete } from "@react-google-maps/api";
 import "../stylesheets/Home.css";
 import "../stylesheets/BurguerMenu.css";
@@ -18,6 +18,7 @@ import ListarComentarios from "../components/social/ListarComentarios";
 import ComentariosNegocio from "../components/social/ComentariosNegocio";
 
 import AllChats from "../components/social/AllChats";
+import socket from "../components/sockets/Socket";
 
 const Mapa = lazy(() => import("../components/Mapa"));
 const MapNegocio = lazy(() => import("../components/maps/MapNegocio"));
@@ -30,18 +31,22 @@ function Home() {
   const cambiarMensajes = (mensajes) => {
     setMensajesCarg(mensajes)
   }
+  const nav = useNavigate();
 
   const chatRef = useRef(null);
   // Fin del area de pruebas
-
-
-  const nav = useNavigate();
   const { marcar, eventos, logout, user } = useAuth();
 
   const [map, setMap] = useState(/** @type google.maps.Map */(null));
   const [evCre, setEvCre] = useState([]);
   const [visua, setVisua] = useState(1);
   const [showModal, setShowModal] = useState(false);
+  const [comentario, setComentario] = useState({
+    comentario: "",
+    id_usuario: user.id,
+    id_negocio: user.id,
+  });
+  const location = useLocation();
 
   // Para mostrar un modal diferente (esta fue la primer forma que se me ocurrio no me juzguen)
   const [showModal1, setShowModal1] = useState(false);
@@ -58,6 +63,8 @@ function Home() {
   };
 
   const [rol, setRol] = useState({});
+
+  
   
   useEffect(() => {
     if (user.rol === "negocios") {
@@ -113,6 +120,14 @@ function Home() {
       [e.target.name]: e.target.value,
     });
   }
+
+  const handleComentario = (e) => {
+    setComentario({
+      ...comentario,
+      [e.target.name]: e.target.value,
+    });
+  }
+  
   const handleDomic = () => {
     // console.log(originRef.current)
     if (originRef.current !== undefined) {
@@ -139,7 +154,19 @@ function Home() {
   const formHorar = (hor) => {
     hor = hor.split(",");
     parsHor = [("Lunes: " + hor[0]), ("Martes: " + hor[1]), ("Miercoles: " + hor[2]), ("Jueves: " + hor[3]), ("Viernes: " + hor[4]), ("Sabado: " + hor[5]), ("Domingo: " + hor[6])];
+    
   }
+
+  const actionPublicar = () => {
+
+    console.log(comentario)
+    instance.post("/negocios/comentarios", comentario)
+      .then((res) => {
+        setShowModal(false);
+        socket.emit('comentar', comentario);
+      })
+      .catch((err) => console.log(err));
+  };
   
   useEffect(() => {
     chatRef.current?.scrollIntoView({behavior: 'smooth'});
@@ -427,6 +454,8 @@ function Home() {
       </>
     );
   }
+
+  // Aqui inicia el home de negocios o patrocinadores
 
   if (user.rol !== "usuarios") {
     // formHorar(rol.horario)
@@ -768,14 +797,12 @@ function Home() {
                       <div id="contInfoGen"><h2>{rol.direccion}</h2> <button onClick={() => setShowModal4(!showModal4)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
                       <div id="contInfoGen"><h2>{rol.descripcion !== null ? (rol.descripcion) : ("Sin descripcion")}</h2> <button onClick={() => setShowModal5(!showModal5)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
                       <div id="contInfoGen"><h2>{rol.sitio_web !== null ? (<a href={rol.sitio_web}>{rol.sitio_web}</a>) : ("Sin sitio web")}</h2> <button onClick={() => setShowModal7(!showModal7)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>
-                      {
-                        rol.rol === "negocios" && (<div id="contInfoGen"> <h2> <span>{parsHor[0]}</span> <br /> <span>{parsHor[1]}</span> <br /> <span>{parsHor[2]}</span> <br /> <span>{parsHor[3]}</span> <br /> <span>{parsHor[4]}</span> <br /> <span>{parsHor[5]}</span> <br /> <span>{parsHor[6]}</span> </h2> <button onClick={() => setShowModal6(!showModal6)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>)
-                      }
+                      {rol.rol === "negocios" && (<div id="contInfoGen"> <h2> <span>{parsHor[0]}</span> <br /> <span>{parsHor[1]}</span> <br /> <span>{parsHor[2]}</span> <br /> <span>{parsHor[3]}</span> <br /> <span>{parsHor[4]}</span> <br /> <span>{parsHor[5]}</span> <br /> <span>{parsHor[6]}</span> </h2> <button onClick={() => setShowModal6(!showModal6)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" /><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" /><line x1="16" y1="5" x2="19" y2="8" /></svg></button></div>)}
                     </>
                   ) : visua === 5 ? (
                     <>
                       <section id="PortadaPerfilAnfitrion">
-                        <img src={image} id="ImagePortadaPerfilAnfitrion" />
+                        <img src={user.perfil} id="ImagePortadaPerfilAnfitrion" />
                       </section>
 
                       <section id="InfPerfilAnfitrion">
@@ -786,7 +813,7 @@ function Home() {
 
                         <section id="ContFotoPerfilAnfitrion">
                           <div id="FotoPerfilAnfitrion">
-                            <img src={foto} id="ImageFotoPerfilAnfitrion" />
+                            <img src={user.perfil} id="ImageFotoPerfilAnfitrion" />
                           </div>
                         </section>
                       </section>
@@ -799,14 +826,14 @@ function Home() {
                           titulo={"Comentar"}
                         >
                           <div id="contComentarModal">
-                            <textarea name="comentario" id="txtComentar" placeholder="Comenta algo sobre este negocio" onChange={handleChange} />
-                            <button>Comentar</button>
+                            <textarea name="comentario" id="txtComentar" placeholder="Comenta algo interesante" onChange={handleComentario} />
+                            <button onClick={() => actionPublicar()}>Comentar</button>
                           </div>
                         </Modal>
 
                         <div id="Comentar">
                           <section className="contFotoUsuario">
-                            <img src={foto} alt="Foto Usuario" />
+                            <img src={user.perfil} alt="Foto Usuario" />
                           </section>
 
                           <section className="comentario">

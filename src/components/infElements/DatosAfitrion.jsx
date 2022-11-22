@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import instance from "../../api/axios";
 import Skeleton from "../Skeleton";
-import image from "../../images/Wall (15).jpg";
 import foto from "../../images/Wall (59).jpg";
 import fotos from "../../images/establecimiento.jpg";
 import '../../stylesheets/VisPerfs.css';
@@ -9,6 +8,7 @@ import Comentario from "../social/Comentario";
 import Comentar from "../social/Comentar";
 import useAuth from "../../auth/useAuth";
 import Modal from "../Modal";
+import socket from "../sockets/Socket";
 
 function DatosAnfitrion({ id, section }) {
 
@@ -36,6 +36,13 @@ function DatosAnfitrion({ id, section }) {
       .then((comentarios) => {
         setComentarios(comentarios.data)
       })
+
+    socket.on('new-comentario', (comentario) => {
+      instance.get(`/negocios/comentarios/${id}`)
+        .then((comentarios) => {
+          setComentarios(comentarios.data)
+        })
+    });
   }, []);
 
   if (loading) {
@@ -50,16 +57,10 @@ function DatosAnfitrion({ id, section }) {
   };
 
   const actionPublicar = () => {
-    const fecha = new Date();
-    const fechaActual = `${fecha.getFullYear()}-${fecha.getMonth() + 1}-${fecha.getDate()} ${fecha.getHours()}:${fecha.getMinutes()}:${fecha.getSeconds()}`;
-
-    instance.post("/negocios/comentarios", { comentario, fecha: fechaActual })
+    instance.post("/negocios/comentarios",  comentario )
       .then((res) => {
         setShowModal(false);
-        instance.get(`/negocios/comentarios/${id}`)
-          .then((comentarios) => {
-            setComentarios(comentarios.data)
-          })
+        socket.emit('comentar', comentario);
       })
       .catch((err) => console.log(err));
   };
@@ -68,7 +69,7 @@ function DatosAnfitrion({ id, section }) {
     case 'perfil': return (
       <>
         <section id="PortadaPerfilAnfitrion">
-          <img src={image} id="ImagePortadaPerfilAnfitrion" />
+          <img src={anfitrion.perfil} id="ImagePortadaPerfilAnfitrion" />
         </section>
 
         <section id="InfPerfilAnfitrion">
@@ -81,7 +82,7 @@ function DatosAnfitrion({ id, section }) {
 
           <section id="ContFotoPerfilAnfitrion">
             <div id="FotoPerfilAnfitrion">
-              <img src={foto} id="ImageFotoPerfilAnfitrion" />
+              <img src={anfitrion.perfil} id="ImageFotoPerfilAnfitrion" />
             </div>
           </section>
         </section>

@@ -21,6 +21,8 @@ export default function AuthProvider({ children }) {
     islogin();
   }, []);
 
+  
+
   const isLogged = () => !!user;
 
   const actionBackLogin = () => {
@@ -33,10 +35,10 @@ export default function AuthProvider({ children }) {
       })
       .catch(err => console.log(err));
   }
-  
+
   const islogin = () => {
     const token = localStorage.getItem("token");
-    instance.post("/auth",{ usuario: "prueba" }, {headers: {authorization: token,}})
+    instance.post("/auth", { usuario: "prueba" }, { headers: { authorization: token, } })
       .then((usuarioRes) => {
         setUser(usuarioRes.data.user.data);
         localStorage.setItem("token", usuarioRes.data.user.token);
@@ -59,7 +61,7 @@ export default function AuthProvider({ children }) {
         console.log(err);
       });
   }
-  
+
   const login = (usuario, fromLocation, alertRef) => {
     instance
       .post("/auth/login", usuario)
@@ -67,7 +69,7 @@ export default function AuthProvider({ children }) {
         setUser(usuarioRes.data.user.data);
         localStorage.setItem("token", usuarioRes.data.user.token);
         if (fromLocation) {
-          navigate(fromLocation.from, {state: {pagina: fromLocation.pagina}});
+          navigate(fromLocation.from, { state: { pagina: fromLocation.pagina } });
         }
       })
       .catch((error) => {
@@ -79,7 +81,7 @@ export default function AuthProvider({ children }) {
 
   const resetPasswordLogin = (id) => {
     instance
-      .post("/auth/resetpassword", {id: id})
+      .post("/auth/resetpassword", { id: id })
       .then((usuarioRes) => {
         setUser(usuarioRes.data.user.data);
         localStorage.setItem("token", usuarioRes.data.user.token);
@@ -89,14 +91,14 @@ export default function AuthProvider({ children }) {
         console.log(error);
       });
   };
-  
+
   const signup = (usuario, fromLocation, alertRef) => {
     instance.post(`/usuarios/signup`, usuario)
       .then((usuarioRes) => {
         setUser(usuarioRes.data.user.data);
         localStorage.setItem("token", usuarioRes.data.user.token);
         if (fromLocation) {
-          navigate(fromLocation.from, {state: {pagina: fromLocation.pagina}});
+          navigate(fromLocation.from, { state: { pagina: fromLocation.pagina } });
         }
       })
       .catch((error) => {
@@ -108,9 +110,11 @@ export default function AuthProvider({ children }) {
   const logout = () => {
     const token = localStorage.getItem("token");
     instance
-      .put("/auth/logout", { usuario: "prueba" }, {headers: {
-            authorization: token,
-          }})
+      .put("/auth/logout", { usuario: "prueba" }, {
+        headers: {
+          authorization: token,
+        }
+      })
       .then((res) => {
         localStorage.removeItem("token");
         setUser(null);

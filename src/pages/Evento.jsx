@@ -83,6 +83,8 @@ function Evento() {
     });
   };
 
+  console.log(location)
+
   if (loading) {
     return (
       <section id="ContEventoGeneralSecundario">
@@ -133,10 +135,7 @@ function Evento() {
   };
 
   const actionPublicar = () => {
-    const fecha = new Date();
-    const fechaActual = `${fecha.getFullYear()}-${fecha.getMonth() + 1}-${fecha.getDate()} ${fecha.getHours()}:${fecha.getMinutes()}:${fecha.getSeconds()}`;
-
-    instance.post("/eventos/comentarios", { comentarioEvento, fecha: fechaActual })
+    instance.post("/eventos/comentarios", comentarioEvento )
       .then((res) => {
         setShowModalEvento(false);
         socket.emit('comentar', comentarioEvento);
@@ -171,22 +170,22 @@ function Evento() {
           </div>
           <p>Link del evento</p>
           <div className="url" ref={urlRef} onClick={() => actionCopiar()}>{window.location.href}</div>
-          <p>Compartir</p>
-          <button onClick={() => actionCopiar()}>Copiar link</button>
         </div>
       </Modal>
 
       <Header tipo={'responsive'} perfil={user.nombre} back={true} />
       <div id="ContEventoGeneral">
 
-        <div className="btnBack" onClick={() => nav(-1, { state: { from: location, pagina: 2 } })}>
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <line x1="5" y1="12" x2="19" y2="12" />
-            <line x1="5" y1="12" x2="11" y2="18" />
-            <line x1="5" y1="12" x2="11" y2="6" />
-          </svg>
-        </div>
+        {location.state?.from ? (
+          <div className="btnBack" onClick={() => nav(-1, { state: { from: location, pagina: 2 } })}>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <line x1="5" y1="12" x2="11" y2="18" />
+              <line x1="5" y1="12" x2="11" y2="6" />
+            </svg>
+          </div>
+        ) : (null)}
 
         <section id="ContTituloEvento">
           <div id="TituloEvento">
@@ -254,8 +253,38 @@ function Evento() {
                     {evento.tipo}
                   </section>
 
-                  {!location.state?.from ? (
-
+                  {location?.state?.from?.pathname ? (
+                    (!(location?.state?.from?.pathname).includes("visperfil/")) ? (
+                      <section className="anfitrion">
+                      {evento.rol_anfitrion === "negocios" ? (
+                        <>
+                          <h1>Anfitrion (Negocio)</h1>
+                          <Link to={`/visperfil/${evento.anfitrion}`} className={"contDetAnfitrion"}>
+                            <div className='contImgAnfitrion'>
+                              <img src={imagen} alt="Predefinir" />
+                            </div>
+                            <div className="tituloAnfitiron">
+                              Un evento de {anfitrion.nombre}. <br />
+                              <label> Conocer </label>
+                            </div>
+                          </Link>
+                        </>
+                      ) : (
+                        <>
+                          <h1>Anfitrion</h1>
+                          <section className='contDetAnfitrion'>
+                            <div className='contImgAnfitrion'>
+                              <img src={anfitrion.perfil} alt="Predefinir" />
+                            </div>
+                            <div className="tituloAnfitiron">
+                              Un evento de {anfitrion.nombre}. <br />
+                            </div>
+                          </section>
+                        </>
+                      )}
+                    </section>
+                    ) : (null)
+                  ) : (
                     <section className="anfitrion">
                       {evento.rol_anfitrion === "negocios" ? (
                         <>
@@ -284,7 +313,7 @@ function Evento() {
                         </>
                       )}
                     </section>
-                  ) : null}
+                  )}
                 </div>
               </div>
             </div>
@@ -320,19 +349,13 @@ function Evento() {
                   </section>
                 </div>
                 )}
-
-
-
                 {!comentarios.length ? (<div className="comentariosNull"> No hay comentarios </div>) : (null)}
                 {comentarios.map((comentario) => {
-                  return (
-                    <Comentario data={comentario} />
-                  )
+                  return <Comentario data={comentario} />
                 })}
               </section>
             </>
           )}
-
         </section>
       </div>
     </>
