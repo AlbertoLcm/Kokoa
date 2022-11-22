@@ -33,7 +33,7 @@ const AllChats = () => {
         {chats.map((chat, index) => {
           return (
             <>
-              <section className="contSelChat" onClick={() => actionMostrarChat(chat)}>
+              <section key={index} className="contSelChat" onClick={() => actionMostrarChat(chat)}>
                 <div className="contImgSelChat">
                   <img src={chat.perfil} alt="si" />
                 </div>

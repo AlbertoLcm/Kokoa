@@ -411,7 +411,9 @@ function ConPerf() {
                                   <div className="contInfoTarj">
                                     <h1>{patrocinio.nombre} </h1>
                                     <h2>Ubicado en: <span>{patrocinio.direccion} </span></h2>
-                                    <h2>Aqui proporcionas: <span>{patrocinio.tipo}</span></h2>
+                                    <h2>Aqui proporcionas: <span>{
+                                    patrocinio.tipo === 1 ? ("Bebidas") : patrocinio.tipo === 2 ? ("Alcohol") : ("otros")
+                                    }</span></h2>
                                   </div>
                                 </div>
                               )

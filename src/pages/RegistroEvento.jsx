@@ -109,7 +109,7 @@ function RegistroEvento({ negocio = false, map }) {
           });
       }
     );
-    // EnvSols()
+    EnvSols()
   }
 
   const actionBuscarPatrocinador = () => {

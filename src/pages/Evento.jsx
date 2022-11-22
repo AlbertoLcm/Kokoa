@@ -23,10 +23,9 @@ function Evento() {
   const [visua, setVisua] = useState(1);
   const [showModalEvento, setShowModalEvento] = useState(false);
   const [comentarios, setComentarios] = useState([]);
-  const [showModalCompartir, setShowModalCompartir] = useState(false);
+  const [opComp, setOpComp] = useState(false);
 
   /** @type React.MutableRefObject<HTMLInputElement> */
-  const urlRef = useRef();
   const successRef = useRef();
 
   const location = useLocation();
@@ -158,21 +157,6 @@ function Evento() {
 
   return (
     <>
-
-      <Modal
-        estado={showModalCompartir}
-        cambiarEstado={setShowModalCompartir}
-        titulo={"Compartir"}
-      >
-        <div id="contCompartirModal">
-          <div ref={successRef} className="success d-none">
-            Todo correcto
-          </div>
-          <p>Link del evento</p>
-          <div className="url" ref={urlRef} onClick={() => actionCopiar()}>{window.location.href}</div>
-        </div>
-      </Modal>
-
       <Header tipo={'responsive'} perfil={user.nombre} back={true} />
       <div id="ContEventoGeneral">
 
@@ -207,7 +191,19 @@ function Evento() {
               ) : (
                 <button className="asistir" onClick={() => nav(routes.login, { state: { from: location, pagina: 1 } })}>Asistir</button>
               )}
-              <button onClick={() => setShowModalCompartir(!showModalCompartir)}>Compartir</button>
+              <button onClick={() => setOpComp(!opComp)}>Compartir</button>
+              {
+                opComp && (
+                  <div className="opCompartir">
+                    <div ref={successRef} className="success d-none">
+                      Todo correcto
+                    </div>
+                    <p>Link del evento</p>
+                    <p id="linkComp">{window.location.href}</p>
+                    <button onClick={() => actionCopiar()}>Copiar Link</button>
+                  </div>
+                )
+              }
             </div>
             <section id="ContBtnEvento">
               <div id="BtnEvento">

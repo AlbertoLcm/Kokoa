@@ -377,3 +377,36 @@
 
   
 /* FIN Estilo evento by Alberto */
+/* Estilo compartir */
+.opCompartir {
+  position: absolute;
+  height: auto;
+  width: 250px;
+  background: #341b36;
+  border-radius: 15px;
+  padding: 10px;
+  box-shadow: 1px 12px 33px rgba(0, 0, 0, 0.5);
+  margin-top: 60px;
+  color: white;
+}.opCompartir:before {
+  border: 25px solid #341b36;
+  content: '';
+  border-left-color: transparent;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  position: absolute;
+  top: -48px;
+  left: calc(50% - 25px)
+}.opCompartir > #linkComp {
+  background-color: #2D0E30;
+  text-align: center;
+  overflow-x: auto;
+  padding: 5px 0px 5px 0px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+}.opCompartir > button {
+  margin-left: 0px !important;
+  width: 100% !important;
+}.opCompartir > p {
+  text-align: center;
+}

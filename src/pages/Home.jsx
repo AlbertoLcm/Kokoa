@@ -33,6 +33,7 @@ function Home() {
   const nav = useNavigate();
 
   const chatRef = useRef(null);
+
   // Fin del area de pruebas
   const { marcar, eventos, logout, user } = useAuth();
 
