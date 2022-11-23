@@ -631,7 +631,7 @@
             display: flex;
             position: fixed;
             flex-direction: column;
-            z-index: 10;
+            z-index: 101;
             align-items: flex-start;
             width: 95%;
             overflow: auto;
@@ -767,6 +767,17 @@
                 margin-top: 10px;
             } 
         /* FIN Sección 2, eventos */
+
+        /* Seccion 5, perfil */
+        #ContenedorFeedPerfilNegocioGeneral{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #ContenedorFeedPerfilNegocio{
+            width: 70%;
+        }
+        /* FIN Seccion 5, perfil */
         
     /* ==== FIN Home negocios ==== */
 
@@ -774,6 +785,7 @@
     .acomodo{
         z-index: 101;
         position: fixed;
+        z-index: 999;
         margin-top: 57px;
         right: 15px;
     }.dropiOpcio{

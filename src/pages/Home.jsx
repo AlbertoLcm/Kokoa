@@ -27,6 +27,8 @@ const MapNegocio = lazy(() => import("../components/maps/MapNegocio"));
 function Home() {
   // Area de pruebas
   const [mensajesCarg, setMensajesCarg] = useState([]);
+   /** @type React.MutableRefObject<HTMLInputElement> */
+   const alertRef = useRef();
   const cambiarMensajes = (mensajes) => {
     setMensajesCarg(mensajes)
   }
@@ -46,6 +48,53 @@ function Home() {
     id_usuario: user.id,
     id_negocio: user.id,
   });
+  const [usuario, setUsuario] = useState({});
+
+  const [showCambiarFoto, setShowCambiarFoto] = useState(false);
+  const [foto, setFoto] = useState({
+    id: user.id,
+    anterior: user.perfil,
+    avatar: null,
+  });
+  const [selectFoto, setSelectFoto] = useState(user.perfil);
+
+  const handleFile = (e) => {
+    alertRef.current.classList.add("d-none");
+    setFoto({
+      ...foto,
+      [e.target.name]: e.target.files[0]
+    });
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setSelectFoto(reader.result);
+    }
+    reader.readAsDataURL(e.target.files[0]);
+    
+  };
+
+  const subirFoto = () => {
+    if(foto.avatar === null) {
+      alertRef.current.classList.remove('d-none');
+      alertRef.current.innerText = "Debes subir una nueva foto";
+      return;
+    }
+    if(foto.avatar.size > 2097152) {
+      alertRef.current.classList.remove('d-none');
+      alertRef.current.innerText = "La foto debe ser menor a 2MB";
+      return;
+    }
+
+    console.log(foto);
+
+    setShowCambiarFoto(false);
+    instance.post('/upload/profile', foto, {headers: { "Content-Type": "multipart/form-data" }})
+      .then((res) => {
+        instance.get(`/usuarios/${user.id}`)
+          .then((res) => {
+            setUsuario(res.data);
+          })
+      })
+  };
   const location = useLocation();
 
   // Para mostrar un modal diferente (esta fue la primer forma que se me ocurrio no me juzguen)
@@ -801,51 +850,101 @@ function Home() {
                     </>
                   ) : visua === 5 ? (
                     <>
-                      <section id="PortadaPerfilAnfitrion">
-                        <img src={user.perfil} id="ImagePortadaPerfilAnfitrion" />
-                      </section>
+                    <Modal
+        estado={showCambiarFoto}
+        cambiarEstado={setShowCambiarFoto}
+        titulo="Actualizar foto de perfil"
+      >
+        <div className="modalConfPerfil">
 
-                      <section id="InfPerfilAnfitrion">
-                        <section id="DatosPerfilAnfitrion">
-                          <h1>{user.nombre_cargo}</h1>
-                          <p>4.9 Opiniones</p>
+          <section className="contInputFile">
+            <div className="inputFile">
+              <svg xmlns="http:/  /www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-plus" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <circle cx="12" cy="12" r="9" />
+                <line x1="9" y1="12" x2="15" y2="12" />
+                <line x1="12" y1="9" x2="12" y2="15" />
+              </svg>
+              Subir Foto
+              <input type="file" accept="image/*" name="avatar" onChange={handleFile} />
+            </div>
+          </section>
+
+          <div ref={alertRef} className="alert d-none">
+            Algo salio mal
+          </div>
+
+          <section className="previsualizacion">
+            <div className="contImagen">
+              <img src={selectFoto} alt="foto de perfil" />
+            </div>
+          </section>
+
+          <button onClick={() => subirFoto()}>Actualizar foto de perfil</button>
+
+        </div>
+      </Modal>
+                      <div id="ContenedorFeedPerfilNegocioGeneral">
+                      
+                        <div id="ContenedorFeedPerfilNegocio">
+
+                        <section id="PortadaPerfilAnfitrion">
+                          <img src={user.perfil} id="ImagePortadaPerfilAnfitrion" />
+
                         </section>
+                          <button className="fileSelect" onClick={() => setShowCambiarFoto(!showCambiarFoto)}>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-camera-plus" width="35" height="35" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <circle cx="12" cy="13" r="3" />
+                        <path d="M5 7h2a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h2m9 7v7a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2" />
+                        <line x1="15" y1="6" x2="21" y2="6" />
+                        <line x1="18" y1="3" x2="18" y2="9" />
+                      </svg>
+                    </button>
 
-                        <section id="ContFotoPerfilAnfitrion">
-                          <div id="FotoPerfilAnfitrion">
-                            <img src={user.perfil} id="ImageFotoPerfilAnfitrion" />
-                          </div>
-                        </section>
-                      </section>
-                      <section id="InfOpinionesAnfitrion">
-                        <h2>Calificacion - 4.9 (19 Opiniones)</h2>
-
-                        <Modal
-                          estado={showModal}
-                          cambiarEstado={setShowModal}
-                          titulo={"Comentar"}
-                        >
-                          <div id="contComentarModal">
-                            <textarea name="comentario" id="txtComentar" placeholder="Comenta algo interesante" onChange={handleComentario} />
-                            <button onClick={() => actionPublicar()}>Comentar</button>
-                          </div>
-                        </Modal>
-
-                        <div id="Comentar">
-                          <section className="contFotoUsuario">
-                            <img src={user.perfil} alt="Foto Usuario" />
+                        <section id="InfPerfilAnfitrion">
+                          <section id="DatosPerfilAnfitrion">
+                            <h1>{user.nombre_cargo}</h1>
+                            <p>4.9 Opiniones</p>
                           </section>
 
-                          <section className="comentario">
-                            <p onClick={() => setShowModal(!showModal)}>
-                              Comenta algo interesante
-                            </p>
+                          <section id="ContFotoPerfilAnfitrion">
+                            <div id="FotoPerfilAnfitrion">
+                              <img src={user.perfil} id="ImageFotoPerfilAnfitrion" />
+                            </div>
                           </section>
+                        </section>
+                        <section id="InfOpinionesAnfitrion">
+                          <h2>Calificacion - 4.9 (19 Opiniones)</h2>
+
+                          <Modal
+                            estado={showModal}
+                            cambiarEstado={setShowModal}
+                            titulo={"Comentar"}
+                          >
+                            <div id="contComentarModal">
+                              <textarea name="comentario" id="txtComentar" placeholder="Comenta algo interesante" onChange={handleComentario} />
+                              <button onClick={() => actionPublicar()}>Comentar</button>
+                            </div>
+                          </Modal>
+
+                          <div id="Comentar">
+                            <section className="contFotoUsuario">
+                              <img src={user.perfil} alt="Foto Usuario" />
+                            </section>
+
+                            <section className="comentario">
+                              <p onClick={() => setShowModal(!showModal)}>
+                                Comenta algo interesante
+                              </p>
+                            </section>
+                          </div>
+
+                          <ComentariosNegocio id_negocio={user.id} />
+
+                        </section>
                         </div>
-
-                        <ComentariosNegocio id_negocio={user.id} />
-
-                      </section>
+                      </div>
                     </>
                   ) : visua === 6 ? (
                     <>

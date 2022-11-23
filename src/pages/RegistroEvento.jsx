@@ -43,7 +43,7 @@ function RegistroEvento({ negocio = false, map }) {
     capacidad: "",
     descripcion: "",
     tipo: "",
-    publico: "",
+    publico: "1",
   });
 
   const handleBuscador = (e) => {
@@ -66,7 +66,6 @@ function RegistroEvento({ negocio = false, map }) {
       [e.target.name]: e.target.value,
     });
   };
-
 
   /** @type React.MutableRefObject<HTMLInputElement> */
   const originRef = useRef();
@@ -231,8 +230,10 @@ function RegistroEvento({ negocio = false, map }) {
               </div>
               <div className="contCheckbox">
                 <p>
-                  Publico
-                  <input type="checkbox" name="publico" className="checkbox" defaultChecked={true} onChange={handleChange} />
+                <select name="publico" id="tipo" onChange={handleChange}>
+                  <option value="1" selected>Publico</option>
+                  <option value="0">Privado</option>
+                </select>
                 </p>
               </div>
             </section>

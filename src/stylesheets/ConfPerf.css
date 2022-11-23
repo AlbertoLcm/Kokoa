@@ -192,12 +192,14 @@
 }
 #acomodo {
     margin-right: 50px;
+    z-index: 999;
 }
 .historial {
     text-align: center;
 }
 .contContBotDesc{
     display: flex;
+    z-index: 999;
     justify-content: center;
 }.contBotDesc{
     display: inline-flex;
