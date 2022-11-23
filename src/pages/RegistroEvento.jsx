@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../stylesheets/RegistroEvento.css";
 import { Autocomplete, useJsApiLoader } from "@react-google-maps/api";
 import instance from "../api/axios";
@@ -6,6 +7,7 @@ import useAuth from "../auth/useAuth";
 import img from "../images/Plagui.jpg";
 
 function RegistroEvento({ negocio = false, map }) {
+  const nav = useNavigate();
   /** @type React.MutableRefObject<HTMLInputElement> */
   const alertRef = useRef();
   const successRef = useRef();
