@@ -22,6 +22,8 @@ function DatosAnfitrion({ id, section }) {
     comentario: "",
     id_usuario: user.id,
     id_negocio: id,
+    perfil: user.perfil,
+    nombre: `${user.nombre} ${user.apellidos}`,
   });
 
   useEffect(() => {
@@ -103,7 +105,7 @@ function DatosAnfitrion({ id, section }) {
               {anfitrion.descripcion}
             </p>
           </div>
-          <section className="fotosAnfitrion">
+          {/* <section className="fotosAnfitrion">
             <h2>Fotos</h2>
             <div className="contFotosAnfitrion">
               <div className="fotoAnfitrion">
@@ -119,7 +121,7 @@ function DatosAnfitrion({ id, section }) {
                 <img src={fotos} />
               </div>
             </div>
-          </section>
+          </section> */}
         </section>
 
         <section id="InfOpinionesAnfitrion">

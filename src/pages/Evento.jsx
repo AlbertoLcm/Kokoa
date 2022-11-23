@@ -73,6 +73,8 @@ function Evento() {
     comentario: "",
     id_usuario: user.id,
     id_evento: id,
+    perfil: user.perfil,
+    nombre: `${user.nombre} ${user.apellidos}`,
   });
 
   const handleChangeEvento = (e) => {
