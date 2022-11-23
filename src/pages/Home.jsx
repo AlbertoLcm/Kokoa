@@ -172,6 +172,8 @@ function Home() {
     chatRef.current?.scrollIntoView({behavior: 'smooth'});
   }, [mensajesCarg]);
 
+  if(user.rol === "patrocinadores" || user.rol === "artistas")
+
   if (user.rol === "usuarios") {
     return (
       <>
@@ -743,11 +745,19 @@ function Home() {
                   <h1>{user.nombre_cargo}</h1>
                 </section>
                 <div className="btnsFeedNegocios">
-                  <button className="btnFeedNegocios" onClick={() => setVisua(1)}>Inicio</button>
-                  <button className="btnFeedNegocios" onClick={() => setVisua(2)}>Tus eventos</button>
-                  <button className="btnFeedNegocios" onClick={() => setVisua(3)}>Estadisticas</button>
+                  
+                  {
+                    user.rol === "negocios" && (
+                      <>
+                        <button className="btnFeedNegocios" onClick={() => setVisua(1)}>Inicio</button>
+                        <button className="btnFeedNegocios" onClick={() => setVisua(2)}>Tus eventos</button>
+                        <button className="btnFeedNegocios" onClick={() => setVisua(3)}>Estadisticas</button>
+                      </>
+                    )
+                  }
+
                   <button className="btnFeedNegocios" onClick={() => setVisua(4)}>Tu información</button>
-                  <button className="btnFeedNegocios" onClick={() => setVisua(5)}>Tu perfil de negocio</button>
+                  <button className="btnFeedNegocios" onClick={() => setVisua(5)}>Tu perfil</button>
                   <button className="btnFeedNegocios" onClick={() => setVisua(6)}>Mensajeria</button>
                   <button className="btnFeedNegocios" onClick={() => setVisua(7)}>Tu negocio</button>
                 </div>
