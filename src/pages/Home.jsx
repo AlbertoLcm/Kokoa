@@ -221,7 +221,9 @@ function Home() {
     chatRef.current?.scrollIntoView({behavior: 'smooth'});
   }, [mensajesCarg]);
 
-  if(user.rol === "patrocinadores" || user.rol === "artistas")
+  if(user.rol === "patrocinadores" || user.rol === "artistas"){
+    setVisua(4)
+  }
 
   if (user.rol === "usuarios") {
     return (
