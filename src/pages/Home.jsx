@@ -16,7 +16,6 @@ import ListaEventosFeed from "../components/infElements/ListaEventosFeed";
 import RegistroEvento from "./RegistroEvento";
 import ListarComentarios from "../components/social/ListarComentarios";
 import ComentariosNegocio from "../components/social/ComentariosNegocio";
-
 import AllChats from "../components/social/AllChats";
 import socket from "../components/sockets/Socket";
 
@@ -53,6 +52,7 @@ function Home() {
   const [showCambiarFoto, setShowCambiarFoto] = useState(false);
   const [foto, setFoto] = useState({
     id: user.id,
+    rol: user.rol,
     anterior: user.perfil,
     avatar: null,
   });
