@@ -97,7 +97,7 @@ function DatosAnfitrion({ id, section }) {
             <p className="horario">{anfitrion.horario}</p>
             <p className="telefono">{anfitrion.numero}</p>
             <p className="correo">{anfitrion.email}</p>
-            <p className="web"><a href="">{anfitrion.sitio_web}</a></p>
+            <p className="web"><a href={`https://${anfitrion.sitio_web}`} target="_blank" rel="noreferrer" className="pagina" >{anfitrion.sitio_web}</a></p>
             <p className="ubicacion">{anfitrion.direccion}</p>
             <p className="descripcion">
               {anfitrion.descripcion}

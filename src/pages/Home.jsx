@@ -46,6 +46,8 @@ function Home() {
     comentario: "",
     id_usuario: user.id,
     id_negocio: user.id,
+    perfil: user.perfil,
+    nombre: `${user.nombre_cargo}`,
   });
   const [usuario, setUsuario] = useState({});
 
@@ -207,7 +209,6 @@ function Home() {
   }
 
   const actionPublicar = () => {
-
     console.log(comentario)
     instance.post("/negocios/comentarios", comentario)
       .then((res) => {
