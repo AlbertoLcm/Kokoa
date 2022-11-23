@@ -46,6 +46,8 @@ function InfEvento({ evento, cerrar }) {
   }
 
   let fecini = new Date(eventoInfo.fecha_inicio);
+  let fechaActual = new Date();
+  let fechaTermino = new Date(eventoInfo.fecha_termino);
 
   const actionAsistir = (id_evento) => {
     instance.post('/eventos/asistente', { id_evento: id_evento, id_usuario: user.id })
@@ -104,7 +106,7 @@ function InfEvento({ evento, cerrar }) {
 
       <div className='contDataMarkerInfo'>
         <section className="contMarkerInfo">
-          <p className="infEventoFecha">{fecini.toLocaleDateString('es-us', { weekday: "long", month: "short", year: "numeric", day: "numeric" })}, {fecini.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
+          {fecini < fechaActual && fechaTermino > fechaActual ? (<p className='infEventoFechaActual'>Evento en curso!!!</p>) : fechaTermino < fechaActual && fecini < fechaActual ? (<p className='infEventoFechaTermino'>Este evento a finalizado</p>) : (<p className="infEventoFecha">{fecini.toLocaleDateString('es-us', { weekday: "long", month: "short", year: "numeric", day: "numeric" })}, {fecini.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>)}
 
           <h2>{evento.nombre}</h2>
           <p className="infEventoUbicacion">
@@ -113,7 +115,11 @@ function InfEvento({ evento, cerrar }) {
         </section>
 
         <section className='contBtnMarkerInfo'>
-          {asistencia.find((asistencia) => asistencia.id_evento === evento.id_evento) ? <button className="asistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button> : <button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>}
+          {fecini < fechaActual && fechaTermino > fechaActual ? (
+            asistencia.find((asistencia) => asistencia.id_evento === evento.id_evento) ? <button className="asistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button> : <button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>
+            ) : (
+            null
+          )}
 
           <button className='invitar' onClick={() => setOpComp(!opComp)}>Compartir</button>
           {

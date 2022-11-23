@@ -329,6 +329,14 @@
             color: tomato;
             font-weight: 550;
         }
+        .infEventoFechaTermino{
+            color: tomato;
+            font-weight: 550;
+        }
+        .infEventoFechaActual{
+            color: green;
+            font-weight: 550;
+        }
         .infEvento h2{
             margin-top: 10px;
             font-size: 20px;

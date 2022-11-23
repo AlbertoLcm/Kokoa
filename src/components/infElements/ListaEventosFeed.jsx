@@ -77,10 +77,10 @@ function ListaEventosFeed({ id, solicito }) {
   switch (solicito) {
     case 'proximos': return (
       <>
-        {eventos.map((evento, index) => {
-          let fecini = new Date(evento.fecha_inicio)
-          let fecter = new Date(evento.fecha_termino)
-          if (fecini > fecact) {
+        {!eventos.filter(evento => new Date(evento.fecha_inicio) > new Date()).length ? (<h1>No hay eventos proximos</h1>) : eventos.map((evento, index) => {
+          let fechaInicio = new Date(evento.fecha_inicio)
+          let fechaTermino = new Date(evento.fecha_termino)
+          if (fechaInicio > new Date()) {
             return (
               <div id="PerfilFeedEvento">
                 <section id="ContImgEventoFeed">
@@ -89,7 +89,7 @@ function ListaEventosFeed({ id, solicito }) {
 
                 <section id="ContInfEvento">
                   <div className="infEvento">
-                  <p className="infEventoFecha">{fecini.toLocaleDateString('es-us', { weekday:"long", month:"short", year:"numeric", day:"numeric"})}, {fecini.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
+                  <p className="infEventoFecha">{fechaInicio.toLocaleDateString('es-us', { weekday:"long", month:"short", year:"numeric", day:"numeric"})}, {fechaInicio.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
 
                     <h2>{evento.nombre}</h2>
                     <p className="infEventoUbicacion">
@@ -118,10 +118,10 @@ function ListaEventosFeed({ id, solicito }) {
 
     case 'anteriores': return (
       <>
-        {eventos.map((evento, index) => {
-          let fecini = new Date(evento.fecha_inicio)
-          let fecter = new Date(evento.fecha_termino)
-          if (fecact < fecter) {
+        {!eventos.filter(evento => new Date(evento.fecha_termino) < new Date()).length ? (<h1>No hay eventos </h1>) : eventos.map((evento, index) => {
+          let fechaInicio = new Date(evento.fecha_inicio)
+          let fechaTermino = new Date(evento.fecha_termino)
+          if (fechaTermino < new Date()) {
             return (
               <div id="PerfilFeedEvento">
                 <section id="ContImgEventoFeed">
@@ -130,7 +130,7 @@ function ListaEventosFeed({ id, solicito }) {
 
                 <section id="ContInfEvento">
                   <div className="infEvento">
-                  <p className="infEventoFecha">{fecini.toLocaleDateString('es-us', { weekday:"long", month:"short", year:"numeric", day:"numeric"})}, {fecini.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
+                  <p className="infEventoFecha">Finalizó el {fechaTermino.toLocaleDateString('es-us', { weekday:"long", month:"short", year:"numeric", day:"numeric"})}, {fechaTermino.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
 
                     <h2>{evento.nombre}</h2>
                     <p className="infEventoUbicacion">
@@ -145,8 +145,6 @@ function ListaEventosFeed({ id, solicito }) {
                   <div className="coverEvento">
                     {evento.precio === null || evento.precio == 0 ? <p> La entrada fue gratuita </p> : <p className="cover"> Tuvo un cover de: ${evento.precio} </p>}
 
-                    {/* {asistencia.find((asistencia) => asistencia.id_evento === evento.id_evento) ? <button className="btnAsistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button> : <button className="btnAsistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>} */}
-
                   </div>
                 </section>
               </div>
@@ -160,7 +158,7 @@ function ListaEventosFeed({ id, solicito }) {
     case 'todos': return (
       <>
         {eventos.map((evento) => {
-          let fecini = new Date(evento.fecha_inicio)
+          let fechaInicio = new Date(evento.fecha_inicio)
           let fecter = new Date(evento.fecha_termino)
             return (
               <div id="PerfilFeedEvento">
@@ -170,7 +168,7 @@ function ListaEventosFeed({ id, solicito }) {
 
                 <section id="ContInfEvento">
                   <div className="infEvento">
-                  <p className="infEventoFecha">{fecini.toLocaleDateString('es-us', { weekday:"long", month:"short", year:"numeric", day:"numeric"})}, {fecini.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
+                  <p className="infEventoFecha">{fechaInicio.toLocaleDateString('es-us', { weekday:"long", month:"short", year:"numeric", day:"numeric"})}, {fechaInicio.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
 
                     <h2>{evento.nombre}</h2>
                     <p className="infEventoUbicacion">
@@ -199,7 +197,7 @@ function ListaEventosFeed({ id, solicito }) {
     case 'negocio': return (
       <>
         {eventos.map((evento) => {
-          let fecini = new Date(evento.fecha_inicio)
+          let fechaInicio = new Date(evento.fecha_inicio)
           let fecter = new Date(evento.fecha_termino)
             return (
               <div id="PerfilFeedEvento">
@@ -209,7 +207,7 @@ function ListaEventosFeed({ id, solicito }) {
 
                 <section id="ContInfEvento">
                   <div className="infEvento">
-                  <p className="infEventoFecha">{fecini.toLocaleDateString('es-us', { weekday:"long", month:"short", year:"numeric", day:"numeric"})}, {fecini.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
+                  <p className="infEventoFecha">{fechaInicio.toLocaleDateString('es-us', { weekday:"long", month:"short", year:"numeric", day:"numeric"})}, {fechaInicio.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
                     <h2>{evento.nombre}</h2>
                     <p className="infEventoUbicacion">
                       {evento.direccion}

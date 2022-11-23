@@ -142,7 +142,6 @@ function Evento() {
       .catch((err) => console.log(err));
   };
 
-  let fecini = new Date(evento.fecha_inicio)
   const actionCopiar = () => {
     let aux = document.createElement("input");
     aux.setAttribute("value", window.location.href);
@@ -154,6 +153,10 @@ function Evento() {
     successRef.current.classList.remove('d-none');
     successRef.current.innerHTML = 'Enlace copiado';
   }
+
+  let fecini = new Date(evento.fecha_inicio);
+  let fechaActual = new Date();
+  let fechaTermino = new Date(evento.fecha_termino);
 
   return (
     <>
@@ -180,17 +183,17 @@ function Evento() {
             </div>
 
             <div className="titulo">
-              <p className="infEventoFecha">{fecini.toLocaleDateString('es-us', { weekday: "long", month: "short", year: "numeric", day: "numeric" })}, a las {fecini.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
+              {fecini < fechaActual && fechaTermino > fechaActual ? (<p className='infEventoFechaActual'>Evento en curso!!!</p>) : fechaTermino < fechaActual ? (<p className='infEventoFechaTermino'>Este evento a finalizado</p>) : (<p className="infEventoFecha">{fecini.toLocaleDateString('es-us', { weekday: "long", month: "short", year: "numeric", day: "numeric" })}, {fecini.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>)}
 
               <h1>{evento.nombre}</h1>
             </div>
 
             <div className="botones">
-              {user ? (
-                asistencia.find((asistencia) => asistencia.id_evento === evento.id_evento) ? <button className="asistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button> : <button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>
+            {fecini < fechaActual && fechaTermino > fechaActual ? (
+              asistencia.find((asistencia) => asistencia.id_evento === evento.id_evento) ? <button className="asistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button> : <button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>
               ) : (
-                <button className="asistir" onClick={() => nav(routes.login, { state: { from: location, pagina: 1 } })}>Asistir</button>
-              )}
+            null
+          )}
               <button onClick={() => setOpComp(!opComp)}>Compartir</button>
               {
                 opComp && (
@@ -230,6 +233,7 @@ function Evento() {
                 <div className="detalles">
                   <section className="informacion">
                     <h1>Detalles</h1>
+                    <p className="infEventoFecha">Conclusión, {fechaTermino.toLocaleDateString('es-us', { weekday: "long", month: "short", year: "numeric", day: "numeric" })}, {fechaTermino.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
                     <p className="direccion">
                       {evento.direccion}
                     </p>

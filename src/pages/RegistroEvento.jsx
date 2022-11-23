@@ -39,10 +39,11 @@ function RegistroEvento({ negocio = false, map }) {
     horaInicio: "",
     fechaTermino: "",
     horaTermino: "",
-    costo: "",
+    costo: 0,
     capacidad: "",
     descripcion: "",
     tipo: "",
+    publico: "",
   });
 
   const handleBuscador = (e) => {
@@ -231,7 +232,7 @@ function RegistroEvento({ negocio = false, map }) {
               <div className="contCheckbox">
                 <p>
                   Publico
-                  <input type="checkbox" className="checkbox" defaultChecked={true} />
+                  <input type="checkbox" name="publico" className="checkbox" defaultChecked={true} onChange={handleChange} />
                 </p>
               </div>
             </section>
