@@ -42,7 +42,6 @@ function ListaEventosFeed({ id, solicito }) {
       </section>
     )
   };
-  const fecact = new Date();
 
   const actionAsistir = (id_evento) => {
     instance.post('/eventos/asistente', { id_evento: id_evento, id_usuario: user.id })
@@ -79,12 +78,11 @@ function ListaEventosFeed({ id, solicito }) {
       <>
         {!eventos.filter(evento => new Date(evento.fecha_inicio) > new Date()).length ? (<h1>No hay eventos proximos</h1>) : eventos.map((evento, index) => {
           let fechaInicio = new Date(evento.fecha_inicio)
-          let fechaTermino = new Date(evento.fecha_termino)
           if (fechaInicio > new Date()) {
             return (
               <div id="PerfilFeedEvento">
                 <section id="ContImgEventoFeed">
-                  <img src={image} id="ImgEventoFeed" />
+                  <img src={image} id="ImgEventoFeed" alt="nanay" />
                 </section>
 
                 <section id="ContInfEvento">
@@ -102,7 +100,7 @@ function ListaEventosFeed({ id, solicito }) {
                   </div>
 
                   <div className="coverEvento">
-                    {evento.precio === null || evento.precio == 0 ? <p> Entrada gratuita </p> : <p className="cover"> Cover: {evento.precio} </p>}
+                    {evento.precio === null || evento.precio === 0 ? <p> Entrada gratuita </p> : <p className="cover"> Cover: {evento.precio} </p>}
 
                     {asistencia.find((asistencia) => asistencia.id_evento === evento.id_evento) ? <button className="btnAsistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button> : <button className="btnAsistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>}
 
@@ -119,13 +117,12 @@ function ListaEventosFeed({ id, solicito }) {
     case 'anteriores': return (
       <>
         {!eventos.filter(evento => new Date(evento.fecha_termino) < new Date()).length ? (<h1>No hay eventos </h1>) : eventos.map((evento, index) => {
-          let fechaInicio = new Date(evento.fecha_inicio)
           let fechaTermino = new Date(evento.fecha_termino)
           if (fechaTermino < new Date()) {
             return (
               <div id="PerfilFeedEvento">
                 <section id="ContImgEventoFeed">
-                  <img src={image} id="ImgEventoFeed" />
+                  <img src={image} id="ImgEventoFeed" alt="nanay"/>
                 </section>
 
                 <section id="ContInfEvento">
@@ -143,7 +140,7 @@ function ListaEventosFeed({ id, solicito }) {
                   </div>
 
                   <div className="coverEvento">
-                    {evento.precio === null || evento.precio == 0 ? <p> La entrada fue gratuita </p> : <p className="cover"> Tuvo un cover de: ${evento.precio} </p>}
+                    {evento.precio === null || evento.precio === 0 ? <p> La entrada fue gratuita </p> : <p className="cover"> Tuvo un cover de: ${evento.precio} </p>}
 
                   </div>
                 </section>
@@ -159,11 +156,10 @@ function ListaEventosFeed({ id, solicito }) {
       <>
         {eventos.map((evento) => {
           let fechaInicio = new Date(evento.fecha_inicio)
-          let fecter = new Date(evento.fecha_termino)
             return (
               <div id="PerfilFeedEvento">
                 <section id="ContImgEventoFeed">
-                  <img src={image} id="ImgEventoFeed" />
+                  <img src={image} id="ImgEventoFeed" alt="nanay" />
                 </section>
 
                 <section id="ContInfEvento">
@@ -181,7 +177,7 @@ function ListaEventosFeed({ id, solicito }) {
                   </div>
 
                   <div className="coverEvento">
-                    {evento.precio === null || evento.precio == 0 ? <p> Entrada gratuita </p> : <p className="cover"> Cover: {evento.precio} </p>}
+                    {evento.precio === null || evento.precio === 0 ? <p> Entrada gratuita </p> : <p className="cover"> Cover: {evento.precio} </p>}
 
                     {asistencia.find((asistencia) => asistencia.id_evento === evento.id_evento) ? <button className="btnAsistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button> : <button className="btnAsistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>}
 
@@ -198,11 +194,10 @@ function ListaEventosFeed({ id, solicito }) {
       <>
         {eventos.map((evento) => {
           let fechaInicio = new Date(evento.fecha_inicio)
-          let fecter = new Date(evento.fecha_termino)
             return (
               <div id="PerfilFeedEvento">
                 <section id="ContImgEventoFeed">
-                  <img src={image} id="ImgEventoFeed" />
+                  <img src={image} id="ImgEventoFeed" alt="nanay"/>
                 </section>
 
                 <section id="ContInfEvento">
@@ -219,7 +214,7 @@ function ListaEventosFeed({ id, solicito }) {
                   </div>
 
                   <div className="coverEvento">
-                    {evento.precio === null || evento.precio == 0 ? <p> Entrada gratuita </p> : <p className="cover"> Cover: {evento.precio} </p>}
+                    {evento.precio === null || evento.precio === 0 ? <p> Entrada gratuita </p> : <p className="cover"> Cover: {evento.precio} </p>}
 
                     <button className="btnAsistirTrue">Editar este evento</button>
 
@@ -231,6 +226,8 @@ function ListaEventosFeed({ id, solicito }) {
         }
       </>
     )
+
+    default: return;
   }
 }
 

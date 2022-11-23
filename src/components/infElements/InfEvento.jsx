@@ -4,7 +4,6 @@ import instance from '../../api/axios';
 import Skeleton from '../Skeleton';
 import image from '../../images/loginWallpaper.jpg';
 import useAuth from '../../auth/useAuth';
-import Modal from '../Modal';
 
 function InfEvento({ evento, cerrar }) {
 
@@ -17,7 +16,6 @@ function InfEvento({ evento, cerrar }) {
 
   const { user } = useAuth();
   /** @type React.MutableRefObject<HTMLInputElement> */
-  const urlRef = useRef();
   const successRef = useRef();
 
   useEffect(() => {

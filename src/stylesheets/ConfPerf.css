@@ -184,7 +184,8 @@
     width: 75%;
     word-wrap: break-word;
 }#contInfoGen> h2 >a {
-    text-decoration: none;
+    
+    color: white;
 }#contInfoGen button {
     width: 20%;
     color: white;
