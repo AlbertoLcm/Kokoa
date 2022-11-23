@@ -110,6 +110,10 @@
                 justify-content: center;
                 align-items: center;
             }
+            #InfPerfilAnfitrion > .fileSelect {
+                left: -90px !important;
+                
+            }
         /* FIN Boton para abrir el modal */
 
         /* Modal */
