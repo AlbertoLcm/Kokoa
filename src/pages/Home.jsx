@@ -46,8 +46,7 @@ function Home() {
     comentario: "",
     id_usuario: user.id,
     id_negocio: user.id,
-    perfil: user.perfil,
-    nombre: `${user.nombre_cargo}`,
+    rol_usuario: user.rol,
   });
   const [usuario, setUsuario] = useState({});
 

@@ -14,8 +14,7 @@ const Comentar = ({ id_negocio, id_evento, tipo }) => {
     comentario: "",
     id_usuario: user.id,
     id_negocio: id_negocio,
-    perfil: user.perfil,
-    nombre: `${user.nombre} ${user.apellidos}`,
+    rol_usuario: user.rol,
   });
 
   const handleChangeEvento = (e) => {

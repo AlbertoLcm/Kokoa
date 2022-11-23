@@ -22,8 +22,7 @@ function DatosAnfitrion({ id, section }) {
     comentario: "",
     id_usuario: user.id,
     id_negocio: id,
-    perfil: user.perfil,
-    nombre: `${user.nombre} ${user.apellidos}`,
+    rol_usuario: user.rol,
   });
 
   useEffect(() => {
