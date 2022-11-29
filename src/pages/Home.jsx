@@ -1,7 +1,7 @@
 import React from "react";
 import useAuth from "../auth/useAuth";
 import { useRef, useState, Suspense, lazy, useEffect } from "react";
-import { useLocation, useNavigate} from "react-router-dom";
+import { useLocation} from "react-router-dom";
 import { Autocomplete } from "@react-google-maps/api";
 import "../stylesheets/Home.css";
 import "../stylesheets/BurguerMenu.css";
@@ -9,7 +9,6 @@ import Evento from "../components/EventosPagPrin";
 import Loading from "../components/Loading";
 import instance from "../api/axios";
 import Header from "../components/Header";
-import foto from "../images/Wall (59).jpg";
 import image from "../images/concert.jpg";
 import Modal from "../components/Modal";
 import ListaEventosFeed from "../components/infElements/ListaEventosFeed";
@@ -28,15 +27,11 @@ function Home() {
   const [mensajesCarg, setMensajesCarg] = useState([]);
    /** @type React.MutableRefObject<HTMLInputElement> */
    const alertRef = useRef();
-  const cambiarMensajes = (mensajes) => {
-    setMensajesCarg(mensajes)
-  }
-  const nav = useNavigate();
 
   const chatRef = useRef(null);
 
   // Fin del area de pruebas
-  const { marcar, eventos, logout, user } = useAuth();
+  const { eventos, user } = useAuth();
 
   const [map, setMap] = useState(/** @type google.maps.Map */(null));
   const [evCre, setEvCre] = useState([]);

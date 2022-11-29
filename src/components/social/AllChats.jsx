@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import instance from "../../api/axios";
 import useAuth from "../../auth/useAuth";
-import Modal from "../Modal";
 import Chat from "./Chat";
 
 const AllChats = () => {
-
-  const [showModal, setShowModal] = useState(false);
   const [receptor, setReceptor] = useState({});
   const [chats, setChats] = useState([]);
   const { user } = useAuth();
@@ -22,7 +19,6 @@ const AllChats = () => {
   }, []);
   
   const actionMostrarChat = (chat) => {
-    setShowModal(true);
     setReceptor(chat);
   };
   
