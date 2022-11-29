@@ -1,30 +1,30 @@
 import React, { useEffect, useState } from "react";
 import instance from "../../api/axios";
 import Skeleton from "../Skeleton";
-import foto from "../../images/Wall (59).jpg";
-import fotos from "../../images/establecimiento.jpg";
 import '../../stylesheets/VisPerfs.css';
 import Comentario from "../social/Comentario";
-import Comentar from "../social/Comentar";
 import useAuth from "../../auth/useAuth";
-import Modal from "../Modal";
+import Modal from "../modals/Modal";
 import socket from "../sockets/Socket";
+import ModalImg from "../modals/ModalImg";
 
 function DatosAnfitrion({ id, section }) {
+
+  const { user } = useAuth();
 
   const [anfitrion, setAnfitrion] = useState({});
   const [loading, setLoading] = useState(true);
   const [comentarios, setComentarios] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const { user } = useAuth();
-
+  const [showModalImg, setShowModalImg] = useState(false);
+  const [imgModal, setImgModal] = useState("");
   const [comentario, setComentario] = useState({
     comentario: "",
     id_usuario: user.id,
     id_negocio: id,
     rol_usuario: user.rol,
   });
-
+  
   useEffect(() => {
     instance.get(`/negocios/${id}`)
       .then((anfitrion) => {
@@ -66,10 +66,22 @@ function DatosAnfitrion({ id, section }) {
       .catch((err) => console.log(err));
   };
 
+  const actionModalImg = (img) => {
+    setImgModal(img);
+    setShowModalImg(!showModalImg);
+  };
+
   switch (section) {
     case 'perfil': return (
       <>
-        <section id="PortadaPerfilAnfitrion">
+        <ModalImg
+          estado={showModalImg}
+          cambiarEstado={setShowModalImg}
+        >
+          {imgModal && <img src={imgModal} alt="imagen" />}
+        </ModalImg>
+      
+        <section id="PortadaPerfilAnfitrion" onClick={() => actionModalImg(anfitrion.perfil)}>
           <img src={anfitrion.perfil} id="ImagePortadaPerfilAnfitrion" />
         </section>
 
@@ -81,7 +93,7 @@ function DatosAnfitrion({ id, section }) {
             <p>{anfitrion.telefono}</p>
           </section>
 
-          <section id="ContFotoPerfilAnfitrion">
+          <section id="ContFotoPerfilAnfitrion" onClick={() => actionModalImg(anfitrion.perfil)}>
             <div id="FotoPerfilAnfitrion">
               <img src={anfitrion.perfil} id="ImageFotoPerfilAnfitrion" />
             </div>

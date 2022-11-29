@@ -286,8 +286,9 @@
         }
         #ContGeneralHome #HeaderFeedHome{
             height: auto;
-        }#HeaderFeedHome > h2 {
+        }#HeaderFeedHome h2 {
             display: inline-block;
+            margin-bottom: 10px;
         }
         #ContGeneralHome .feedHome #BtnFeedAnfitrion {
             border-bottom: 1px solid #f3f3f369;

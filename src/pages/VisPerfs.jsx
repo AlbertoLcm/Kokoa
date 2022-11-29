@@ -8,14 +8,13 @@ import DatosAnfitrion from "../components/infElements/DatosAfitrion";
 import ListaEventosFeed from "../components/infElements/ListaEventosFeed";
 import Header from "../components/Header"
 import { useEffect } from "react";
+import '../stylesheets/components/Social.css'
 
 function VisPerfs() {
   const { id } = useParams()
   const { user } = useAuth();
   const [visua, setVisua] = useState(1);
   const location = useLocation();
-
-  console.log(location)
 
   useEffect(() => {
     if (location.state?.pagina) {

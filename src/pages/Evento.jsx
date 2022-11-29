@@ -8,9 +8,10 @@ import imagen from "../images/concert.jpg"
 import '../stylesheets/pages/Eventos.css';
 import Skeleton from "../components/Skeleton";
 import Comentario from "../components/social/Comentario";
-import Modal from "../components/Modal";
+import Modal from "../components/modals/Modal";
 import socket from "../components/sockets/Socket";
 import routes from "../helpers/routes";
+import ModalImg from "../components/modals/ModalImg";
 
 function Evento() {
   const { id } = useParams();
@@ -24,6 +25,8 @@ function Evento() {
   const [showModalEvento, setShowModalEvento] = useState(false);
   const [comentarios, setComentarios] = useState([]);
   const [opComp, setOpComp] = useState(false);
+  const [showModalImg, setShowModalImg] = useState(false);
+  const [imgModal, setImgModal] = useState("");
 
   /** @type React.MutableRefObject<HTMLInputElement> */
   const successRef = useRef();
@@ -135,7 +138,7 @@ function Evento() {
   };
 
   const actionPublicar = () => {
-    instance.post("/eventos/comentarios", comentarioEvento )
+    instance.post("/eventos/comentarios", comentarioEvento)
       .then((res) => {
         setShowModalEvento(false);
         socket.emit('comentar', comentarioEvento);
@@ -155,12 +158,25 @@ function Evento() {
     successRef.current.innerHTML = 'Enlace copiado';
   }
 
+  const actionModalImg = (img) => {
+    setImgModal(img);
+    setShowModalImg(!showModalImg);
+  };
+
   let fecini = new Date(evento.fecha_inicio);
   let fechaActual = new Date();
   let fechaTermino = new Date(evento.fecha_termino);
 
   return (
     <>
+
+      <ModalImg
+        estado={showModalImg}
+        cambiarEstado={setShowModalImg}
+      >
+        {imgModal && <img src={imagen} alt="imagen" />}
+      </ModalImg>
+
       <Header tipo={'responsive'} perfil={user.nombre} back={true} />
       <div id="ContEventoGeneral">
 
@@ -178,7 +194,7 @@ function Evento() {
         <section id="ContTituloEvento">
           <div id="TituloEvento">
             <div className="contImagenEvento">
-              <div className="imagenEvento">
+              <div className="imagenEvento" onClick={() => actionModalImg("hola")}>
                 <img src={imagen} alt="Imagen del evento" />
               </div>
             </div>
@@ -190,11 +206,11 @@ function Evento() {
             </div>
 
             <div className="botones">
-            {fecini < fechaActual && fechaTermino > fechaActual ? (
-              asistencia.find((asistencia) => asistencia.id_evento === evento.id_evento) ? <button className="asistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button> : <button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>
+              {fecini < fechaActual && fechaTermino > fechaActual ? (
+                asistencia.find((asistencia) => asistencia.id_evento === evento.id_evento) ? <button className="asistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button> : <button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>
               ) : (
-            null
-          )}
+                null
+              )}
               <button onClick={() => setOpComp(!opComp)}>Compartir</button>
               {
                 opComp && (
@@ -257,33 +273,33 @@ function Evento() {
                   {location?.state?.from?.pathname ? (
                     (!(location?.state?.from?.pathname).includes("visperfil/")) ? (
                       <section className="anfitrion">
-                      {evento.rol_anfitrion === "negocios" ? (
-                        <>
-                          <h1>Anfitrion (Negocio)</h1>
-                          <Link to={`/visperfil/${evento.anfitrion}`} className={"contDetAnfitrion"}>
-                            <div className='contImgAnfitrion'>
-                              <img src={anfitrion.perfil} alt="Predefinir" />
-                            </div>
-                            <div className="tituloAnfitiron">
-                              Un evento de {anfitrion.nombre}. <br />
-                              <label> Conocer </label>
-                            </div>
-                          </Link>
-                        </>
-                      ) : (
-                        <>
-                          <h1>Anfitrion</h1>
-                          <section className='contDetAnfitrion'>
-                            <div className='contImgAnfitrion'>
-                              <img src={anfitrion.perfil} alt="Predefinir" />
-                            </div>
-                            <div className="tituloAnfitiron">
-                              Un evento de {anfitrion.nombre}. <br />
-                            </div>
-                          </section>
-                        </>
-                      )}
-                    </section>
+                        {evento.rol_anfitrion === "negocios" ? (
+                          <>
+                            <h1>Anfitrion (Negocio)</h1>
+                            <Link to={`/visperfil/${evento.anfitrion}`} className={"contDetAnfitrion"}>
+                              <div className='contImgAnfitrion'>
+                                <img src={anfitrion.perfil} alt="Predefinir" />
+                              </div>
+                              <div className="tituloAnfitiron">
+                                Un evento de {anfitrion.nombre}. <br />
+                                <label> Conocer </label>
+                              </div>
+                            </Link>
+                          </>
+                        ) : (
+                          <>
+                            <h1>Anfitrion</h1>
+                            <section className='contDetAnfitrion'>
+                              <div className='contImgAnfitrion'>
+                                <img src={anfitrion.perfil} alt="Predefinir" />
+                              </div>
+                              <div className="tituloAnfitiron">
+                                Un evento de {anfitrion.nombre}. <br />
+                              </div>
+                            </section>
+                          </>
+                        )}
+                      </section>
                     ) : (null)
                   ) : (
                     <section className="anfitrion">

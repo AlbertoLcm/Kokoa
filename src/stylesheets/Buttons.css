@@ -29,6 +29,7 @@
 .btnLink2{
     text-decoration: none;
     background-color: #196eff;
+    border: none;
     border-radius: 30px;
     padding: 10px;
     padding-left: 10px;
@@ -39,6 +40,7 @@
     transition: all 300ms ease;
     user-select: none;
     cursor: pointer;
+    margin-bottom: 5px;
 }
 .btnLink2:hover{
     background-color: #3a82ff;

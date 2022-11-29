@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import useAuth from "../auth/useAuth";
-import Modal from "./Modal";
+import Modal from "./modals/Modal";
 
 function Perfil() {
   const { user } = useAuth();

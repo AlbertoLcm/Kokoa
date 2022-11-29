@@ -8,10 +8,9 @@ import "../stylesheets/ConfPerf.css"
 import img from "../images/Plagui.jpg"
 import { Link, useLocation } from "react-router-dom";
 import routes from "../helpers/routes";
-import backimg from "../images/Wall (15).jpg"
 import { useNavigate } from "react-router-dom";
 import instance from "../api/axios";
-import Modal from "../components/Modal";
+import Modal from "../components/modals/Modal";
 import '../stylesheets/Modal.css'
 
 function ConPerf() {
