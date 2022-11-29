@@ -158,7 +158,19 @@
                 overflow: hidden;
                 border: white solid 2px;
             }
+            .previsualizacion .contImagenPortada {
+                width: 100%;
+                height: 200px;
+                border-radius: 10px;
+                overflow: hidden;
+                border: white solid 2px;
+            }
             .previsualizacion .contImagen img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            .previsualizacion .contImagenPortada img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;

@@ -48,6 +48,7 @@ function ConPerf() {
     id: user.id,
     anterior: user.perfil,
     avatar: null,
+    portada: false
   });
   const [selectFoto, setSelectFoto] = useState(user.perfil);
 

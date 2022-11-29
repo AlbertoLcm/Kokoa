@@ -49,13 +49,23 @@ function Home() {
   const [usuario, setUsuario] = useState({});
 
   const [showCambiarFoto, setShowCambiarFoto] = useState(false);
+  const [showCambiarPortada, setShowCambiarPortada] = useState(false);
   const [foto, setFoto] = useState({
     id: user.id,
     rol: user.rol,
     anterior: user.perfil,
     avatar: null,
+    portada: false,
+  });
+  const [portada, setPortada] = useState({
+    id: user.id,
+    rol: user.rol,
+    anterior: user.portada,
+    portada: true,
+    avatar: null,
   });
   const [selectFoto, setSelectFoto] = useState(user.perfil);
+  const [selectPortada, setSelectPortada] = useState(user.portada);
 
   const handleFile = (e) => {
     alertRef.current.classList.add("d-none");
@@ -68,9 +78,21 @@ function Home() {
       setSelectFoto(reader.result);
     }
     reader.readAsDataURL(e.target.files[0]);
-
   };
 
+  const handleFilePortada = (e) => {
+    alertRef.current.classList.add("d-none");
+    setPortada({
+      ...portada,
+      [e.target.name]: e.target.files[0]
+    });
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setSelectPortada(reader.result);
+    }
+    reader.readAsDataURL(e.target.files[0]);
+  };
+  
   const subirFoto = () => {
     if (foto.avatar === null) {
       alertRef.current.classList.remove('d-none');
@@ -94,6 +116,29 @@ function Home() {
           })
       })
   };
+
+  const subirPortada = () => {
+    if (portada.avatar === null) {
+      alertRef.current.classList.remove('d-none');
+      alertRef.current.innerText = "Debes subir una nueva foto";
+      return;
+    }
+    if (portada.avatar.size > 2097152) {
+      alertRef.current.classList.remove('d-none');
+      alertRef.current.innerText = "La foto debe ser menor a 2MB";
+      return;
+    }
+
+    setShowCambiarPortada(false);
+    instance.post('/upload/profile', portada, { headers: { "Content-Type": "multipart/form-data" } })
+      .then((res) => {
+        instance.get(`/usuarios/${user.id}`)
+          .then((res) => {
+            setUsuario(res.data);
+          })
+      })
+  };
+
   const location = useLocation();
 
   // Para mostrar un modal diferente (esta fue la primer forma que se me ocurrio no me juzguen)
@@ -686,14 +731,52 @@ function Home() {
 
                         </div>
                       </Modal>
+
+                      <Modal
+                        estado={showCambiarPortada}
+                        cambiarEstado={setShowCambiarPortada}
+                        titulo="Actualizar foto de portada"
+                      >
+                        <div className="modalConfPerfil">
+
+                          <section className="contInputFile">
+                            <div className="inputFile">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-plus" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <circle cx="12" cy="12" r="9" />
+                                <line x1="9" y1="12" x2="15" y2="12" />
+                                <line x1="12" y1="9" x2="12" y2="15" />
+                              </svg>
+                              Subir Foto
+                              <input type="file" accept="image/*" name="avatar" onChange={handleFilePortada} />
+                            </div>
+                          </section>
+
+                          <div ref={alertRef} className="alert d-none">
+                            Algo salio mal
+                          </div>
+
+                          <section className="previsualizacion">
+                            <div className="contImagenPortada">
+                              <img src={selectPortada} alt="foto de perfil" />
+                            </div>
+                          </section>
+
+                          <button onClick={() => subirPortada()}>Actualizar foto de portada</button>
+
+                        </div>
+                      </Modal>
+
                       <div id="ContenedorFeedPerfilNegocioGeneral">
 
                         <div id="ContenedorFeedPerfilNegocio">
 
                           <section id="PortadaPerfilAnfitrion">
-                            <img src={user.perfil} id="ImagePortadaPerfilAnfitrion" />
+                            <img src={user.portada} id="ImagePortadaPerfilAnfitrion" />
 
                           </section>
+                            <button className="fileSelect" onClick={() => setShowCambiarPortada(!showCambiarPortada)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-camera-plus" width="35" height="35" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><circle cx="12" cy="13" r="3" /><path d="M5 7h2a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h2m9 7v7a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2" /><line x1="15" y1="6" x2="21" y2="6" /><line x1="18" y1="3" x2="18" y2="9" /></svg>
+                            </button>
 
                           <section id="InfPerfilAnfitrion">
                             <section id="DatosPerfilAnfitrion">

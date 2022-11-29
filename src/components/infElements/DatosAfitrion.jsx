@@ -81,8 +81,8 @@ function DatosAnfitrion({ id, section }) {
           {imgModal && <img src={imgModal} alt="imagen" />}
         </ModalImg>
       
-        <section id="PortadaPerfilAnfitrion" onClick={() => actionModalImg(anfitrion.perfil)}>
-          <img src={anfitrion.perfil} id="ImagePortadaPerfilAnfitrion" />
+        <section id="PortadaPerfilAnfitrion" onClick={() => actionModalImg(anfitrion.portada)}>
+          <img src={anfitrion.portada} id="ImagePortadaPerfilAnfitrion" />
         </section>
 
         <section id="InfPerfilAnfitrion">
