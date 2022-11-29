@@ -1,0 +1,42 @@
+.backgroundModal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.5);
+    filter: blur(0px);
+    backdrop-filter: blur(2px);
+    z-index: 900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.backgroundModal .btnCloseModal{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    background: none;
+}
+.contenedorModal{
+  width: 70%;
+  position: relative;
+  z-index: 1000;
+}
+.contenedorModal .contImg{
+  width: auto;
+  height: 90vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contenedorModal .contImg img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}

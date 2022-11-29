@@ -1,7 +1,7 @@
 import React from "react";
 import useAuth from "../auth/useAuth";
 import { useRef, useState, Suspense, lazy, useEffect } from "react";
-import { useLocation} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Autocomplete } from "@react-google-maps/api";
 import "../stylesheets/Home.css";
 import "../stylesheets/BurguerMenu.css";
@@ -9,8 +9,7 @@ import Evento from "../components/EventosPagPrin";
 import Loading from "../components/Loading";
 import instance from "../api/axios";
 import Header from "../components/Header";
-import image from "../images/concert.jpg";
-import Modal from "../components/Modal";
+import Modal from "../components/modals/Modal";
 import ListaEventosFeed from "../components/infElements/ListaEventosFeed";
 import RegistroEvento from "./RegistroEvento";
 import ListarComentarios from "../components/social/ListarComentarios";
@@ -25,8 +24,12 @@ const MapNegocio = lazy(() => import("../components/maps/MapNegocio"));
 function Home() {
   // Area de pruebas
   const [mensajesCarg, setMensajesCarg] = useState([]);
-   /** @type React.MutableRefObject<HTMLInputElement> */
-   const alertRef = useRef();
+  /** @type React.MutableRefObject<HTMLInputElement> */
+  const alertRef = useRef();
+  const cambiarMensajes = (mensajes) => {
+    setMensajesCarg(mensajes)
+  }
+  const nav = useNavigate();
 
   const chatRef = useRef(null);
 
@@ -41,8 +44,7 @@ function Home() {
     comentario: "",
     id_usuario: user.id,
     id_negocio: user.id,
-    perfil: user.perfil,
-    nombre: `${user.nombre_cargo}`,
+    rol_usuario: user.rol,
   });
   const [usuario, setUsuario] = useState({});
 
@@ -66,16 +68,16 @@ function Home() {
       setSelectFoto(reader.result);
     }
     reader.readAsDataURL(e.target.files[0]);
-    
+
   };
 
   const subirFoto = () => {
-    if(foto.avatar === null) {
+    if (foto.avatar === null) {
       alertRef.current.classList.remove('d-none');
       alertRef.current.innerText = "Debes subir una nueva foto";
       return;
     }
-    if(foto.avatar.size > 2097152) {
+    if (foto.avatar.size > 2097152) {
       alertRef.current.classList.remove('d-none');
       alertRef.current.innerText = "La foto debe ser menor a 2MB";
       return;
@@ -84,7 +86,7 @@ function Home() {
     console.log(foto);
 
     setShowCambiarFoto(false);
-    instance.post('/upload/profile', foto, {headers: { "Content-Type": "multipart/form-data" }})
+    instance.post('/upload/profile', foto, { headers: { "Content-Type": "multipart/form-data" } })
       .then((res) => {
         instance.get(`/usuarios/${user.id}`)
           .then((res) => {
@@ -104,14 +106,15 @@ function Home() {
   const [showModal7, setShowModal7] = useState(false);
   const [showModalRegistrar, setShowModalRegistrar] = useState(false);
 
+
   const handleSetMap = (mapita) => {
     setMap(mapita);
   };
 
   const [rol, setRol] = useState({});
 
-  
-  
+
+
   useEffect(() => {
     if (user.rol === "negocios") {
       instance.get(`/eventos/all/${user.id}`).then((resultado) => {
@@ -173,7 +176,7 @@ function Home() {
       [e.target.name]: e.target.value,
     });
   }
-  
+
   const handleDomic = () => {
     // console.log(originRef.current)
     if (originRef.current !== undefined) {
@@ -200,7 +203,7 @@ function Home() {
   const formHorar = (hor) => {
     hor = hor.split(",");
     parsHor = [("Lunes: " + hor[0]), ("Martes: " + hor[1]), ("Miercoles: " + hor[2]), ("Jueves: " + hor[3]), ("Viernes: " + hor[4]), ("Sabado: " + hor[5]), ("Domingo: " + hor[6])];
-    
+
   }
 
   const actionPublicar = () => {
@@ -212,9 +215,9 @@ function Home() {
       })
       .catch((err) => console.log(err));
   };
-  
+
   useEffect(() => {
-    chatRef.current?.scrollIntoView({behavior: 'smooth'});
+    chatRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [mensajesCarg]);
 
   if (user.rol === "usuarios") {
@@ -239,7 +242,6 @@ function Home() {
           </div>
           <div className="feedHome">
             <section id="HeaderFeedHome">
-              <h2>Hola, {user.nombre}</h2> 
               <button onClick={() => setShowModal(!showModal)} className="btnLink2">Crear un evento</button>
               <section id="ContBtnFeedAnfitrion">
                 <div id="BtnFeedAnfitrion">
@@ -284,213 +286,9 @@ function Home() {
             ) : (
               <>
                 <h3>Comunidad</h3>
-                <section id="ContCrearEvento">
-                  
-                </section>
-
                 <section id="InfOpinionesAnfitrion">
 
-                  <div className="opinionesAnfitrion">
-                    <div className="opinionAnfitrion">
-                      <section className="contOpinador">
-                        <div className="fotoOpinador">
-                          <img src={foto} />
-                        </div>
-                        <div className="nombreOpinador">
-                          <p>Alberto Cruz Marín</p>
-                          <p className="fecha">Noviembre 17</p>
-                        </div>
-
-                      </section>
-                      <section className="contOpinion">
-                        <p>
-                          Comentario de prueba acerca de un evento que esta asistiendo el usuario o compartio
-                        </p>
-                      </section>
-                    </div>
-                  </div>
-
-                  <div className="opinionesAnfitrion">
-                    <div className="opinionAnfitrion">
-                      <section className="contOpinador">
-                        <div className="fotoOpinador">
-                          <img src={foto} />
-                        </div>
-                        <div className="nombreOpinador">
-                          <p>Alberto Cruz Marín</p>
-                          <p className="fecha">Noviembre 17</p>
-                        </div>
-
-                      </section>
-                      <section className="contOpinion">
-                        <p>
-                          Comparto un evento que he creado.
-                        </p>
-                        <div id="ContEventoHomeFeed">
-                          <section id="ContImgEventoFeed">
-                            <img src={image} id="ImgEventoFeed" />
-                          </section>
-
-                          <section id="ContInfEvento">
-                            <div className="infEvento">
-                              <p className="infEventoFecha">
-                                Sab, 17 octubre a las 16:00 horas
-                              </p>
-                              <h4>Fiesta</h4>
-                              <p className="infEventoUbicacion">
-                                Ixtapaluca estado de México
-                              </p>
-                              <p className="asistentesEvento">
-                                Asistiran 12 personas
-                              </p>
-                            </div>
-                          </section>
-                        </div>
-                      </section>
-                    </div>
-                  </div>
-
-                  <div className="opinionesAnfitrion">
-                    <div className="opinionAnfitrion">
-                      <section className="contOpinador">
-                        <div className="fotoOpinador">
-                          <img src={foto} />
-                        </div>
-                        <div className="nombreOpinador">
-                          <p>Alberto Cruz Marín</p>
-                          <p className="fecha">Noviembre 17</p>
-                        </div>
-
-                      </section>
-                      <section className="contOpinion">
-                        <p>
-                          Comentario de prueba acerca de un evento que esta asistiendo el usuario o compartio
-                        </p>
-                      </section>
-                    </div>
-                  </div>
-
-                  <div className="opinionesAnfitrion">
-                    <div className="opinionAnfitrion">
-                      <section className="contOpinador">
-                        <div className="fotoOpinador">
-                          <img src={foto} />
-                        </div>
-                        <div className="nombreOpinador">
-                          <p>Alberto Cruz Marín</p>
-                          <p className="fecha">Noviembre 17</p>
-                        </div>
-
-                      </section>
-                      <section className="contOpinion">
-                        <p>
-                          Comentario de prueba acerca de un evento que esta asistiendo el usuario o compartio
-                        </p>
-                      </section>
-                    </div>
-                  </div>
-
-                  <div className="opinionesAnfitrion">
-                    <div className="opinionAnfitrion">
-                      <section className="contOpinador">
-                        <div className="fotoOpinador">
-                          <img src={foto} />
-                        </div>
-                        <div className="nombreOpinador">
-                          <p>Alberto Cruz Marín</p>
-                          <p className="fecha">Noviembre 17</p>
-                        </div>
-
-                      </section>
-                      <section className="contOpinion">
-                        <p>
-                          Comentario de prueba acerca de un evento que esta asistiendo el usuario o compartio
-                        </p>
-                      </section>
-                    </div>
-                  </div>
-
-                  <div className="opinionesAnfitrion">
-                    <div className="opinionAnfitrion">
-                      <section className="contOpinador">
-                        <div className="fotoOpinador">
-                          <img src={foto} />
-                        </div>
-                        <div className="nombreOpinador">
-                          <p>Alberto Cruz Marín</p>
-                          <p className="fecha">Noviembre 17</p>
-                        </div>
-
-                      </section>
-                      <section className="contOpinion">
-                        <p>
-                          Comentario de prueba acerca de un evento que esta asistiendo el usuario o compartio
-                        </p>
-                      </section>
-                    </div>
-                  </div>
-
-                  <div className="opinionesAnfitrion">
-                    <div className="opinionAnfitrion">
-                      <section className="contOpinador">
-                        <div className="fotoOpinador">
-                          <img src={foto} />
-                        </div>
-                        <div className="nombreOpinador">
-                          <p>Alberto Cruz Marín</p>
-                          <p className="fecha">Noviembre 17</p>
-                        </div>
-
-                      </section>
-                      <section className="contOpinion">
-                        <p>
-                          Comentario de prueba acerca de un evento que esta asistiendo el usuario o compartio
-                        </p>
-                      </section>
-                    </div>
-                  </div>
-
-                  <div className="opinionesAnfitrion">
-                    <div className="opinionAnfitrion">
-                      <section className="contOpinador">
-                        <div className="fotoOpinador">
-                          <img src={foto} />
-                        </div>
-                        <div className="nombreOpinador">
-                          <p>Alberto Cruz Marín</p>
-                          <p className="fecha">Noviembre 17</p>
-                        </div>
-
-                      </section>
-                      <section className="contOpinion">
-                        <p>
-                          Comentario de prueba acerca de un evento que esta asistiendo el usuario o compartio
-                        </p>
-                      </section>
-                    </div>
-                  </div>
-
-                  <div className="opinionesAnfitrion">
-                    <div className="opinionAnfitrion">
-                      <section className="contOpinador">
-                        <div className="fotoOpinador">
-                          <img src={foto} />
-                        </div>
-                        <div className="nombreOpinador">
-                          <p>Alberto Cruz Marín</p>
-                          <p className="fecha">Noviembre 17</p>
-                        </div>
-
-                      </section>
-                      <section className="contOpinion">
-                        <p>
-                          Comentario de prueba acerca de un evento que esta asistiendo el usuario o compartio
-                        </p>
-                      </section>
-                    </div>
-                  </div>
                 </section>
-
               </>
             )
             }
@@ -773,7 +571,7 @@ function Home() {
           titulo="Cambiar sitio web"
         >
           <div className="modalConfPerfil">
-            <p className="titulo">Anterior sitio web <a href={`https://${rol.sitio_web}`}  target="_blank">{rol.sitio_web}</a> </p>
+            <p className="titulo">Anterior sitio web <a href={`https://${rol.sitio_web}`} target="_blank">{rol.sitio_web}</a> </p>
             <p>Nuevo sitio web</p><input type="text" name="sitio_web" onChange={handleChange} />
             <button onClick={() => handleUpdate()}>Guardar</button>
           </div>
@@ -788,7 +586,7 @@ function Home() {
                   <h1>{user.nombre_cargo}</h1>
                 </section>
                 <div className="btnsFeedNegocios">
-                  
+
                   {
                     user.rol === "negocios" && (
                       <>
@@ -854,99 +652,99 @@ function Home() {
                     </>
                   ) : visua === 5 ? (
                     <>
-                    <Modal
-        estado={showCambiarFoto}
-        cambiarEstado={setShowCambiarFoto}
-        titulo="Actualizar foto de perfil"
-      >
-        <div className="modalConfPerfil">
+                      <Modal
+                        estado={showCambiarFoto}
+                        cambiarEstado={setShowCambiarFoto}
+                        titulo="Actualizar foto de perfil"
+                      >
+                        <div className="modalConfPerfil">
 
-          <section className="contInputFile">
-            <div className="inputFile">
-              <svg xmlns="http:/  /www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-plus" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <circle cx="12" cy="12" r="9" />
-                <line x1="9" y1="12" x2="15" y2="12" />
-                <line x1="12" y1="9" x2="12" y2="15" />
-              </svg>
-              Subir Foto
-              <input type="file" accept="image/*" name="avatar" onChange={handleFile} />
-            </div>
-          </section>
-
-          <div ref={alertRef} className="alert d-none">
-            Algo salio mal
-          </div>
-
-          <section className="previsualizacion">
-            <div className="contImagen">
-              <img src={selectFoto} alt="foto de perfil" />
-            </div>
-          </section>
-
-          <button onClick={() => subirFoto()}>Actualizar foto de perfil</button>
-
-        </div>
-      </Modal>
-                      <div id="ContenedorFeedPerfilNegocioGeneral">
-                      
-                        <div id="ContenedorFeedPerfilNegocio">
-
-                        <section id="PortadaPerfilAnfitrion">
-                          <img src={user.perfil} id="ImagePortadaPerfilAnfitrion" />
-
-                        </section>
-
-                        <section id="InfPerfilAnfitrion">
-                          <section id="DatosPerfilAnfitrion">
-                            <h1>{user.nombre_cargo}</h1>
-                            <p>4.9 Opiniones</p>
-                          </section>
-
-                          <section id="ContFotoPerfilAnfitrion">
-                            <div id="FotoPerfilAnfitrion">
-                              <img src={user.perfil} id="ImageFotoPerfilAnfitrion" />
+                          <section className="contInputFile">
+                            <div className="inputFile">
+                              <svg xmlns="http:/  /www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-plus" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <circle cx="12" cy="12" r="9" />
+                                <line x1="9" y1="12" x2="15" y2="12" />
+                                <line x1="12" y1="9" x2="12" y2="15" />
+                              </svg>
+                              Subir Foto
+                              <input type="file" accept="image/*" name="avatar" onChange={handleFile} />
                             </div>
                           </section>
-                          <button className="fileSelect" onClick={() => setShowCambiarFoto(!showCambiarFoto)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-camera-plus" width="35" height="35" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><circle cx="12" cy="13" r="3" /><path d="M5 7h2a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h2m9 7v7a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2" /><line x1="15" y1="6" x2="21" y2="6" /><line x1="18" y1="3" x2="18" y2="9" /></svg>
-                          </button>
-                        </section>
-                        <section id="InfOpinionesAnfitrion">
-                          <h2>Calificacion - 4.9 (19 Opiniones)</h2>
 
-                          <Modal
-                            estado={showModal}
-                            cambiarEstado={setShowModal}
-                            titulo={"Comentar"}
-                          >
-                            <div id="contComentarModal">
-                              <textarea name="comentario" id="txtComentar" placeholder="Comenta algo interesante" onChange={handleComentario} />
-                              <button onClick={() => actionPublicar()}>Comentar</button>
-                            </div>
-                          </Modal>
-
-                          <div id="Comentar">
-                            <section className="contFotoUsuario">
-                              <img src={user.perfil} alt="Foto Usuario" />
-                            </section>
-
-                            <section className="comentario">
-                              <p onClick={() => setShowModal(!showModal)}>
-                                Comenta algo interesante
-                              </p>
-                            </section>
+                          <div ref={alertRef} className="alert d-none">
+                            Algo salio mal
                           </div>
 
-                          <ComentariosNegocio id_negocio={user.id} />
+                          <section className="previsualizacion">
+                            <div className="contImagen">
+                              <img src={selectFoto} alt="foto de perfil" />
+                            </div>
+                          </section>
 
-                        </section>
+                          <button onClick={() => subirFoto()}>Actualizar foto de perfil</button>
+
+                        </div>
+                      </Modal>
+                      <div id="ContenedorFeedPerfilNegocioGeneral">
+
+                        <div id="ContenedorFeedPerfilNegocio">
+
+                          <section id="PortadaPerfilAnfitrion">
+                            <img src={user.perfil} id="ImagePortadaPerfilAnfitrion" />
+
+                          </section>
+
+                          <section id="InfPerfilAnfitrion">
+                            <section id="DatosPerfilAnfitrion">
+                              <h1>{user.nombre_cargo}</h1>
+                              <p>4.9 Opiniones</p>
+                            </section>
+
+                            <section id="ContFotoPerfilAnfitrion">
+                              <div id="FotoPerfilAnfitrion">
+                                <img src={user.perfil} id="ImageFotoPerfilAnfitrion" />
+                              </div>
+                            </section>
+                            <button className="fileSelect" onClick={() => setShowCambiarFoto(!showCambiarFoto)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-camera-plus" width="35" height="35" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><circle cx="12" cy="13" r="3" /><path d="M5 7h2a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h2m9 7v7a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2" /><line x1="15" y1="6" x2="21" y2="6" /><line x1="18" y1="3" x2="18" y2="9" /></svg>
+                            </button>
+                          </section>
+                          <section id="InfOpinionesAnfitrion">
+                            <h2>Calificacion - 4.9 (19 Opiniones)</h2>
+
+                            <Modal
+                              estado={showModal}
+                              cambiarEstado={setShowModal}
+                              titulo={"Comentar"}
+                            >
+                              <div id="contComentarModal">
+                                <textarea name="comentario" id="txtComentar" placeholder="Comenta algo interesante" onChange={handleComentario} />
+                                <button onClick={() => actionPublicar()}>Comentar</button>
+                              </div>
+                            </Modal>
+
+                            <div id="Comentar">
+                              <section className="contFotoUsuario">
+                                <img src={user.perfil} alt="Foto Usuario" />
+                              </section>
+
+                              <section className="comentario">
+                                <p onClick={() => setShowModal(!showModal)}>
+                                  Comenta algo interesante
+                                </p>
+                              </section>
+                            </div>
+
+                            <ComentariosNegocio id_negocio={user.id} />
+
+                          </section>
                         </div>
                       </div>
                     </>
                   ) : visua === 6 ? (
                     <>
                       <div className="contHomeChat">
-                          <AllChats />
+                        <AllChats />
                       </div>
                     </>
                   ) : (

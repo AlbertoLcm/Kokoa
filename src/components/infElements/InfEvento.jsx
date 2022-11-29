@@ -4,6 +4,7 @@ import instance from '../../api/axios';
 import Skeleton from '../Skeleton';
 import image from '../../images/loginWallpaper.jpg';
 import useAuth from '../../auth/useAuth';
+import ModalImg from '../modals/ModalImg';
 
 function InfEvento({ evento, cerrar }) {
 
@@ -12,6 +13,8 @@ function InfEvento({ evento, cerrar }) {
   const [loading, setLoading] = useState(true);
   const [asistencia, setAsistencia] = useState([]);
   const [opComp, setOpComp] = useState(false);
+  const [showModalImg, setShowModalImg] = useState(false);
+  const [imgModal, setImgModal] = useState("");
   const location = useLocation();
 
   const { user } = useAuth();
@@ -89,8 +92,20 @@ function InfEvento({ evento, cerrar }) {
     successRef.current.innerHTML = 'Enlace copiado';
   }
 
+  const actionModalImg = (img) => {
+    setImgModal(img);
+    setShowModalImg(!showModalImg);
+  };
+
   return (
     <>
+      <ModalImg
+        estado={showModalImg}
+        cambiarEstado={setShowModalImg}
+      >
+        {imgModal && <img src={imgModal} alt="imagen" />}
+      </ModalImg>
+
       <button onClick={() => cerrar()} className="btnCerrar">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -98,6 +113,7 @@ function InfEvento({ evento, cerrar }) {
           <line x1="6" y1="6" x2="18" y2="18" />
         </svg>
       </button>
+
       <div className="contImagenMarkerInfo">
         <img src={image} alt="imagen" />
       </div>
@@ -115,23 +131,23 @@ function InfEvento({ evento, cerrar }) {
         <section className='contBtnMarkerInfo'>
           {fecini < fechaActual && fechaTermino > fechaActual ? (
             asistencia.find((asistencia) => asistencia.id_evento === evento.id_evento) ? <button className="asistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button> : <button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>
-            ) : (
+          ) : (
             null
           )}
 
           <button className='invitar' onClick={() => setOpComp(!opComp)}>Compartir</button>
           {
-                opComp && (
-                  <div className="opCompartir">
-                    <div ref={successRef} className="success d-none">
-                      Todo correcto
-                    </div>
-                    <p>Link del evento</p>
-                    <p id="linkComp">{window.location.href}</p>
-                    <button className='invitar' onClick={() => actionCopiar()}>Copiar Link</button>
-                  </div>
-                )
-              }
+            opComp && (
+              <div className="opCompartir">
+                <div ref={successRef} className="success d-none">
+                  Todo correcto
+                </div>
+                <p>Link del evento</p>
+                <p id="linkComp">{window.location.href}</p>
+                <button className='invitar' onClick={() => actionCopiar()}>Copiar Link</button>
+              </div>
+            )
+          }
         </section>
 
         <section id="EventoInfo">
