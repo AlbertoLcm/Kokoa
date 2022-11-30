@@ -93,8 +93,8 @@ function DatosAnfitrion({ id, section }) {
             <p>{anfitrion.telefono}</p>
           </section>
 
-          <section id="ContFotoPerfilAnfitrion" onClick={() => actionModalImg(anfitrion.perfil)}>
-            <div id="FotoPerfilAnfitrion">
+          <section id="ContFotoPerfilAnfitrion" >
+            <div id="FotoPerfilAnfitrion" onClick={() => actionModalImg(anfitrion.perfil)}>
               <img src={anfitrion.perfil} id="ImageFotoPerfilAnfitrion" />
             </div>
           </section>

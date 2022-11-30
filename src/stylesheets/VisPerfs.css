@@ -79,7 +79,6 @@
     }
 
     #ContBtnFeedAnfitrion{
-        margin-top: 5px;
         display: flex;
         justify-content: center;
     }
@@ -422,7 +421,7 @@
             justify-content: center;
             align-items: center;
             margin-top: -50px;
-            cursor: pointer;
+            /* pointer-events: none; */
         }
         #ContenedorResponsiveFeed{
             width: 95%;
