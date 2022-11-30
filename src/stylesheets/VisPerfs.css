@@ -79,7 +79,6 @@
     }
 
     #ContBtnFeedAnfitrion{
-        margin-top: 5px;
         display: flex;
         justify-content: center;
     }
@@ -95,13 +94,13 @@
 
     /* Eventos del organizador */
     #ContPerfilFeedEventoGeneral{
-        background-color: #140016;
+        background-color:  #140016 ;
         display: flex;
         justify-content: center;
     }
     #ContenedorResponsiveFeed{
         width: 1050px;
-        height: auto;
+        min-height: 400px;
         display: flex;
         flex-direction: column;
     }
@@ -303,6 +302,9 @@
             padding-bottom: 20px;
             padding-top: 20px;
         }
+        #ContPerfilFeedEventos .sinData{
+            color: #f3f3f3a4;
+        }
         #PerfilFeedEvento{
             height: auto;
             width: auto;
@@ -422,7 +424,7 @@
             justify-content: center;
             align-items: center;
             margin-top: -50px;
-            cursor: pointer;
+            /* pointer-events: none; */
         }
         #ContenedorResponsiveFeed{
             width: 95%;

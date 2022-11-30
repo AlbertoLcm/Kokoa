@@ -56,7 +56,7 @@ function Evento() {
         setAnfitrion(res.data);
       })
 
-    instance.post('/eventos/asistente/check', { id_usuario: user.id })
+    instance.get(`/eventos/asistente/check/${user.id}`)
       .then((asistencias) => {
         setAsistencia(asistencias.data)
       })
@@ -115,7 +115,7 @@ function Evento() {
             setEvento(eventoResult.data);
           })
 
-        instance.post('/eventos/asistente/check', { id_usuario: user.id })
+        instance.get(`/eventos/asistente/check/${user.id}`)
           .then((asistencias) => {
             setAsistencia(asistencias.data)
           })
@@ -130,7 +130,7 @@ function Evento() {
             setEvento(eventoResult.data);
           })
 
-        instance.post('/eventos/asistente/check', { id_usuario: user.id })
+        instance.get(`/eventos/asistente/check/${user.id}`)
           .then((asistencias) => {
             setAsistencia(asistencias.data)
           })

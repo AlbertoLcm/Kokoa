@@ -25,6 +25,7 @@
   }
 
   .comentariosNull{
+    color: #f3f3f3a6;
     height: 200px;
     display: flex;
     justify-content: center;

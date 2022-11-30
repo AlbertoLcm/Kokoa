@@ -60,7 +60,7 @@ function VisPerfs() {
                 </>
               ) : (
                 <>
-                <h1>Eventos pasados</h1>
+                <h1>Eventos anteriores</h1>
                 <div id="ContPerfilFeedEventos">
                   <ListaEventosFeed id={id} solicito="anteriores"/>
                 </div>

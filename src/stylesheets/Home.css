@@ -275,6 +275,7 @@
             overflow: auto;
             scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0);
             scrollbar-width: thin;
+            color: #f3f3f3;
         }
         #ContGeneralHome .feedHome h2{
             font-weight: 550;
@@ -282,6 +283,12 @@
         }
         #ContGeneralHome .feedHome h3{
             font-size: 30px;
+            padding: 20px;
+            padding-left: 0px;
+            user-select: none;
+        }
+        #ContGeneralHome .feedHome .titulo{
+            font-size: 18px;
             padding: 20px;
             padding-left: 0px;
             user-select: none;

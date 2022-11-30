@@ -4,7 +4,7 @@
     left: 0;
     width: 100%;
     height: 100vh;
-    background-color: rgba(0,0,0,0.5);
+    background-color: #140016d8;
     filter: blur(0px);
     backdrop-filter: blur(10px);
     z-index: 900;
@@ -29,7 +29,7 @@
 }
 .contenedorModal .contImg{
   width: auto;
-  height: 90vh;
+  height: 70vh;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -39,4 +39,9 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+@media (max-width: 750px) {
+  .contenedorModal{
+    width: 100%;
+  }
 }
