@@ -7,41 +7,33 @@ import useAuth from "../../auth/useAuth";
 
 function ListaEventosFeed({ id, solicito }) {
 
-  const [eventos, setEventos] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [asistencia, setAsistencia] = useState([]);
   const { user } = useAuth();
   const location = useLocation();
 
+  const [eventos, setEventos] = useState([]);
+  const [anteriores, setAnteriores] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [asistencia, setAsistencia] = useState([]);
+
   useEffect(() => {
-    instance.get(`/eventos/all/${id}`)
+    instance.get(`/eventos/actuales/${id}`)
       .then((eventos) => {
         setEventos(eventos.data)
       })
       .catch((err) => console.log(err))
       .finally(() => setLoading(false));
 
-    instance.post('/eventos/asistente/check', { id_usuario: user.id })
+    instance.get(`/eventos/anteriores/${id}`)
+      .then((eventos) => {
+        setAnteriores(eventos.data)
+      })
+      .catch((err) => console.log(err))
+
+    instance.get(`/eventos/asistente/check/${user.id}`)
       .then((asistencias) => {
         setAsistencia(asistencias.data)
       })
   }, []);
-
-  if (loading) {
-    return (
-      <section id="ContPerfilFeedEventoActual">
-        <Skeleton type={'eventoFeed'} />
-      </section>
-    )
-  };
-
-  if (!eventos.length) {
-    return (
-      <section id="ContPerfilFeedEventoActual">
-        <h1>No tienes eventos</h1>
-      </section>
-    )
-  };
 
   const actionAsistir = (id_evento) => {
     instance.post('/eventos/asistente', { id_evento: id_evento, id_usuario: user.id })
@@ -51,7 +43,7 @@ function ListaEventosFeed({ id, solicito }) {
             setEventos(eventos.data)
           })
 
-        instance.post('/eventos/asistente/check', { id_usuario: user.id })
+        instance.get(`/eventos/asistente/check/${user.id}`)
           .then((asistencias) => {
             setAsistencia(asistencias.data)
           })
@@ -66,167 +58,95 @@ function ListaEventosFeed({ id, solicito }) {
             setEventos(eventos.data)
           })
 
-        instance.post('/eventos/asistente/check', { id_usuario: user.id })
+        instance.get(`/eventos/asistente/check/${user.id}`)
           .then((asistencias) => {
             setAsistencia(asistencias.data)
           })
       })
   };
 
+  if (loading) {
+    return (
+      <section id="ContPerfilFeedEventoActual">
+        <Skeleton type={'eventoFeed'} />
+      </section>
+    )
+  };
+
   switch (solicito) {
     case 'proximos': return (
       <>
-        {!eventos.filter(evento => new Date(evento.fecha_inicio) > new Date()).length ? (<h1>No hay eventos proximos</h1>) : eventos.map((evento, index) => {
-          let fechaInicio = new Date(evento.fecha_inicio)
-          if (fechaInicio > new Date()) {
-            return (
-              <div id="PerfilFeedEvento">
-                <section id="ContImgEventoFeed">
-                  <img src={image} id="ImgEventoFeed" alt="nanay" />
-                </section>
+        {!eventos.length ? (<p className="sinData"> No hay eventos </p>) : (null)}
+        {eventos.map((evento) => {
+          const fechaInicio = new Date(evento.fecha_inicio);
+          return (
+            <div id="PerfilFeedEvento">
+              <section id="ContImgEventoFeed">
+                <img src={image} id="ImgEventoFeed" alt="nanay" />
+              </section>
 
-                <section id="ContInfEvento">
-                  <div className="infEvento">
-                  <p className="infEventoFecha">{fechaInicio.toLocaleDateString('es-us', { weekday:"long", month:"short", year:"numeric", day:"numeric"})}, {fechaInicio.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
+              <section id="ContInfEvento">
+                <div className="infEvento">
+                  <p className="infEventoFecha">{fechaInicio.toLocaleDateString('es-us', { weekday: "long", month: "short", year: "numeric", day: "numeric" })}, {fechaInicio.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
 
-                    <h2>{evento.nombre}</h2>
-                    <p className="infEventoUbicacion">
-                      {evento.direccion}
-                    </p>
-                    <p className="asistentesEvento">
-                      Asistiran {evento.asistentes_cont} personas
-                    </p>
-                    <Link to={`/evento/${evento.id_evento}`} state={{ from: location, pagina: 2 }} className="link">Ver más</Link>
-                  </div>
+                  <h2>{evento.nombre}</h2>
+                  <p className="infEventoUbicacion">
+                    {evento.direccion}
+                  </p>
+                  <p className="asistentesEvento">
+                    Asistiran {evento.asistentes_cont} personas
+                  </p>
+                  <Link to={`/evento/${evento.id_evento}`} state={{ from: location, pagina: 2 }} className="link">Ver más</Link>
+                </div>
 
-                  <div className="coverEvento">
-                    {evento.precio === null || evento.precio === 0 ? <p> Entrada gratuita </p> : <p className="cover"> Cover: {evento.precio} </p>}
+                <div className="coverEvento">
+                  {evento.precio === null || evento.precio === 0 ? <p> Entrada gratuita </p> : <p className="cover"> Cover: {evento.precio} </p>}
 
-                    {asistencia.find((asistencia) => asistencia.id_evento === evento.id_evento) ? <button className="btnAsistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button> : <button className="btnAsistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>}
+                  {asistencia.find((asistencia) => asistencia.id_evento === evento.id_evento) ? <button className="btnAsistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button> : <button className="btnAsistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>}
 
-                  </div>
-                </section>
-              </div>
-            )
-          }
-        })
-        }
+                </div>
+              </section>
+            </div>
+          )
+        })}
       </>
     )
 
     case 'anteriores': return (
       <>
-        {!eventos.filter(evento => new Date(evento.fecha_termino) < new Date()).length ? (<h1>No hay eventos </h1>) : eventos.map((evento, index) => {
-          let fechaTermino = new Date(evento.fecha_termino)
-          if (fechaTermino < new Date()) {
-            return (
-              <div id="PerfilFeedEvento">
-                <section id="ContImgEventoFeed">
-                  <img src={image} id="ImgEventoFeed" alt="nanay"/>
-                </section>
+        {!anteriores.length ? (<p className="sinData"> No hay eventos </p>) : (null)}
+        {anteriores.map((evento) => {
+          const fechaTermino = new Date(evento.fecha_termino);
+          return (
+            <div id="PerfilFeedEvento">
+              <section id="ContImgEventoFeed">
+                <img src={image} id="ImgEventoFeed" alt="nanay" />
+              </section>
 
-                <section id="ContInfEvento">
-                  <div className="infEvento">
-                  <p className="infEventoFecha">Finalizó el {fechaTermino.toLocaleDateString('es-us', { weekday:"long", month:"short", year:"numeric", day:"numeric"})}, {fechaTermino.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
+              <section id="ContInfEvento">
+                <div className="infEvento">
+                  <p className="infEventoFecha">Finalizó el {fechaTermino.toLocaleDateString('es-us', { weekday: "long", month: "short", year: "numeric", day: "numeric" })}, {fechaTermino.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
 
-                    <h2>{evento.nombre}</h2>
-                    <p className="infEventoUbicacion">
-                      {evento.direccion}
-                    </p>
-                    <p className="asistentesEvento">
-                      Asistieron {evento.asistentes_cont} personas
-                    </p>
-                    <Link to={`/evento/${evento.id_evento}`} state={{ from: location }} className="link">Ver más</Link>
-                  </div>
+                  <h2>{evento.nombre}</h2>
+                  <p className="infEventoUbicacion">
+                    {evento.direccion}
+                  </p>
+                  <p className="asistentesEvento">
+                    Asistieron {evento.asistentes_cont} personas
+                  </p>
+                  <Link to={`/evento/${evento.id_evento}`} state={{ from: location }} className="link">Ver más</Link>
+                </div>
 
-                  <div className="coverEvento">
-                    {evento.precio === null || evento.precio === 0 ? <p> La entrada fue gratuita </p> : <p className="cover"> Tuvo un cover de: ${evento.precio} </p>}
+                <div className="coverEvento">
+                  {evento.precio === null || evento.precio === 0 ? <p> La entrada fue gratuita </p> : <p className="cover"> Tuvo un cover de: ${evento.precio} </p>}
 
-                  </div>
-                </section>
-              </div>
-            )
-          }
-        })
-        }
+                </div>
+              </section>
+            </div>
+          )
+        })}
       </>
     )
-
-    case 'todos': return (
-      <>
-        {eventos.map((evento) => {
-          let fechaInicio = new Date(evento.fecha_inicio)
-            return (
-              <div id="PerfilFeedEvento">
-                <section id="ContImgEventoFeed">
-                  <img src={image} id="ImgEventoFeed" alt="nanay" />
-                </section>
-
-                <section id="ContInfEvento">
-                  <div className="infEvento">
-                  <p className="infEventoFecha">{fechaInicio.toLocaleDateString('es-us', { weekday:"long", month:"short", year:"numeric", day:"numeric"})}, {fechaInicio.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
-
-                    <h2>{evento.nombre}</h2>
-                    <p className="infEventoUbicacion">
-                      {evento.direccion}
-                    </p>
-                    <p className="asistentesEvento">
-                      Asistiran {evento.asistentes_cont} personas
-                    </p>
-                    <Link to={`/evento/${evento.id_evento}`} state={{ from: location }} className="link">Ver más</Link>
-                  </div>
-
-                  <div className="coverEvento">
-                    {evento.precio === null || evento.precio === 0 ? <p> Entrada gratuita </p> : <p className="cover"> Cover: {evento.precio} </p>}
-
-                    {asistencia.find((asistencia) => asistencia.id_evento === evento.id_evento) ? <button className="btnAsistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button> : <button className="btnAsistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>}
-
-                  </div>
-                </section>
-              </div>
-            )
-        })
-        }
-      </>
-    )
-
-    case 'negocio': return (
-      <>
-        {eventos.map((evento) => {
-          let fechaInicio = new Date(evento.fecha_inicio)
-            return (
-              <div id="PerfilFeedEvento">
-                <section id="ContImgEventoFeed">
-                  <img src={image} id="ImgEventoFeed" alt="nanay"/>
-                </section>
-
-                <section id="ContInfEvento">
-                  <div className="infEvento">
-                  <p className="infEventoFecha">{fechaInicio.toLocaleDateString('es-us', { weekday:"long", month:"short", year:"numeric", day:"numeric"})}, {fechaInicio.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
-                    <h2>{evento.nombre}</h2>
-                    <p className="infEventoUbicacion">
-                      {evento.direccion}
-                    </p>
-                    <p className="asistentesEvento">
-                      Asistiran {evento.asistentes_cont} personas
-                    </p>
-                    <Link to={`/evento/${evento.id_evento}`} state={{ from: location }} className="link">Ver más</Link>
-                  </div>
-
-                  <div className="coverEvento">
-                    {evento.precio === null || evento.precio === 0 ? <p> Entrada gratuita </p> : <p className="cover"> Cover: {evento.precio} </p>}
-
-                    <button className="btnAsistirTrue">Editar este evento</button>
-
-                  </div>
-                </section>
-              </div>
-            )
-        })
-        }
-      </>
-    )
-
     default: return;
   }
 }

@@ -94,13 +94,13 @@
 
     /* Eventos del organizador */
     #ContPerfilFeedEventoGeneral{
-        background-color: #140016;
+        background-color:  #140016 ;
         display: flex;
         justify-content: center;
     }
     #ContenedorResponsiveFeed{
         width: 1050px;
-        height: auto;
+        min-height: 400px;
         display: flex;
         flex-direction: column;
     }
@@ -301,6 +301,9 @@
             gap: 15px;
             padding-bottom: 20px;
             padding-top: 20px;
+        }
+        #ContPerfilFeedEventos .sinData{
+            color: #f3f3f3a4;
         }
         #PerfilFeedEvento{
             height: auto;

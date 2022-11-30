@@ -29,6 +29,7 @@
 }
 .contenedorModal .contImg{
   width: auto;
+  height: 70vh;
   overflow: hidden;
   display: flex;
   justify-content: center;

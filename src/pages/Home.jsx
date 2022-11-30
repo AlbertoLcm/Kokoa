@@ -39,6 +39,7 @@ function Home() {
   const [map, setMap] = useState(/** @type google.maps.Map */(null));
   const [evCre, setEvCre] = useState([]);
   const [visua, setVisua] = useState(6);
+  const [visual, setVisual] = useState(1);
   const [showModal, setShowModal] = useState(false);
   const [comentario, setComentario] = useState({
     comentario: "",
@@ -290,17 +291,17 @@ function Home() {
               <button onClick={() => setShowModal(!showModal)} className="btnLink2">Crear un evento</button>
               <section id="ContBtnFeedAnfitrion">
                 <div id="BtnFeedAnfitrion">
-                  <button className="btnFeedHome" onClick={() => setVisua(1)}>Para ti</button>
+                  <button className="btnFeedHome" onClick={() => setVisual(1)}>Para ti</button>
                   <div className="vrLine" />
-                  <button className="btnFeedHome" onClick={() => setVisua(2)}>Cercanos</button>
+                  <button className="btnFeedHome" onClick={() => setVisual(2)}>Cercanos</button>
                   <div className="vrLine" />
-                  <button className="btnFeedHome" onClick={() => setVisua(3)}>Comunidad</button>
+                  <button className="btnFeedHome" onClick={() => setVisual(3)}>Comunidad</button>
                 </div>
               </section>
             </section>
-            {visua === 2 ? (
+            {visual === 2 ? (
               <>
-                <h3>Cerca de ti</h3>
+                <p className="titulo">Cerca de ti</p>
                 <div id="ContEventosFeed">
                   {
                     eventos ? (eventos.map((evento) => {
@@ -316,21 +317,20 @@ function Home() {
                         />
                       )
                     })) : (
-                      <h3>No hay eventos cerca de ti</h3>
+                      <div className="comentariosNull"> No hay eventos cercanos </div>
                     )
                   }
                 </div>
               </>
-            ) : visua === 1 ? (
+            ) : visual === 1 ? (
               <>
-                <h3>Recomendados</h3>
-                <h3>
-                  Aún no hay eventos recomendados para ti
-                </h3>
+                <p className="titulo">Recomendados</p>
+                <div className="comentariosNull"> No hay eventos recomendados </div>
               </>
             ) : (
               <>
-                <h3>Comunidad</h3>
+                <p className="titulo">Comunidad</p>
+                <div className="comentariosNull"> No hay actividad </div>
                 <section id="InfOpinionesAnfitrion">
 
                 </section>

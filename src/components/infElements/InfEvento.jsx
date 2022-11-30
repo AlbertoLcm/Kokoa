@@ -36,7 +36,7 @@ function InfEvento({ evento, cerrar }) {
         setEventoInfo(evento.data);
       })
 
-    instance.post('/eventos/asistente/check', { id_usuario: user.id })
+    instance.get(`/eventos/asistente/check/${user.id}`)
       .then((asistencias) => {
         setAsistencia(asistencias.data)
       })
@@ -58,7 +58,7 @@ function InfEvento({ evento, cerrar }) {
             setEventoInfo(eventoResult.data);
           })
 
-        instance.post('/eventos/asistente/check', { id_usuario: user.id })
+        instance.get(`/eventos/asistente/check/${user.id}`)
           .then((asistencias) => {
             setAsistencia(asistencias.data)
           })
@@ -73,7 +73,7 @@ function InfEvento({ evento, cerrar }) {
             setEventoInfo(eventoResult.data);
           })
 
-        instance.post('/eventos/asistente/check', { id_usuario: user.id })
+        instance.get(`/eventos/asistente/check/${user.id}`)
           .then((asistencias) => {
             setAsistencia(asistencias.data)
           })
