@@ -781,7 +781,11 @@
             width: 70%;
         }
         /* FIN Seccion 5, perfil */
-        
+        /* Boton de configuracion de cambio de foto de portada */
+        #ContenedorFeedPerfilNegocio > .fileSelect {
+            top: -25px;
+            left: 25px;
+        }
     /* ==== FIN Home negocios ==== */
 
 /* ==== Toggle ==== */
