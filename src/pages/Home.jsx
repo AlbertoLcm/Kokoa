@@ -2,7 +2,7 @@ import React from "react";
 import useAuth from "../auth/useAuth";
 import { useRef, useState, Suspense, lazy, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Autocomplete } from "@react-google-maps/api";
+import { Autocomplete, useJsApiLoader } from "@react-google-maps/api";
 import "../stylesheets/Home.css";
 import "../stylesheets/BurguerMenu.css";
 import Evento from "../components/EventosPagPrin";
@@ -16,8 +16,9 @@ import ListarComentarios from "../components/social/ListarComentarios";
 import ComentariosNegocio from "../components/social/ComentariosNegocio";
 import AllChats from "../components/social/AllChats";
 import socket from "../components/sockets/Socket";
+import Transcurso from "../components/eventos/Transcurso";
 
-const Mapa = lazy(() => import("../components/Mapa"));
+const Mapa = lazy(() => import("../components/maps/Mapa"));
 const MapNegocio = lazy(() => import("../components/maps/MapNegocio"));
 
 
@@ -26,6 +27,8 @@ function Home() {
   const [mensajesCarg, setMensajesCarg] = useState([]);
   /** @type React.MutableRefObject<HTMLInputElement> */
   const alertRef = useRef();
+  const buscadorRef = useRef();
+  
   const cambiarMensajes = (mensajes) => {
     setMensajesCarg(mensajes)
   }
@@ -34,9 +37,13 @@ function Home() {
   const chatRef = useRef(null);
 
   // Fin del area de pruebas
-  const { eventos, user } = useAuth();
+  const { eventos, user, metodo, eventosTranscurso } = useAuth();
 
   const [map, setMap] = useState(/** @type google.maps.Map */(null));
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: "AIzaSyBqhV6i7d19_4MlXk1gEtZ0flSx_7yYfo8",
+    libraries: ["places"],
+  });
   const [evCre, setEvCre] = useState([]);
   const [visua, setVisua] = useState(6);
   const [visual, setVisual] = useState(1);
@@ -93,7 +100,7 @@ function Home() {
     }
     reader.readAsDataURL(e.target.files[0]);
   };
-  
+
   const subirFoto = () => {
     if (foto.avatar === null) {
       alertRef.current.classList.remove('d-none');
@@ -140,8 +147,6 @@ function Home() {
       })
   };
 
-  const location = useLocation();
-
   // Para mostrar un modal diferente (esta fue la primer forma que se me ocurrio no me juzguen)
   const [showModal1, setShowModal1] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
@@ -158,8 +163,6 @@ function Home() {
   };
 
   const [rol, setRol] = useState({});
-
-
 
   useEffect(() => {
     if (user.rol === "negocios") {
@@ -266,6 +269,24 @@ function Home() {
     chatRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [mensajesCarg]);
 
+  const actionBuscar= (e) => {{
+    e.preventDefault(); //esto previene que el form se mande.
+    // eslint-disable-next-line no-undef
+    const geocoder = new google.maps.Geocoder();
+
+    geocoder.geocode({
+        address: buscadorRef.current.value,
+      },(results, status) => {
+        map.setCenter(results[0].geometry.location);
+        map.setZoom(15);
+
+        buscadorRef.current.value = "";
+      }
+    );
+    
+  }
+  };
+
   if (user.rol === "usuarios") {
     return (
       <>
@@ -288,12 +309,30 @@ function Home() {
           </div>
           <div className="feedHome">
             <section id="HeaderFeedHome">
+              {!isLoaded ? (<Loading />) : (
+                <Autocomplete>
+                  <section className="contBuscador">
+                    <form onSubmit={actionBuscar} method="POST" >
+                      <input type="text" className="buscador" placeholder="Buscar" ref={buscadorRef} />
+                      <button type="submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                          <circle cx="10" cy="10" r="7" />
+                          <line x1="21" y1="21" x2="15" y2="15" />
+                        </svg>
+                      </button>
+                    </form>
+                  </section>
+                </Autocomplete>
+              )}
               <button onClick={() => setShowModal(!showModal)} className="btnLink2">Crear un evento</button>
               <section id="ContBtnFeedAnfitrion">
                 <div id="BtnFeedAnfitrion">
                   <button className="btnFeedHome" onClick={() => setVisual(1)}>Para ti</button>
                   <div className="vrLine" />
                   <button className="btnFeedHome" onClick={() => setVisual(2)}>Cercanos</button>
+                  <div className="vrLine" />
+                  <button className="btnFeedHome" onClick={() => setVisual(4)}>En curso</button>
                   <div className="vrLine" />
                   <button className="btnFeedHome" onClick={() => setVisual(3)}>Comunidad</button>
                 </div>
@@ -311,6 +350,29 @@ function Home() {
                           lugar={evento.ubicacion}
                           titulo={evento.evento}
                           fecha={evento.fecha}
+                          corrs={{ lat: evento.lat, lng: evento.lng }}
+                          mapa={map}
+                          metodo={evento.asignacion}
+                        />
+                      )
+                    })) : (
+                      <div className="comentariosNull"> No hay eventos cercanos </div>
+                    )
+                  }
+                </div>
+              </>
+            ): visual === 4 ? (
+              <>
+                <p className="titulo">Eventos en curso</p>
+                <div id="ContEventosFeed">
+                  {
+                    eventosTranscurso ? (eventosTranscurso.map((evento) => {
+                      return (
+                        <Evento
+                          id={evento.id_evento}
+                          lugar={evento.direccion}
+                          titulo={evento.nombre}
+                          fecha={evento.fecha_inicio}
                           corrs={{ lat: evento.lat, lng: evento.lng }}
                           mapa={map}
                           metodo={evento.asignacion}
@@ -782,8 +844,8 @@ function Home() {
                             <img src={user.portada} id="ImagePortadaPerfilAnfitrion" />
 
                           </section>
-                            <button className="fileSelect" onClick={() => setShowCambiarPortada(!showCambiarPortada)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-camera-plus" width="35" height="35" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><circle cx="12" cy="13" r="3" /><path d="M5 7h2a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h2m9 7v7a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2" /><line x1="15" y1="6" x2="21" y2="6" /><line x1="18" y1="3" x2="18" y2="9" /></svg>
-                            </button>
+                          <button className="fileSelect" onClick={() => setShowCambiarPortada(!showCambiarPortada)}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-camera-plus" width="35" height="35" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><circle cx="12" cy="13" r="3" /><path d="M5 7h2a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h2m9 7v7a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2" /><line x1="15" y1="6" x2="21" y2="6" /><line x1="18" y1="3" x2="18" y2="9" /></svg>
+                          </button>
 
                           <section id="InfPerfilAnfitrion">
                             <section id="DatosPerfilAnfitrion">

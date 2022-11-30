@@ -4,6 +4,8 @@ import { Autocomplete, useJsApiLoader } from "@react-google-maps/api";
 import instance from "../api/axios";
 import useAuth from "../auth/useAuth";
 import img from "../images/Plagui.jpg";
+import socket from "../components/sockets/Socket";
+import { useNavigate } from "react-router-dom";
 
 function RegistroEvento({ negocio = false, map }) {
   /** @type React.MutableRefObject<HTMLInputElement> */
@@ -11,6 +13,8 @@ function RegistroEvento({ negocio = false, map }) {
   const successRef = useRef();
   const mensajeRef1 = useRef();
   const mensajeRef2 = useRef();
+
+  const navigate = useNavigate();
 
   const { addMostrar, user } = useAuth();
   const [patrocinadores, setPatrocinadores] = useState([]);
@@ -79,13 +83,10 @@ function RegistroEvento({ negocio = false, map }) {
       alertRef.current.innerText = "Debes ingresar la ubicación del evento";
       return;
     }
-    geocoder.geocode(
-      {
+    geocoder.geocode({
         address: originRef.current.value,
-      },
-      (results, status) => {
-        instance
-          .post("eventos/add", {
+      },(results, status) => {
+        instance.post("eventos/add", {
             datosEvento,
             id: user.id,
             rol: user.rol,
@@ -94,9 +95,12 @@ function RegistroEvento({ negocio = false, map }) {
             lng: results[0].geometry.location.lng(),
           })
           .then((resultsBD) => {
+            console.log(resultsBD.data);
             addMostrar(resultsBD)
+            socket.emit('evento', resultsBD.data);
             successRef.current.classList.remove('d-none');
             successRef.current.innerHTML = resultsBD.data.message;
+            navigate(`/evento/${resultsBD.data.insert}`);
           })
           .catch((error) => {
             console.log(error)

@@ -15,13 +15,12 @@ export default function AuthProvider({ children }) {
   const location = useLocation();
 
   const [user, setUser] = useState(false);
-  const [eventos, setEventos] = useState(null);
+  const [eventos, setEventos] = useState([]);
+  const [eventosTranscurso, setEventosTranscurso] = useState([]);
 
   useEffect(() => {
     islogin();
   }, []);
-
-  
 
   const isLogged = () => !!user;
 
@@ -125,6 +124,8 @@ export default function AuthProvider({ children }) {
       });
   };
 
+  
+
   const hasRole = (role) => user?.role === role;
 
   const [marcar, setMarcar] = useState(null);
@@ -134,6 +135,10 @@ export default function AuthProvider({ children }) {
   };
   const addEventos = (eventos) => {
     setEventos(eventos);
+  };
+
+  const addEventosTranscurso = (eventos) => {
+    setEventosTranscurso(eventos);
   };
 
   const [mostrar, setMostrar] = useState(null);
@@ -159,7 +164,8 @@ export default function AuthProvider({ children }) {
     islogin,
     actionBackLogin,
     loginCargo,
-    resetPasswordLogin
+    resetPasswordLogin,
+    eventosTranscurso, setEventosTranscurso, addEventosTranscurso
   };
 
   return (

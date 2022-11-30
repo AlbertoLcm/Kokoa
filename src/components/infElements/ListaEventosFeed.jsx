@@ -103,7 +103,6 @@ function ListaEventosFeed({ id, solicito }) {
                   {evento.precio === null || evento.precio === 0 ? <p> Entrada gratuita </p> : <p className="cover"> Cover: {evento.precio} </p>}
 
                   {asistencia.find((asistencia) => asistencia.id_evento === evento.id_evento) ? <button className="btnAsistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button> : <button className="btnAsistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>}
-
                 </div>
               </section>
             </div>

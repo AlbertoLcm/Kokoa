@@ -1,21 +1,34 @@
 import React, { useState, useEffect } from "react";
-import instance from "../api/axios";
-import InfEvento from "./infElements/InfEvento";
-import useAuth from "../auth/useAuth";
+import instance from "../../api/axios";
+import InfEvento from "../infElements/InfEvento";
+import useAuth from "../../auth/useAuth";
 import { GoogleMap, Marker, InfoWindow, useJsApiLoader } from "@react-google-maps/api";
-import marker from "../images/marker.png";
-import point from "../images/point.png";
-import { libraries, stylesArray } from "../helpers/methodsMap";
+import marker from "../../images/marker.png";
+import point from "../../images/point.png";
+import { libraries, stylesArray } from "../../helpers/methodsMap";
+import socket from "../sockets/Socket";
 
 function Mapa({ mapSet, map }) {
-  const { addEventos, mostrar } = useAuth();
+  
+  const { addEventos, addEventosTranscurso, asignacionMetodo, mostrar } = useAuth();
+
   const [activeMarker, setActiveMarker] = useState(null);
   const [lugares, setLugares] = useState([]);
+  const [eventosTranscurso, setEventosTranscurso] = useState([]);
+  const [eventosTrancursoTotal, setEventosTranscursoTotal] = useState([]);
   const [eventoInfo, setEventoInfo] = useState({});
   const [centerMy, setCenterMy] = useState({ lat: 19.4326077, lng: -99.133208 });
   const rango = [];
+  const curso = [];
+  const asignacion = (id) => {
+    handleActiveMarker(id);
+    const eve = lugares.find((evento) => evento.id_evento === id);
+    setEventoInfo(eve);
+    map.panTo({ lat: eve.lat, lng: eve.lng })
+    map.setZoom(18);
+  }
 
-  useEffect(() => {
+  useEffect(() => {    
     navigator.geolocation.getCurrentPosition((coordenada) => {
       if (coordenada) {
         setCenterMy({
@@ -24,9 +37,25 @@ function Mapa({ mapSet, map }) {
         });
       }
     });
+    
     instance.get("/eventos").then((results) => {
       setLugares(results.data);
     });
+
+    instance.get('/eventos/transcurso').then((results) => {
+      setEventosTranscurso(results.data);
+    });
+
+    socket.on('new-evento', (evento) => {
+      instance.get("/eventos").then((results) => {
+        setLugares(results.data);
+      });
+
+      instance.get('/eventos/transcurso').then((results) => {
+        setEventosTranscurso(results.data);
+      });
+    });
+    
   }, []);
 
   useEffect(() => {
@@ -34,7 +63,10 @@ function Mapa({ mapSet, map }) {
     if (!!rango.length) {
       addEventos(rango);
     }
-  }, [lugares, mostrar, centerMy, map]);
+    if (!!curso.length) {
+      addEventosTranscurso(curso);
+    }
+  }, [lugares, centerMy, map]);
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyBqhV6i7d19_4MlXk1gEtZ0flSx_7yYfo8",
@@ -63,15 +95,7 @@ function Mapa({ mapSet, map }) {
     }
     setActiveMarker(marker);
   };
-
-  const asignacion = (id) => {
-    handleActiveMarker(id);
-    const eve = lugares.find((evento) => evento.id_evento === id);
-    setEventoInfo(eve);
-    map.panTo({ lat: eve.lat, lng: eve.lng })
-    map.setZoom(18);
-  }
-
+  
   if (!!lugares.length && circle.getBounds()) {
     lugares.forEach((evento) => {
       if (circle.getBounds().contains({ lat: evento.lat, lng: evento.lng })) {
@@ -89,6 +113,16 @@ function Mapa({ mapSet, map }) {
       }
     });
   }
+
+  if(!!eventosTranscurso.length) {
+    eventosTranscurso.forEach((evento) => {
+      curso.push({
+        ...evento,
+        asignacion
+      });
+    });
+  }
+  
   const desasignacion = () => {
     setActiveMarker(null);
     map.setZoom(15);

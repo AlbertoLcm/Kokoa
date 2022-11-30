@@ -299,6 +299,46 @@
             display: inline-block;
             margin-bottom: 10px;
         }
+        #HeaderFeedHome .contBuscador{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .contBuscador form{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .contBuscador form .buscador{
+            width: calc(100% - 60px);
+            height: 40px;
+            padding-left: 10px;
+            padding-right: 10px;
+            font-size: 14px;
+            border-radius: 10px 0px 0px 10px;
+            border: none;
+            background-color: #2a142c;
+            color: #f3f3f3;
+        }
+        .contBuscador form .buscador:focus{
+            outline: none;
+        }
+        .contBuscador form button{
+            width: 40px;
+            height: 40px;
+            border-radius: 0px 10px 10px 0px;
+            border: none;
+            background-color: #2a142c;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         #ContGeneralHome .feedHome #BtnFeedAnfitrion {
             border-bottom: 1px solid #f3f3f369;
             border-top: none;
