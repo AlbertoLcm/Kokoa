@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import instance from "../../api/axios";
-import Skeleton from "../Skeleton";
+import Skeleton from "../loadings/Skeleton";
 import image from "../../images/concert.jpg"
 import { Link, useLocation } from "react-router-dom";
 import useAuth from "../../auth/useAuth";

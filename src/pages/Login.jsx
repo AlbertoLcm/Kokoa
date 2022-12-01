@@ -2,7 +2,8 @@ import React, { useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import useAuth from "../auth/useAuth";
 import Header from "../components/Header";
-import Loading from "../components/Loading";
+import Loading from "../components/loadings/Loading";
+import Modal from "../components/modals/Modal";
 import routes from "../helpers/routes";
 import "../stylesheets/Login.css";
 
@@ -16,8 +17,6 @@ function Login() {
     email: "",
     password: "",
   });
-
-  console.log(location)
 
   const handleChange = (e) => {
     setUserCredentials({
@@ -33,81 +32,60 @@ function Login() {
 
   const actionLogear = (e) => {
     e.preventDefault(); //esto previene que el form se mande.
+    alertRef.current.classList.add('d-none');
     login(userCredentials, location.state, alertRef)
   };
 
   return (
-    <div className="contImagen">
-      <Header>
-        <Link to={routes.newusuario} state={{from: location.state?.from, pagina: location.state?.pagina}} className="btnLink">
-          Crear Cuenta
-        </Link>
-      </Header>
-      <div className="contDegradado">
-        <div className="contLogin">
-          <div className="login">
-            <h2>Bienvenido</h2>
-            <div ref={alertRef} className="alert d-none">
-              Mensaje alert
-            </div>
-            <form onSubmit={actionLogear} method="POST" className="form-group">
-              <div className="inputBox">
+    <>
+      <div className="contImagen">
+        <Header />
+        <div className="contDegradado">
+          <div className="contLogin">
+            <div className="login">
+              <h2>Bienvenido</h2>
+              <div ref={alertRef} className="alert d-none">
+                Algo salio mal
+              </div>
+              <form onSubmit={actionLogear} method="POST" className="form-group">
                 <input
                   id="email"
                   name="email"
                   type="text"
                   onChange={handleChange}
                   value={userCredentials.email}
-                  required
+                  placeholder="Correo ó Número de teléfono"
                 />
-                <span>Email o Teléfono</span>
-                <div className="iconsLogin">
-                  {/* <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mail" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <rect x="3" y="5" width="18" height="14" rx="2" />
-                    <polyline points="3 7 12 13 21 7" />
-                  </svg> */}
-                </div>
-              </div>
-              <div className="inputBox">
+
                 <input
                   id="password"
                   name="password"
                   type="password"
                   onChange={handleChange}
                   value={userCredentials.password}
-                  required
+                  placeholder="Contraseña"
                 />
-                <span>Contraseña</span>
-                <div className="iconsLogin">
-                  {/* <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <circle cx="12" cy="12" r="2" />
-                    <path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" />
-                  </svg> */}
-                </div>
-              </div>
-              <Link to={routes.recuperar}>
-                <h3>¿Olvidaste tu contraseña?</h3>
-              </Link>
-              <button
-                type="submit"
-                className="boton1"
-              >
-                Ingresar
-              </button>
-              {/* <section className="separador">
+
+                <Link to={routes.recuperar} className={"recuperarLink"}><p>¿Olvidaste tu contraseña?</p></Link>
+
+                <button type="submit" className="btnIngresar">
+                  Ingresar
+                </button>
+
+              </form>
+              <section className="separador">
                 <div className="letra">Ó</div>
               </section>
-              <button className="boton2">Otra Opción</button>
-              <Link to="/signup" className="boton3">
-                Crear Cuenta
-              </Link> */}
-            </form>
+              <Link to={routes.newusuario}>
+                <button className="btnCrear">
+                  Crear Cuenta
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

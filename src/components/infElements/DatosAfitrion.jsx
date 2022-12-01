@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import instance from "../../api/axios";
-import Skeleton from "../Skeleton";
+import Skeleton from "../loadings/Skeleton";
 import '../../stylesheets/VisPerfs.css';
 import Comentario from "../social/Comentario";
 import useAuth from "../../auth/useAuth";

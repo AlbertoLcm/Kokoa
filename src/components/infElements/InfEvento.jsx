@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import instance from '../../api/axios';
-import Skeleton from '../Skeleton';
+import Skeleton from '../loadings/Skeleton';
 import image from '../../images/loginWallpaper.jpg';
 import useAuth from '../../auth/useAuth';
 import ModalImg from '../modals/ModalImg';
@@ -49,6 +49,8 @@ function InfEvento({ evento, cerrar }) {
   let fecini = new Date(eventoInfo.fecha_inicio);
   let fechaActual = new Date();
   let fechaTermino = new Date(eventoInfo.fecha_termino);
+  // fecini.setHours(fecini.getHours() + 6);
+  // fechaTermino.setHours(fechaTermino.getHours() + 6);
 
   const actionAsistir = (id_evento) => {
     instance.post('/eventos/asistente', { id_evento: id_evento, id_usuario: user.id })
@@ -130,10 +132,10 @@ function InfEvento({ evento, cerrar }) {
 
         <section className='contBtnMarkerInfo'>
           {fecini < fechaActual && fechaTermino > fechaActual ? (
+            asistencia.length > 0 ? (
             asistencia.find((asistencia) => asistencia.id_evento === evento.id_evento) ? <button className="asistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button> : <button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>
-          ) : (
-            null
-          )}
+            ) : <button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>
+          ) : (null)}
 
           <button className='invitar' onClick={() => setOpComp(!opComp)}>Compartir</button>
           {

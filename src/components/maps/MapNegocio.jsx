@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
 import { libraries, stylesArray } from "../../helpers/methodsMap";
-import Loading from "../Loading";
+import Loading from "../loadings/Loading";
 
 function MapNegocio({ mapSet, map }) {
 

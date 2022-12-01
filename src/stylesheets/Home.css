@@ -244,7 +244,7 @@
                     padding: 10px;
                     display: flex;
                     gap: 5px;
-                    left: 460px;
+                    left: 430px;
                 }
                 .mapaHome .contBtnMapa button{
                     background-color: #196eff;
@@ -267,9 +267,9 @@
             /* background-color: #EC1C4E; */
             /* background-color: #a5082d; */
             background-color: #140016;
-            height: calc(100vh - 90px);
+            height: calc(100vh - 60px);
             width: calc(450px - 20px);
-            padding: 15px;
+            /* padding: 15px; */
             position: absolute;
             z-index: 91;
             overflow: auto;
@@ -295,9 +295,38 @@
         }
         #ContGeneralHome #HeaderFeedHome{
             height: auto;
+            padding: 15px;
+            padding-bottom: 0px;
         }#HeaderFeedHome h2 {
             display: inline-block;
             margin-bottom: 10px;
+        }
+        #ContGeneralHome .contenedorContenido{
+            height: calc(100vh - 240px);
+            padding-left: 15px;
+            padding-right: 8px;
+            overflow-y: scroll;
+            border-radius: 10px;
+        }
+        .contenedorContenido::-webkit-scrollbar {
+            -webkit-appearance: none;
+        }
+        .contenedorContenido::-webkit-scrollbar:vertical {
+            width:7px;
+            padding: 10px;
+        }
+        .contenedorContenido::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
+            display: none;
+        }
+        .contenedorContenido::-webkit-scrollbar:horizontal {
+            height: 10px;
+        }
+        .contenedorContenido::-webkit-scrollbar-thumb {
+            background-color: #f3f3f369;
+            border-radius: 20px;
+        }
+        .contenedorContenido::-webkit-scrollbar-track {
+            border-radius: 10px;  
         }
         #HeaderFeedHome .contBuscador{
             width: 100%;
@@ -902,8 +931,6 @@
     border-radius: 10px;
     background-color: tomato;
     color: #f3f3f3;
-    /* font-size: 20px; */
-    font-weight: 550;
     margin: 10px 0px 10px 0px;
 }
 .d-none{
@@ -996,16 +1023,23 @@
         }
         #ContGeneralHome .feedHome{
             height: 50vh;
-            width: calc(100% - 30px);
+            width: calc(100%);
             border-top-left-radius: 15px;
             border-top-right-radius: 15px;
             border-bottom-right-radius: 0px;
             bottom: 0px;
         }
+        #ContGeneralHome .contenedorContenido{
+            height: calc(100% - 173px);
+            padding-left: 15px;
+            padding-right: 8px;
+            overflow-y: scroll;
+            border-radius: 10px;
+        }
         #ContGeneralHome .contMapaHome{
             position: absolute;
             width: 100%;
-            height: 50vh;
+            height: calc(50vh + 30px);
         }
         #ContGeneralHome .contMapaHome .mapaHome{
             height: 100%;
