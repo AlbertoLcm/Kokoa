@@ -1,3 +1,66 @@
+/* Estilos de las opiniones */
+    #DatosPerfilAnfitrion {
+        display: grid !important;
+        grid-template-columns: 4fr 1fr;
+        align-items: center !important;
+    }
+    .contOpiniones {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    .contBeer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: yellow;
+        border-radius: 50%;
+        border: 1px solid #f3f3f3;
+        width: 25px;
+        height: 25px;
+        padding: 3px;
+    }.contBeer:first-child {
+        margin-bottom: 10px;
+    }
+    .contPolice {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: lightseagreen;
+        border-radius: 50%;
+        border: 1px solid #f3f3f3;
+        width: 25px;
+        height: 25px;
+        padding: 3px;
+    }.contPolice:first-child {
+        margin-bottom: 10px;
+    }
+    .contLike {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: red;
+        border-radius: 50%;
+        border: 1px solid #f3f3f3;
+        width: 25px;
+        height: 25px;
+        padding: 3px;
+    }.contLike:first-child {
+        margin-bottom: 10px;
+    }
+    .contRich {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: green;
+        border-radius: 50%;
+        border: 1px solid #f3f3f3;
+        width: 25px;
+        height: 25px;
+        padding: 3px;
+    }.contRich:first-child {
+        margin-bottom: 10px;
+    }
+/*Fin de los Estilos de las opiniones*/
 /* estilos del chat */
     #hrSelChat {
         width: 80%;
@@ -698,7 +761,7 @@
             
         }
         #ContGeneralNegocios .contMapaNegocios{
-            height: 100%;
+            height: calc(100vh - 170px);
             width: auto;
         }
         #ContGeneralNegocios #contGeneralBtn{

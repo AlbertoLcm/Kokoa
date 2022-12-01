@@ -453,7 +453,7 @@ function ConPerf() {
                                     <h1>{artista.nombre} </h1>
                                     <h2>Ubicado en: <span>{artista.domicilio} </span></h2>
                                     {
-                                      artista.tipo === 1 ? (
+                                      artista.tipo === 2 ? (
                                         <h2>Tipo: <span>Musico</span></h2>
                                       ) : (
                                         <h2>Tipo: <span>Entretenimiento</span></h2>
