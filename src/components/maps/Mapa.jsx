@@ -104,6 +104,7 @@ function Mapa({ mapSet, map }) {
           id_evento: evento.id_evento,
           evento: evento.nombre,
           fecha: evento.fecha_inicio,
+          fecha_termino: evento.fecha_termino,
           ubicacion: evento.direccion,
           lat: evento.lat,
           lng: evento.lng,

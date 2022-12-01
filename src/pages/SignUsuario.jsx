@@ -13,8 +13,6 @@ function SignUsuario() {
   /** @type React.MutableRefObject<HTMLInputElement> */
   const alertRef = useRef();
 
-  console.log(location);
-
   const [usuario, setUsuario] = useState({
     nombre: "",
     apellidos: "",
@@ -23,8 +21,6 @@ function SignUsuario() {
     password: "",
   });
 
-  const nav = useNavigate();
-
   const handleChange = (e) => {
     setUsuario({
       ...usuario,
@@ -32,74 +28,38 @@ function SignUsuario() {
     });
   };
 
+  const actionRegistrar = (e) => {
+    e.preventDefault(); //esto previene que el form se mande.
+    alertRef.current.classList.add('d-none');
+    signup(usuario, location.state, alertRef)
+  };
+
   return (
-    <div className="contBackground">
-      <Header>
-        <Link to={routes.login} state={{from: location.state?.from, pagina: location.state?.pagina}} className="btnLink">
-          Iniciar Sesión
-        </Link>
-      </Header>
-      <div className="UscontTot">
-        <div className="UscontForm">
-          <div className="form">
-            <div className="UsbotVolverChic">
-              <button className="boton1"
-                onClick={
-                  () => nav(-1)
-                }>
-                Volver
-              </button>
-            </div>
-            <div className="UscontCabeza">
-              <h2>Crear cuenta nueva.</h2>
-            </div>
-              <div ref={alertRef} className="alert d-none">
-                Mensaje alert
-              </div>
-            <div className="contInpUs">
-              <div className="inputBox">
-                <input name="nombre"
-                  onChange={handleChange}
-                  type="text"
-                  required />
-                <span>Nombre</span>
-              </div>
-              <div className="inputBox">
-                <input name="apellidos"
-                  onChange={handleChange}
-                  type="text"
-                  required />
-                <span>Apellidos</span>
-              </div>
-              <div className="inputBox">
-                <input name="email"
-                  onChange={handleChange}
-                  type="text"
-                  required />
-                <span>Email</span>
-              </div>
-              <div className="inputBox">
-                <input name="telefono"
-                  onChange={handleChange}
-                  type="text"
-                  required />
-                <span>Número de teléfono</span>
-              </div>
-            </div>
-            <div className="contPass">
-              <div className="inputBox">
-                <input name="password"
-                  onChange={handleChange}
-                  type="password"
-                  required />
-                <span>Contraseña</span>
-              </div>
-            </div>
-            <button className="boton1"
-              onClick={() => signup(usuario, location.state, alertRef)}>
+    <div className="contBackgroundRegistrar">
+      <Header />
+      <div id="ContenedorRegistrar">
+        <div className="contenedorFormRegistrar">
+          <h2>Crear cuenta nueva.</h2>
+          <div ref={alertRef} className="alert d-none">
+            Algo salio mal
+          </div>
+
+          <form onSubmit={actionRegistrar} method="POST" className="formRegistrar">
+            <section className="nombre">
+              <input name="nombre" onChange={handleChange} type="text" placeholder="Nombre" />
+              <input name="apellidos" onChange={handleChange} type="text" placeholder="Apellidos" />
+            </section>
+            <section className="datos">
+              <input name="email" onChange={handleChange} type="email" placeholder="Correo electrónico" />
+              <input name="telefono" onChange={handleChange} type="text" placeholder="Número de teléfono (Opcional)" />
+              <input name="password" onChange={handleChange} type="password" placeholder="Contraseña" />
+            </section>
+            <Link to={routes.login} className={"recuperarLink"}><p>¿Ya tienes una cuenta?</p></Link>
+
+            <button type="submit" className="btnIngresar">
               Registrarse
             </button>
-          </div>
+          </form>
         </div>
       </div>
     </div>

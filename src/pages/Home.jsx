@@ -6,7 +6,7 @@ import { Autocomplete, useJsApiLoader } from "@react-google-maps/api";
 import "../stylesheets/Home.css";
 import "../stylesheets/BurguerMenu.css";
 import Evento from "../components/EventosPagPrin";
-import Loading from "../components/Loading";
+import Loading from "../components/loadings/Loading";
 import instance from "../api/axios";
 import Header from "../components/Header";
 import Modal from "../components/modals/Modal";
@@ -16,7 +16,7 @@ import ListarComentarios from "../components/social/ListarComentarios";
 import ComentariosNegocio from "../components/social/ComentariosNegocio";
 import AllChats from "../components/social/AllChats";
 import socket from "../components/sockets/Socket";
-import Transcurso from "../components/eventos/Transcurso";
+import LoadingElement from "../components/loadings/LoadingElement";
 
 const Mapa = lazy(() => import("../components/maps/Mapa"));
 const MapNegocio = lazy(() => import("../components/maps/MapNegocio"));
@@ -309,7 +309,7 @@ function Home() {
           </div>
           <div className="feedHome">
             <section id="HeaderFeedHome">
-              {!isLoaded ? (<Loading />) : (
+              {!isLoaded ? (<LoadingElement />) : (
                 <Autocomplete>
                   <section className="contBuscador">
                     <form onSubmit={actionBuscar} method="POST" >
@@ -338,67 +338,71 @@ function Home() {
                 </div>
               </section>
             </section>
-            {visual === 2 ? (
-              <>
-                <p className="titulo">Cerca de ti</p>
-                <div id="ContEventosFeed">
-                  {
-                    eventos ? (eventos.map((evento) => {
-                      return (
-                        <Evento
-                          id={evento.id_evento}
-                          lugar={evento.ubicacion}
-                          titulo={evento.evento}
-                          fecha={evento.fecha}
-                          corrs={{ lat: evento.lat, lng: evento.lng }}
-                          mapa={map}
-                          metodo={evento.asignacion}
-                        />
-                      )
-                    })) : (
-                      <div className="comentariosNull"> No hay eventos cercanos </div>
-                    )
-                  }
-                </div>
-              </>
-            ): visual === 4 ? (
-              <>
-                <p className="titulo">Eventos en curso</p>
-                <div id="ContEventosFeed">
-                  {
-                    eventosTranscurso ? (eventosTranscurso.map((evento) => {
-                      return (
-                        <Evento
-                          id={evento.id_evento}
-                          lugar={evento.direccion}
-                          titulo={evento.nombre}
-                          fecha={evento.fecha_inicio}
-                          corrs={{ lat: evento.lat, lng: evento.lng }}
-                          mapa={map}
-                          metodo={evento.asignacion}
-                        />
-                      )
-                    })) : (
-                      <div className="comentariosNull"> No hay eventos cercanos </div>
-                    )
-                  }
-                </div>
-              </>
-            ) : visual === 1 ? (
-              <>
-                <p className="titulo">Recomendados</p>
-                <div className="comentariosNull"> No hay eventos recomendados </div>
-              </>
-            ) : (
-              <>
-                <p className="titulo">Comunidad</p>
-                <div className="comentariosNull"> No hay actividad </div>
-                <section id="InfOpinionesAnfitrion">
 
-                </section>
-              </>
-            )
-            }
+            <section className="contenedorContenido">
+              {visual === 2 ? (
+                <>
+                  <p className="titulo">Cerca de ti</p>
+                  <div id="ContEventosFeed">
+                    {!eventos.length ? (<div className="comentariosNull"> No hay eventos cercanos </div>) : (null)}
+                    {eventos.map((evento, index) => {
+                        return (
+                          <Evento
+                            key={index}
+                            id={evento.id_evento}
+                            lugar={evento.ubicacion}
+                            titulo={evento.evento}
+                            fecha={evento.fecha}
+                            fecha_termino={evento.fecha_termino}
+                            corrs={{ lat: evento.lat, lng: evento.lng }}
+                            mapa={map}
+                            metodo={evento.asignacion}
+                          />
+                        )
+                      })
+                    }
+                  </div>
+                </>
+              ): visual === 4 ? (
+                <>
+                  <p className="titulo">Eventos en curso</p>
+                  <div id="ContEventosFeed">
+                    {!eventosTranscurso.length ? (<div className="comentariosNull"> No hay eventos en curso </div>) : (null)}
+                    {eventosTranscurso.map((evento, index) => {
+                        return (
+                          <Evento
+                            key={index}
+                            id={evento.id_evento}
+                            lugar={evento.direccion}
+                            titulo={evento.nombre}
+                            fecha={evento.fecha_inicio}
+                            fecha_termino={evento.fecha_termino}
+                            corrs={{ lat: evento.lat, lng: evento.lng }}
+                            mapa={map}
+                            metodo={evento.asignacion}
+                          />
+                        )
+                      })
+                    }
+                  </div>
+                </>
+              ) : visual === 1 ? (
+                <>
+                  <p className="titulo">Recomendados</p>
+                  <div className="comentariosNull"> No hay eventos recomendados </div>
+                </>
+              ) : (
+                <>
+                  <p className="titulo">Comunidad</p>
+                  <div className="comentariosNull"> No hay actividad </div>
+                  <section id="InfOpinionesAnfitrion">
+
+                  </section>
+                </>
+              )
+              }
+
+            </section>
           </div>
         </section>
       </>

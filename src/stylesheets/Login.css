@@ -34,16 +34,64 @@
     user-select: none;
     font-family: 'Josefin Sans';
 }
-.login h3{
-    margin-top: 20px;
-    font-weight: 400;
-    font-size: 18px;
-    cursor: pointer;
-    user-select: none;
-    margin-bottom: 20px;
-}
 .login .form-group{
     margin-top: 15px;
+}
+.login .form-group input{
+    height: 50px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.180);
+    backdrop-filter: blur(10px);
+    color: #f3f3f3;
+    font-size: 18px;
+    margin-bottom: 15px;
+    width: calc(100% - 30px);
+}
+.login .form-group input:focus{
+    outline: none;
+}
+.recuperarLink{
+    text-decoration: none;
+    width: auto;
+    color: #f3f3f3;
+}
+.recuperarLink p{
+    margin-bottom: 15px;
+    transition: all 100ms;
+}
+.recuperarLink p:hover{
+    color: #49a1fa;
+}
+.btnIngresar{
+    background-color: #196eff;
+    width: 100%;
+    height: 45px;
+    color: #f3f3f3;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    user-select: none;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+.btnCrear{
+    background-color: orange;
+    text-decoration: none;
+    height: 45px;
+    color: #f3f3f3;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    user-select: none;
+    padding: 10px;
+    transition: all 0.3s ease;
+    min-width: 100%;
 }
 .separador{
     height: 20px;
@@ -51,12 +99,10 @@
     display: flex;
     justify-content: center;
     font-size: 18px;
-    margin-top: -20px;
     margin-bottom: 20px;
     border-bottom: 1px solid #f3f3f3a9;
 }
 .contBotones {
-    
     width: 100px;
     text-align: center;
     padding-top: 15px;
@@ -65,7 +111,6 @@
 .contBotones > a{
     text-decoration: none;
     display: flex;
-    
     align-items: center;
 }
 .letra{
@@ -76,7 +121,7 @@
     width: auto;
     padding-left: 5px;
     padding-right: 5px;
-    background-color: #342535;
+    background-color: #410046;
 }
 
 .iconsLogin svg{
@@ -107,5 +152,10 @@
     width: 90%;
     padding-left: 0px;
     padding-right: 0px;
+    }
+    .contImagen{
+        width: 100%;
+        height: 100vh;
+        background: none;
     }
 }

@@ -39,3 +39,40 @@
         transform: rotate(360deg);
     }
 }
+
+#LoadingElement {
+    width: 100%;
+    height: calc(100vh - 60px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: none;
+}
+#LoadingElement .spinnerLoading{
+    animation: spin 1s linear infinite;
+    background: linear-gradient(to right, #410046, #EC1C4E);
+    border-radius: 50%;
+    height: 60px;
+    position: relative;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#LoadingElement .fondoLoading{
+    background-color: #140016;
+    height: 40px;
+    position: absolute;
+    z-index: 4;
+    width: 40px;
+    border-radius: 50%;
+}
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

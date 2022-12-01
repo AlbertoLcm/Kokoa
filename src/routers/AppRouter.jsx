@@ -16,7 +16,7 @@ import RegistroEvento from "../pages/RegistroEvento";
 import Login from "../pages/Login";
 import Home from "../pages/Home";
 import VisPerfs from "../pages/VisPerfs";
-import Loading from "../components/Loading";
+import Loading from "../components/loadings/Loading";
 import Evento from "../pages/Evento";
 import Recuperar from "../pages/recuperar/Recuperar";
 import NewPassword from "../pages/recuperar/NewPassword";

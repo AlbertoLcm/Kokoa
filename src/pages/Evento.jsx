@@ -6,7 +6,7 @@ import Header from "../components/Header";
 import MapSmall from "../components/maps/MapSmall";
 import imagen from "../images/concert.jpg"
 import '../stylesheets/pages/Eventos.css';
-import Skeleton from "../components/Skeleton";
+import Skeleton from "../components/loadings/Skeleton";
 import Comentario from "../components/social/Comentario";
 import Modal from "../components/modals/Modal";
 import socket from "../components/sockets/Socket";
@@ -163,9 +163,13 @@ function Evento() {
     setShowModalImg(!showModalImg);
   };
 
+  console.log(evento)
+  
   let fecini = new Date(evento.fecha_inicio);
   let fechaActual = new Date();
   let fechaTermino = new Date(evento.fecha_termino);
+  fecini.setHours(fecini.getHours() + 0);
+  fechaTermino.setHours(fechaTermino.getHours() + 0);
 
   return (
     <>
@@ -201,13 +205,14 @@ function Evento() {
 
             <div className="titulo">
               {fecini < fechaActual && fechaTermino > fechaActual ? (<p className='infEventoFechaActual'>Evento en curso!!!</p>) : fechaTermino < fechaActual ? (<p className='infEventoFechaTermino'>Este evento a finalizado</p>) : (<p className="infEventoFecha">{fecini.toLocaleDateString('es-us', { weekday: "long", month: "short", year: "numeric", day: "numeric" })}, {fecini.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>)}
-
               <h1>{evento.nombre}</h1>
             </div>
 
             <div className="botones">
               {fecini < fechaActual && fechaTermino > fechaActual ? (
+                asistencia.length > 0 ? (
                 asistencia.find((asistencia) => asistencia.id_evento === evento.id_evento) ? <button className="asistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button> : <button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>
+                ) : <button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>
               ) : (
                 null
               )}

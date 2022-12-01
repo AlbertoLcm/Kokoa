@@ -1,73 +1,67 @@
-.form{
-    justify-content: center;
-    width: 90%;
-    text-align: center;
+.contBackgroundRegistrar{
+    background: linear-gradient(to left, #EC1C4E, #410046 );
+    max-height: 100vh;
+    min-height: 100vh;
 }
-.UscontCabeza h2{
-    text-align: center;
-    font-size: 50px;
-    font-weight: 400;
-    margin-bottom: 30px;
+#ContenedorRegistrar{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.contenedorFormRegistrar{
+    width: 500px;
+    height: auto;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.contenedorFormRegistrar h2{
+    font-size: 40px;
+    color: #f3f3f3dc;
     user-select: none;
-    color: #f3f3f3;
     font-family: 'Josefin Sans';
+    margin-bottom: 10px;
 }
-.UsbotVolverChic {
-    display: none;
-}
-.UscontCabeza {
-    display: flex;
-}
-.UscontForm{
-    padding-top: 90px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.Usform{
+.formRegistrar{
     width: 100%;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
 }
-.UsdataUser{
-    width: 200px;
+.formRegistrar .nombre{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
 }
-.UsdataPass{
-    width: 200px;
-    padding-right: 30px;
-}
-.contInpUs{
-    padding-top: 25px;
-}
-.UscontBotChic{
-    width: 100%;
-    padding-left: 37%;
-    padding-top: 25px;
-    padding-bottom: 50px;
-}
-.UscontPass{
-    width: 700px;
+.formRegistrar .datos{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
 }
+.formRegistrar input{
+    border: none;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.180);
+    backdrop-filter: blur(10px);
+    color: #f3f3f3;
+    width: calc(100% - 30px);
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 16px;
+}
+.formRegistrar input:focus{
+    outline: none;
+}
+
 @media (max-width: 750px) {
-    .UscontCabeza h2{
-        font-size: 30px;
-        font-weight: 500;
-        margin-bottom: 10px;
+    .contBackgroundRegistrar{
+        background: linear-gradient(60deg, #EC1C4E , #410046);
+        max-height: 100vh;
+        min-height: 100vh;
     }
-}
-@media only screen and (max-width: 360px) {
-    .UsbotVolverChic{
-        display: block;
-    }
-    .UsbotVolverPC{
-        display: none;
-    }
-}
-@media only screen and (min-width: 1024px) {
-    .form{
-        width: 50%;
+    .contenedorFormRegistrar{
+        width: 90%;
+        padding-left: 0px;
+        padding-right: 0px;
     }
 }
