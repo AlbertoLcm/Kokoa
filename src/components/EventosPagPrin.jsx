@@ -14,8 +14,8 @@ function Evento({ titulo, fecha, fecha_termino, corrs, mapa, lugar, id, metodo }
   let fecini = new Date(fecha);
   let fechaActual = new Date();
   let fechaTermino = new Date(fecha_termino);
-  fecini.setHours(fecini.getHours() + 6);
-  fechaTermino.setHours(fechaTermino.getHours() + 6);
+  // fecini.setHours(fecini.getHours() + 6);
+  // fechaTermino.setHours(fechaTermino.getHours() + 6);
 
   return (
     <div id="ContEventoHomeFeed" onClick={() => handleOnDoubleClick()}>
