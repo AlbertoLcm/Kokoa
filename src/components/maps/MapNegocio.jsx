@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
 import { libraries, stylesArray } from "../../helpers/methodsMap";
 import point from "../../images/point.png";
-import Loading from "../Loading";
+import Loading from "../loadings/Loading";
 
 function MapNegocio({ mapSet, map }) {
 
