@@ -200,7 +200,7 @@
 #ContGeneralRegistrarEvento .registrarEventoForm .detalles{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 20px;
+    grid-gap: 15px;
 }
 #ContGeneralRegistrarEvento .registrarEventoForm .detalles .contCheckbox{
     display: flex;

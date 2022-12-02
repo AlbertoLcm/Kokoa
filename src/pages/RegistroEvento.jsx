@@ -228,13 +228,13 @@ function RegistroEvento({ negocio = false, map }) {
                 <p></p>
                 <input type="number" name="capacidad" min="0" placeholder="Capacidad" onChange={handleChange} />
               </div>
-              <div className="contCheckbox">
-                <p>
+
+              <div>
+                <p></p>
                 <select name="publico" id="tipo" onChange={handleChange}>
                   <option value="1" selected>Publico</option>
                   <option value="0">Privado</option>
                 </select>
-                </p>
               </div>
             </section>
           </div>
