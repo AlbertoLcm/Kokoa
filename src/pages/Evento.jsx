@@ -168,8 +168,8 @@ function Evento() {
   let fecini = new Date(evento.fecha_inicio);
   let fechaActual = new Date();
   let fechaTermino = new Date(evento.fecha_termino);
-  fecini.setHours(fecini.getHours() + 0);
-  fechaTermino.setHours(fechaTermino.getHours() + 0);
+  fecini.setHours(fecini.getHours() + 6);
+  fechaTermino.setHours(fechaTermino.getHours() + 6);
 
   return (
     <>

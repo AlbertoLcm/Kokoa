@@ -49,8 +49,8 @@ function InfEvento({ evento, cerrar }) {
   let fecini = new Date(eventoInfo.fecha_inicio);
   let fechaActual = new Date();
   let fechaTermino = new Date(eventoInfo.fecha_termino);
-  // fecini.setHours(fecini.getHours() + 6);
-  // fechaTermino.setHours(fechaTermino.getHours() + 6);
+  fecini.setHours(fecini.getHours() + 6);
+  fechaTermino.setHours(fechaTermino.getHours() + 6);
 
   const actionAsistir = (id_evento) => {
     instance.post('/eventos/asistente', { id_evento: id_evento, id_usuario: user.id })
