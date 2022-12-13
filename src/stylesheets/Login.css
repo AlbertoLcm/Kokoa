@@ -44,7 +44,7 @@
     border-radius: 10px;
     border: none;
     outline: none;
-    background-color: rgba(255, 255, 255, 0.180);
+    background-color: #f3f3f32a;
     backdrop-filter: blur(10px);
     color: #f3f3f3;
     font-size: 18px;

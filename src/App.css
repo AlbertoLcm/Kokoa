@@ -10,11 +10,12 @@
 body{
     position: relative;
     overflow: auto;
-    scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0);
-    scrollbar-width: thin;
+    background-color: #140016;
+    /* scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0); */
+    /* scrollbar-width: thin; */
 }
 
-body::-webkit-scrollbar {
+/* body::-webkit-scrollbar {
     -webkit-appearance: none;
 }
 body::-webkit-scrollbar:vertical {
@@ -34,4 +35,4 @@ body::-webkit-scrollbar-thumb {
 }
 body::-webkit-scrollbar-track {
     border-radius: 10px;  
-}
+} */

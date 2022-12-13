@@ -8,7 +8,7 @@ const PrivateRoute = ({ children, Role }) => {
 
     const { hasRole, isLogged, user } = useAuth();
     
-    if(Role && user.rol !== Role) return <Navigate to={routes.home} />;
+    if (Role && user?.Role !== Role) return <Navigate to={routes.home} state={{from: location}} />;
 
     if (!isLogged()) return <Navigate to={routes.login} state={{from: location}} />;
     return children;

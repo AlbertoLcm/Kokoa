@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import instance from "../../api/axios";
 import InfEvento from "../infElements/InfEvento";
 import useAuth from "../../auth/useAuth";
-import { GoogleMap, Marker, InfoWindow, useJsApiLoader } from "@react-google-maps/api";
+import { GoogleMap, InfoWindow, useJsApiLoader, Marker } from "@react-google-maps/api";
 import marker from "../../images/marker.png";
 import point from "../../images/point.png";
 import { libraries, stylesArray } from "../../helpers/methodsMap";
@@ -163,32 +163,33 @@ function Mapa({ mapSet, map }) {
 
         {lugares.map((evento) => {
           return (
-            <Marker
-              key={evento.id_evento}
-              position={{
-                lat: evento.lat,
-                lng: evento.lng
-              }}
-              icon={marker}
-              onClick={() => asignacion(evento.id_evento)}>
+              <Marker
+                key={evento.id_evento}
+                className="marker"
+                position={{
+                  lat: evento.lat,
+                  lng: evento.lng
+                }}
+                icon={marker}
+                onClick={() => asignacion(evento.id_evento)}>
 
-              {activeMarker === evento.id_evento && (
-                  <div id="MarkerInfoPos">
-                    <div className="markerInfo">
-                      <InfEvento
-                        evento={eventoInfo}
-                        cerrar={desasignacion}
-                      />
+                {activeMarker === evento.id_evento && (
+                    <div id="MarkerInfoPos">
+                      <div className="markerInfo">
+                        <InfEvento
+                          evento={eventoInfo}
+                          cerrar={desasignacion}
+                        />
+                      </div>
                     </div>
-                  </div>
-              )}
-              
-              {activeMarker === evento.id_evento && (
-                <InfoWindow>
-                  <h2>{evento.nombre}</h2>
-                </InfoWindow>
-              )}
-            </Marker>
+                )}
+                
+                {activeMarker === evento.id_evento && (
+                  <InfoWindow>
+                    <h2>{evento.nombre}</h2>
+                  </InfoWindow>
+                )}
+              </Marker>
           )
         })}
         <div className="contBtnMapa">
