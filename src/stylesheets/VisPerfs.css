@@ -3,14 +3,43 @@
  color secundario: #140016 
 */
 
+/* Modales opiniones */
+    .botOpGen {
+        margin-top: 10px;
+        width:100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        gap: 5px;
+    }.botOpGen > button {
+        color: white;
+        padding: 5px;
+        border-radius: 15px;
+        border: none;
+        background: transparent;
+        background-color: #f3f3f354;
+    }.botOpGen > button:hover {
+        transition: all 0.3s ease;
+        background-color: #f3f3f341;
+        cursor: pointer;
+    }
+    .letOpCant {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        color: white;
+        align-items: flex-end;
+    }.letOpCant > div {
+        text-align: center;
+    }.letOpCant > h2:last-child {
+        text-align: right;
+    }
+/*FIN Modales opiniones*/
+
 /* === Estilos by Alberto === */
 
 #ContPrincVisPerf{
     padding-top: 60px;
     background-color: #2D0E30;
 }
-
-
     /* ===== Organizador del evento ===== */
     #ContPerfilFeedAnfitrion{
         width: 100%;
@@ -214,7 +243,7 @@
                     padding: 20px;
                     background-color: #2D0E30;
                     border-radius: 10px;
-                    margin-bottom: 20px;
+                    margin-bottom: 15px;
                     font-weight: 600;
                 }
                 #InfOpinionesAnfitrion .opinionAnfitrion{

@@ -1,14 +1,19 @@
 /* Estilos de las opiniones */
-    #DatosPerfilAnfitrion {
-        display: grid !important;
-        grid-template-columns: 4fr 1fr;
-        align-items: center !important;
-    }
     .contOpiniones {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        
+        margin-bottom: 20px;
+        margin-top: 5px;
+        overflow-x: auto;
+        height: auto;
+        gap: 5px;
     }
-    .contBeer {
+    .opCantidad > p {
+        color: gray;
+        margin-bottom: 0px;
+    }.contBeer {
+        margin-left:10px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -19,9 +24,12 @@
         height: 25px;
         padding: 3px;
     }.contBeer:first-child {
-        margin-bottom: 10px;
+        margin-bottom: 0px;
     }
-    .contPolice {
+    .opSeguridad > p {
+        color: gray;
+        margin-bottom: -7px;
+    }.contPolice {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -32,9 +40,12 @@
         height: 25px;
         padding: 3px;
     }.contPolice:first-child {
-        margin-bottom: 10px;
+        margin-bottom: 0px;
     }
-    .contLike {
+    .opCalidad > p {
+        color: gray;
+        margin-bottom: -7px;
+    }.contLike {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -45,9 +56,12 @@
         height: 25px;
         padding: 3px;
     }.contLike:first-child {
-        margin-bottom: 10px;
+        margin-bottom: 0px;
     }
-    .contRich {
+    .opPrecio > p {
+        color: gray;
+        margin-bottom: -7px;
+    }.contRich {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -58,7 +72,23 @@
         height: 25px;
         padding: 3px;
     }.contRich:first-child {
-        margin-bottom: 10px;
+        margin-bottom: 0px;
+    }
+    .opAmbiente > p {
+        color: gray;
+        margin-bottom: -7px;
+    }.contAmb{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: orangered;
+        border-radius: 50%;
+        border: 1px solid #f3f3f3;
+        width: 25px;
+        height: 25px;
+        padding: 3px;
+    }.contAmb:first-child {
+        margin-bottom: 0px;
     }
 /*Fin de los Estilos de las opiniones*/
 /* estilos del chat */
@@ -1023,7 +1053,6 @@
 
 @media (max-width: 425px) {
     /* Esto es para los chats */
-
     .contHomeChat {
         height: calc(100vh - 190px);
         display: flex;
@@ -1076,9 +1105,14 @@
         object-fit: cover;
     }
 /* FIN Chats seleccion */
+    /* Ajustes boton cambiar imagen */
+        #InfPerfilAnfitrion > .fileSelect {
+            left: 240px !important;
+        }
+    /* FIN Ajustes boton cambiar imagen*/
 }
 
-@media (max-width: 750px) {
+@media (max-width: 768px) {
     /* === Home normal === */
         #ContGeneralHome{
             padding-top: 0px;
@@ -1136,14 +1170,18 @@
     /* === FIN Home normal === */
 
     /* === Home negocios === */
-
         /* Sección 2, eventos */
         #ContEventosNegocio{
             grid-template-columns: 1fr;
         } 
-    /* FIN Sección 2, eventos */
-    /* === Home negocios === */
-
+        /* FIN Sección 2, eventos */
+        /* Contenedor general */
+        #ContenedorFeedPerfilNegocio {
+            width: 100%;
+        }
+        /* FIN Contenedor general*/
+    /* === FIN Home negocios === */
+    
     
 }
 /* /// Fin responsive de la página /// */
