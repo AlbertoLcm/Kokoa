@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import Header from "../components/Header";
-import Input from "../components/Input";
 import useAuth from "../auth/useAuth";
 import "../stylesheets/signArtista.css";
 import { Autocomplete } from "@react-google-maps/api";

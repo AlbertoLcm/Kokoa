@@ -25,9 +25,7 @@ const Chat = ({ receptor }) => {
       .catch((error) => {
         console.log(error);
       });
-    socket.on(`new-from-${receptor.receptor}-to-${user.id}-${receptor.receptor_rol}`, (msg) => {
-      setMensajes([...mensajes, {mensaje: msg, origen: "recibo"}]);
-    });
+
   }, [mensajes]);
 
   const handleChat = (e) => {
@@ -66,6 +64,62 @@ const Chat = ({ receptor }) => {
       </section>
 
       <section className="mensajes">
+      <div className="mensajeEmisor">
+          <p>
+            hola
+          </p>
+        </div>
+        <div className="mensajeReceptor">
+          <p>
+            hola mensaje demasiado largo para la implementacion del chat
+            hola mensaje demasiado largo para la implementacion del chat
+            hola mensaje demasiado largo para la implementacion del chat
+            hola mensaje demasiado largo para la implementacion del chat
+          </p>
+        </div>
+        <div className="mensajeEmisor">
+          <p>
+            hola mensaje demasiado largo para la implementacion del chat
+            hola mensaje demasiado largo para la implementacion del chat
+            hola mensaje demasiado largo para la implementacion del chat
+            hola mensaje demasiado largo para la implementacion del chat
+          </p>
+        </div>
+        <div className="mensajeReceptor">
+          <p>
+            hola
+          </p>
+        </div>
+        <div className="mensajeEmisor">
+          <p>
+            hola
+          </p>
+        </div>
+        <div className="mensajeReceptor">
+          <p>
+            hola
+          </p>
+        </div>
+        <div className="mensajeEmisor">
+          <p>
+            hola
+          </p>
+        </div>
+        <div className="mensajeReceptor">
+          <p>
+            hola
+          </p>
+        </div>
+        <div className="mensajeEmisor">
+          <p>
+            hola
+          </p>
+        </div>
+        <div className="mensajeReceptor">
+          <p>
+            hola
+          </p>
+        </div>
         {
           mensajes.map((mensaje, index) => {
             return (

@@ -3,12 +3,16 @@ import instance from "../../api/axios";
 import Comentario from "./Comentario";
 import '../../stylesheets/VisPerfs.css';
 import socket from "../sockets/Socket";
+import Skeleton from "../loadings/Skeleton";
+import '../../stylesheets/Home.css'
+import LoadingElement from "../loadings/LoadingElement";
 
 const ListarComentarios = ({ id_negocio }) => {
 
   const [comentarios, setComentarios] = useState([]);
   const [eventos, setEventos] = useState([]);
   const [shoCom, setShoCom] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     instance.get(`negocios/comentarios/eventos/${id_negocio}`)
@@ -16,6 +20,7 @@ const ListarComentarios = ({ id_negocio }) => {
         setComentarios(comentarios.data)
       })
       .catch((err) => console.log(err))
+      .finally(() => setLoading(false))
 
     instance.get(`/eventos/all/${id_negocio}`)
       .then((eventos) => {
@@ -32,14 +37,13 @@ const ListarComentarios = ({ id_negocio }) => {
       });
   }, []);
 
-  if(!eventos.length && !comentarios.length) { 
-    return( 
+  if(loading) { 
+    return(
       <div id="ContGeneralComentariosNegocio">
-        <div className="noComentarios">Aún no tienes publicaciones</div>
+        <LoadingElement />
       </div>
     )
   }
-  
   
   const ActionShow = (key) => {
     if(shoCom !== key) {
@@ -51,8 +55,8 @@ const ListarComentarios = ({ id_negocio }) => {
 
   return (
     <div id="ContGeneralComentariosNegocio">
+      {!eventos.length && !comentarios.length ? (<div className="comentariosNull"> Aun no tienes eventos </div>) : (null)}
       {eventos.map((evento, index) => {
-        
         return (
           <div id="ContComentariosNegocio" key={index}>
             <div className="contEventoFeed" onClick={() => ActionShow(index)}>

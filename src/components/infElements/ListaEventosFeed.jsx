@@ -4,6 +4,7 @@ import Skeleton from "../loadings/Skeleton";
 import image from "../../images/concert.jpg"
 import { Link, useLocation } from "react-router-dom";
 import useAuth from "../../auth/useAuth";
+import LoadingElement from "../loadings/LoadingElement";
 
 function ListaEventosFeed({ id, solicito }) {
 
@@ -68,7 +69,7 @@ function ListaEventosFeed({ id, solicito }) {
   if (loading) {
     return (
       <section id="ContPerfilFeedEventoActual">
-        <Skeleton type={'eventoFeed'} />
+        <LoadingElement />
       </section>
     )
   };
@@ -146,6 +147,45 @@ function ListaEventosFeed({ id, solicito }) {
         })}
       </>
     )
+
+    case 'negocios': return (
+      <>
+        {!anteriores.length ? (<p className="sinData"> No hay eventos </p>) : (null)}
+        <section className="contEventosNegocios">
+          {anteriores.map((evento) => {
+            const fechaTermino = new Date(evento.fecha_termino);
+            return (
+              <div id="PerfilFeedEvento">
+                <section id="ContImgEventoFeed">
+                  <img src={image} id="ImgEventoFeed" alt="nanay" />
+                </section>
+
+                <section id="ContInfEvento">
+                  <div className="infEvento">
+                    <p className="infEventoFecha">Finalizó el {fechaTermino.toLocaleDateString('es-us', { weekday: "long", month: "short", year: "numeric", day: "numeric" })}, {fechaTermino.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
+
+                    <h2>{evento.nombre}</h2>
+                    <p className="infEventoUbicacion">
+                      {evento.direccion}
+                    </p>
+                    <p className="asistentesEvento">
+                      Asistieron {evento.asistentes_cont} personas
+                    </p>
+                    <Link to={`/evento/${evento.id_evento}`} state={{ from: location }} className="link">Ver más</Link>
+                  </div>
+
+                  <div className="coverEvento">
+                    {evento.precio === null || evento.precio === 0 ? <p> La entrada fue gratuita </p> : <p className="cover"> Tuvo un cover de: ${evento.precio} </p>}
+
+                  </div>
+                </section>
+              </div>
+            )
+          })}
+        </section>
+      </>
+    )
+    
     default: return;
   }
 }

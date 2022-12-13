@@ -85,9 +85,7 @@ function Evento() {
       [e.target.name]: e.target.value,
     });
   };
-
-  console.log(location)
-
+  
   if (loading) {
     return (
       <section id="ContEventoGeneralSecundario">

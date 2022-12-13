@@ -20,13 +20,15 @@ import Loading from "../components/loadings/Loading";
 import Evento from "../pages/Evento";
 import Recuperar from "../pages/recuperar/Recuperar";
 import NewPassword from "../pages/recuperar/NewPassword";
+import DashBoard from "../pages/dashboard/DashBoard";
+import Inicio from "../pages/dashboard/Inicio";
 
 function AppRouter() {
   return (
     <div className='App'>
       <Routes>
         <Route exact path={routes.home} element={
-          <PrivateRoute>
+          <PrivateRoute >
             <Home />
           </PrivateRoute>
         } />
@@ -65,13 +67,18 @@ function AppRouter() {
             <RolArtista />
           </PrivateRoute>
         } />
+        <Route exact path={'/dashboard/*'} element={
+          <PrivateRoute>
+            <DashBoard />
+          </PrivateRoute>
+        } />
         <Route exact path={routes.registrarevento} element={
           <PrivateRoute>
             <RegistroEvento />
           </PrivateRoute>
         } />
         <Route exact path={routes.perfil} element={
-          <PrivateRoute Role={"usuarios"}>
+          <PrivateRoute>
             <ConPerf />
           </PrivateRoute>
         } />

@@ -25,7 +25,6 @@ const NewPassword = () => {
   const actionGuardar = () => {
     instance.post(`/usuarios/resetpassword/${id}/${token}`, datos)
       .then((respuesta) => {
-        console.log(respuesta);
         resetPasswordLogin(id);
       })
       .catch((error) => {

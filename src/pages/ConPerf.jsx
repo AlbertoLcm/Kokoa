@@ -126,8 +126,6 @@ function ConPerf() {
       return;
     }
 
-    console.log(foto);
-
     setShowCambiarFoto(false);
     instance.post('/upload/profile', foto, {headers: { "Content-Type": "multipart/form-data" }})
       .then((res) => {

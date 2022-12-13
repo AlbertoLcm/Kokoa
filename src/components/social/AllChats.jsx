@@ -42,7 +42,7 @@ const AllChats = () => {
         })}
       </section>
       <section>
-        {console.log(receptor.id)}
+
         {
           receptor.id !== undefined ? (
             <Chat receptor={receptor} />

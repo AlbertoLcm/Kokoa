@@ -78,10 +78,61 @@
     /* Chats seleccion */
 
         /* Contenedor de los chats */
+            .seleccionTitulo{
+                height: 100px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding-left: 10px;
+                padding-right: 10px;
+                background-color: #250029;
+            }
+            .seleccionTitulo h1{
+                color: #f3f3f3;
+                font-weight: 600;
+                font-size: 24px;
+                margin-bottom: 7px;
+            }
             .contSeleccion{
                 display: flex;
                 flex-direction: column;
-                gap: 10px;
+                background-color: #250029;
+                height: calc(100vh - 10px - 60px - 100px);
+                padding: 10px;
+                padding-top: 0px;
+                overflow-y: auto;
+            }
+                .d-none{
+                    display: none;
+                }
+                /* Scroll de los chats */
+                .contSeleccion::-webkit-scrollbar {
+                    -webkit-appearance: none;
+                }
+                .contSeleccion::-webkit-scrollbar:vertical {
+                    width:7px;
+                }
+                .contSeleccion::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
+                    display: none;
+                }
+                .contSeleccion::-webkit-scrollbar:horizontal {
+                    height: 10px;
+
+                }
+                .contSeleccion::-webkit-scrollbar-thumb {
+                    background-color: #f3f3f391;
+                    border-radius: 20px;
+                }
+                .contSeleccion::-webkit-scrollbar-track {
+                    border-radius: 10px;  
+                }
+                /* Fin scroll de los chats */
+            .contSeleccion a{
+                text-decoration: none;
+                border-radius: 10px;
+            }
+            .contSeleccion a.active{
+                background-color: #3F1F43;
             }
         /* Contenedor de los chats */
         #altChat{
@@ -91,25 +142,33 @@
             color:gray !important;
         }
         .contSelChat {
-            height: 60px;
+            height: 70px;
             width: calc(100% - 10px);
-            border-radius: 10px;
             display: flex;
             align-items: center;
             padding-left: 5px;
             padding-right: 5px;
-            background-color: #2D0E30;
             color: #f3f3f3;
+            border-radius: 10px;
+            transition: all 0.3s ease;
         }.contInfoSelChat > h2 {
             overflow: hidden;
             word-wrap: break-word;
+            font-size: 16px;
+        }
+        .contInfoSelChat p {
+            font-size: 14px;
+            color: #f3f3f37e;
+        }
+        .contSelChat:hover{
+            background-color: #f3f3f30a;
         }
         .contSelChat .contImgSelChat{
             height: 50px;
             width: 50px;
             border-radius: 50%;
             overflow: hidden;
-            margin-right: 10px;
+            margin-right: 7px;
             border: 2px solid #f3f3f3;
         }
         .contSelChat .contImgSelChat img{
@@ -123,15 +182,20 @@
         height: 100%;
         color:#f3f3f3;
         display: grid;
-        grid-template-rows: 60px 1fr 40px;
+        grid-template-rows: auto 1fr auto;
     }
     .homeChat .titulo{
         width: calc(100% - 20px);
-        margin-bottom: 10px;
+        height: 50px;
         background-color: #2D0E30;
-        border-radius: 10px;
         padding: 5px 10px 5px 10px;
         display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .titulo .usuario{
+        display: flex;
+        flex-direction: row;
         align-items: center;
     }
     .titulo .contImagen{
@@ -151,13 +215,15 @@
     }
     .homeChat .mensajes{
         overflow-y: auto;
+        height: calc(100vh - 60px - 70px - 60px);
+        padding: 10px;
+        padding-bottom: 0px;
     }
     .homeChat .mensajes::-webkit-scrollbar {
         -webkit-appearance: none;
     }
     .homeChat .mensajes::-webkit-scrollbar:vertical {
         width:7px;
-        background-color: #452847;
     }
     .homeChat .mensajes::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
         display: none;
@@ -167,7 +233,7 @@
     
     }
     .homeChat .mensajes::-webkit-scrollbar-thumb {
-        background-color: #f3f3f391;
+        background-color: #f3f3f354;
         border-radius: 20px;
     }
     .homeChat .mensajes::-webkit-scrollbar-track {
@@ -185,30 +251,34 @@
         height: auto;
         background-color: #2f0033;
         padding: 10px;
-        border-radius: 10px 15px 0px 10px;
-        margin-bottom: 10px
+        margin-bottom: 10px;
+        border-radius: 10px;
+        border-top-right-radius: 3px;
     }
     .homeChat .mensajeReceptor{
         width: 100%;
         display: flex;
         justify-content: flex-start;
         height: auto;
+        
     }
     .homeChat .mensajeReceptor p{
         max-width: 70%;
         height: auto;
         background-color: #9b3ea3;
+        border-radius: 10px;
         padding: 10px;
-        border-radius: 0px 10px 10px 10px;
         margin-bottom: 10px;
+        border-top-left-radius: 3px;
     }
 
     .homeEscrituraChat {
         width: 100%;
-        height: 40px;
+        height: 60px;
+        background-color: #2D0E30;
         display: flex;
         align-items: center;
-        margin-top: 10px;
+        justify-content: center;
     }
     .homeEscrituraChat .send{
         width: 40px;
@@ -219,22 +289,30 @@
         align-items: center;
         background-color: tomato;
         border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        user-select: none;
+        transition: all 0.3s ease;
     }
     
     .contMensaje{
-        width: calc(100% - 50px);
+        width: calc(100% - 70px);
         display: flex;
         justify-content: center;
-    }#mensaje {
+    }
+    #mensaje {
         resize: none;
         border: none;
-        background: #2a142c;
-        border-radius: 15px;
+        background: #f3f3f31c;
+        border-radius: 10px;
         padding: 5px;
         color: white;
         cursor: text;
         height: 30px;
         width: 100%;
+    }
+    #mensaje::placeholder {
+        color: #f3f3f3a9;
     }
     #mensaje:focus {
         outline: none;
@@ -391,18 +469,27 @@
         .contenedorContenido::-webkit-scrollbar-track {
             border-radius: 10px;  
         }
-        #HeaderFeedHome .contBuscador{
+        .contBuscador{
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+        .contBuscador .btnBack{
+            border: none;
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
         }
         .contBuscador form{
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 10px;
+            /* margin-bottom: 10px; */
         }
         .contBuscador form .buscador{
             width: calc(100% - 60px);
@@ -412,8 +499,12 @@
             font-size: 14px;
             border-radius: 10px 0px 0px 10px;
             border: none;
-            background-color: #2a142c;
+            background-color: #f3f3f32a;
+            backdrop-filter: blur(10px);
             color: #f3f3f3;
+        }
+        .contBuscador form .buscador::placeholder{
+            color: #f3f3f3b2;
         }
         .contBuscador form .buscador:focus{
             outline: none;
@@ -423,7 +514,9 @@
             height: 40px;
             border-radius: 0px 10px 10px 0px;
             border: none;
-            background-color: #2a142c;
+            /* background-color: #2a142c; */
+            background-color: #f3f3f32a;
+            backdrop-filter: blur(10px);
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;

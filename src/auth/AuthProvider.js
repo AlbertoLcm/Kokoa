@@ -16,6 +16,7 @@ export default function AuthProvider({ children }) {
 
   const [user, setUser] = useState(false);
   const [eventos, setEventos] = useState([]);
+  const [showChat, setShowChat] = useState(false);
   const [eventosTranscurso, setEventosTranscurso] = useState([]);
 
   useEffect(() => {
@@ -34,6 +35,7 @@ export default function AuthProvider({ children }) {
       })
       .catch(err => console.log(err));
   }
+
 
   const islogin = () => {
     const token = localStorage.getItem("token");
@@ -54,7 +56,7 @@ export default function AuthProvider({ children }) {
       .then((usuarioRes) => {
         setUser(usuarioRes.data.user.data);
         localStorage.setItem("token", usuarioRes.data.user.token);
-        navigate(routes.home);
+        navigate('/dashboard');
       })
       .catch((err) => {
         console.log(err);
@@ -124,7 +126,9 @@ export default function AuthProvider({ children }) {
       });
   };
 
-  
+  const actionShowChat = (boolean) => {
+    setShowChat(boolean);
+  }
 
   const hasRole = (role) => user?.role === role;
 
@@ -165,7 +169,8 @@ export default function AuthProvider({ children }) {
     actionBackLogin,
     loginCargo,
     resetPasswordLogin,
-    eventosTranscurso, setEventosTranscurso, addEventosTranscurso
+    eventosTranscurso, setEventosTranscurso, addEventosTranscurso,
+    actionShowChat, showChat
   };
 
   return (

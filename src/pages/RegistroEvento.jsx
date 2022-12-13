@@ -95,7 +95,6 @@ function RegistroEvento({ negocio = false, map }) {
             lng: results[0].geometry.location.lng(),
           })
           .then((resultsBD) => {
-            console.log(resultsBD.data);
             addMostrar(resultsBD)
             socket.emit('evento', resultsBD.data);
             successRef.current.classList.remove('d-none');
@@ -228,7 +227,6 @@ function RegistroEvento({ negocio = false, map }) {
                 <p></p>
                 <input type="number" name="capacidad" min="0" placeholder="Capacidad" onChange={handleChange} />
               </div>
-
               <div>
                 <p></p>
                 <select name="publico" id="tipo" onChange={handleChange}>
