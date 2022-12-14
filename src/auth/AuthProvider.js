@@ -36,7 +36,6 @@ export default function AuthProvider({ children }) {
       .catch(err => console.log(err));
   }
 
-
   const islogin = () => {
     const token = localStorage.getItem("token");
     instance.post("/auth", { usuario: "prueba" }, { headers: { authorization: token, } })
@@ -56,7 +55,7 @@ export default function AuthProvider({ children }) {
       .then((usuarioRes) => {
         setUser(usuarioRes.data.user.data);
         localStorage.setItem("token", usuarioRes.data.user.token);
-        navigate('/dashboard');
+        navigate('/dashboard/inicio');
       })
       .catch((err) => {
         console.log(err);

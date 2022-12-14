@@ -160,8 +160,6 @@ function Evento() {
     setImgModal(img);
     setShowModalImg(!showModalImg);
   };
-
-  console.log(evento)
   
   let fecini = new Date(evento.fecha_inicio);
   let fechaActual = new Date();
@@ -171,7 +169,6 @@ function Evento() {
 
   return (
     <>
-
       <ModalImg
         estado={showModalImg}
         cambiarEstado={setShowModalImg}
@@ -207,13 +204,14 @@ function Evento() {
             </div>
 
             <div className="botones">
-              {fecini < fechaActual && fechaTermino > fechaActual ? (
-                asistencia.length > 0 ? (
+              {/* {fecini > fechaActual && fechaTermino > fechaActual ? (
+                asistencia.length ? (
                 asistencia.find((asistencia) => asistencia.id_evento === evento.id_evento) ? <button className="asistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button> : <button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>
                 ) : <button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>
               ) : (
                 null
-              )}
+              )} */}
+              {asistencia.find((asistencia => asistencia.id_evento === evento.id_evento)) ? (<button className="asistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button>) : (<button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>)}
               <button onClick={() => setOpComp(!opComp)}>Compartir</button>
               {
                 opComp && (

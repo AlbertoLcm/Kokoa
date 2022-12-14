@@ -428,14 +428,14 @@
         }
         /* /// Fin Eventos /// */
 
-        /* TODO: organizar estos estilos vienen de la pagina ListaEventosFeed */
+        /* TODO: organizar estos estilos vienen del componente ListaEventosFeed */
         .contEventosNegocios{
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             gap: 10px;
-            padding-bottom: 10px;
-            padding-left: 10px;
-            padding-right: 10px;
+            padding-bottom: 15px;
+            padding-left: 15px;
+            padding-right: 15px;
         }
         /* FIN  */
     

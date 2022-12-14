@@ -131,12 +131,12 @@ function InfEvento({ evento, cerrar }) {
         </section>
 
         <section className='contBtnMarkerInfo'>
-          {fecini < fechaActual && fechaTermino > fechaActual ? (
+          {/* {fecini < fechaActual && fechaTermino > fechaActual ? (
             asistencia.length > 0 ? (
             asistencia.find((asistencia) => asistencia.id_evento === evento.id_evento) ? <button className="asistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button> : <button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>
             ) : <button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>
-          ) : (null)}
-
+          ) : (null)} */}
+          {asistencia.find((asistencia => asistencia.id_evento === evento.id_evento)) ? (<button className="asistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button>) : (<button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>)}
           <button className='invitar' onClick={() => setOpComp(!opComp)}>Compartir</button>
           {
             opComp && (

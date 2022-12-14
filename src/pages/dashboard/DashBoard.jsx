@@ -26,7 +26,7 @@ function DasBoard() {
           <Route exact path="estadisticas/*" element={<Estadisticas />} />
           <Route exact path="mensajes/*" element={<Mensajes />} />
           <Route exact path="perfil" element={<Perfil />} />
-          <Route exact path="configuracion" element={<Configuracion />} />
+          <Route exact path="configuracion/*" element={<Configuracion />} />
         </Routes>
       </section>
     </>

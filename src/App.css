@@ -11,28 +11,7 @@ body{
     position: relative;
     overflow: auto;
     background-color: #140016;
-    /* scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0); */
-    /* scrollbar-width: thin; */
 }
 
-/* body::-webkit-scrollbar {
-    -webkit-appearance: none;
-}
-body::-webkit-scrollbar:vertical {
-    width:7px;
-    background-color: #340d38;
-}
-body::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
-    display: none;
-}
-body::-webkit-scrollbar:horizontal {
-    height: 10px;
 
-}
-body::-webkit-scrollbar-thumb {
-    background-color: #f3f3f391;
-    border-radius: 20px;
-}
-body::-webkit-scrollbar-track {
-    border-radius: 10px;  
-} */
+

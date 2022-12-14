@@ -150,7 +150,45 @@ function ListaEventosFeed({ id, solicito }) {
 
     case 'negocios': return (
       <>
-        {!anteriores.length ? (<p className="sinData"> No hay eventos </p>) : (null)}
+        {!eventos.length ? (<div className="notData"> No hay eventos actuales </div>) : (null)}
+        <section className="contEventosNegocios">
+          {eventos.map((evento) => {
+            const fechaTermino = new Date(evento.fecha_termino);
+            return (
+              <div id="PerfilFeedEvento">
+                <section id="ContImgEventoFeed">
+                  <img src={image} id="ImgEventoFeed" alt="nanay" />
+                </section>
+
+                <section id="ContInfEvento">
+                  <div className="infEvento">
+                    <p className="infEventoFecha">Finalizó el {fechaTermino.toLocaleDateString('es-us', { weekday: "long", month: "short", year: "numeric", day: "numeric" })}, {fechaTermino.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
+
+                    <h2>{evento.nombre}</h2>
+                    <p className="infEventoUbicacion">
+                      {evento.direccion}
+                    </p>
+                    <p className="asistentesEvento">
+                      Asistieron {evento.asistentes_cont} personas
+                    </p>
+                    <Link to={`/evento/${evento.id_evento}`} state={{ from: location }} className="link">Ver más</Link>
+                  </div>
+
+                  <div className="coverEvento">
+                    {evento.precio === null || evento.precio === 0 ? <p> La entrada fue gratuita </p> : <p className="cover"> Tuvo un cover de: ${evento.precio} </p>}
+
+                  </div>
+                </section>
+              </div>
+            )
+          })}
+        </section>
+      </>
+    )
+
+    case 'negociosAnteriores': return (
+      <>
+        {!anteriores.length ? (<div className="notData"> No hay eventos anteriores </div>) : (null)}
         <section className="contEventosNegocios">
           {anteriores.map((evento) => {
             const fechaTermino = new Date(evento.fecha_termino);
