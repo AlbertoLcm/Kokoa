@@ -83,6 +83,17 @@ function RegistroEvento({ negocio = false, map }) {
       alertRef.current.innerText = "Debes ingresar la ubicación del evento";
       return;
     }
+    const hoy = new Date()
+    if(Date.parse(datosEvento.fechaTermino) < Date.parse(datosEvento.fechaInicio)){
+      alertRef.current.classList.remove('d-none');
+      alertRef.current.innerText = "La fecha de termino no puede ser previa a la fecha de inicio";
+      return;
+    }
+    if(Date.parse(datosEvento.fechaTermino) < Date.now()){
+      alertRef.current.classList.remove('d-none');
+      alertRef.current.innerText = "La fecha de termino no puede ser previa a la fecha de hoy";
+      return;
+    }
     geocoder.geocode({
         address: originRef.current.value,
       },(results, status) => {
