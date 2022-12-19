@@ -22,6 +22,7 @@ function DatosAnfitrion({ id, section }) {
   const [showModalPrec, setShowModalPrec] = useState(false);
   const [showModalAmb, setShowModalAmb] = useState(false);
   // Variables de opinion
+  const [envioOpinion, setEnvioOpinion] = useState(false);
   const [allOpinions, setAllOpinions] = useState([]);
   const [userOpinions, setUserOpinions] = useState([]);
   const [opinionGeneral, setOpinionGeneral] = useState([]);
@@ -49,6 +50,7 @@ function DatosAnfitrion({ id, section }) {
   });
   // Funciones de Opinion
   const handleOpinion = (tipo, val) => {
+    setEnvioOpinion(!envioOpinion)
     setOpinion({
       ...opinion,
       valuacion: val,
@@ -56,19 +58,31 @@ function DatosAnfitrion({ id, section }) {
     });
   }
   useEffect(() => {
-    console.log(comentario) 
     if(opinion.valuacion !== ""){
       if( userOpinions.filter( (opin) => ( opin.id_usuario === user.id) && (opin.tipo === opinion.tipo) ).length === 0 ) {
         instance.post(`/negocios/reacciones`, opinion)
         .then((res) => {
-          console.log(res)
           actOpiniones()
+          .then(
+            setShowModalCant(false),
+            setShowModalCali(false),
+            setShowModalPrec(false),
+            setShowModalSeg(false),
+            setShowModalAmb(false),
+            setEnvioOpinion(!envioOpinion)
+          )
         })
       }else{
         instance.put(`/negocios/reacciones/modify`, opinion)
         .then((res) => {
-          console.log(res)
-          actOpiniones()
+          actOpiniones().then(
+            setShowModalCant(false),
+            setShowModalCali(false),
+            setShowModalPrec(false),
+            setShowModalSeg(false),
+            setShowModalAmb(false),
+            setEnvioOpinion(!envioOpinion)
+          )
         })
         .catch((e) => {
           console.log(e)
@@ -76,7 +90,7 @@ function DatosAnfitrion({ id, section }) {
       }
      }
   }, [opinion]);
-  const actOpiniones = () => {
+  const actOpiniones = async () => {
     instance.get(`/negocios/reacciones/${anfitrion.id}`)
       .then((res) => {
         setAllOpinions(res.data)
@@ -134,8 +148,11 @@ function DatosAnfitrion({ id, section }) {
       })
       setOpinGenAmbiente(va / opAmbi.length)
     }
+  }, [userOpinions])
+
+  useEffect(() => {
     let divisor = 0;
-    va= 0 + opinGenCantidad;
+    let va = 0 + opinGenCantidad;
     if(opinGenCantidad > 0){divisor= divisor + 1 }
     va= va + opinGenCalidad;
     if(opinGenCalidad > 0){divisor= divisor + 1 }
@@ -145,13 +162,11 @@ function DatosAnfitrion({ id, section }) {
     if(opinGenSeguridad > 0){divisor= divisor + 1 }
     va= va + opinGenAmbiente;
     if(opinGenAmbiente > 0){divisor= divisor + 1 }
-    console.log(va)
     if(divisor > 0) {
       va = va / divisor
     }
-    console.log(divisor)
     setOpinionGeneral(va)
-  }, [userOpinions])
+  }, [opinGenAmbiente, opinGenCantidad, opinGenCalidad, opinGenPrecio, opinGenSeguridad]);
 // Fin funciones opinion
   useEffect(() => {
     instance.get(`/negocios/${id}`)
@@ -170,6 +185,7 @@ function DatosAnfitrion({ id, section }) {
       .then((comentarios) => {
         setComentarios(comentarios.data)
       })
+      
 
     socket.on('new-comentario', (comentario) => {
       instance.get(`/negocios/comentarios/${id}`)
@@ -222,7 +238,7 @@ function DatosAnfitrion({ id, section }) {
           <section id="DatosPerfilAnfitrion">
             <section>
               <h1>{anfitrion.nombre}</h1>
-              <p>{allOpinions.length > 0 ? (<span>OpinionGeneral - {opinionGeneral} ( {allOpinions.length} Opiniones)</span>) : ( <span>Sin Calificaciones</span> )  }   </p>
+              <p>{allOpinions.length > 0 ? (<>OpinionGeneral - {opinionGeneral} ( {allOpinions.length} Opiniones)</>) : ( <span>Sin Calificaciones</span> )  }   </p>
               <p>{anfitrion.email}</p>
               <p>{anfitrion.telefono}</p>
             </section>
@@ -259,109 +275,169 @@ function DatosAnfitrion({ id, section }) {
           cambiarEstado={setShowModalCant}
           titulo={"Cantidad"}
         >
-          <div className="letOpCant">
-            <h2>Salgo sobrio</h2>
-            <div>
-              <h2>Anterior evaluación</h2>
-              <h2>{ userOpinions.some((opi) => opi.tipo === 1) ? ( userOpinions.find((opi) => opi.tipo === 1).valuacion ) : ("N/A")}</h2>
+          {(!envioOpinion) ? (
+            <>
+              <div className="letOpCant">
+                <h2>Salgo sobrio</h2>
+                <div>
+                  <h2>Anterior evaluación</h2>
+                  <h2>{ userOpinions.some((opi) => opi.tipo === 1) ? ( userOpinions.find((opi) => opi.tipo === 1).valuacion ) : ("N/A")}</h2>
+                </div>
+                <h2>Me emborracha</h2>
+              </div>
+              <div className="botOpGen">
+                <button onClick={() => handleOpinion(1, 1)}>1</button>
+                <button onClick={() => handleOpinion(1, 2)}>2</button>
+                <button onClick={() => handleOpinion(1, 3)}>3</button>
+                <button onClick={() => handleOpinion(1, 4)}>4</button>
+                <button onClick={() => handleOpinion(1, 5)}>5</button>
+              </div>
+          </>
+          ) : (
+            <div className="modalCargaCargando">
+                <h2>Registrando Opinion</h2>
+                <div className="modalCargandoSimbolo">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rotate-clockwise-2" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 4.55a8 8 0 0 1 6 14.9m0 -4.45v5h5" /><line x1="5.63" y1="7.16" x2="5.63" y2="7.17" /><line x1="4.06" y1="11" x2="4.06" y2="11.01" /><line x1="4.63" y1="15.1" x2="4.63" y2="15.11" /><line x1="7.16" y1="18.37" x2="7.16" y2="18.38" /><line x1="11" y1="19.94" x2="11" y2="19.95" /></svg>
+                </div>
             </div>
-            <h2>Me emborracha</h2>
-          </div>
-          <div className="botOpGen">
-            <button onClick={() => handleOpinion(1, 1)}>1</button>
-            <button onClick={() => handleOpinion(1, 2)}>2</button>
-            <button onClick={() => handleOpinion(1, 3)}>3</button>
-            <button onClick={() => handleOpinion(1, 4)}>4</button>
-            <button onClick={() => handleOpinion(1, 5)}>5</button>
-          </div>
+          ) 
+          }
         </Modal>
         <Modal
           estado={showModalCali}
           cambiarEstado={setShowModalCali}
           titulo={"Calidad"}
         >
-          <div className="letOpCant">
-            <h2>Saben Mal</h2>
-            <div>
-              <h2>Anterior evaluación</h2>
-              <h2>{ userOpinions.some((opi) => opi.tipo === 2) ? ( userOpinions.find((opi) => opi.tipo === 2).valuacion ) : ("N/A")}</h2>
+          {(!envioOpinion) ? (
+            <>
+              <div className="letOpCant">
+                <h2>Saben Mal</h2>
+                <div>
+                  <h2>Anterior evaluación</h2>
+                  <h2>{ userOpinions.some((opi) => opi.tipo === 2) ? ( userOpinions.find((opi) => opi.tipo === 2).valuacion ) : ("N/A")}</h2>
+                </div>
+                <h2>Son deliciosas</h2>
+              </div>
+              <div className="botOpGen">
+                <button onClick={() => handleOpinion(2, 1)}>1</button>
+                <button onClick={() => handleOpinion(2, 2)}>2</button>
+                <button onClick={() => handleOpinion(2, 3)}>3</button>
+                <button onClick={() => handleOpinion(2, 4)}>4</button>
+                <button onClick={() => handleOpinion(2, 5)}>5</button>
+              </div>
+          </>
+          ) : (
+            <div className="modalCargaCargando">
+                <h2>Registrando Opinion</h2>
+                <div className="modalCargandoSimbolo">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rotate-clockwise-2" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 4.55a8 8 0 0 1 6 14.9m0 -4.45v5h5" /><line x1="5.63" y1="7.16" x2="5.63" y2="7.17" /><line x1="4.06" y1="11" x2="4.06" y2="11.01" /><line x1="4.63" y1="15.1" x2="4.63" y2="15.11" /><line x1="7.16" y1="18.37" x2="7.16" y2="18.38" /><line x1="11" y1="19.94" x2="11" y2="19.95" /></svg>
+                </div>
             </div>
-            <h2>Son deliciosas</h2>
-          </div>
-          <div className="botOpGen">
-            <button onClick={() => handleOpinion(2, 1)}>1</button>
-            <button onClick={() => handleOpinion(2, 2)}>2</button>
-            <button onClick={() => handleOpinion(2, 3)}>3</button>
-            <button onClick={() => handleOpinion(2, 4)}>4</button>
-            <button onClick={() => handleOpinion(2, 5)}>5</button>
-          </div>
+          ) 
+          }
         </Modal>
         <Modal
           estado={showModalSeg}
           cambiarEstado={setShowModalSeg}
           titulo={"Seguridad"}
         >
-          <div className="letOpCant">
-            <h2>Muy inseguro</h2>
-            <div>
-              <h2>Anterior evaluación</h2>
-              <h2>{ userOpinions.some((opi) => opi.tipo === 4) ? ( userOpinions.find((opi) => opi.tipo === 4).valuacion ) : ("N/A")}</h2>
+          {(!envioOpinion) ? (
+            <>
+              <div className="letOpCant">
+                <h2>Muy inseguro</h2>
+                <div>
+                  <h2>Anterior evaluación</h2>
+                  <h2>{ userOpinions.some((opi) => opi.tipo === 4) ? ( userOpinions.find((opi) => opi.tipo === 4).valuacion ) : ("N/A")}</h2>
+                </div>
+                <h2>Bastante seguro</h2>
+              </div>
+              <div className="botOpGen">
+                <button onClick={() => handleOpinion(4, 1)}>1</button>
+                <button onClick={() => handleOpinion(4, 2)}>2</button>
+                <button onClick={() => handleOpinion(4, 3)}>3</button>
+                <button onClick={() => handleOpinion(4, 4)}>4</button>
+                <button onClick={() => handleOpinion(4, 5)}>5</button>
+              </div>
+          </>
+          ) : (
+            <div className="modalCargaCargando">
+                <h2>Registrando Opinion</h2>
+                <div className="modalCargandoSimbolo">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rotate-clockwise-2" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 4.55a8 8 0 0 1 6 14.9m0 -4.45v5h5" /><line x1="5.63" y1="7.16" x2="5.63" y2="7.17" /><line x1="4.06" y1="11" x2="4.06" y2="11.01" /><line x1="4.63" y1="15.1" x2="4.63" y2="15.11" /><line x1="7.16" y1="18.37" x2="7.16" y2="18.38" /><line x1="11" y1="19.94" x2="11" y2="19.95" /></svg>
+                </div>
             </div>
-            <h2>Bastante seguro</h2>
-          </div>
-          <div className="botOpGen">
-            <button onClick={() => handleOpinion(4, 1)}>1</button>
-            <button onClick={() => handleOpinion(4, 2)}>2</button>
-            <button onClick={() => handleOpinion(4, 3)}>3</button>
-            <button onClick={() => handleOpinion(4, 4)}>4</button>
-            <button onClick={() => handleOpinion(4, 5)}>5</button>
-          </div>
+          ) 
+          }
         </Modal>
         <Modal
           estado={showModalPrec}
           cambiarEstado={setShowModalPrec}
           titulo={"Precio"}
         >
-          <div className="letOpCant">
-            <h2>Barato</h2>
-            <div>
-              <h2>Anterior evaluación</h2>
-              <h2>{ userOpinions.some((opi) => opi.tipo === 3) ? ( userOpinions.find((opi) => opi.tipo === 3).valuacion ) : ("N/A")}</h2>
+          {(!envioOpinion) ? (
+            <>
+              <div className="letOpCant">
+                <h2>Barato</h2>
+                <div>
+                  <h2>Anterior evaluación</h2>
+                  <h2>{ userOpinions.some((opi) => opi.tipo === 3) ? ( userOpinions.find((opi) => opi.tipo === 3).valuacion ) : ("N/A")}</h2>
+                </div>
+                <h2>Caro</h2>
+              </div>
+              <div className="botOpGen">
+                <button onClick={() => handleOpinion(3, 1)}>1</button>
+                <button onClick={() => handleOpinion(3, 2)}>2</button>
+                <button onClick={() => handleOpinion(3, 3)}>3</button>
+                <button onClick={() => handleOpinion(3, 4)}>4</button>
+                <button onClick={() => handleOpinion(3, 5)}>5</button>
+              </div>
+          </>
+          ) : (
+            <div className="modalCargaCargando">
+                <h2>Registrando Opinion</h2>
+                <div className="modalCargandoSimbolo">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rotate-clockwise-2" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 4.55a8 8 0 0 1 6 14.9m0 -4.45v5h5" /><line x1="5.63" y1="7.16" x2="5.63" y2="7.17" /><line x1="4.06" y1="11" x2="4.06" y2="11.01" /><line x1="4.63" y1="15.1" x2="4.63" y2="15.11" /><line x1="7.16" y1="18.37" x2="7.16" y2="18.38" /><line x1="11" y1="19.94" x2="11" y2="19.95" /></svg>
+                </div>
             </div>
-            <h2>Caro</h2>
-          </div>
-          <div className="botOpGen">
-            <button onClick={() => handleOpinion(3, 1)}>1</button>
-            <button onClick={() => handleOpinion(3, 2)}>2</button>
-            <button onClick={() => handleOpinion(3, 3)}>3</button>
-            <button onClick={() => handleOpinion(3, 4)}>4</button>
-            <button onClick={() => handleOpinion(3, 5)}>5</button>
-          </div>
+          ) 
+          }
         </Modal>
         <Modal
           estado={showModalAmb}
           cambiarEstado={setShowModalAmb}
           titulo={"Precio"}
         >
-          <div className="letOpCant">
-            <h2>Pesimo ambiente</h2>
-            <div>
-              <h2>Anterior evaluación</h2>
-              <h2>{ userOpinions.some((opi) => opi.tipo === 5) ? ( userOpinions.find((opi) => opi.tipo === 5).valuacion ) : ("N/A")}</h2>
+          {(!envioOpinion) ? (
+            <>
+              <div className="letOpCant">
+                <h2>Pesimo ambiente</h2>
+                <div>
+                  <h2>Anterior evaluación</h2>
+                  <h2>{ userOpinions.some((opi) => opi.tipo === 5) ? ( userOpinions.find((opi) => opi.tipo === 5).valuacion ) : ("N/A")}</h2>
+                </div>
+                <h2>Increible Ambiente</h2>
+              </div>
+              <div className="botOpGen">
+                <button onClick={() => handleOpinion(5, 1)}>1</button>
+                <button onClick={() => handleOpinion(5, 2)}>2</button>
+                <button onClick={() => handleOpinion(5, 3)}>3</button>
+                <button onClick={() => handleOpinion(5, 4)}>4</button>
+                <button onClick={() => handleOpinion(5, 5)}>5</button>
+              </div>
+          </>
+          ) : (
+            <div className="modalCargaCargando">
+                <h2>Registrando Opinion</h2>
+                <div className="modalCargandoSimbolo">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rotate-clockwise-2" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 4.55a8 8 0 0 1 6 14.9m0 -4.45v5h5" /><line x1="5.63" y1="7.16" x2="5.63" y2="7.17" /><line x1="4.06" y1="11" x2="4.06" y2="11.01" /><line x1="4.63" y1="15.1" x2="4.63" y2="15.11" /><line x1="7.16" y1="18.37" x2="7.16" y2="18.38" /><line x1="11" y1="19.94" x2="11" y2="19.95" /></svg>
+                </div>
             </div>
-            <h2>Increible Ambiente</h2>
-          </div>
-          <div className="botOpGen">
-            <button onClick={() => handleOpinion(5, 1)}>1</button>
-            <button onClick={() => handleOpinion(5, 2)}>2</button>
-            <button onClick={() => handleOpinion(5, 3)}>3</button>
-            <button onClick={() => handleOpinion(5, 4)}>4</button>
-            <button onClick={() => handleOpinion(5, 5)}>5</button>
-          </div>
+          ) 
+          }
         </Modal>
           {/* Fin de los modales de opinion */}
         <section id="InfOpinionesAnfitrion">
-          <h2>Calificacion - {opinionGeneral} ({allOpinions.length} Opiniones)</h2>
+          <h2>Calificacion - {allOpinions.length > 0 ? (<>{opinionGeneral} ( {allOpinions.length} Opiniones)</>) : ( <span>Sin Calificaciones</span> )  }</h2>
 
           <section className="contOpiniones">
             <center>
