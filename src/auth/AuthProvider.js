@@ -4,7 +4,7 @@ import {
   useState,
   useEffect,
 } from "react";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import instance from "../api/axios";
 import routes from "../helpers/routes";
 
@@ -62,7 +62,7 @@ export default function AuthProvider({ children }) {
       });
   }
 
-  const login = (usuario, fromLocation, alertRef) => {
+  const login = (usuario, fromLocation, setError) => {
     instance
       .post("/auth/login", usuario)
       .then((usuarioRes) => {
@@ -73,9 +73,7 @@ export default function AuthProvider({ children }) {
         }
       })
       .catch((error) => {
-        console.log(error);
-        alertRef.current.classList.remove('d-none');
-        alertRef.current.innerHTML = error.response.data.message;
+        setError(error.response.data.message);
       });
   };
 

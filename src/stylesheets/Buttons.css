@@ -28,7 +28,6 @@
 }
 .btnLink2{
     text-decoration: none;
-    margin-top: 10px;
     background-color: #196eff;
     border: none;
     border-radius: 30px;
@@ -36,16 +35,17 @@
     font-size: 18px;
     color: #f3f3f3;
     width: 100%;    
-    transition: all 300ms ease;
+    transition: 0.1s;
     user-select: none;
     cursor: pointer;
+    box-shadow: 0 0 5px #196eff;
 }
 .btnLink2:hover{
-    background-color: #3a82ff;
-    color: #f3f3f3;
+    background-color: #2e7bff;
+    box-shadow: 0 0 10px #2e7bff;
 }
-.btnLink:hover{
-    background-color: #196eff;
+.btnLink2:active{
+    transform: scale(0.97);
 }
 
 .boton2{

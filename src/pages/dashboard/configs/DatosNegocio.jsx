@@ -4,8 +4,6 @@ import useAuth from "../../../auth/useAuth";
 const DatosNegocio = () => {
 
   const { user } = useAuth();
-
-  console.log(user);
    
   return (
     <div className="informacionNegocio">

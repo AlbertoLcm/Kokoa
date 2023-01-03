@@ -1,33 +1,24 @@
 import React from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
-import MenuSignup from "../pages/MenuSignup";
-import SignUsuario from "../pages/SignUsuario";
-import SignNegocio from "../pages/SignNegocio";
+import { Route, Routes } from "react-router-dom";
+import Sign from "../pages/Sign";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
-import SignPatrocinador from "../pages/SignPatrocinador";
-import SignArtista from "../pages/SignArtista";
-import ConPerf from "../pages/ConPerf"
+import Profile from "../pages/profile/Profile"
 import Error from "../pages/404";
 import routes from "../helpers/routes";
-import roles from "../helpers/roles";
-import RolArtista from "../pages/RolArtista";
-import RegistroEvento from "../pages/RegistroEvento";
 import Login from "../pages/Login";
-import Home from "../pages/Home";
-import VisPerfs from "../pages/VisPerfs";
-import Loading from "../components/loadings/Loading";
+import Home from "../pages/home/Home";
+import Perfil from "../pages/Perfil";
 import Evento from "../pages/Evento";
 import Recuperar from "../pages/recuperar/Recuperar";
 import NewPassword from "../pages/recuperar/NewPassword";
 import DashBoard from "../pages/dashboard/DashBoard";
-import Inicio from "../pages/dashboard/Inicio";
 
 function AppRouter() {
   return (
     <div className='App'>
       <Routes>
-        <Route exact path={routes.home} element={
+        <Route exact path={'/*'} element={
           <PrivateRoute >
             <Home />
           </PrivateRoute>
@@ -37,49 +28,19 @@ function AppRouter() {
             <Login />
           </PublicRoute>
         } />
-        <Route exact path={routes.signup} element={
-          <PublicRoute>
-            <MenuSignup />
-          </PublicRoute>
-        } />
         <Route exact path={routes.newusuario} element={
           <PublicRoute>
-            <SignUsuario />
+            <Sign />
           </PublicRoute>
-        } />
-        <Route exact path={routes.newnegocio} element={
-          <PrivateRoute>
-            <SignNegocio />
-          </PrivateRoute>
-        } />
-        <Route exact path={routes.newpatrocinador} element={
-          <PrivateRoute>
-            <SignPatrocinador />
-          </PrivateRoute>
-        } />
-        <Route exact path={routes.newartista} element={
-          <PrivateRoute>
-            <SignArtista />
-          </PrivateRoute>
-        } />
-        <Route exact path={routes.rolartista} element={
-          <PrivateRoute Role={roles.artista}>
-            <RolArtista />
-          </PrivateRoute>
         } />
         <Route exact path={'/dashboard/*'} element={
           <PrivateRoute>
             <DashBoard />
           </PrivateRoute>
         } />
-        <Route exact path={routes.registrarevento} element={
+        <Route exact path={'perfil/*'} element={
           <PrivateRoute>
-            <RegistroEvento />
-          </PrivateRoute>
-        } />
-        <Route exact path={routes.perfil} element={
-          <PrivateRoute>
-            <ConPerf />
+            <Profile />
           </PrivateRoute>
         } />
         <Route exact path={routes.recuperar} element={
@@ -92,13 +53,12 @@ function AppRouter() {
             <NewPassword />
           </PublicRoute>
         } />
-        <Route exact path={'/visperfil/:id'} element={
-            <VisPerfs />
+        <Route exact path={'/negocio/:nombre/:id'} element={
+            <Perfil />
         } />
-        <Route path="/evento/:id" element={
+        <Route path="/evento/:nombre/:id" element={
           <Evento />
         }>
-
         </Route>
 
         <Route path="*" element={<Error />} />

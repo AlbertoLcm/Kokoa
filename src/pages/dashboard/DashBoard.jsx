@@ -23,7 +23,7 @@ function DasBoard() {
         <Routes>
           <Route exact path="inicio" element={<Inicio />} />
           <Route exact path="eventos" element={<Eventos />} />
-          <Route exact path="estadisticas/*" element={<Estadisticas />} />
+          <Route exact path="estadisticas" element={<Estadisticas />} />
           <Route exact path="mensajes/*" element={<Mensajes />} />
           <Route exact path="perfil" element={<Perfil />} />
           <Route exact path="configuracion/*" element={<Configuracion />} />

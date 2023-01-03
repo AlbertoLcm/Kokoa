@@ -1,18 +1,21 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import useAuth from "../auth/useAuth";
 import Header from "../components/Header";
 import Loading from "../components/loadings/Loading";
-import Modal from "../components/modals/Modal";
 import routes from "../helpers/routes";
 import "../stylesheets/Login.css";
 
 function Login() {
+
   const { login, islogin } = useAuth();
   const location = useLocation();
-  /** @type React.MutableRefObject<HTMLInputElement> */
-  const alertRef = useRef();
 
+  const [error, setError] = useState({
+    email: false,
+    password: false,
+    error: false
+  });
   const [userCredentials, setUserCredentials] = useState({
     email: "",
     password: "",
@@ -32,8 +35,12 @@ function Login() {
 
   const actionLogear = (e) => {
     e.preventDefault(); //esto previene que el form se mande.
-    alertRef.current.classList.add('d-none');
-    login(userCredentials, location.state, alertRef)
+    setError({
+      email: false,
+      password: false,
+      error: false,
+    });
+    login(userCredentials, location.state, setError)
   };
 
   return (
@@ -44,27 +51,28 @@ function Login() {
           <div className="contLogin">
             <div className="login">
               <h2>Bienvenido</h2>
-              <div ref={alertRef} className="alert d-none">
-                Algo salio mal
+              <div className={error.error ? "alert" : "alert d-none"}>
+                Algo salio mal, intenta de nuevo más tarde.
               </div>
               <form onSubmit={actionLogear} method="POST" className="form-group">
                 <input
-                  id="email"
+                  className={error.email ? "dato error" : "dato"}
                   name="email"
                   type="text"
                   onChange={handleChange}
                   value={userCredentials.email}
                   placeholder="Correo ó Número de teléfono"
                 />
-
+                {error.email && <p className="errorText">El correo o el número de teléfono no existe</p>}
                 <input
-                  id="password"
+                  className={error.password ? "dato error" : "dato"}
                   name="password"
                   type="password"
                   onChange={handleChange}
                   value={userCredentials.password}
                   placeholder="Contraseña"
                 />
+                {error.password && <p className="errorText">La contraseña es incorrecta</p>}
 
                 <Link to={routes.recuperar} className={"recuperarLink"}><p>¿Olvidaste tu contraseña?</p></Link>
 

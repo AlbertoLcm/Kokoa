@@ -181,7 +181,7 @@ function Evento() {
 
         {location.state?.from ? (
           <div className="btnBack" onClick={() => nav(-1, { state: { from: location, pagina: 2 } })}>
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-arrow-left" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <line x1="5" y1="12" x2="19" y2="12" />
               <line x1="5" y1="12" x2="11" y2="18" />
@@ -217,9 +217,6 @@ function Evento() {
           : (<button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>)}
           <button className='invitar' onClick={() => setOpComp(!opComp)}>Compartir</button>
           
-              
-              {asistencia.find((asistencia => asistencia.id_evento === evento.id_evento)) ? (<button className="asistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button>) : (<button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>)}
-              <button onClick={() => setOpComp(!opComp)}>Compartir</button>
               {
                 opComp && (
                   <div className="opCompartir">
@@ -279,12 +276,12 @@ function Evento() {
                   </section>
 
                   {location?.state?.from?.pathname ? (
-                    (!(location?.state?.from?.pathname).includes("visperfil/")) ? (
+                    (!(location?.state?.from?.pathname).includes("negocio/")) ? (
                       <section className="anfitrion">
                         {evento.rol_anfitrion === "negocios" ? (
                           <>
                             <h1>Anfitrion (Negocio)</h1>
-                            <Link to={`/visperfil/${evento.anfitrion}`} className={"contDetAnfitrion"}>
+                            <Link to={`/negocio/${evento.nombre}/${evento.anfitrion}`} className={"contDetAnfitrion"}>
                               <div className='contImgAnfitrion'>
                                 <img src={anfitrion.perfil} alt="Predefinir" />
                               </div>
@@ -314,7 +311,7 @@ function Evento() {
                       {evento.rol_anfitrion === "negocios" ? (
                         <>
                           <h1>Anfitrion (Negocio)</h1>
-                          <Link to={`/visperfil/${evento.anfitrion}`} className={"contDetAnfitrion"}>
+                          <Link to={`/negocio/${evento.nombre}/${evento.anfitrion}`} className={"contDetAnfitrion"}>
                             <div className='contImgAnfitrion'>
                               <img src={anfitrion.perfil} alt="Predefinir" />
                             </div>

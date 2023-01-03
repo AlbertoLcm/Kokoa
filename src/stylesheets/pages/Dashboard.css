@@ -69,30 +69,29 @@
   .contDashboardInicio .datos{
     width: calc(100% - 30px);
     height: calc(100% - 15px - 80px);
-    display: grid;
     padding: 15px;
     padding-top: 0px;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
   .datos a{
     text-decoration: none;
     color: #f3f3f3;
   }
   .datos a .elemento{
-    background: linear-gradient(20deg, #5421e1, #a5009d);
+    background-color: #5421e1;
+    /* background: linear-gradient(20deg, #5421e1, #a5009d); */
     border-radius: 10px;
+    height: 60px;
     padding: 10px;
-    height: calc(100% - 20px);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: all 0.3s ease;
+    transition: all 0.2s;
   }
-  .datos a .elemento:hover{
-    box-shadow: 0 0 15px #5421e1;
+  .datos a .elemento h3{
+    font-weight: 600;
+    margin-bottom: 10px;
   }
+
 /* Fin Pagina Inicio */
 
 /* Pagina eventos */
@@ -184,7 +183,7 @@
       transition: all 0.3s ease;
       font-weight: 600;
     }
-    select:hover{
+    .contDashboardEvento .content-select select:hover{
       box-shadow: 0 0 10px #875df1;
     }
     option{
@@ -296,7 +295,7 @@
 .sideBar button{
   border: none;
   width: calc(100% - 20px);
-  background-color: #4287ff;
+  background-color: #295efc;
   padding: 10px;
   border-radius: 15px;
   color: #f3f3f3;
@@ -307,9 +306,22 @@
   user-select: none;
   transition: all 0.3s ease;
 }
-.sideBar button:hover{
-  box-shadow: 0 0 10px #4287ff;
+
+.sideBar .btnLogout{
+  border: none;
+  width: calc(100% - 20px);
+  background-color: #ff5537;
+  padding: 10px;
+  border-radius: 15px;
+  color: #f3f3f3;
+  font-size: 16px;
+  display: block;
+  margin-bottom: 10px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.3s ease;
 }
+
 .sideBar ul{
   list-style: none;
   padding-left: 10px;

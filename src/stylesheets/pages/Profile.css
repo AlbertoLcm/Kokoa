@@ -1,0 +1,615 @@
+#ContGeneralProfile{
+  padding-top: 60px;
+  height: calc(100vh - 60px);
+  display: flex;
+  color: #f3f3f3;
+}
+
+/* Sidebar */
+  .sidebarProfile{
+    width: 270px;
+    height: 100%;
+    background-color: #2d0e30;
+    position: fixed;
+    left: 0;
+  }
+  .sidebarProfile ul{
+    list-style: none;
+  }
+  .sidebarProfile ul li{
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+  .sidebarProfile ul li a{
+    text-decoration: none;
+    color: #f3f3f3bd;
+    font-size: 16px;
+    display: block;
+    padding: 10px;
+    padding-left: 30px;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center; 
+  }
+  .sidebarProfile ul li a svg{
+    margin-right: 10px;
+  }
+  .sidebarProfile ul li:hover{
+    background-color: #f3f3f32a;
+  }
+  .sidebarProfile ul li a.active{
+    background: linear-gradient(20deg, #410046, #ec1c4d42);
+  }
+  .sidebarProfile .logo{
+    padding: 15px;
+    padding-top: 20px;
+    padding-left: 30px;
+    user-select: none;
+  }
+  .sidebarProfile .logo h1{
+    font-size: 20px;
+    color: #f3f3f3d0;
+    font-weight: 600;
+  }
+  .sidebarProfile .buttons{
+    display: flex;
+    width: 270px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: inherit;
+    bottom: 0px;
+  }
+  .sidebarProfile .buttons button{
+    border: none;
+    width: calc(100% - 20px);
+    background-color: #ff5537;
+    padding: 10px;
+    border-radius: 15px;
+    color: #f3f3f3;
+    font-size: 16px;
+    display: block;
+    margin-bottom: 10px;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
+  }
+  .sidebarProfile .buttons button:hover{
+    box-shadow: 0 0 10px #ff5537;
+  }
+/* FIN Sidebar */
+
+/* Contenido principal */
+  .contenedor{
+    width: calc(100% - 270px);
+    position: relative;
+    top: 0;
+    left: 270px;
+  }
+/* Fin Contenido principal */
+
+/* Pagina informacion */
+  .contInformacionProfile{
+    padding: 15px;
+  }
+  .contInformacionProfile .titulo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .contInformacionProfile .titulo h1{
+    font-size: 22px;
+    font-weight: 600;
+  }
+
+  .contInformacionProfile .foto{
+    width: 150px;
+    height: 150px;
+    background-color: #f3f3f3;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: solid 3px #f3f3f3;
+  }
+  .contInformacionProfile .foto img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .contInformacionProfile h2{
+    font-size: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+
+  .contInformacionProfile .datos{
+    background-color: #2d0e30;
+    padding: 15px;
+    border-radius: 10px;
+  }
+  .contInformacionProfile .datos .dato:not(:last-child){
+    border-bottom: 1px solid #f3f3f31a;
+  }
+  .contInformacionProfile .datos .dato:not(:first-child){
+    padding-top: 10px;
+  }
+  .contInformacionProfile .datos .dato{
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .contInformacionProfile .datos .dato h3{
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  .contInformacionProfile .datos .dato p{
+    font-size: 14px;
+    margin-bottom: 0;
+  }
+  .contInformacionProfile .datos .dato button{
+    border: none;
+    background-color: #f3f3f33a;
+    padding: 10px;
+    border-radius: 5px;
+    color: #f3f3f3;
+    cursor: pointer;
+    user-select: none;
+  }
+/* FIN Pagina informacion */
+
+/* Pagina perfiles */
+ .contPerfilesProfile{
+  position: relative;
+ }
+ /* Contenido */
+  .contPerfilesProfile .contenido{
+    position: absolute;
+    left: 350px;
+    width: calc(100% - 350px);
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+  }
+  /* scroll */
+  .contPerfilesProfile .contenido::-webkit-scrollbar{
+    width: 10px;
+  }
+  .contPerfilesProfile .contenido::-webkit-scrollbar:vertical {
+      width: 7px;
+  }
+  .contPerfilesProfile .contenido::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
+      display: none;
+  }
+  .contPerfilesProfile .contenido::-webkit-scrollbar-thumb {
+      background-color: #f3f3f369;
+      border-radius: 50px;
+      margin-left: -10px;
+  }
+  .contPerfilesProfile .contenido::-webkit-scrollbar-track {
+      border-radius: 10px;  
+  }
+  /* FIN Scroll */
+ /* Fin Contenido */
+ /* Sidebar */
+  .contPerfilesProfile .sidebar{
+    background-color: #250029;
+    position: fixed;
+    width: 350px;
+    height: calc(100vh - 60px);
+  }
+  .contPerfilesProfile .sidebar .titulo{
+    padding: 10px;
+  }
+  .contPerfilesProfile .sidebar .titulo h1{
+    font-size: 22px;
+    color: #f3f3f3e3;
+  }
+  .contPerfilesProfile .sidebar ul{
+    list-style: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px;
+  }
+  .contPerfilesProfile .sidebar ul li{
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+  .contPerfilesProfile .sidebar ul li a{
+    text-decoration: none;
+    color: #f3f3f3bd;
+    font-size: 16px;
+    display: block;
+    padding: 10px;
+    padding-left: 30px;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center; 
+  }
+  .contPerfilesProfile .sidebar ul li a svg{
+    margin-right: 10px;
+  }
+  .contPerfilesProfile .sidebar ul li:hover{
+    background-color: #f3f3f32a;
+  }
+  .contPerfilesProfile .sidebar ul li a.active{
+    background-color: #f3f3f32a;
+  }
+  .contPerfilesProfile .sidebar .buttons{
+    position: absolute;
+    width: 100%;
+    padding: 10px;
+  }
+  .addCount{
+    border: none;
+    background-color: slateblue;
+    padding: 10px;
+    color: #f3f3f3;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    width: calc(100% - 20px); 
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease;
+  }
+  .addCount:hover{
+    box-shadow: 0 0 10px slateblue;
+  }
+ /* FIN Sidebar */
+
+ /* Cuentas */
+  .contCuentasProfile{
+    padding: 15px;
+  }
+  .contCuentasProfile .contenedorInformacion{
+    height: calc(100vh - 60px - 30px);
+  }
+  .contCuentasProfile .informacion{
+    background-color: #2d0e30;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .contCuentasProfile .informacion .titulo{
+    height: 150px;
+    background-image: url('../../images/festival.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px 10px 0 0;
+  }
+  .contCuentasProfile .informacion .titulo .background{
+    background: linear-gradient(to top, #2d0e30, transparent);
+    height: calc(100% - 30px);
+    border-radius: 10px 10px 0 0;
+    padding: 15px;
+  }
+  .contCuentasProfile .informacion .titulo h2{
+    font-size: 22px;
+    font-weight: 600;
+    color: #f3f3f3;
+  }
+  .contCuentasProfile .informacion p{
+    font-size: 16px;
+    padding: 15px;
+    color: #f3f3f3;
+  }
+  .contCuentasProfile .btnComenzar{
+    border: none;
+    background-color: royalblue;
+    padding: 10px;
+    color: #f3f3f3;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    width: calc(100%); 
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease;
+  }
+  .contCuentasProfile .btnComenzar:hover{
+    box-shadow: 0 0 10px royalblue;
+  }
+  .contCuentasProfile .title{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  .contCuentasProfile .title{
+    margin-bottom: 10px;
+  }
+  .contCuentasProfile .title p{
+    color: #f3f3f3c2;
+  }
+  .contCuentasProfile .title h1{
+    font-size: 22px;
+    font-weight: 600;
+  }
+  .contCuentasProfile .cuentas h2{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #f3f3f381;
+  }
+  
+  .contCuentasProfile .cuentas .cuenta{
+    background-color: #2d0e30;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease;
+  }
+  .contCuentasProfile .cuentas .cuenta h3{
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .contCuentasProfile .cuentas .cuenta .foto{
+    width: 50px;
+    height: 50px;
+    background-color: #f3f3f3;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: solid 3px #f3f3f3;
+    margin-right: 10px;
+  }
+  .contCuentasProfile .cuentas .cuenta .foto img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .contCuentasProfile .cuentas .cuenta:hover{
+    background-color: #341636;
+  }
+ /* FIN Cuentas */
+/* FIN pagina perfiles */
+
+/* Pagina Crear */
+  .contCrearProfile{
+    position: fixed;
+    z-index: 100;
+    width: calc(100%);
+    height: calc(100vh - 60px);
+    top: 60px;
+    left: 0px;
+    /* background-color: #2d0e30; */
+    background: linear-gradient(to top, #EC1C4E, #410046 );
+  }
+  .btnExit{
+    position: absolute;
+    cursor: pointer;
+    top: 20px;
+    right: 50px;
+    user-select: none;
+    border: none;
+    background: #140016;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+  .btnExit:active{
+    transform: scale(0.90);
+  }
+  .btnBack{
+    position: absolute;
+    cursor: pointer;
+    top: 20px;
+    left: 50px;
+    user-select: none;
+    border: none;
+    background: #140016;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+  .btnBack:active{
+    transform: scale(0.90);
+  }
+  /* Menu de seleccion */
+  .contMenu{
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+  }
+  .contMenu .tituloMenu{
+    width: 1000px;
+    margin-bottom: 30px;
+  }
+  .contMenu .tituloMenu h1{
+    font-size: 30px;
+    font-weight: 600;
+    color: #f3f3f3;
+  }
+  .contMenu .tarjetasCuentas a{
+    text-decoration: none;
+    color: #f3f3f3;
+  }
+  .contMenu .tarjetasCuentas{
+    display: flex;
+    gap: 20px;
+  }
+  .contMenu .tarjetasCuentas .tarjetaCuenta{
+    width: 320px;
+    height: 270px;
+    background-color: #2d0e30;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    box-shadow: 0px 5px 10px #1f0422;
+  }
+  .contMenu .tarjetasCuentas .tarjetaCuenta:hover{
+    transform: scale(1.005);
+    box-shadow: 0px 10px 30px #1f0422;
+  }
+  .contMenu .tarjetasCuentas .tarjetaCuenta:active{
+    transform: scale(0.99);
+  }
+
+  .contMenu .tarjetasCuentas .tarjetaCuenta .imagen {
+    background-image: url('../../images/bar.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px 10px 0 0;
+  }
+  .contMenu .tarjetasCuentas .tarjetaCuenta .patrocinio{
+    background-image: url('../../images/evento.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px 10px 0 0;
+  }
+  .contMenu .tarjetasCuentas .tarjetaCuenta .artista{
+    background-image: url('../../images/singer.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px 10px 0 0;
+  }
+  .contMenu .tarjetasCuentas .tarjetaCuenta .imagen .titulo{
+    height: 120px;
+    padding: 15px;
+    background: linear-gradient(to top, #2d0e30, transparent);
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    align-items: flex-end;
+  }
+  .contMenu .tarjetasCuentas .tarjetaCuenta .titulo h3{
+    font-size: 20px;
+    font-weight: 600;
+    color: #f3f3f3;
+  }
+  .contMenu .tarjetasCuentas .tarjetaCuenta .descripcion{
+    padding: 15px;
+    border-radius: 0 0 10px 10px;
+    color: #f3f3f3c2
+  }
+  /* FIN Menu de seleccion */
+  /* Creacion de cuentas */
+  .contCrearCuenta{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    margin-top: 20px;
+  }
+  .contCrearCuenta .image{
+    position: fixed;
+    width: 700px;
+    height: 200px;
+    top: 60px;
+    border-radius: 10px;
+    background-image: url('../../images/bar.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+  }
+  .contCrearCuenta .patrocinio{
+    background-image: url('../../images/evento.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  .contCrearCuenta .artista{
+    background-image: url('../../images/singer.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  .contCrearCuenta .image .background{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: #140016bd;
+    /* background: linear-gradient(to bottom, #410046 20%, #140016bd 100%); */
+  }
+  .contCrearCuenta .tarjeta{
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    border-radius: 10px;
+    /* backdrop-filter: blur(10px); */
+    /* box-shadow: 0 0 10px #1400164d; */
+  }
+  .contCrearCuenta .tarjeta .titulo{
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .contCrearCuenta .tarjeta .descripcion{
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .contCrearCuenta .tarjeta .formCrearCuenta{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .formCrearCuenta p{
+    color: #f3f3f3c2;
+    font-size: 14px;
+  }
+  .alerta{
+    background-color: tomato;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  .d-none{
+    display: none;
+  }
+  .formCrearCuenta input{
+    border: none;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.180);
+    backdrop-filter: blur(10px);
+    color: #f3f3f3;
+    width: calc(100% - 30px);
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 16px;
+  }
+  .formCrearCuenta input:focus{
+    box-shadow: 0 0 5px #f3f3f3;
+  }
+  .formCrearCuenta textarea{
+    height: 100px;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    background-color: #ffffff2e;
+    backdrop-filter: blur(10px);
+    color: #f3f3f3;
+    font-size: 16px;
+    font-weight: 500;
+    resize: none;
+    margin-bottom: 10px;
+  }
+  .formCrearCuenta textarea:focus{
+    outline: none;
+  }
+  /* FIN Creacion de cuentas */
+/* FIN Pagina Crear */

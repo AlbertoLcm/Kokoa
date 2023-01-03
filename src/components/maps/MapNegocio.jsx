@@ -33,7 +33,10 @@ function MapNegocio({ mapSet, map }) {
     <>
       <GoogleMap
         mapContainerClassName= "mapaNegocios"
-        center={center}
+        center={{ 
+          lat: parseFloat(19.4326077), 
+          lng: parseFloat(-99.133208) 
+        }}
         zoom={15}
         onLoad={(map) => mapSet(map)}
         options={{
@@ -45,7 +48,10 @@ function MapNegocio({ mapSet, map }) {
         }} 
         >
         <Marker 
-        position={center}
+        position={{ 
+          lat: parseFloat(19.4326077), 
+          lng: parseFloat(-99.133208) 
+        }}
         icon={point}
         />
         </GoogleMap>

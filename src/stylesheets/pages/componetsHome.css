@@ -1,0 +1,424 @@
+/* Estilos para las subpaginas del home principal */
+
+/* Pagina Inicio */
+
+  /* Texto disabled */
+    .notData{
+      color: #f3f3f396;
+      font-size: 16px;
+      padding-left: 0px;
+      user-select: none;
+    }
+  /* FIN Texto disabled */
+
+  /* botones de selecion */
+    .contPageInicio .select{
+      border: none;
+      padding: 10px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      width: 100%;
+      background: #1400166b;
+      border-radius: 7px;
+      color: #f3f3f3;
+      cursor: pointer;
+      user-select: none;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .contPageInicio .active .arrow{
+      transform: rotate(180deg);
+    }
+    .contPageInicio .select .title{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .contPageInicio .select svg{
+      margin-right: 10px;
+      transition: 0.2s;
+    }
+    .contPageInicio .select:focus{
+      outline: none;
+    }
+    .contPageInicio .select:hover{
+      background: #140016;
+    }
+    .contPageInicio .select:active{
+      transform: scale(0.98);
+    }
+  /* FIN botones de selecion */
+
+  /* Secciones de Inicio */
+    .contGeneralSelectInicio{
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;      
+    }
+    .contSelectInicio{
+      margin-bottom: 10px;
+      width: 95%;
+    }
+    .contSelectInicio p{
+      color: #f3f3f396;
+      font-size: 16px;
+      padding: 10px;
+      padding-left: 0px;
+      user-select: none;
+    }
+
+    /* TODO: Esto es importante -> Son las tarjetas de los eventos */
+
+      /* Contenedor de las tarjetas */
+      .tarjetas{
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+      }
+      /* FIN Contenedor de las tarjetas */
+      
+      .tarjetas .tarjeta{
+        background: linear-gradient(to right, #140016 50%, transparent);
+        border-radius: 7px;
+        padding: 10px;
+        cursor: pointer;
+        transition: 0.2s;
+        position: relative;
+        height: 75px;
+      }
+
+      .tarjetas .imagen{
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        height: 100%;
+        width: 50%;
+      }
+      .tarjetas .imagen .contImagen{
+        height: 100%;
+        overflow: hidden;
+        z-index: -1;
+        border-radius: 5px;
+      }
+      .tarjetas .imagen .contImagen img{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+      
+      .tarjetas .tarjeta h2{
+        color: #f3f3f3;
+        font-size: 18px;
+        margin-top: 10px;
+      }
+      .tarjetas .tarjeta p{
+        color: #f3f3f396;
+        font-size: 16px;
+        padding: 0px;
+        margin-bottom: 0px;
+      }
+      .tarjetas .tarjeta .lugar{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .tarjetas .tarjeta .fecha{
+        color: orange;
+        font-weight: 600;
+      }
+      .tarjetas .tarjeta .curso{
+        color: green;
+        font-weight: 800;
+      }
+      .tarjetas .tarjeta .finalizado{
+        color: tomato;
+      }
+    /* FIN Tarjeta del evento */
+  
+  /* FIN Secciones de Inicio */
+
+/* Fin Pafina Inicio */
+
+/* Pagina eventos */
+  .contPageEventos .header{
+    background: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    user-select: none;
+    margin-bottom: 15px;
+  }
+  .contPageEventos .header select{
+    border: none;
+    padding: 10px;
+    background: #1400166b;
+    border-radius: 5px;
+    color: #f3f3f3;
+    cursor: pointer;
+    user-select: none;
+    transition: 0.2s;
+  }
+  .contPageEventos .header select:focus{
+    outline: none;
+  }
+
+  .contPageEventos .header select option{
+    color: #131313;
+    background: #f3f3f3;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+/* Fin Pagina eventos */
+/* Pagina Modal Crear evento */
+  .contCrearEvento{
+    position: fixed;
+    z-index: 100;
+    width: calc(100%);
+    height: calc(100vh - 60px);
+    top: 60px;
+    left: 0px;
+    background: linear-gradient(to top, #EC1C4E, #410046 );
+  }
+  
+  /* Contenedor Formulario */
+    .contCrearEvento .formulario{
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .contCrearEvento .formulario .titulo{
+      width: 500px;
+    }
+  /* FIN Contenedor Formulario */
+
+  /* Formulario AddEvento */
+    .formAddEvento{
+      position: relative;
+      width: 500px;
+      height: 450px;
+      padding: 15px;
+      border-radius: 10px;
+    }
+    .formAddEvento .titulo{
+      width: 100%;
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+    .formAddEvento .titulo h2{
+      font-size: 18px;
+    }
+    .formAddEvento .datos{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    /* Seleccion de categoria */
+      .formAddEvento .datos .categoria{
+        background-color: #EC1C4E;
+        height: auto;
+        width: calc(100% - 50px);
+        max-height: 120px;
+        margin-top: 85px;
+        position: absolute;
+        padding: 10px;
+        z-index: 2;
+        border-radius: 10px;
+        box-shadow: 0 5px 5px #770e27;
+      }
+      .formAddEvento .datos .d-none{
+        display: none;
+      }
+    /* FIN Seleccion de categoria */
+    .formAddEvento .datos input:not(input[type="file"]){
+      border: none;
+      outline: none;
+      background-color: #ffffff2e;
+      backdrop-filter: blur(10px);
+      color: #f3f3f3;
+      width: calc(100% - 30px);
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 16px;
+      transition: 0.2s;
+    }
+    textarea::placeholder{
+      color: #f3f3f3bb;
+    }
+    input::placeholder{
+      color: #f3f3f3bb;
+    }
+    input[type="date"]::-webkit-calendar-picker-indicator, input[type="time"]::-webkit-calendar-picker-indicator{
+      cursor: pointer;
+      border-radius: 4px;
+      margin-right: 2px;
+      opacity: 0.9;
+      filter: invert(0.9);
+    }
+    .formAddEvento .datos input:not(input[type="file"]):focus{
+      box-shadow: 0 0 5px #f3f3f3;
+    }
+    .formAddEvento .datos select{
+      border: none;
+      outline: none;
+      background-color: #ffffff2e;
+      backdrop-filter: blur(10px);
+      color: #f3f3f3;
+      width: 100%;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+    .formAddEvento .datos .fecha{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .formAddEvento .datos p{
+      color: #f3f3f3c2;
+      font-size: 14px;
+    }
+    .formAddEvento .datos textarea{
+      border: none;
+      outline: none;
+      background-color: #ffffff2e;
+      backdrop-filter: blur(10px);
+      color: #f3f3f3;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 16px;
+      resize: none;
+      height: 100px;
+    }
+    /* Input file */
+      .formAddEvento .datos .subirArchivo{
+        padding: 10px;
+        border-radius: 10px;
+        border: solid 1px #ffffff2e;
+      }
+      .formAddEvento .previsualizacion{
+        height: 200px;
+        overflow: hidden;
+        border-radius: 10px;
+        border: solid 2px #f3f3f3;
+      }
+      .formAddEvento .previsualizacion img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .formAddEvento .d-none{
+        display: none;
+      }
+      .contInputFile{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .inputFile {
+        position: relative;
+        height: 40px;
+        width: 200px;
+        border-radius: 10px;
+        overflow: hidden;
+        background-color: #ffffff2e;
+        color: #f3f3f3;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        user-select: none;
+    }
+    .inputFile input[type="file"] {
+        position: absolute;
+        left: 0px;
+        opacity: 0;
+        width: 150px;
+        height: 30px;
+    }
+    /* FIN Input File */
+   
+    .formAddEvento .buttons{
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 15px;
+    }
+    .formAddEvento .buttons .botones{
+      display: flex;
+      gap: 5px;
+    }
+    .formAddEvento .buttons button{
+      background-color: #f3f3f367;
+      color: #f3f3f3;
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      user-select: none;
+      border-radius: 10px;
+      border: none;
+      transition: 0.2s;
+    }
+    .formAddEvento .buttons .btnNext{
+      background-color: #410046;
+      width: 150px;
+      color: #f3f3f3;
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      user-select: none;
+      border-radius: 10px;
+      border: none;
+      transition: 0.2s;
+    }
+    .formAddEvento .buttons .btnNext:disabled{
+      background-color: #410046c2;
+      cursor: not-allowed;
+    }
+    .formAddEvento .buttons .btnNext:disabled:active{
+      transform: scale(1);
+    }
+  
+    .formAddEvento .buttons .crear{
+      background: linear-gradient(to left, #004dc0, #EC1C4E, #d6d300);
+    }
+    
+    .formAddEvento .buttons button:active{
+      transform: scale(0.93);
+    }
+    /* Barra de progreso */
+      .formAddEvento .buttons .progress{
+        position: relative;
+        width: calc(100% - 30px);
+        height: 10px;
+        border-radius: 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 5px;
+      }
+      .formAddEvento .buttons .progress .barra{
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+        background-color: #ffffff2e;
+        backdrop-filter: blur(10px);
+        position: relative;
+      }
+      .formAddEvento .buttons .progress .active{
+        background-color: #410046;
+      }
+    /* FIN Barra de progreso */
+    
+
+  /* FIN Formulario AddEvento */
+/* FIN Pagina Modal Crear evento */

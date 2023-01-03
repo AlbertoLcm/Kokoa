@@ -3,15 +3,17 @@
 *{
     margin: 0%;
     padding: 0%;
-    font-family: 'QuickSand';
+    font-family: 'QuickSand', Arial;
     font-weight: 350;
 }
-
 body{
     position: relative;
     overflow: auto;
     background-color: #140016;
+    color: #f3f3f3;
 }
-
+button:active{
+    transform: scale(0.97);
+}
 
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import instance from "../../api/axios";
 import Comentario from "./Comentario";
-import '../../stylesheets/VisPerfs.css';
+import '../../stylesheets/Perfil.css';
 import socket from "../sockets/Socket";
 import Skeleton from "../loadings/Skeleton";
 import '../../stylesheets/Home.css'

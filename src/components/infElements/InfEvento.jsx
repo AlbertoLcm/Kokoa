@@ -8,7 +8,6 @@ import ModalImg from '../modals/ModalImg';
 
 function InfEvento({ evento, cerrar }) {
 
-  const [eventoInfo, setEventoInfo] = useState([]);
   const [anfitrion, setAnfitrion] = useState([]);
   const [loading, setLoading] = useState(true);
   const [asistencia, setAsistencia] = useState([]);
@@ -30,25 +29,19 @@ function InfEvento({ evento, cerrar }) {
       .catch((err) => console.log(err))
       .finally(() => setLoading(false));
 
-    // Obtenemos el evento
-    instance(`/eventos/evento/${evento.id_evento}`)
-      .then((evento) => {
-        setEventoInfo(evento.data);
-      })
-
     instance.get(`/eventos/asistente/check/${user.id}`)
       .then((asistencias) => {
         setAsistencia(asistencias.data)
       })
-  }, []);
+  }, [evento.id_evento]);
 
   if (loading) {
     return <Skeleton type={'evento'} />
   }
 
-  let fecini = new Date(eventoInfo.fecha_inicio);
+  let fecini = new Date(evento.fecha_inicio);
   let fechaActual = new Date();
-  let fechaTermino = new Date(eventoInfo.fecha_termino);
+  let fechaTermino = new Date(evento.fecha_termino);
   fecini.setHours(fecini.getHours() + 6);
   fechaTermino.setHours(fechaTermino.getHours() + 6);
 
@@ -57,7 +50,7 @@ function InfEvento({ evento, cerrar }) {
       .then((res) => {
         instance(`/eventos/evento/${id_evento}`)
           .then((eventoResult) => {
-            setEventoInfo(eventoResult.data);
+            evento = eventoResult.data;
           })
 
         instance.get(`/eventos/asistente/check/${user.id}`)
@@ -72,7 +65,7 @@ function InfEvento({ evento, cerrar }) {
       .then((res) => {
         instance(`/eventos/evento/${id_evento}`)
           .then((eventoResult) => {
-            setEventoInfo(eventoResult.data);
+            evento = eventoResult.data;
           })
 
         instance.get(`/eventos/asistente/check/${user.id}`)
@@ -109,7 +102,7 @@ function InfEvento({ evento, cerrar }) {
       </ModalImg>
 
       <button onClick={() => cerrar()} className="btnCerrar">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
           <line x1="18" y1="6" x2="6" y2="18" />
           <line x1="6" y1="6" x2="18" y2="18" />
@@ -131,14 +124,27 @@ function InfEvento({ evento, cerrar }) {
         </section>
 
         <section className='contBtnMarkerInfo'>
-          {/* {fecini < fechaActual && fechaTermino > fechaActual ? (
-            asistencia.length > 0 ? (
-            asistencia.find((asistencia) => asistencia.id_evento === evento.id_evento) ? <button className="asistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button> : <button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>
-            ) : <button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>
-          ) : (null)} */}
           {asistencia.length ?
-            asistencia.find((asistencia => asistencia.id_evento === evento.id_evento)) ? (<button className="asistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button>) : (<button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>) 
-          : (<button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>)}
+            asistencia.find((asistencia => asistencia.id_evento === evento.id_evento)) ? (<button className="asistirTrue" onClick={() => actionAusentar(evento.id_evento)}>
+              <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-star" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="#f3f3f3" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
+              </svg>
+              Asistiras
+            </button>) : (<button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>
+              <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-star" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
+              </svg>
+              Asistir
+            </button>)
+            : (<button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>
+              <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-star" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
+              </svg>
+              Asistir
+            </button>)}
           <button className='invitar' onClick={() => setOpComp(!opComp)}>Compartir</button>
           {
             opComp && (
@@ -159,15 +165,15 @@ function InfEvento({ evento, cerrar }) {
             <h1>Detalles</h1>
             <div className="detalles">
               {evento.capacidad ? <p>Capacidad {evento.capacidad} personas</p> : null}
-              <p className="asistentes">Asistiran {eventoInfo.asistentes_cont} personas</p>
+              <p className="asistentes">Asistiran {evento.asistentes_cont} personas</p>
               {evento.precio === 0 || evento.precio === null ? <p className="gratis"> Entrada gratuita </p> : <p className="cover"> Cover ${evento.precio} </p>}
-              <Link to={`evento/${evento.id_evento}`} state={{ from: location }} className="link">Ver más</Link>
+              <Link to={`evento/${evento.nombre}/${evento.id_evento}`} state={{ from: location }} className="link">Ver más</Link>
             </div>
           </div>
-          {evento.rol_anfitrion === "negocios" ? (
+          {anfitrion.rol === "negocios" ? (
             <div className='detAnfit'>
               <h1>Anfitrion (Negocio)</h1>
-              <Link to={`/visperfil/${eventoInfo.anfitrion}`} className={"contDetAnfit"}>
+              <Link to={`/negocio/${anfitrion.nombre}/${evento.anfitrion}`} className={"contDetAnfit"}>
                 <div className='contImgAnfEve'>
                   <img src={anfitrion.perfil} alt="Predefinir" />
                 </div>

@@ -161,7 +161,7 @@
                 text-decoration: none;
                 border-radius: 10px;
             }
-            .contSeleccion a.active{
+            .contSeleccion .active{
                 background-color: #3F1F43;
             }
         /* Contenedor de los chats */
@@ -411,14 +411,15 @@
             /* Botones del mapa */
                 .mapaHome .contBtnMapa{
                     position: absolute;
-                    z-index: 100;
+                    z-index: 80;
                     padding: 10px;
                     display: flex;
                     gap: 5px;
                     left: 430px;
                 }
                 .mapaHome .contBtnMapa button{
-                    background-color: #196eff;
+                    background-color: #196dffd3;
+                    backdrop-filter: blur(10px);
                     width: auto;
                     color: #f3f3f3;
                     border: none;
@@ -427,25 +428,34 @@
                     user-select: none;
                     padding: 10px;
                     transition: all 0.3s ease;
+                    box-shadow: 0px 0px 10px #196eff;
                 }
                 .mapaHome .contBtnMapa button:hover{
-                    background-color: #4187ff;
+                    background-color: #2d7aff;
+                    box-shadow: 0px 0px 20px #2d7aff;
+                }
+                .mapaHome .contBtnMapa button:active{
+                    background-color: #196dff;
+                    box-shadow: 0px 0px 10px #196dff;
+                    transform: scale(0.95);
                 }
             /* FIN Botones del mapa */
         /* /// Fin Estilos para el mapa /// */
 
         #ContGeneralHome .feedHome{
-            /* background-color: #EC1C4E; */
-            /* background-color: #a5082d; */
-            background-color: #140016;
-            height: calc(100vh - 60px);
-            width: calc(450px - 20px);
+            background-color: #140016c5;
+            backdrop-filter: blur(10px);
+            /* Ajustando el tamaño para que se vea como una tarjeta */
+            height: calc(100vh - 80px); /* +20px */
+            width: calc(450px - 50px); /* +30px */
             /* padding: 15px; */
             position: absolute;
+            top: 70px;
+            border-radius: 15px;
+            left: 30px;
             z-index: 91;
             overflow: auto;
-            scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0);
-            scrollbar-width: thin;
+            box-shadow: 0 0 20px #140016;
             color: #f3f3f3;
         }
         #ContGeneralHome .feedHome h2{
@@ -473,39 +483,59 @@
             margin-bottom: 10px;
         }
         #ContGeneralHome .contenedorContenido{
-            height: calc(100vh - 240px);
-            padding-left: 15px;
-            padding-right: 8px;
-            overflow-y: scroll;
-            border-radius: 10px;
+            padding: 15px;
+            overflow-y: auto;
+            height: calc(100vh - 80px - 30px - 118px); /* +20px */
         }
-        .contenedorContenido::-webkit-scrollbar {
-            -webkit-appearance: none;
-        }
-        .contenedorContenido::-webkit-scrollbar:vertical {
-            width:7px;
-            padding: 10px;
-        }
-        .contenedorContenido::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
-            display: none;
-        }
-        .contenedorContenido::-webkit-scrollbar:horizontal {
-            height: 10px;
-        }
-        .contenedorContenido::-webkit-scrollbar-thumb {
-            background-color: #f3f3f369;
-            border-radius: 20px;
-        }
-        .contenedorContenido::-webkit-scrollbar-track {
-            border-radius: 10px;  
-        }
-        .contBuscador{
+            #ContGeneralHome .contenedorContenido::-webkit-scrollbar {
+                -webkit-appearance: none;
+            }
+            #ContGeneralHome .contenedorContenido::-webkit-scrollbar:vertical {
+                width:7px;
+            }
+            #ContGeneralHome .contenedorContenido::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
+                display: none;
+            }
+            #ContGeneralHome .contenedorContenido::-webkit-scrollbar-thumb {
+                background-color: #f3f3f338;
+                border-radius: 20px;
+                transition: all 0.3s ease;
+            }
+            #ContGeneralHome .contenedorContenido::-webkit-scrollbar-track {
+                border-radius: 10px;  
+            }
+            #ContGeneralHome .contenedorContenido::-webkit-scrollbar-corner {
+                background-color: transparent;
+            }
+            #ContGeneralHome .contenedorContenido::-webkit-resizer {
+                background-color: transparent;
+            }
+            #ContGeneralHome .contenedorContenido::-webkit-scrollbar-thumb:hover {
+                background-color: #f3f3f35e;
+            }
+            #ContGeneralHome .contenedorContenido::-webkit-scrollbar-thumb:active {
+                background-color: #f3f3f391;
+            }
+            #ContGeneralHome .contenedorContenido::-webkit-scrollbar-thumb:vertical:active {
+                background-color: #f3f3f385;
+            }
+        
+        .contBuscadorHome{
             width: 100%;
             display: flex;
-            justify-content: center;
             align-items: center;
         }
-        .contBuscador .btnBack{
+        .contBuscadorHomeActive{
+            width: calc(100% - 10px);
+            display: flex;
+            align-items: center;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            box-shadow: 0px 0px 10px #2b002e;
+            padding: 5px;
+            transition: all 0.3s ease;
+        }
+        .contBuscadorHome .btnBack{
             border: none;
             background-color: transparent;
             display: flex;
@@ -514,14 +544,15 @@
             cursor: pointer;
             user-select: none;
         }
-        .contBuscador form{
+        .contBuscadorHome form{
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
+            transition: all 0.3s ease;
             /* margin-bottom: 10px; */
         }
-        .contBuscador form .buscador{
+        .contBuscadorHome form .buscador{
             width: calc(100% - 60px);
             height: 40px;
             padding-left: 10px;
@@ -531,15 +562,16 @@
             border: none;
             background-color: #f3f3f32a;
             backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
             color: #f3f3f3;
         }
-        .contBuscador form .buscador::placeholder{
+        .contBuscadorHome form .buscador::placeholder{
             color: #f3f3f3b2;
         }
-        .contBuscador form .buscador:focus{
+        .contBuscadorHome form .buscador:focus{
             outline: none;
         }
-        .contBuscador form button{
+        .contBuscadorHome form button{
             width: 40px;
             height: 40px;
             border-radius: 0px 10px 10px 0px;
@@ -553,24 +585,183 @@
             justify-content: center;
             align-items: center;
         }
+        
+
+        .contBuscadorHomeActive .btnBackBuscador{
+            border: none;
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s ease;
+        }
+        .contBuscadorHomeActive form{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            /* margin-bottom: 10px; */
+        }
+        .contBuscadorHomeActive form .buscador{
+            width: calc(100% - 60px);
+            height: 40px;
+            padding-left: 10px;
+            padding-right: 10px;
+            font-size: 14px;
+            border-radius: 10px 0px 0px 10px;
+            border: none;
+            background-color: #f3f3f32a;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            color: #f3f3f3;
+        }
+        .contBuscadorHomeActive form .buscador::placeholder{
+            color: #f3f3f3b2;
+        }
+        .contBuscadorHomeActive form .buscador:focus{
+            outline: none;
+        }
+        .contBuscadorHomeActive form button{
+            width: 40px;
+            height: 40px;
+            border-radius: 0px 10px 10px 0px;
+            border: none;
+            /* background-color: #2a142c; */
+            background-color: #f3f3f32a;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        /* popmenu del buscador */
+            .popmenuBuscador{
+                color: #f3f3f3;
+                position: fixed;
+                width: 330px;
+                min-height: auto;
+                max-height: 75vh;
+                z-index: 999;
+                padding: 10px;
+                background-color: #410046;
+                border-bottom-left-radius: 10px;
+                border-bottom-right-radius: 10px;
+                box-shadow: 0px 5px 10px #2b002e;
+                overflow-y: auto;
+            }
+                /* Scroll */
+                    .popmenuBuscador::-webkit-scrollbar {
+                        -webkit-appearance: none;
+                    }
+                    .popmenuBuscador::-webkit-scrollbar:vertical {
+                        width:7px;
+                    }
+                    .popmenuBuscador::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
+                        display: none;
+                    }
+                    .popmenuBuscador::-webkit-scrollbar-thumb {
+                        background-color: #f3f3f369;
+                        border-radius: 20px;
+                    }
+                    .popmenuBuscador::-webkit-scrollbar-track {
+                        border-radius: 10px;  
+                    }
+                /* FIN Scroll */
+            .popmenuBuscador .header{
+                display: grid;
+                background: none;
+                grid-template-columns: 1fr 1fr 1fr;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+            .popmenuBuscador .header .btn{
+                border: none;
+                border-radius: 5px;
+                padding: 5px;
+                cursor: pointer;
+                color: #f3f3f3;
+                background: none;
+                transition: all 0.2s ease;
+            }
+            .popmenuBuscador .header .btn:hover{
+                background-color: #f3f3f34d;
+            }
+            .popmenuBuscador .header .btn:focus{
+                outline: none;
+            }
+            .popmenuBuscador .active{
+                border: none;
+                border-radius: 5px;
+                padding: 5px;
+                cursor: pointer;
+                color: #f3f3f3;
+                transition: all 0.2s ease;
+                background-color: #196eff;
+            }
+            
+            .popmenuBuscador .busquedasNull{
+                color: #f3f3f36c;
+                height: 120px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                user-select: none;
+              }
+            .popmenuBuscador ul{
+                list-style: none;
+                padding: 0px;
+                margin: 0px;
+                height: 100%;
+                overflow-y: auto;
+            }
+            .popmenuBuscador ul a{
+                text-decoration: none;
+            }
+            .popmenuBuscador ul li{
+                padding: 10px;
+                padding-left: 20px;
+                padding-right: 20px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                color: #f3f3f3;
+                display: flex;
+                align-items: center;
+                border-radius: 10px;
+            }
+            .popmenuBuscador ul li:hover{
+                background-color: #f3f3f315;
+            }
+            .popmenuBuscador ul li svg{
+                margin-right: 10px;
+            }
+        /* Fin popmenu del buscador */
 
         #ContGeneralHome .feedHome #BtnFeedAnfitrion {
-            border-bottom: 1px solid #f3f3f369;
+            border-bottom: 1px solid #f3f3f327;
             border-top: none;
         }
-        #ContGeneralHome .feedHome #BtnFeedAnfitrion .btnFeedHome{
+        #ContGeneralHome .feedHome #BtnFeedAnfitrion a{
             background: none;
             border: none;
+            text-decoration: none;
             font-size: 15px;
             padding: 10px;
             color: #f3f3f3;
-            border-radius: 10px;
+            border-radius: 7px;
             transition: all .3s ease;
             user-select: none;
             cursor: pointer;
         }
-        #ContGeneralHome .feedHome #BtnFeedAnfitrion .btnFeedHome:hover{
-            background-color: #f3f3f367;
+        #ContGeneralHome .feedHome #BtnFeedAnfitrion a:hover{
+            background-color: #f3f3f31e;
+           
+        }
+        #ContGeneralHome .feedHome #BtnFeedAnfitrion a.active{
+            background-color: #f3f3f31e;
         }
 
         /* Esto es del scoll */
@@ -602,18 +793,20 @@
             }
 
             /* /// Estilos para el evento /// */
+                .linkEventoHome{
+                    text-decoration: none;
+                }
                 #ContEventoHomeFeed{
                     overflow: hidden;
                     display: flex;
                     flex-direction: column;
                     margin-bottom: 10px;
                     border-radius: 10px;
-                    background-color: #2D0E30;
-                    backdrop-filter: blur(20px);
-                    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.4);
+                    background-color: #1400166b;
                     cursor: pointer;
                     transition: 0.3s;
                     color: #f3f3f3;
+                    /* box-shadow: 0px 0px 10   px #140016; */
                 }
                 #ContEventoHomeFeed #ContImgEventoFeed{
                     height: 100px;
@@ -628,11 +821,20 @@
                 #ContEventoHomeFeed .infEventoFecha{
                     color: #f3f3f3;
                     padding: 1px;
+                    color: orange;
                 }
                 #ContEventoHomeFeed .infEvento h2{
                 }
                 #ContEventoHomeFeed .infEventoUbicacion{
                     color: #f3f3f3a1;
+                    /* dejamos solo una linea de texto con tres puntos */
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 1;
+                    -webkit-box-orient: vertical;
+
+
                 }
                 #ContEventoHomeFeed .asistentesEvento{
                     margin-top: 10px;
@@ -659,12 +861,29 @@
         }
         /* /// FIN Comunidad /// */
 
+        .marker{
+            position: relative;
+            width: 110px;
+            height: 110px;
+            background-color: aqua;
+            z-index: 99;
+        }
+
+        .backMarker{
+            width: 100px;
+            height: 100px;
+            background-color: tomato;
+            position: absolute;
+            z-index: 100;
+            
+        }
+        
         /* === Marker Info de cada evento by Alberto === */
         #MarkerInfoPos {
             height: calc(100vh - 60px);
             width: 400px;
             position: fixed;
-            z-index: 100;
+            z-index: 10;
             right: 60px;
             display: flex;
             align-items: center;
@@ -672,9 +891,9 @@
         #MarkerInfoPos .markerInfo{
             position: relative;
             border-radius: 15px;
-            background: #140016;
-            backdrop-filter: blur(20px);
-            box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.4);
+            background: #140016c5;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px #140016;
             transition: all .3s ease;
         }
         #MarkerInfoPos .markerInfo .markerInfo h1{
@@ -738,6 +957,9 @@
                 user-select: none;
                 padding: 10px;
                 transition: all 0.3s ease;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
             #MarkerInfoPos .contBtnMarkerInfo .asistirTrue{
                 background: linear-gradient(to left, #004dc0, #22a111, #d6d300);
@@ -749,6 +971,9 @@
                 user-select: none;
                 padding: 10px;
                 transition: all 0.3s ease;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
             #MarkerInfoPos .contBtnMarkerInfo .invitar{
                 background-color: #196eff;
@@ -772,7 +997,7 @@
         }
         #MarkerInfoPos #EventoInfo .detEvent{
             padding: 10px;
-            background-color: #2D0E30;
+            background-color: #1400166b;
             border-radius: 10px;
             color: #f3f3f3;
         }
@@ -797,7 +1022,8 @@
             }
         #MarkerInfoPos #EventoInfo .detAnfit{
             padding: 10px;
-            background-color: #2D0E30;
+            /* background-color: #2D0E30; */
+            background-color: #1400166b;
             border-radius: 10px;
             transition: all 0.3s ease;
         }
@@ -808,9 +1034,11 @@
         }
         #MarkerInfoPos #EventoInfo .detAnfitNormal{
             padding: 10px;
-            background-color: #2D0E30;
+            /* background-color: #2D0E30; */
+            background-color: #1400166b;
             border-radius: 10px;
             transition: all 0.3s ease;
+            box-shadow: 0 0 10px #2d0e30d8;
         }
         #MarkerInfoPos #EventoInfo .detAnfit .contDetAnfit{
             color: #f3f3f3;

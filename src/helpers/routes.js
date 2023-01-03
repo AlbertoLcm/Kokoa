@@ -1,5 +1,5 @@
 const routes = {
-    home: '/',
+    home: '/inicio',
     login: '/login',
     signup: '/signup',
     newusuario: '/newusuario',
@@ -9,7 +9,6 @@ const routes = {
     rolartista: '/rolartista',
     registrarevento : '/registrarevento',
     perfil : '/perfil',
-    visperfil: '/visperfil',
     homeNegocio: '/negocio',
     recuperar: '/recuperar',
     resetPassword: '/resetPassword',

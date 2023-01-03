@@ -51,6 +51,7 @@
 }
 .formRegistrar input:focus{
     outline: none;
+    box-shadow: 0 0 5px #f3f3f3;
 }
 
 @media (max-width: 750px) {

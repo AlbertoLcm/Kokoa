@@ -37,22 +37,38 @@
 .login .form-group{
     margin-top: 15px;
 }
-.login .form-group input{
+.login .form-group .dato{
     height: 50px;
     padding-left: 15px;
     padding-right: 15px;
     border-radius: 10px;
     border: none;
     outline: none;
-    background-color: #f3f3f32a;
+    background-color: rgba(255, 255, 255, 0.180);
     backdrop-filter: blur(10px);
     color: #f3f3f3;
     font-size: 18px;
     margin-bottom: 15px;
     width: calc(100% - 30px);
+    transition: 0.2s;
+}
+.login .form-group .errorText{
+    color: tomato;
+    font-size: 14px;
+    margin-left: 10px;
+    margin-top: -12px;
+    margin-bottom: 10px;
+}
+.login .form-group .error{
+    background-color: rgba(255, 99, 71, 0.459);
+    box-shadow: 0 0 5px rgb(250, 37, 0);
+}
+.login .form-group .error:focus{
+    box-shadow: 0 0 10px rgb(250, 37, 0);
 }
 .login .form-group input:focus{
     outline: none;
+    box-shadow: 0 0 5px #f3f3f3;
 }
 .recuperarLink{
     text-decoration: none;

@@ -3,13 +3,6 @@ import { Navigate, NavLink, Route, Routes, useLocation, useNavigate } from "reac
 import DatosNegocio from "./configs/DatosNegocio";
 
 const Configuracion = () => {
-
-  const location = useLocation();
-
-  if (location.pathname === '/dashboard/configuracion') {
-    <Navigate to={'/dashboard/configuracion/informacion'} state={{ from: location }} />;
-  }
-
   return (
     <div className="contDashboardConfiguracion">
 
@@ -20,7 +13,7 @@ const Configuracion = () => {
         <ul>
           <li>
             <NavLink to={'/dashboard/configuracion/informacion'} className={({ isActive, isPending }) => isActive ? "active" : ""} >
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-info-circle" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3bd" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-info-circle" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3bd" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <circle cx="12" cy="12" r="9" />
                 <line x1="12" y1="8" x2="12.01" y2="8" />
@@ -31,7 +24,7 @@ const Configuracion = () => {
           </li>
           <li>
             <NavLink to={'/dashboard/configuracion/usuarios'} className={({ isActive, isPending }) => isActive ? "active" : ""} >
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-map-2" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3bd" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-map-2" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3bd" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <line x1="18" y1="6" x2="18" y2="6.01" />
                 <path d="M18 13l-3.5 -5a4 4 0 1 1 7 0l-3.5 5" />
@@ -46,7 +39,7 @@ const Configuracion = () => {
 
         <div className="buttons">
           <button>Cambiar a cuenta principal</button>
-          <button>Cerrar sesión</button>
+          <button className="btnLogout">Cerrar sesión</button>
         </div>
 
       </section>
