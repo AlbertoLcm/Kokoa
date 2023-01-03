@@ -1,26 +1,20 @@
 import React from "react";
 import useAuth from "../../auth/useAuth";
 import { useRef, useState, Suspense, lazy, useEffect } from "react";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Autocomplete, useJsApiLoader } from "@react-google-maps/api";
 import "../stylesheets/Home.css";
 import "../stylesheets/BurguerMenu.css";
-import Evento from "../../components/EventosPagPrin";
-import Loading from "../../components/loadings/Loading";
-import instance from "../../api/axios";
-import Header from "../../components/Header";
-import Modal from "../../components/modals/Modal";
-import ListaEventosFeed from "../../components/infElements/ListaEventosFeed";
-import RegistroEvento from "../RegistroEvento";
-import ListarComentarios from "../../components/social/ListarComentarios";
-import ComentariosNegocio from "../../components/social/ComentariosNegocio";
-import AllChats from "../../components/social/AllChats";
-import socket from "../../components/sockets/Socket";
-import LoadingElement from "../../components/loadings/LoadingElement";
+import Evento from "../components/EventosPagPrin";
+import Loading from "../components/loadings/Loading";
+import instance from "../api/axios";
+import Header from "../components/Header";
+import Modal from "../components/modals/Modal";
+import RegistroEvento from "./RegistroEvento";
+import socket from "../components/sockets/Socket";
+import LoadingElement from "../components/loadings/LoadingElement";
 
-const Mapa = lazy(() => import("../../components/maps/Mapa"));
-const MapNegocio = lazy(() => import("../../components/maps/MapNegocio"));
-
+const Mapa = lazy(() => import("../components/maps/Mapa"));
 
 function Home() {
   /** @type React.MutableRefObject<HTMLInputElement> */
