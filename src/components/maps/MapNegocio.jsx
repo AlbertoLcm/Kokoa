@@ -4,20 +4,7 @@ import { libraries, stylesArray } from "../../helpers/methodsMap";
 import point from "../../images/point.png";
 import Loading from "../loadings/Loading";
 
-function MapNegocio({ mapSet, map }) {
-
-  const [center, setCenter] = useState({ lat: 19.4326077, lng: -99.133208 });
-  
-  useEffect(() => {    
-    navigator.geolocation.getCurrentPosition((coordenada) => {
-      if (coordenada) {
-        setCenter({
-          lat: parseFloat(coordenada.coords.latitude),
-          lng: parseFloat(coordenada.coords.longitude)
-        });
-      }
-    });
-  }, []);
+function MapNegocio() {
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyBqhV6i7d19_4MlXk1gEtZ0flSx_7yYfo8",
@@ -27,34 +14,31 @@ function MapNegocio({ mapSet, map }) {
     return <Loading />;
   }
 
-  
-
   return (
     <>
       <GoogleMap
-        mapContainerClassName= "mapaNegocios"
-        center={{ 
-          lat: parseFloat(19.4326077), 
-          lng: parseFloat(-99.133208) 
+        mapContainerClassName="mapaNegocios"
+        center={{
+          lat: parseFloat(19.4326077),
+          lng: parseFloat(-99.133208)
         }}
         zoom={15}
-        onLoad={(map) => mapSet(map)}
         options={{
           styles: stylesArray,
           streetViewControl: false,
           mapTypeControl: false,
           fullscreenControl: false,
           center: true
-        }} 
-        >
-        <Marker 
-        position={{ 
-          lat: parseFloat(19.4326077), 
-          lng: parseFloat(-99.133208) 
         }}
-        icon={point}
+      >
+        <Marker
+          position={{
+            lat: parseFloat(19.4326077),
+            lng: parseFloat(-99.133208)
+          }}
+          icon={point}
         />
-        </GoogleMap>
+      </GoogleMap>
     </>
   );
 }

@@ -11,14 +11,22 @@ const FilterEventos = () => {
   
   const [eventosAll, setEventosAll] = useState([]);
   const [eventosFilter, setEventosFilter] = useState([]);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const lugar = searchParams.get("lugar");
-  const fecha = searchParams.get("fecha");
+  const fecha = searchParams.get("fechaLimite");
+  const curso = searchParams.get("curso");
+  const get = searchParams.get("get");
+  const getLocation = searchParams.get("getLocation");
   let fechaFilter = new Date(fecha).toISOString();
 
   const filters = () => {
-    let filters = eventosAll.filter((evento, index) => {
+    if(curso) return setEventosFilter(eventosAll.filter((evento) => {
+      let fechaEvento = new Date(evento.fecha_inicio).toISOString();
+      return new Date() > fechaEvento;
+    }));
+
+    let filters = eventosAll.filter((evento) => {
       let fechaEvento = new Date(evento.fecha_inicio).toISOString();
       return fechaEvento < fechaFilter;
     });
@@ -37,11 +45,12 @@ const FilterEventos = () => {
 
   useEffect(() => {
     filters();
-  }, [lugar, fecha]);
+  }, [searchParams]);
 
-  if (lugar && fecha) {
+  if (lugar || fecha || curso) {
     return(
       <section className="tarjetas">
+        {!eventosFilter.length ? <div className="notData">No hay eventos {get} en {getLocation}</div> : null}
         {eventosFilter.map((evento, index) => <Tarjeta key={index} evento={evento} />)}
       </section>
     );

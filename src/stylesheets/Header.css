@@ -58,8 +58,8 @@ header{
         right: 40px;
     }
     header .userHeader .children{
-        margin-right: 10px;
         width: 350px;
+        margin-right: 10px;
     }
     header .userHeader .btnBack{
         display: flex;
@@ -76,7 +76,7 @@ header{
         align-items: center;
         margin-top: -2px;
     }
-    header .userHeader .user:active{
+    header .userHeader .contImgPerfil:active{
         transform: scale(0.95);
     }
     header .contName{

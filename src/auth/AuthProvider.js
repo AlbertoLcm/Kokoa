@@ -69,8 +69,9 @@ export default function AuthProvider({ children }) {
         setUser(usuarioRes.data.user.data);
         localStorage.setItem("token", usuarioRes.data.user.token);
         if (fromLocation) {
-          navigate(fromLocation.from, { state: { pagina: fromLocation.pagina } });
+          return navigate(fromLocation.from, { state: { pagina: fromLocation.pagina } });
         }
+        navigate(routes.home);
       })
       .catch((error) => {
         setError(error.response.data.message);

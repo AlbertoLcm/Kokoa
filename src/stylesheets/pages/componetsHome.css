@@ -4,10 +4,14 @@
 
   /* Texto disabled */
     .notData{
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: #f3f3f396;
       font-size: 16px;
       padding-left: 0px;
       user-select: none;
+      height: 50px;
     }
   /* FIN Texto disabled */
 
