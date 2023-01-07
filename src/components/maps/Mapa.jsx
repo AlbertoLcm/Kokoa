@@ -7,16 +7,16 @@ import marker from "../../images/marker.png";
 import point from "../../images/point.png";
 import { libraries, stylesArray } from "../../helpers/methodsMap";
 import socket from "../sockets/Socket";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 function Mapa({ mapSet, map }) {
 
   const { addEventos } = useAuth();
   const navigation = useNavigate();
-
-  // Obtención de parametros de la url
   const location = useLocation();
-  const params = new URLSearchParams(location.search);
+  
+  // Obtención de parametros de la url
+  const [params, setParams] = useSearchParams();
   const paramNombre = params.get("nombre");
   const paramId = parseInt(params.get("id"));
 
@@ -62,7 +62,7 @@ function Mapa({ mapSet, map }) {
     if (paramNombre && paramId) {
       asignacion(paramId);
     }
-  }, [paramId, paramNombre]);
+  }, [params]);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((coordenada) => {
@@ -125,8 +125,11 @@ function Mapa({ mapSet, map }) {
   // Metodos para el mapa
 
   const desasignacion = () => {
-    // borramos los search params
-    navigation(location.pathname);
+    // borramos los parametros de la url
+    params.delete("nombre");
+    params.delete("id");
+    setParams(params);
+
     setActiveMarker(null);
     map.setZoom(15);
   }
@@ -176,7 +179,10 @@ function Mapa({ mapSet, map }) {
               lat: parseFloat(evento.lat),
               lng: parseFloat(evento.lng)
             }}
-            onClick={() => navigation(`?nombre=${evento.nombre}&id=${evento.id_evento}`)}
+            onClick={() => {
+              let url = params.toString() ? `?${params.toString()}&id=${evento.id_evento}&nombre=${evento.nombre}` : `?id=${evento.id_evento}&nombre=${evento.nombre}`;
+              navigation(url)
+            }}
           >
 
             {activeMarker === evento.id_evento && (

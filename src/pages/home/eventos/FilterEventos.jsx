@@ -7,8 +7,6 @@ import Tarjeta from "../eventos/Tarjeta"
 
 const FilterEventos = () => {
 
-  const { eventos } = useAuth();
-  
   const [eventosAll, setEventosAll] = useState([]);
   const [eventosFilter, setEventosFilter] = useState([]);
   const [searchParams] = useSearchParams();
@@ -58,7 +56,7 @@ const FilterEventos = () => {
 
   return (
     <section className="tarjetas">
-      {eventos.map((evento, index) => <Tarjeta key={index} evento={evento} />)}
+      {eventosAll.map((evento, index) => <Tarjeta key={index} evento={evento} />)}
     </section>
   );
 }

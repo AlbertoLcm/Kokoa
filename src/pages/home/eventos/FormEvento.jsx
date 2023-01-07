@@ -184,7 +184,7 @@ const FormEvento = () => {
       return (
         <div className="formAddEvento">
           <section className="titulo">
-            <h2>Imagen para tu evento</h2>
+            <h2>Imagen para tu evento (Opcional)</h2>
           </section>
 
           <div className="alert d-none">

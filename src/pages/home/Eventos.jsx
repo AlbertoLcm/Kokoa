@@ -8,6 +8,7 @@ const Eventos = () => {
 
   const navigate = useNavigate();
   const [params, setParams] = useSearchParams();
+  // SetFilter es un objeto que se manda a los searchParams
   const [filter, setFilter] = useState({
     ubicacion: "",
     curso: false,
@@ -22,6 +23,7 @@ const Eventos = () => {
   }, [filter]);
   
   const handleFilter = (e) => {
+    // Estos son los filters. "lo se, son muchos ifs"
     if(e.target.name === "fecha" && e.target.value === "cualquiera") return setFilter({
       fechaLimite: "",
       getLocation: filter.getLocation,

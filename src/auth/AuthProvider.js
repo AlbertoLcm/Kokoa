@@ -38,7 +38,7 @@ export default function AuthProvider({ children }) {
 
   const islogin = () => {
     const token = localStorage.getItem("token");
-    instance.post("/auth", { usuario: "prueba" }, { headers: { authorization: token, } })
+    instance.post("/auth", { usuario: "prueba" }, { headers: { authorization: token } })
       .then((usuarioRes) => {
         setUser(usuarioRes.data.user.data);
         localStorage.setItem("token", usuarioRes.data.user.token);
@@ -52,10 +52,10 @@ export default function AuthProvider({ children }) {
   const loginCargo = (cargo) => {
     localStorage.removeItem("token");
     instance.post("/auth/login/cargo", cargo)
-      .then((usuarioRes) => {
+    .then((usuarioRes) => {
         setUser(usuarioRes.data.user.data);
         localStorage.setItem("token", usuarioRes.data.user.token);
-        navigate('/dashboard/inicio');
+        navigate(routes.home);
       })
       .catch((err) => {
         console.log(err);
@@ -90,6 +90,20 @@ export default function AuthProvider({ children }) {
         console.log(error);
       });
   };
+
+  const actualizarUsuario = (usuario) => {
+    instance.put(`/usuarios/${user.id}`, usuario)
+      .then((res) => {
+        instance.get(`/usuarios/${user.id}`)
+          .then((res) => {
+            setUser(res.data.user);
+          })
+          navigate('perfil/informacion');
+        })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   const signup = (usuario, fromLocation, alertRef) => {
     instance.post(`/usuarios/signup`, usuario)
@@ -151,6 +165,7 @@ export default function AuthProvider({ children }) {
 
   const contextValue = {
     user,
+    actualizarUsuario,
     hasRole,
     setUser,
     isLogged,

@@ -19,7 +19,7 @@ function AppRouter() {
     <div className='App'>
       <Routes>
         <Route exact path={'/*'} element={
-          <PrivateRoute >
+          <PrivateRoute rol={"usuarios"}>
             <Home />
           </PrivateRoute>
         } />
@@ -39,7 +39,7 @@ function AppRouter() {
           </PrivateRoute>
         } />
         <Route exact path={'perfil/*'} element={
-          <PrivateRoute>
+          <PrivateRoute rol={"usuarios"}>
             <Profile />
           </PrivateRoute>
         } />

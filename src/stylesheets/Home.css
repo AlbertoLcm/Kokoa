@@ -445,7 +445,7 @@
         #ContGeneralHome .feedHome{
             background-color: #140016c5;
             backdrop-filter: blur(10px);
-            /* Ajustando el tamaño para que se vea como una tarjeta */
+            /* Ajustando el tamaño para que se vea como una tarjeta flotante el Feed */
             height: calc(100vh - 80px); /* +20px */
             width: calc(450px - 50px); /* +30px */
             /* padding: 15px; */
@@ -482,10 +482,13 @@
             display: inline-block;
             margin-bottom: 10px;
         }
+        #ContGeneralHome #HeaderFeedHome #BtnFeedAnfitrion{
+            padding-bottom: 0px;
+        }
         #ContGeneralHome .contenedorContenido{
             padding: 15px;
             overflow-y: auto;
-            height: calc(100vh - 80px - 30px - 118px); /* +20px */
+            height: calc(100vh - 80px - 30px - 112px); /* +20px */
         }
             #ContGeneralHome .contenedorContenido::-webkit-scrollbar {
                 -webkit-appearance: none;
@@ -677,17 +680,16 @@
                 grid-template-columns: 1fr 1fr 1fr;
                 margin-top: 10px;
                 margin-bottom: 10px;
-                border-bottom: 1px solid #f3f3f34d;
+                border-bottom: 2px solid #f3f3f31e;
             }
             .popmenuBuscador .header .btn{
                 border: none;
                 user-select: none;
-                border-radius: 5px;
+                border-radius: 5px 5px 0 0;
                 padding: 10px;
                 cursor: pointer;
                 transition: all 0.2s ease;
                 color: #f3f3f3;
-                margin-bottom: 10px;
             }
             .popmenuBuscador .header .btn:hover{
                 background-color: #f3f3f31e;
@@ -695,6 +697,10 @@
             .popmenuBuscador .header .btn:focus{
                 outline: none;
             }
+            .popmenuBuscador .header .btn:active{
+                transform: scale(1);
+            }
+
             .popmenuBuscador .active{
                 background-color: #f3f3f31e;
             }
@@ -740,7 +746,7 @@
         /* Fin popmenu del buscador */
 
         #ContGeneralHome .feedHome #BtnFeedAnfitrion {
-            border-bottom: 1px solid #f3f3f327;
+            border-bottom: 2px solid #f3f3f31e;
             border-top: none;
         }
         #ContGeneralHome .feedHome #BtnFeedAnfitrion a{
@@ -750,7 +756,7 @@
             font-size: 15px;
             padding: 10px;
             color: #f3f3f3;
-            border-radius: 7px;
+            border-radius: 7px 7px 0 0;
             transition: all .3s ease;
             user-select: none;
             cursor: pointer;

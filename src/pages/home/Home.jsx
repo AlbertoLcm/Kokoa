@@ -96,6 +96,7 @@ function Home() {
     <>
       <Header tipo={'color'} perfil={user.nombre} back={false} >
         <section ref={activeRef}>
+          
           {!isLoaded ? (<LoadingElement />) : (
             <section className={buscadorActive ? ("contBuscadorHomeActive") : ("contBuscadorHome")}>
               {buscadorActive && (
@@ -122,50 +123,48 @@ function Home() {
           )}
           {buscadorActive && (
             <div className="popmenuBuscador">
-              <div className="contPopmenuBuscador">
-                <h3>Busquedas</h3>
-                <section className="header">
-                  <button onClick={() => setSelectBusqueda('lugares')} className={selectBusqueda === 'lugares' ? "btn active" : "btn normal"} >Lugares</button>
-                  <button onClick={() => setSelectBusqueda('eventos')} className={selectBusqueda === 'eventos' ? "btn active" : "btn normal"} >Eventos</button>
-                  <button onClick={() => setSelectBusqueda('negocios')} className={selectBusqueda === 'negocios' ? "btn active" : "btn normal"} >Negocios</button>
-                </section>
-                {!busquedaEventos.length && (<div className="busquedasNull"> Busca lugares, eventos o negocios </div>)}
+              <h3>Busquedas</h3>
+              <section className="header">
+                <button onClick={() => setSelectBusqueda('lugares')} className={selectBusqueda === 'lugares' ? "btn active" : "btn normal"} >Lugares</button>
+                <button onClick={() => setSelectBusqueda('eventos')} className={selectBusqueda === 'eventos' ? "btn active" : "btn normal"} >Eventos</button>
+                <button onClick={() => setSelectBusqueda('negocios')} className={selectBusqueda === 'negocios' ? "btn active" : "btn normal"} >Negocios</button>
+              </section>
+              {!busquedaEventos.length && (<div className="busquedasNull"> Busca lugares, eventos o negocios </div>)}
 
-                {selectBusqueda === 'eventos' && (
-                  <ul>
-                    {busquedaEventos.map((evento, index) => (
-                      <Link to={`?nombre=${evento.nombre}&id=${evento.id_evento}`} onClick={() => actionDisabledBuscar()} >
-                        <li key={index}>
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f369" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <circle cx="10" cy="10" r="7" />
-                            <line x1="21" y1="21" x2="15" y2="15" />
-                          </svg>
-                          <h4>{evento.nombre}</h4>
-                        </li>
-                      </Link>
-                    ))}
-                  </ul>
-                )}
+              {selectBusqueda === 'eventos' && (
+                <ul>
+                  {busquedaEventos.map((evento, index) => (
+                    <Link to={`?nombre=${evento.nombre}&id=${evento.id_evento}`} onClick={() => actionDisabledBuscar()} >
+                      <li key={index}>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f369" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                          <circle cx="10" cy="10" r="7" />
+                          <line x1="21" y1="21" x2="15" y2="15" />
+                        </svg>
+                        <h4>{evento.nombre}</h4>
+                      </li>
+                    </Link>
+                  ))}
+                </ul>
+              )}
 
-                {selectBusqueda === 'negocios' && (
-                  <ul>
-                    {busquedaNegocios.map((negocio, index) => (
-                      <Link to={`negocio/${negocio.nombre}/${negocio.id}`} >
-                        <li key={index}>
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f369" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <circle cx="10" cy="10" r="7" />
-                            <line x1="21" y1="21" x2="15" y2="15" />
-                          </svg>
-                          <h4>{negocio.nombre}</h4>
-                        </li>
-                      </Link>
-                    ))}
-                  </ul>
-                )}
+              {selectBusqueda === 'negocios' && (
+                <ul>
+                  {busquedaNegocios.map((negocio, index) => (
+                    <Link to={`negocio/${negocio.nombre}/${negocio.id}`} >
+                      <li key={index}>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f369" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                          <circle cx="10" cy="10" r="7" />
+                          <line x1="21" y1="21" x2="15" y2="15" />
+                        </svg>
+                        <h4>{negocio.nombre}</h4>
+                      </li>
+                    </Link>
+                  ))}
+                </ul>
+              )}
 
-              </div>
             </div>
           )}
         </section>
@@ -188,7 +187,7 @@ function Home() {
             <button onClick={() => navigation('/crear/evento', { state: { from: location.pathname } })} className="btnLink2">Crear un evento</button>
             <div id="ContBtnFeedAnfitrion">
               <div id="BtnFeedAnfitrion">
-                <NavLink to={'/inicio'} className={({ isActive }) => isActive ? "active" : ""}  >Inicio</NavLink>
+                <NavLink to={'/'} className={({ isActive }) => isActive ? "active" : ""}  >Inicio</NavLink>
                 <NavLink to={'/eventos'} >Eventos</NavLink>
                 <NavLink to={'/comunidad'} >Comunidad</NavLink>
               </div>
@@ -197,7 +196,7 @@ function Home() {
 
           <section className="contenedorContenido">
             <Routes>
-              <Route path="inicio" element={<Inicio />} />
+              <Route path="" element={<Inicio />} />
               <Route path="eventos/*" element={<Eventos />} />
               <Route path="comunidad" element={<Comunidad />} />
             </Routes>
