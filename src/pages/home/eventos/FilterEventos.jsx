@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import useAuth from "../../../auth/useAuth";
 import { useEffect } from "react";
 import instance from "../../../api/axios";
 import Tarjeta from "../eventos/Tarjeta"

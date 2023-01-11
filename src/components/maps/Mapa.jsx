@@ -14,7 +14,7 @@ function Mapa({ mapSet, map }) {
   const { addEventos } = useAuth();
   const navigation = useNavigate();
   const location = useLocation();
-  
+
   // Obtención de parametros de la url
   const [params, setParams] = useSearchParams();
   const paramNombre = params.get("nombre");
@@ -112,7 +112,7 @@ function Mapa({ mapSet, map }) {
   };
 
   useEffect(() => {
-    if(isLoaded){
+    if (isLoaded) {
       eventosUbicacion();
     }
   }, [eventos]);
@@ -180,6 +180,12 @@ function Mapa({ mapSet, map }) {
               lng: parseFloat(evento.lng)
             }}
             onClick={() => {
+              // agregamos el id del evento a la url, si hay parametros los dejamos
+              // si existe el parametro id, lo reemplazamos por el nuevo
+              if (params.has("id") && params.has("nombre")) {
+                params.delete("id");
+                params.delete("nombre");
+              }
               let url = params.toString() ? `?${params.toString()}&id=${evento.id_evento}&nombre=${evento.nombre}` : `?id=${evento.id_evento}&nombre=${evento.nombre}`;
               navigation(url)
             }}

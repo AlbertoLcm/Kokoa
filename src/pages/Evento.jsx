@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import React, { Fragment, useEffect, useRef, useState } from "react";
+import { Link, NavLink, Route, Routes, useLocation, useNavigate, useParams } from "react-router-dom";
 import instance from "../api/axios";
 import useAuth from "../auth/useAuth";
 import Header from "../components/Header";
@@ -21,9 +21,6 @@ function Evento() {
   const [anfitrion, setAnfitrion] = useState({});
   const [error, setError] = useState(false);
   const [asistencia, setAsistencia] = useState([]);
-  const [visua, setVisua] = useState(1);
-  const [showModalEvento, setShowModalEvento] = useState(false);
-  const [comentarios, setComentarios] = useState([]);
   const [opComp, setOpComp] = useState(false);
   const [showModalImg, setShowModalImg] = useState(false);
   const [imgModal, setImgModal] = useState("");
@@ -34,11 +31,11 @@ function Evento() {
   const location = useLocation();
   const nav = useNavigate();
 
+  
+
+
   useEffect(() => {
 
-    if (location.state?.pagina) {
-      setVisua(location.state.pagina);
-    }
 
     // Obtenemos el evento
     instance.get(`/eventos/evento/${id}`)
@@ -60,32 +57,12 @@ function Evento() {
       .then((asistencias) => {
         setAsistencia(asistencias.data)
       })
-    instance.get(`/eventos/comentarios/${id}`)
-      .then((comentarios) => {
-        setComentarios(comentarios.data)
-      })
-    socket.on('new-comentario', (comentario) => {
-      instance.get(`/eventos/comentarios/${id}`)
-        .then((comentarios) => {
-          setComentarios(comentarios.data)
-        })
-    })
+    
   }, []);
 
-  const [comentarioEvento, setComentarioEvento] = useState({
-    comentario: "",
-    id_usuario: user.id,
-    id_evento: id,
-    rol_usuario: user.rol,
-  });
-
-  const handleChangeEvento = (e) => {
-    setComentarioEvento({
-      ...comentarioEvento,
-      [e.target.name]: e.target.value,
-    });
-  };
+ 
   
+
   if (loading) {
     return (
       <section id="ContEventoGeneralSecundario">
@@ -135,14 +112,7 @@ function Evento() {
       })
   };
 
-  const actionPublicar = () => {
-    instance.post("/eventos/comentarios", comentarioEvento)
-      .then((res) => {
-        setShowModalEvento(false);
-        socket.emit('comentar', comentarioEvento);
-      })
-      .catch((err) => console.log(err));
-  };
+ 
 
   const actionCopiar = () => {
     let aux = document.createElement("input");
@@ -160,12 +130,194 @@ function Evento() {
     setImgModal(img);
     setShowModalImg(!showModalImg);
   };
-  
+
   let fecini = new Date(evento.fecha_inicio);
   let fechaActual = new Date();
   let fechaTermino = new Date(evento.fecha_termino);
   fecini.setHours(fecini.getHours() + 6);
   fechaTermino.setHours(fechaTermino.getHours() + 6);
+
+  const Comentarios = () => {
+    
+    const [comentarios, setComentarios] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [comentarioData, setComentarioData] = useState({
+      comentario: "",
+      id_usuario: user.id,
+      id_evento: id,
+      rol_usuario: user.rol,
+    });
+
+    useEffect(() => {
+      instance.get(`/eventos/comentarios/${id}`)
+      .then((comentarios) => {
+        setComentarios(comentarios.data)
+      })
+    socket.on('new-comentario', (comentario) => {
+      instance.get(`/eventos/comentarios/${id}`)
+        .then((comentarios) => {
+          setLoading(false);
+          setComentarios(comentarios.data)
+        })
+    })
+    }, [])
+
+    const handleComentario = (e) => {
+      setComentarioData({
+        ...comentarioData,
+        comentario: e.target.value,
+      });
+    };
+
+    const actionPublicar = (e) => {
+      e.preventDefault();
+      if (comentarioData.comentario === "") return;
+      setLoading(true);
+      instance.post("/eventos/comentarios", comentarioData)
+        .then((res) => {
+          setComentarioData({
+            comentario: "",
+            id_usuario: user.id,
+            id_evento: id,
+            rol_usuario: user.rol,
+          });
+          socket.emit('comentar', comentarioData);
+        })
+        .catch((err) => console.log(err));
+    };
+    
+    return (
+      <Fragment>
+        <section id="OpinionesEvento">
+
+          {user ? (<div id="Comentar">
+            <section className="contFotoUsuario">
+              <img src={user.perfil} alt="Foto Usuario" />
+            </section>
+
+            <section className="comentario">
+              <form onSubmit={actionPublicar} method="POST">
+                <input disabled={ loading ? true : false } type="text" autoComplete="off" name="comentario" className="textarea" placeholder="Comenta algo sobre este evento" onChange={handleComentario} value={comentarioData.comentario} />
+                <button type="submit" disabled={loading ? true : false}>{loading ? "Comentando..." : "Comentar" }</button>
+              </form>
+            </section>
+          </div>) : (<div id="Comentar">
+            <section className="comentario">
+              <p onClick={() => nav(routes.login, { state: { from: location, pagina: 2 } })}>
+                Comenta algo sobre este evento
+              </p>
+            </section>
+          </div>
+          )}
+          {!comentarios.length ? (<div className="comentariosNull"> No hay comentarios </div>) : (null)}
+          {comentarios.map((comentario) => {
+            return <Comentario data={comentario} />
+          })}
+        </section>
+      </ Fragment>
+    );
+  }
+
+  const Informacion = () => {
+    return (
+      <div className="contDetallesEvento">
+        <div className="detallesEvento">
+          <div className="ubicacion">
+            <section className="mapa">
+              <MapSmall evento={{ lat: evento.lat, lng: evento.lng }} />
+              <p>{evento.direccion}</p>
+            </section>
+          </div>
+
+          <div className="detalles">
+            <section className="informacion">
+              <h1>Detalles</h1>
+              <p className="infEventoFecha">Conclusión, {fechaTermino.toLocaleDateString('es-us', { weekday: "long", month: "short", year: "numeric", day: "numeric" })}, {fechaTermino.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
+              <p className="direccion">
+                {evento.direccion}
+              </p>
+              {evento.capacidad ? <p className="capacidad">Capacidad para {evento.capacidad} personas</p> : <p className="sinCapacidad">Capacidad para todos</p>}
+              <p className="asistentes">Asistiran {evento.asistentes_cont} personas</p>
+              {evento.precio === 0 || evento.precio === null ? <p className="gratis"> Entrada gratuita </p> : <p className="cover"> Cover ${evento.precio} </p>}
+
+            </section>
+
+            <section className="descripcion">
+              <h1>¿De qué trata este evento?</h1>
+              {evento.descripcion}
+            </section>
+
+            <section className="tipo">
+              <h1>Tipo de evento</h1>
+              {evento.tipo}
+            </section>
+
+            {location?.state?.from?.pathname ? (
+              (!(location?.state?.from?.pathname).includes("negocio/")) ? (
+                <section className="anfitrion">
+                  {evento.rol_anfitrion === "negocios" ? (
+                    <>
+                      <h1>Anfitrion (Negocio)</h1>
+                      <Link to={`/negocio/${evento.nombre}/${evento.anfitrion}`} className={"contDetAnfitrion"}>
+                        <div className='contImgAnfitrion'>
+                          <img src={anfitrion.perfil} alt="Predefinir" />
+                        </div>
+                        <div className="tituloAnfitiron">
+                          Un evento de {anfitrion.nombre}. <br />
+                          <label> Conocer </label>
+                        </div>
+                      </Link>
+                    </>
+                  ) : (
+                    <>
+                      <h1>Anfitrion</h1>
+                      <section className='contDetAnfitrion'>
+                        <div className='contImgAnfitrion'>
+                          <img src={anfitrion.perfil} alt="Predefinir" />
+                        </div>
+                        <div className="tituloAnfitiron">
+                          Un evento de {anfitrion.nombre}. <br />
+                        </div>
+                      </section>
+                    </>
+                  )}
+                </section>
+              ) : (null)
+            ) : (
+              <section className="anfitrion">
+                {evento.rol_anfitrion === "negocios" ? (
+                  <>
+                    <h1>Anfitrion (Negocio)</h1>
+                    <Link to={`/negocio/${evento.nombre}/${evento.anfitrion}`} className={"contDetAnfitrion"}>
+                      <div className='contImgAnfitrion'>
+                        <img src={anfitrion.perfil} alt="Predefinir" />
+                      </div>
+                      <div className="tituloAnfitiron">
+                        Un evento de {anfitrion.nombre}. <br />
+                        <label> Conocer </label>
+                      </div>
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <h1>Anfitrion</h1>
+                    <section className='contDetAnfitrion'>
+                      <div className='contImgAnfitrion'>
+                        <img src={anfitrion.perfil} alt="Predefinir" />
+                      </div>
+                      <div className="tituloAnfitiron">
+                        Un evento de {anfitrion.nombre}. <br />
+                      </div>
+                    </section>
+                  </>
+                )}
+              </section>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -204,19 +356,12 @@ function Evento() {
             </div>
 
             <div className="botones">
-              {/* {fecini > fechaActual && fechaTermino > fechaActual ? (
-                asistencia.length ? (
-                asistencia.find((asistencia) => asistencia.id_evento === evento.id_evento) ? <button className="asistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button> : <button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>
-                ) : <button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>
-              ) : (
-                null
-              )} */}
-              
+
               {asistencia.length ?
-            asistencia.find((asistencia => asistencia.id_evento === evento.id_evento)) ? (<button className="asistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button>) : (<button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>) 
-          : (<button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>)}
-          <button className='invitar' onClick={() => setOpComp(!opComp)}>Compartir</button>
-          
+                asistencia.find((asistencia => asistencia.id_evento === evento.id_evento)) ? (<button className="asistirTrue" onClick={() => actionAusentar(evento.id_evento)}>Ya asistiras</button>) : (<button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>)
+                : (<button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>Asistir</button>)}
+              <button className='invitar' onClick={() => setOpComp(!opComp)}>Compartir</button>
+
               {
                 opComp && (
                   <div className="opCompartir">
@@ -232,152 +377,19 @@ function Evento() {
             </div>
             <section id="ContBtnEvento">
               <div id="BtnEvento">
-                <button onClick={() => setVisua(1)}>Información</button>
+                <NavLink to={`informacion`} className={({ isActive }) => isActive ? "active" : ""} >Información</NavLink>
                 <div className="vrLine" />
-                <button onClick={() => setVisua(2)}>Comentarios</button>
+                <NavLink to={`comentarios`}>Comentarios</NavLink>
               </div>
             </section>
           </div>
         </section>
 
         <section className="contDetallesEventoGeneral">
-
-          {visua === 1 ? (
-            <div className="contDetallesEvento">
-              <div className="detallesEvento">
-                <div className="ubicacion">
-                  <section className="mapa">
-                    <MapSmall evento={{ lat: evento.lat, lng: evento.lng }} />
-                    <p>{evento.direccion}</p>
-                  </section>
-                </div>
-
-                <div className="detalles">
-                  <section className="informacion">
-                    <h1>Detalles</h1>
-                    <p className="infEventoFecha">Conclusión, {fechaTermino.toLocaleDateString('es-us', { weekday: "long", month: "short", year: "numeric", day: "numeric" })}, {fechaTermino.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
-                    <p className="direccion">
-                      {evento.direccion}
-                    </p>
-                    {evento.capacidad ? <p className="capacidad">Capacidad para {evento.capacidad} personas</p> : <p className="sinCapacidad">Capacidad para todos</p>}
-                    <p className="asistentes">Asistiran {evento.asistentes_cont} personas</p>
-                    {evento.precio === 0 || evento.precio === null ? <p className="gratis"> Entrada gratuita </p> : <p className="cover"> Cover ${evento.precio} </p>}
-
-                  </section>
-
-                  <section className="descripcion">
-                    <h1>¿De qué trata este evento?</h1>
-                    {evento.descripcion}
-                  </section>
-
-                  <section className="tipo">
-                    <h1>Tipo de evento</h1>
-                    {evento.tipo}
-                  </section>
-
-                  {location?.state?.from?.pathname ? (
-                    (!(location?.state?.from?.pathname).includes("negocio/")) ? (
-                      <section className="anfitrion">
-                        {evento.rol_anfitrion === "negocios" ? (
-                          <>
-                            <h1>Anfitrion (Negocio)</h1>
-                            <Link to={`/negocio/${evento.nombre}/${evento.anfitrion}`} className={"contDetAnfitrion"}>
-                              <div className='contImgAnfitrion'>
-                                <img src={anfitrion.perfil} alt="Predefinir" />
-                              </div>
-                              <div className="tituloAnfitiron">
-                                Un evento de {anfitrion.nombre}. <br />
-                                <label> Conocer </label>
-                              </div>
-                            </Link>
-                          </>
-                        ) : (
-                          <>
-                            <h1>Anfitrion</h1>
-                            <section className='contDetAnfitrion'>
-                              <div className='contImgAnfitrion'>
-                                <img src={anfitrion.perfil} alt="Predefinir" />
-                              </div>
-                              <div className="tituloAnfitiron">
-                                Un evento de {anfitrion.nombre}. <br />
-                              </div>
-                            </section>
-                          </>
-                        )}
-                      </section>
-                    ) : (null)
-                  ) : (
-                    <section className="anfitrion">
-                      {evento.rol_anfitrion === "negocios" ? (
-                        <>
-                          <h1>Anfitrion (Negocio)</h1>
-                          <Link to={`/negocio/${evento.nombre}/${evento.anfitrion}`} className={"contDetAnfitrion"}>
-                            <div className='contImgAnfitrion'>
-                              <img src={anfitrion.perfil} alt="Predefinir" />
-                            </div>
-                            <div className="tituloAnfitiron">
-                              Un evento de {anfitrion.nombre}. <br />
-                              <label> Conocer </label>
-                            </div>
-                          </Link>
-                        </>
-                      ) : (
-                        <>
-                          <h1>Anfitrion</h1>
-                          <section className='contDetAnfitrion'>
-                            <div className='contImgAnfitrion'>
-                              <img src={anfitrion.perfil} alt="Predefinir" />
-                            </div>
-                            <div className="tituloAnfitiron">
-                              Un evento de {anfitrion.nombre}. <br />
-                            </div>
-                          </section>
-                        </>
-                      )}
-                    </section>
-                  )}
-                </div>
-              </div>
-            </div>
-          ) : (
-            <>
-              <section id="OpinionesEvento">
-                <Modal
-                  estado={showModalEvento}
-                  cambiarEstado={setShowModalEvento}
-                  titulo={"Comentar"}
-                >
-                  <div id="contComentarModal">
-                    <textarea name="comentario" id="txtComentar" placeholder="Comenta algo acerca de este evento" onChange={handleChangeEvento} />
-                    <button onClick={() => actionPublicar()}>Comentar</button>
-                  </div>
-                </Modal>
-
-                {user ? (<div id="Comentar">
-                  <section className="contFotoUsuario">
-                    <img src={user.perfil} alt="Foto Usuario" />
-                  </section>
-
-                  <section className="comentario">
-                    <p onClick={() => setShowModalEvento(!showModalEvento)}>
-                      Comenta algo sobre este evento
-                    </p>
-                  </section>
-                </div>) : (<div id="Comentar">
-                  <section className="comentario">
-                    <p onClick={() => nav(routes.login, { state: { from: location, pagina: 2 } })}>
-                      Comenta algo sobre este evento
-                    </p>
-                  </section>
-                </div>
-                )}
-                {!comentarios.length ? (<div className="comentariosNull"> No hay comentarios </div>) : (null)}
-                {comentarios.map((comentario) => {
-                  return <Comentario data={comentario} />
-                })}
-              </section>
-            </>
-          )}
+          <Routes>
+            <Route path="informacion" element={<Informacion />} />
+            <Route path="comentarios" element={<Comentarios />} />
+          </Routes>
         </section>
       </div>
     </>

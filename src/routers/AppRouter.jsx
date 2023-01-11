@@ -56,7 +56,7 @@ function AppRouter() {
         <Route exact path={'/negocio/:nombre/:id'} element={
             <Perfil />
         } />
-        <Route path="/evento/:nombre/:id" element={
+        <Route path="/evento/:nombre/:id/*" element={
           <Evento />
         }>
         </Route>

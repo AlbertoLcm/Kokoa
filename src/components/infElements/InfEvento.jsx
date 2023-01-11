@@ -167,7 +167,7 @@ function InfEvento({ evento, cerrar }) {
               {evento.capacidad ? <p>Capacidad {evento.capacidad} personas</p> : null}
               <p className="asistentes">Asistiran {evento.asistentes_cont} personas</p>
               {evento.precio === 0 || evento.precio === null ? <p className="gratis"> Entrada gratuita </p> : <p className="cover"> Cover ${evento.precio} </p>}
-              <Link to={`evento/${evento.nombre}/${evento.id_evento}`} state={{ from: location }} className="link">Ver más</Link>
+              <Link to={`evento/${evento.nombre}/${evento.id_evento}/informacion`} state={{ from: location }} className="link">Ver más</Link>
             </div>
           </div>
           {anfitrion.rol === "negocios" ? (

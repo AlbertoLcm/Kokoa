@@ -154,18 +154,27 @@
     #ContBtnEvento #BtnEvento{
       display: flex;
     }
-    #ContBtnEvento #BtnEvento button{
+    #ContBtnEvento #BtnEvento a{
+      text-decoration: none;
       background: none;
       border: none;
       border-radius: 10px;
       padding: 10px;
       color: #f3f3f3;
-      transition: all 0.3s ease;
       cursor: pointer;
       user-select: none;
     }
-    #ContBtnEvento #BtnEvento button:hover{
-      background-color: #f3f3f349;
+    #ContBtnEvento #BtnEvento a:hover{
+      background-color: #f3f3f321;
+    }
+    #ContBtnEvento #BtnEvento .active{
+      border-radius: 10px 10px 0px 0px;
+      border-bottom: 2px solid orangered;
+      color: orangered;
+      font-weight: 600;
+    }
+    #ContBtnEvento #BtnEvento .active:hover{
+      background: none;
     }
   /* === FIN Botones de seleccion === */
 

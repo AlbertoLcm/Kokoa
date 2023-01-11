@@ -349,6 +349,45 @@
                     height: 100%;
                     object-fit: cover;
                 }
+                #OpinionesEvento #Comentar .comentario form {
+                    display: flex;
+                    gap: 5px;
+                }
+                #OpinionesEvento #Comentar .comentario form button {
+                    width: auto;
+                    border: none;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    border-radius: 10px;
+                    background-color: orangered;
+                    cursor: pointer;
+                    color: #f3f3f3;
+                }
+                #OpinionesEvento #Comentar .comentario form .textarea:disabled{
+                    background-color: #f3f3f37e;
+                }
+
+                #OpinionesEvento #Comentar .comentario form button:disabled{
+                    cursor: not-allowed;
+                    background-color: rgb(252, 152, 116);
+                }
+
+                #OpinionesEvento #Comentar .comentario form .textarea{
+                    width: calc(100% - 20px);
+                    border: none;
+                    border-radius: 10px;
+                    font-size: 16px;
+                    background-color: #f3f3f33b;
+                    backdrop-filter: blur(10px);
+                    padding: 10px;
+                    color: #f3f3f3;
+                    resize: none;
+                    max-height: 100px;
+                }
+                .textarea:focus{
+                    outline: none;
+                }
+
             /* Fin */
         
         /* /// FIn Pestaña 1 Información del organizador /// */
