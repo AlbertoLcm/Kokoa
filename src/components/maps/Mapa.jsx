@@ -65,18 +65,18 @@ function Mapa({ mapSet, map }) {
   }, [params]);
 
   useEffect(() => {
-    // navigator.geolocation.getCurrentPosition((coordenada) => {
-    //   if (coordenada) {
-    //     setCenter({
-    //       lat: parseFloat(coordenada.coords.latitude),
-    //       lng: parseFloat(coordenada.coords.longitude)
-    //     });
-    //     setCenterMarker({
-    //       lat: parseFloat(coordenada.coords.latitude),
-    //       lng: parseFloat(coordenada.coords.longitude)
-    //     });
-    //   }
-    // });
+    navigator.geolocation.getCurrentPosition((coordenada) => {
+      if (coordenada) {
+        setCenter({
+          lat: parseFloat(coordenada.coords.latitude),
+          lng: parseFloat(coordenada.coords.longitude)
+        });
+        setCenterMarker({
+          lat: parseFloat(coordenada.coords.latitude),
+          lng: parseFloat(coordenada.coords.longitude)
+        });
+      }
+    });
 
     instance.get("/eventos").then((results) => {
       setEventos(results.data);
