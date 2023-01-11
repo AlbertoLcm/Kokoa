@@ -94,7 +94,7 @@ const Cuentas = () => {
         {cargos.patrocinadores.length ? <h2>Patrocinios</h2> : null}
         {cargos.patrocinadores.map((patrocinio) => {
           return (
-            <div className="cuenta">
+            <div className="cuenta" onClick={() => loginCargo(patrocinio)}>
               <section className="foto">
                 <img src={patrocinio.perfil} alt="perfil" />
               </section>
@@ -108,7 +108,7 @@ const Cuentas = () => {
         {cargos.artistas.length ? <h2>Artistas</h2> : null}
         {cargos.artistas.map((artista) => {
           return (
-            <div className="cuenta">
+            <div className="cuenta" onClick={() => loginCargo(artista)}>
               <section className="foto">
                 <img src={artista.perfil} alt="perfil" />
               </section>

@@ -21,7 +21,7 @@ const FilterEventos = () => {
   const filters = () => {
     if(curso) return setEventosFilter(eventosAll.filter((evento) => {
       let fechaEvento = new Date(evento.fecha_inicio).toISOString();
-      return new Date() > fechaEvento;
+      return new Date().toISOString() > fechaEvento;
     }));
 
     let filters = eventosAll.filter((evento) => {

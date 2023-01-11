@@ -101,7 +101,7 @@ function Home() {
       map.setCenter(results[0].geometry.location);
       map.setZoom(15);
     });
-    
+
     actionDisabledBuscar();
   }
 
