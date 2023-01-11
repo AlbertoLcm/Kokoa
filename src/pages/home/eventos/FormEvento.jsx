@@ -8,10 +8,10 @@ import socket from "../../../components/sockets/Socket";
 const FormEvento = () => {
 
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   /** @type React.MutableRefObject<HTMLInputElement> */
-  const originRef = useRef();
-  const navigate = useNavigate();
+  let ubicacionRef = useRef();
 
   const [paso, setPaso] = useState(1);
   const [evento, setEvento] = useState({
@@ -39,19 +39,19 @@ const FormEvento = () => {
     // eslint-disable-next-line no-undef
     const geocoder = new google.maps.Geocoder();
     geocoder.geocode({
-      address: originRef.current.value,
+      address: evento.ubicacion,
     }, (results) => {
       instance.post("eventos/add", {
         evento,
         id: user.id,
         rol: user.rol,
-        ubicacion: originRef.current.value,
+        ubicacion: evento.ubicacion,
         lat: results[0].geometry.location.lat(),
         lng: results[0].geometry.location.lng(),
       })
         .then((resultsBD) => {
           socket.emit('evento', resultsBD.data);
-          navigate(`/evento/${resultsBD.data.insert}`);
+          navigate(`/evento/${evento.nombre}/${resultsBD.data.insert}`);
         })
         .catch((error) => {
           console.log(error)
@@ -116,8 +116,13 @@ const FormEvento = () => {
               <option value="0">Privado</option>
             </select>
             <p>Agrega la ubicación donde se iniciara el evento</p>
-            <Autocomplete>
-              <input name="ubicacion" ref={originRef} type="text" placeholder="Ubicación" onChange={handleInputChange} />
+
+            <Autocomplete
+              restrictions={{
+                country: ["mx"],
+              }}
+            >
+              <input name="ubicacion" type="text" placeholder="Ubicación" onChange={handleInputChange} ref={ubicacionRef} required />
             </Autocomplete>
 
             <section className="buttons">
@@ -132,7 +137,13 @@ const FormEvento = () => {
                 <button onClick={() => setPaso(paso - 1)}>Regresar</button>
                 <button
                   disabled={!evento.publico || !evento.ubicacion ? true : false}
-                  onClick={() => setPaso(paso + 1)}
+                  onClick={() => {
+                    setEvento({
+                      ...evento,
+                      ubicacion: ubicacionRef.current?.value
+                    })
+                    setPaso(paso + 1)
+                  }}
                   className="btnNext"
                 >
                   Siguiente
@@ -174,7 +185,13 @@ const FormEvento = () => {
 
               <div className="botones">
                 <button onClick={() => setPaso(paso - 1)}>Regresar</button>
-                <button onClick={() => setPaso(paso + 1)} className="btnNext">Siguiente</button>
+                <button
+                  disabled={!evento.descripcion || !evento.tipo ? true : false}
+                  onClick={() => setPaso(paso + 1)}
+                  className="btnNext"
+                >
+                  Siguiente
+                </button>
               </div>
             </section>
           </section>

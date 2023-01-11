@@ -26,10 +26,12 @@ function Home() {
   const buscadorRef = useRef(null);
 
   const [map, setMap] = useState(/** @type google.maps.Map */(null));
+  const [data, setData] = useState(false);
   const [buscadorActive, setBuscadorActive] = useState(false);
+  const [busquedaLugares, setBusquedaLugares] = useState([]);
   const [busquedaEventos, setBusquedaEventos] = useState([]);
   const [busquedaNegocios, setBusquedaNegocios] = useState([]);
-  const [selectBusqueda, setSelectBusqueda] = useState('eventos');
+  const [selectBusqueda, setSelectBusqueda] = useState('lugares');
   const [search, setSearch] = useState({
     data: ''
   });
@@ -44,8 +46,10 @@ function Home() {
     setSearch({
       data: ''
     });
+    setData(false);
     setBusquedaEventos([]);
     setBusquedaNegocios([]);
+    setBusquedaLugares([]);
   }
 
   // Si da click fuera del busacodor, se desactiva
@@ -75,28 +79,41 @@ function Home() {
     setSearch({
       data: e.target.value
     });
+    setData(true);
+    !e.target.value.length && setBusquedaLugares([]);
+    // eslint-disable-next-line no-undef
+    new google.maps.places.AutocompleteService().getPlacePredictions({
+      input: e.target.value,
+      types: ['(cities)'],
+      componentRestrictions: { country: 'mx' }
+    }).then((response) => {
+      setBusquedaLugares(response.predictions);
+    })
+
     socket.emit('busqueda-kokoa', e.target.value);
   };
 
+  const redireccionar = (nombre) => {
+    // eslint-disable-next-line no-undef
+    const geocoder = new google.maps.Geocoder();
+
+    geocoder.geocode({ 'address': nombre }, function (results, status) {
+      map.setCenter(results[0].geometry.location);
+      map.setZoom(15);
+    });
+    
+    actionDisabledBuscar();
+  }
+
   const actionBuscar = (e) => {
     e.preventDefault();
-    // eslint-disable-next-line no-undef
-    // const geocoder = new google.maps.Geocoder();
-    // geocoder.geocode({
-    //   address: buscadorRef.current.value,
-    // }, (results, status) => {
-    //   map.setCenter(results[0].geometry.location);
-    //   map.setZoom(15);
-    //   buscadorRef.current.value = "";
-    // }
-    // );
   };
 
   return (
     <>
       <Header tipo={'color'} perfil={user.nombre} back={false} >
+
         <section ref={activeRef}>
-          
           {!isLoaded ? (<LoadingElement />) : (
             <section className={buscadorActive ? ("contBuscadorHomeActive") : ("contBuscadorHome")}>
               {buscadorActive && (
@@ -129,42 +146,65 @@ function Home() {
                 <button onClick={() => setSelectBusqueda('eventos')} className={selectBusqueda === 'eventos' ? "btn active" : "btn normal"} >Eventos</button>
                 <button onClick={() => setSelectBusqueda('negocios')} className={selectBusqueda === 'negocios' ? "btn active" : "btn normal"} >Negocios</button>
               </section>
-              {!busquedaEventos.length && (<div className="busquedasNull"> Busca lugares, eventos o negocios </div>)}
 
-              {selectBusqueda === 'eventos' && (
-                <ul>
-                  {busquedaEventos.map((evento, index) => (
-                    <Link to={`?nombre=${evento.nombre}&id=${evento.id_evento}`} onClick={() => actionDisabledBuscar()} >
-                      <li key={index}>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f369" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                          <circle cx="10" cy="10" r="7" />
-                          <line x1="21" y1="21" x2="15" y2="15" />
-                        </svg>
-                        <h4>{evento.nombre}</h4>
-                      </li>
-                    </Link>
-                  ))}
-                </ul>
-              )}
+              {!data ? ((<div className="busquedasNull"> Busca lugares, eventos o negocios </div>))
+                : (
+                  <>
+                    {selectBusqueda === 'eventos' && (
+                      <ul>
+                        {!busquedaEventos.length ? (<div className="busquedasNull"> {search.data ? (<p> No hay eventos con "{search.data}"</p>) : <p>Escribe algo para buscar eventos</p>} </div>) : (null)}
+                        {busquedaEventos.map((evento, index) => (
+                          <Link to={`?nombre=${evento.nombre}&id=${evento.id_evento}`} onClick={() => actionDisabledBuscar()} >
+                            <li key={index}>
+                              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f369" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <circle cx="10" cy="10" r="7" />
+                                <line x1="21" y1="21" x2="15" y2="15" />
+                              </svg>
+                              <h4>{evento.nombre}</h4>
+                            </li>
+                          </Link>
+                        ))}
+                      </ul>
+                    )}
 
-              {selectBusqueda === 'negocios' && (
-                <ul>
-                  {busquedaNegocios.map((negocio, index) => (
-                    <Link to={`negocio/${negocio.nombre}/${negocio.id}`} >
-                      <li key={index}>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f369" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                          <circle cx="10" cy="10" r="7" />
-                          <line x1="21" y1="21" x2="15" y2="15" />
-                        </svg>
-                        <h4>{negocio.nombre}</h4>
-                      </li>
-                    </Link>
-                  ))}
-                </ul>
-              )}
+                    {selectBusqueda === 'lugares' && (
+                      <ul>
+                        {!busquedaLugares.length ? (<div className="busquedasNull"> {search.data ? (<p> No hay lugares con "{search.data}"</p>) : <p>Escribe algo para buscar lugares</p>} </div>) : (null)}
 
+                        {busquedaLugares.map((lugar, index) => (
+                          <li key={index} onClick={() => redireccionar(lugar.description)}>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f369" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                              <circle cx="10" cy="10" r="7" />
+                              <line x1="21" y1="21" x2="15" y2="15" />
+                            </svg>
+                            <h4>{lugar.description}</h4>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+
+                    {selectBusqueda === 'negocios' && (
+                      <ul>
+                        {!busquedaNegocios.length ? (<div className="busquedasNull"> {search.data ? (<p> No hay negocios con "{search.data}"</p>) : <p>Escribe algo para buscar negocios</p>} </div>) : (null)}
+
+                        {busquedaNegocios.map((negocio, index) => (
+                          <Link to={`negocio/${negocio.nombre}/${negocio.id}`} >
+                            <li key={index}>
+                              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f369" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <circle cx="10" cy="10" r="7" />
+                                <line x1="21" y1="21" x2="15" y2="15" />
+                              </svg>
+                              <h4>{negocio.nombre}</h4>
+                            </li>
+                          </Link>
+                        ))}
+                      </ul>
+                    )}
+                  </>
+                )}
             </div>
           )}
         </section>

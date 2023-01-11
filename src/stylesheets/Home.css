@@ -953,33 +953,29 @@
             padding-bottom: 15px;
         }
             #MarkerInfoPos .contBtnMarkerInfo .asistir{
-                background: linear-gradient(to left, #004dc0, #EC1C4E, #d6d300);
-                width: 150px;
+                width: auto;
                 color: #f3f3f3;
                 border: none;
                 border-radius: 20px;
                 cursor: pointer;
                 user-select: none;
-                padding: 10px;
+                padding: 10px 20px 10px 20px;                
                 transition: all 0.3s ease;
                 display: flex;
                 justify-content: center;
                 align-items: center;
             }
-            #MarkerInfoPos .contBtnMarkerInfo .asistirTrue{
+            #MarkerInfoPos .contBtnMarkerInfo .asistir svg{
+                margin-right: 5px;
+            }
+
+            #MarkerInfoPos .contBtnMarkerInfo .true{
                 background: linear-gradient(to left, #004dc0, #22a111, #d6d300);
-                width: 150px;
-                color: #f3f3f3;
-                border: none;
-                border-radius: 20px;
-                cursor: pointer;
-                user-select: none;
-                padding: 10px;
-                transition: all 0.3s ease;
-                display: flex;
-                justify-content: center;
-                align-items: center;
             }
+            #MarkerInfoPos .contBtnMarkerInfo .false{
+                background: linear-gradient(to left, #004dc0, #EC1C4E, #d6d300);
+            }
+
             #MarkerInfoPos .contBtnMarkerInfo .invitar{
                 background-color: #196eff;
                 width: 100px;

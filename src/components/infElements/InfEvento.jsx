@@ -125,20 +125,20 @@ function InfEvento({ evento, cerrar }) {
 
         <section className='contBtnMarkerInfo'>
           {asistencia.length ?
-            asistencia.find((asistencia => asistencia.id_evento === evento.id_evento)) ? (<button className="asistirTrue" onClick={() => actionAusentar(evento.id_evento)}>
+            asistencia.find((asistencia => asistencia.id_evento === evento.id_evento)) ? (<button className="asistir true" onClick={() => actionAusentar(evento.id_evento)}>
               <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-star" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="#f3f3f3" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
               </svg>
               Asistiras
-            </button>) : (<button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>
+            </button>) : (<button className="asistir false" onClick={() => actionAsistir(evento.id_evento)}>
               <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-star" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
               </svg>
               Asistir
             </button>)
-            : (<button className="asistir" onClick={() => actionAsistir(evento.id_evento)}>
+            : (<button className="asistir false" onClick={() => actionAsistir(evento.id_evento)}>
               <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-star" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
@@ -154,7 +154,7 @@ function InfEvento({ evento, cerrar }) {
                 </div>
                 <p>Link del evento</p>
                 <p id="linkComp">{window.location.href}</p>
-                <button className='invitar' onClick={() => actionCopiar()}>Copiar Link</button>
+                <button className='compartir' onClick={() => actionCopiar()}>Copiar Link</button>
               </div>
             )
           }
