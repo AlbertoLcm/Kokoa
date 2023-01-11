@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../../auth/useAuth";
-import MapNegocio from "../../components/maps/MapNegocio";
 import "../../stylesheets/pages/Dashboard.css";
 
 const Inicio = () => {
@@ -10,7 +9,6 @@ const Inicio = () => {
   
   return (
     <div className="contDashboardInicio">
-      <MapNegocio />
     </div>
   );
 }

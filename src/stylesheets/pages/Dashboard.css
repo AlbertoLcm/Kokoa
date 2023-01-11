@@ -366,21 +366,50 @@
 .informacionNegocio .titulo h1{
   font-size: 20px;
 }
-.informacionNegocio form .info{
+.informacionNegocio .info{
   display: flex;
   flex-direction: column;
 }
-.informacionNegocio form p{
-  margin-bottom: 5px;
+.informacionNegocio button {
+  margin-bottom: 15px;
+  height: 25px;
+  border-color: transparent;
+  border-radius: 15px;
+  background: #f3f3f34d;
+  color: white;
 }
-.informacionNegocio form input{
-  background-color: #f3f3f356;
-  border: none;
-  border-radius: 5px;
-  padding: 10px;
-  color: #f3f3f3;
-  margin-bottom: 10px; 
-}
-.informacionNegocio form input:focus{
-  outline: none;
-}
+/* seccion de cambio */
+  .informacionNegocio > .info > #cambiarDato {
+    padding: 10px;  
+    margin-bottom: 15px;
+    border-color: transparent;
+    border-radius: 15px;
+    background: #f3f3f34d;
+    color: white;
+  }
+  .informacionNegocio > .info > #cambiarDato button {
+    margin-bottom: 0px;
+    width: 75px;
+  }
+  .informacionNegocio > .info > #cambiarDato input {
+    width: 100%;
+    margin-bottom: 5px;
+    border-radius: 15px;
+    border: none;
+    text-align: center;
+    height: 20px
+  }
+  .informacionNegocio > .info > #cambiarDato input:focus {
+    outline: none
+  }
+  .informacionNegocio > .info > #cambiarDato > #cambiarDatoBotones {
+    display: flex;
+    float: right;
+    gap: 10px
+  }
+  .informacionNegocio > .info > #cambiarDato > #LoadingElement {
+    height: 100%
+  }
+  .informacionNegocio > .contMapaNegocio {
+    height: 60vh
+  }

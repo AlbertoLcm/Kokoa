@@ -1,6 +1,7 @@
 import React from "react";
 import { Navigate, NavLink, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import DatosNegocio from "./configs/DatosNegocio";
+import DireccionNegocio from "./configs/DireccionNegocio"
 
 const Configuracion = () => {
   return (
@@ -23,7 +24,7 @@ const Configuracion = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to={'/dashboard/configuracion/usuarios'} className={({ isActive, isPending }) => isActive ? "active" : ""} >
+            <NavLink to={'/dashboard/configuracion/direccion'} className={({ isActive, isPending }) => isActive ? "active" : ""} >
               <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-map-2" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3bd" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <line x1="18" y1="6" x2="18" y2="6.01" />
@@ -47,6 +48,7 @@ const Configuracion = () => {
       <section className="contenido">
         <Routes>
           <Route path='informacion' element={<DatosNegocio />} />
+          <Route path='direccion' element={<DireccionNegocio />} />
         </Routes>
       </section>
     </div>
