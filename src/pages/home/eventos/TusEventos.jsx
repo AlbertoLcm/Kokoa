@@ -41,7 +41,7 @@ const TusEventos = () => {
     <section className="contGeneralSelectInicio">
       <div className="contSelectInicio">
         <section className="tarjetas">
-          {eventos.map((evento, index) => <Tarjeta evento={evento} key={index} /> )}
+          {eventos.map((evento, index) => <Tarjeta evento={evento} index={index} key={index} /> )}
         </section>
       </div>
     </section>

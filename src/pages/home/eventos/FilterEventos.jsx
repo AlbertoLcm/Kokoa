@@ -48,14 +48,14 @@ const FilterEventos = () => {
     return(
       <section className="tarjetas">
         {!eventosFilter.length ? <div className="notData">No hay eventos {get} en {getLocation}</div> : null}
-        {eventosFilter.map((evento, index) => <Tarjeta key={index} evento={evento} />)}
+        {eventosFilter.map((evento, index) => <Tarjeta index={index} key={index} evento={evento} />)}
       </section>
     );
   }
 
   return (
     <section className="tarjetas">
-      {eventosAll.map((evento, index) => <Tarjeta key={index} evento={evento} />)}
+      {eventosAll.map((evento, index) => <Tarjeta index={index} key={index} evento={evento} />)}
     </section>
   );
 }

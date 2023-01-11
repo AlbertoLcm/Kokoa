@@ -65,18 +65,18 @@ function Mapa({ mapSet, map }) {
   }, [params]);
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition((coordenada) => {
-      if (coordenada) {
-        setCenter({
-          lat: parseFloat(coordenada.coords.latitude),
-          lng: parseFloat(coordenada.coords.longitude)
-        });
-        setCenterMarker({
-          lat: parseFloat(coordenada.coords.latitude),
-          lng: parseFloat(coordenada.coords.longitude)
-        });
-      }
-    });
+    // navigator.geolocation.getCurrentPosition((coordenada) => {
+    //   if (coordenada) {
+    //     setCenter({
+    //       lat: parseFloat(coordenada.coords.latitude),
+    //       lng: parseFloat(coordenada.coords.longitude)
+    //     });
+    //     setCenterMarker({
+    //       lat: parseFloat(coordenada.coords.latitude),
+    //       lng: parseFloat(coordenada.coords.longitude)
+    //     });
+    //   }
+    // });
 
     instance.get("/eventos").then((results) => {
       setEventos(results.data);
@@ -153,7 +153,6 @@ function Mapa({ mapSet, map }) {
         streetViewControl: false,
         mapTypeControl: false,
         fullscreenControl: false,
-        center: true
       }}
       icon={marker}
       onLoad={(map) => mapSet(map)}
@@ -204,7 +203,7 @@ function Mapa({ mapSet, map }) {
 
           </Marker>
         )
-      })}
+      })} 
       <div className="contBtnMapa">
         <button onClick={() => alrededor()}>A tu alrededor</button>
         <button onClick={() => centrar()}>Centrar</button>

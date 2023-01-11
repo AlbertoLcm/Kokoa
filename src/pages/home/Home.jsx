@@ -97,7 +97,7 @@ function Home() {
     // eslint-disable-next-line no-undef
     const geocoder = new google.maps.Geocoder();
 
-    geocoder.geocode({ 'address': nombre }, function (results, status) {
+    geocoder.geocode({ 'address': nombre }, (results, status) => {
       map.setCenter(results[0].geometry.location);
       map.setZoom(15);
     });
@@ -156,7 +156,7 @@ function Home() {
                         {busquedaEventos.map((evento, index) => (
                           <Link to={`?nombre=${evento.nombre}&id=${evento.id_evento}`} onClick={() => actionDisabledBuscar()} >
                             <li key={index}>
-                              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f369" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-search" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f369" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <circle cx="10" cy="10" r="7" />
                                 <line x1="21" y1="21" x2="15" y2="15" />
@@ -174,7 +174,7 @@ function Home() {
 
                         {busquedaLugares.map((lugar, index) => (
                           <li key={index} onClick={() => redireccionar(lugar.description)}>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f369" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-search" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f369" fill="none" stroke-linecap="round" stroke-linejoin="round">
                               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                               <circle cx="10" cy="10" r="7" />
                               <line x1="21" y1="21" x2="15" y2="15" />
@@ -192,7 +192,7 @@ function Home() {
                         {busquedaNegocios.map((negocio, index) => (
                           <Link to={`negocio/${negocio.nombre}/${negocio.id}`} >
                             <li key={index}>
-                              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f369" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-search" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f369" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <circle cx="10" cy="10" r="7" />
                                 <line x1="21" y1="21" x2="15" y2="15" />

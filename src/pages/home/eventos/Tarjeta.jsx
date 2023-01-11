@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
-const Tarjeta = ({ evento, key }) => {
+const Tarjeta = ({ evento, index }) => {
 
   const [params] = useSearchParams();
   const navigation = useNavigate();
@@ -9,22 +9,17 @@ const Tarjeta = ({ evento, key }) => {
   let fechaInicio = new Date(evento.fecha_inicio);
   let fechaActual = new Date();
 
-  console.log(params.forEach((value, key) => {
-    if(key === 'id' && key === 'nombre'){
-      console.log(value);
-    }
-  }));
-
   return (
-    <div className="tarjeta" key={key}
+    <div className="tarjeta"
+      key={index}
       onClick={() => {
         // agregamos el id del evento a la url, si hay parametros los dejamos
         // si existe el parametro id, lo reemplazamos por el nuevo
-        if (params.has("id") && params.has("nombre") ) {
+        if (params.has("id") && params.has("nombre")) {
           params.delete("id");
           params.delete("nombre");
         }
-        let url = params.toString() ? `?${params.toString()}&id=${evento.id_evento}&nombre=${evento.nombre}` : `?id=${evento.id_evento}&nombre=${evento.nombre}`;
+        const url = params.toString() ? `?${params.toString()}&id=${evento.id_evento}&nombre=${evento.nombre}` : `?id=${evento.id_evento}&nombre=${evento.nombre}`;
         navigation(url)
       }}
     >
