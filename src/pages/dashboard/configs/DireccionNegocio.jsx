@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Autocomplete, useJsApiLoader } from "@react-google-maps/api";
-import { libraries } from "../../../helpers/methodsMap";
+import { Autocomplete} from "@react-google-maps/api";
 import instance from "../../../api/axios";
 import useAuth from "../../../auth/useAuth";
 import MapNegocio from "../../../components/maps/MapNegocio";
@@ -12,43 +11,40 @@ const DireccionNegocio = () => {
     const [cambioDir, setCambioDir] = useState(false)
     const [cargandoPagina, setCargandoPagina] = useState(true)
     const [esperandoRespuesta, setEsperandoRespuesta] = useState(false)
-    const [newData, setNewData] = useState({})
     const { user } = useAuth();
 
     const changeCambioDir = () => {
       setCambioDir(!cambioDir)
     }
-    const actualizarDatos = () => {      
-      if(!dirRef.current?.value) return alert('ingresa ubicación');
-      // setEsperandoRespuesta(true)
+    const pedirDatos =() => {
+      instance.get(`/negocios/${user.id}`)
+      .then((res) => {
+        setNegocio(res.data)
+        setEsperandoRespuesta(false)
+        changeCambioDir()
+        alert("Cambio realiazdo")
+      })
+    }
 
+    const actualizarDireccion = () => {
+      if(!dirRef.current?.value) return alert('ingresa ubicación');
       // eslint-disable-next-line no-undef
       const geocoder = new google.maps.Geocoder()
-      
       geocoder.geocode({'address': dirRef.current.value}, (results) =>{
+        try{
           instance.put(`/negocios/${user.id}`, {
             lat: results[0].geometry.location.lat(),
             direccion: dirRef.current.value,
             lng: results[0].geometry.location.lng(),
           })
-        .then((res) => {
-          instance.get(`/negocios/${user.id}`)
-          .then((response) => {
-            setNegocio(response.data)
-        })
-        })
-        .catch((error) => {
+        } catch (error) {
           console.log(error)
-        })
-        setCambioDir(false)
-        setEsperandoRespuesta(false)
-        alert("Actualizado correctamente (En caso de no ver el cambio, recargue la pagina)")
-        })  
-        
-
-    
-
-      
+          alert("Lo sentimos algo salio mal")
+        }
+      })
+      .then((res) => {
+        changeCambioDir()
+      })
     }
     
     /** @type React.MutableRefObject<HTMLInputElement> */
@@ -60,7 +56,7 @@ const DireccionNegocio = () => {
         setNegocio(res.data)
         setCargandoPagina(false)
       })
-    }, [])
+    })
 
     if(cargandoPagina){
       return(
@@ -73,23 +69,25 @@ const DireccionNegocio = () => {
               <h1>Direccion del Negocio</h1>
           </section>
           <section className="info">
-            <h5>Direccion actual</h5>
-            <h2>{negocio.direccion !== null ? (negocio.direccion) : ("Aun no has ingresado una direccion")}</h2>
             {
-            cambioDir === false ? (
-              <button onClick={changeCambioDir} >Cambiar direccion</button>
-            ) : (              
+              cambioDir === false ? (
+                <>
+                  <h5>Direccion actual</h5>
+                  <h2>{negocio.direccion !== null ? (negocio.direccion) : ("Aun no has ingresado una direccion")}</h2>
+                  <button onClick={changeCambioDir} >Cambiar direccion</button>
+                </>
+              ) : (              
                   <div id="cambiarDato">
                     {esperandoRespuesta ? (
                       <LoadingElement />
                     ) : (
                       <>
                         <Autocomplete>
-                          <input id="ubicacion" placeholder="" name="ubicacion" type="text" ref={dirRef} required />
+                          <input id="ubicacion" placeholder="Ingrese la direccion del negocio" name="ubicacion" type="text" ref={dirRef} required />
                         </Autocomplete>
                         <section id="cambiarDatoBotones">
                           <button onClick={changeCambioDir} >Cancelar</button>
-                          <button onClick={actualizarDatos}>Actualizar</button>
+                          <button onClick={actualizarDireccion}>Actualizar</button>
                         </section></>
                     )}
                   </div>

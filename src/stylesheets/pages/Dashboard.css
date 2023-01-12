@@ -365,6 +365,7 @@
 
 .informacionNegocio .titulo h1{
   font-size: 20px;
+  text-align: center;
 }
 .informacionNegocio .info{
   display: flex;
@@ -399,10 +400,13 @@
     text-align: center;
     height: 20px
   }
+  .informacionNegocio > .info > #cambiarDato input::placeholder {
+    color: grey;
+  }
   .informacionNegocio > .info > #cambiarDato input:focus {
     outline: none
   }
-  .informacionNegocio > .info > #cambiarDato > #cambiarDatoBotones {
+  .informacionNegocio > .info > #cambiarDato #cambiarDatoBotones {
     display: flex;
     float: right;
     gap: 10px
@@ -412,4 +416,31 @@
   }
   .informacionNegocio > .contMapaNegocio {
     height: 60vh
+  }
+  .informacionNegocio > .info > #cambiarDato .NegcontHorario .inputBox {
+    width: 30%;
+    margin-right: 5px;
+  }
+  .informacionNegocio > .info > #cambiarDato .NegcontHorario .inputBox input {
+    margin-bottom: 0px;
+    height: 100%;
+  }
+  .informacionNegocio > .info > #cambiarDato .NegcontHorario .NegcontHorDia {
+    display: flex;
+    width: 100%;
+    margin-right: 0px;
+    margin-bottom: 5px;
+    justify-content: center;
+  }
+  .informacionNegocio > .info > #cambiarDato .NegcontHorario h3 {
+    padding-left: 10%;
+  }
+  .informacionNegocio > .info > #cambiarDato > form > #cambiarDatoBotones input {
+    margin-bottom: 0px;
+    width: 75px;
+    height: 25px;
+    border-color: transparent;
+    border-radius: 15px;
+    background: #f3f3f34d;
+    color: white;
   }

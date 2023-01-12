@@ -2,6 +2,7 @@ import React from "react";
 import { Navigate, NavLink, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import DatosNegocio from "./configs/DatosNegocio";
 import DireccionNegocio from "./configs/DireccionNegocio"
+import HorarioNegocio from "./configs/HorarioNegocio"
 
 const Configuracion = () => {
   return (
@@ -36,6 +37,16 @@ const Configuracion = () => {
               Direccion
             </NavLink>
           </li>
+          <li>
+            <NavLink to={'/dashboard/configuracion/horario'} className={({ isActive, isPending }) => isActive ? "active" : ""} >
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f3f3f3bd" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <circle cx="12" cy="12" r="9" />
+              <polyline points="12 7 12 12 15 15" />
+            </svg>
+              Horario
+            </NavLink>
+          </li>
         </ul>
 
         <div className="buttons">
@@ -49,6 +60,7 @@ const Configuracion = () => {
         <Routes>
           <Route path='informacion' element={<DatosNegocio />} />
           <Route path='direccion' element={<DireccionNegocio />} />
+          <Route path='horario' element={<HorarioNegocio />} />
         </Routes>
       </section>
     </div>

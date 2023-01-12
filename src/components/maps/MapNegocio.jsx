@@ -5,7 +5,6 @@ import point from "../../images/point.png";
 import Loading from "../loadings/Loading";
 
 function MapNegocio(coordenadas = {}) {
-  console.log(coordenadas.coordenadas.lat)
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyBqhV6i7d19_4MlXk1gEtZ0flSx_7yYfo8",
     libraries,

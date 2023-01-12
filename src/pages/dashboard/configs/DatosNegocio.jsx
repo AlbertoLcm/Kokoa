@@ -44,18 +44,20 @@ const DatosNegocio = () => {
     // console.log(newDatos)
     instance.put(`/negocios/${user.id}`, newDatos)
     .then((res) => {
-      instance.get(`/negocios/${user.id}`)
-      .then((response) => {
-        setNegocio(response.data)
-        alert("informacion actualizada con exito")
-        console.log(negocio)
-      })
+      // instance.get(`/negocios/${user.id}`)
+      // .then((response) => {
+      //   setNegocio(response)
+      //   alert("informacion actualizada con exito")
+        setEsperandoRespuesta(false)
+        setCambioNombre(false)
+        setCambioDescripcion(false)
+        setCambioEmail(false)
+        setCambioNumero(false)
+      // })
     })
-    setEsperandoRespuesta(false)
-    setCambioNombre(false)
-    setCambioDescripcion(false)
-    setCambioEmail(false)
-    setCambioNumero(false)
+    .catch((error) => {
+      console.warn(error)
+    })
   }
   useEffect (() => {
     instance.get(`/negocios/${user.id}`)
@@ -88,8 +90,7 @@ const DatosNegocio = () => {
                     <LoadingElement />
                   ) : (
                     <>
-                      <h5>Ingrese el nuevo nombre</h5>
-                      <input type="text" name="nombre" onChange={handleChange} />
+                      <input type="text" name="nombre" placeholder="Ingrese aqui el nombre de su negocio" onChange={handleChange} />
                       <section id="cambiarDatoBotones">
                         <button onClick={changeCambioNombre} >Cancelar</button>
                         <button onClick={actualizarDatos}>Actualizar</button>
@@ -114,7 +115,7 @@ const DatosNegocio = () => {
                     <LoadingElement />
                   ) : (
                     <>
-                      <input type="text" name="descripcion" onChange={handleChange} />
+                      <input type="text" name="descripcion" placeholder="Escriba aqui la descripcion de su negocio" onChange={handleChange} />
                       <section id="cambiarDatoBotones">
                         <button onClick={changeCambioDescripcion} >Cancelar</button>
                         <button onClick={actualizarDatos}>Actualizar</button>
@@ -139,7 +140,7 @@ const DatosNegocio = () => {
                     <LoadingElement />
                   ) : (
                     <>
-                      <input type="text" name="email" onChange={handleChange} />
+                      <input type="text" name="email" placeholder="Escriba aqui el Email de su negocio" onChange={handleChange} />
                       <section id="cambiarDatoBotones">
                         <button onClick={changeCambioEmail} >Cancelar</button>
                         <button onClick={actualizarDatos}>Actualizar</button>
@@ -164,7 +165,7 @@ const DatosNegocio = () => {
                     <LoadingElement />
                   ) : (
                     <>
-                      <input type="text" name="numero" onChange={handleChange} />
+                      <input type="text" name="numero" placeholder="Escriba aqui el numero de contacto de su negocio" onChange={handleChange} />
                       <section id="cambiarDatoBotones">
                         <button onClick={changeCambioNumero} >Cancelar</button>
                         <button onClick={actualizarDatos}>Actualizar</button>
